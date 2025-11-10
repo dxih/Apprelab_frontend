@@ -1,23 +1,25 @@
 import React from "react";
 import { Box, Typography, Button, Card, CardContent } from "@mui/material";
-import SchoolIcon from "@mui/icons-material/School";
-import BuildIcon from "@mui/icons-material/Build";
-import PaidIcon from "@mui/icons-material/Paid";
+
+// ✅ Outlined icons instead of filled ones
+import SchoolOutlinedIcon from "@mui/icons-material/SchoolOutlined";
+import BuildOutlinedIcon from "@mui/icons-material/BuildOutlined";
+import PaidOutlinedIcon from "@mui/icons-material/PaidOutlined";
 
 const AboutApprelab = () => {
   const pillars = [
     {
-      icon: <SchoolIcon sx={{ fontSize: 32, color: "#071A7E" }} />,
+      icon: <SchoolOutlinedIcon sx={{ fontSize: 40, color: "#142785d6" }} />,
       title: "Practical Learning",
       text: "Advance your career and increase earnings as an individual contributor. Build side hustles and generate additional revenue while maintaining your regular role, without being forced into management.",
     },
     {
-      icon: <BuildIcon sx={{ fontSize: 32, color: "#071A7E" }} />,
+      icon: <BuildOutlinedIcon sx={{ fontSize: 40, color: "#142785d6" }} />,
       title: "Hands On Creation",
       text: "Advance your career and increase earnings as an individual contributor. Build side hustles and generate additional revenue while maintaining your regular role, without being forced into management.",
     },
     {
-      icon: <PaidIcon sx={{ fontSize: 32, color: "#071A7E" }} />,
+      icon: <PaidOutlinedIcon sx={{ fontSize: 40, color: "#142785d6" }} />,
       title: "Earning Potentials",
       text: "Advance your career and increase earnings as an individual contributor. Build side hustles and generate additional revenue while maintaining your regular role, without being forced into management.",
     },
@@ -42,11 +44,11 @@ const AboutApprelab = () => {
       >
         {/* Heading */}
         <Typography
-          variant="h4"
+          variant="h3"
           sx={{
             fontWeight: 700,
             mb: 1,
-            color: "#0B0B31",
+            color: "#0F0F57",
           }}
         >
           Everything You Need to Know About{" "}
@@ -58,9 +60,10 @@ const AboutApprelab = () => {
         {/* Sub */}
         <Typography
           sx={{
-            color: "#666",
-            mb: 6,
-            fontSize: 18,
+            color: "#252859",
+            mb: 12,
+            fontSize: 23,
+            fontWeight: 200,
           }}
         >
           Three core pillars powering Apprelab
@@ -73,30 +76,58 @@ const AboutApprelab = () => {
             flexWrap: "wrap",
             gap: 4,
             justifyContent: "center",
-            mb: 6,
+            mb: 12,
           }}
         >
           {pillars.map((item, idx) => (
             <Card
               key={idx}
-              elevation={2}
+              elevation={3}
               sx={{
-                width: 300,
-                borderRadius: 3,
+                width: 320,
+                borderRadius: 5,
                 p: 2,
+                transition: "0.3s",
+                "&:hover": {
+                  transform: "translateY(-6px)",
+                  boxShadow: "0px 6px 20px rgba(0,0,0,0.2)",
+                },
               }}
             >
               <CardContent sx={{ textAlign: "center" }}>
-                <Box sx={{ mb: 2 }}>{item.icon}</Box>
+                <Box
+                  sx={{
+                    mb: 3,
+                    width: 80,
+                    height: 80,
+                    mx: "auto",
+                    borderRadius: "50%",
+                    backgroundColor: "#ccd3ed49",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                  }}
+                >
+                  {item.icon}
+                </Box>
                 <Typography
                   variant="h6"
-                  sx={{ fontWeight: 600, mb: 1, color: "#0B0B31" }}
+                  sx={{
+                    fontWeight: 700,
+                    mb: 3,
+                    color: "#0B0B31",
+                    fontFamily: "'Inter', sans-serif",
+                  }}
                 >
                   {item.title}
                 </Typography>
                 <Typography
-                  variant="body2"
-                  sx={{ color: "#555", lineHeight: 1.5 }}
+                  sx={{
+                    color: "#4A5565",
+                    lineHeight: 1.6,
+                    fontFamily: "'Inter', sans-serif",
+                    fontWeight: 500,
+                  }}
                 >
                   {item.text}
                 </Typography>
@@ -113,8 +144,9 @@ const AboutApprelab = () => {
             textTransform: "none",
             fontWeight: 500,
             borderRadius: "8px",
-            px: 4,
-            py: 1.2,
+            px: 5,
+            py: 1.4,
+            mb: 5,
             "&:hover": { backgroundColor: "#0F28AA" },
           }}
         >

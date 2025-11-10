@@ -1,29 +1,35 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
-import AppBar from "@mui/material/AppBar";
-import Toolbar from "@mui/material/Toolbar";
-import Button from "@mui/material/Button";
-import Box from "@mui/material/Box";
-import IconButton from "@mui/material/IconButton";
-import Menu from "@mui/material/Menu";
-import MenuItem from "@mui/material/MenuItem";
-import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
+import { Link, useLocation } from "react-router-dom";
+import {
+  AppBar,
+  Toolbar,
+  Button,
+  Box,
+  IconButton,
+  Menu,
+  MenuItem,
+} from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import MenuIcon from "@mui/icons-material/Menu";
-
-// ✅ Import your logo image
-import logo from "../assets/apprelab_logo.png";
+import logo from "../assets/apprelab_logo_dark.png";
 
 const Navbar: React.FC = () => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+  const location = useLocation();
 
   const handleMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
   };
-
   const handleMenuClose = () => {
     setAnchorEl(null);
   };
+
+  const navLinks = [
+    { label: "Learn", path: "/learn" },
+    { label: "Mentor", path: "/mentor" },
+    { label: "Create", path: "/create" },
+    { label: "Hire", path: "/hire" },
+  ];
 
   return (
     <AppBar
@@ -45,14 +51,14 @@ const Navbar: React.FC = () => {
           gap: 3,
         }}
       >
-        {/* ✅ Logo */}
+        {/* Logo */}
         <Box sx={{ display: "flex", alignItems: "center" }}>
           <Link to="/" style={{ textDecoration: "none" }}>
             <img src={logo} alt="apprelab logo" style={{ height: 32 }} />
           </Link>
         </Box>
 
-        {/* ✅ Desktop Menu */}
+        {/* Desktop Menu */}
         <Box
           sx={{
             ml: 4,
@@ -62,72 +68,51 @@ const Navbar: React.FC = () => {
             fontWeight: 500,
           }}
         >
-          {/* Learn */}
-          <Box
-            component={Link}
-            to="/learn"
-            sx={{
-              display: "flex",
-              alignItems: "center",
-              gap: 0.3,
-              cursor: "pointer",
-              textDecoration: "none",
-              color: "#0B0B31",
-              "&:hover": { color: "#071A7E" },
-            }}
-          >
-            Learn <KeyboardArrowDownIcon sx={{ fontSize: 18 }} />
-          </Box>
-
-          <Box
-            component={Link}
-            to="/mentor"
-            sx={{
-              cursor: "pointer",
-              textDecoration: "none",
-              color: "#0B0B31",
-              "&:hover": { color: "#071A7E" },
-            }}
-          >
-            Mentor
-          </Box>
-
-          <Box
-            component={Link}
-            to="/create"
-            sx={{
-              cursor: "pointer",
-              textDecoration: "none",
-              color: "#0B0B31",
-              "&:hover": { color: "#071A7E" },
-            }}
-          >
-            Create
-          </Box>
-
-          <Box
-            component={Link}
-            to="/hire"
-            sx={{
-              cursor: "pointer",
-              textDecoration: "none",
-              color: "#0B0B31",
-              "&:hover": { color: "#071A7E" },
-            }}
-          >
-            Hire
-          </Box>
+          {navLinks.map(({ label, path }) => {
+            const isActive = location.pathname === path;
+            return (
+              <Box
+                key={path}
+                component={Link}
+                to={path}
+                sx={{
+                  position: "relative",
+                  textDecoration: "none",
+                  color: isActive ? "#0B0B31" : "#0B0B31",
+                  fontFamily: "'Inter', sans-serif",
+                  fontWeight: 500,
+                  "&:hover": { color: "#071A7E" },
+                  "&::after": {
+                    content: '""',
+                    position: "absolute",
+                    bottom: -6,
+                    left: 0,
+                    width: isActive ? "100%" : "0%",
+                    height: "3px",
+                    backgroundColor: "#FFD60A",
+                    borderRadius: "3px",
+                    transition: "width 0.3s ease",
+                  },
+                  "&:hover::after": {
+                    width: "100%",
+                  },
+                }}
+              >
+                {label}
+              </Box>
+            );
+          })}
         </Box>
 
-        {/* Spacer pushes items to right */}
+        {/* Spacer */}
         <Box sx={{ flexGrow: 1 }} />
 
-        {/* ✅ Search icon */}
+        {/* Search Icon */}
         <IconButton sx={{ display: { xs: "none", md: "flex" } }}>
           <SearchIcon sx={{ fontSize: 22, color: "#0B0B31" }} />
         </IconButton>
 
-        {/* ✅ Sign In */}
+        {/* Sign In */}
         <Button
           variant="outlined"
           component={Link}
@@ -150,7 +135,7 @@ const Navbar: React.FC = () => {
           Sign in
         </Button>
 
-        {/* ✅ Get started */}
+        {/* Get Started */}
         <Button
           variant="contained"
           component={Link}
@@ -169,59 +154,93 @@ const Navbar: React.FC = () => {
           Get started
         </Button>
 
-        {/* ✅ Mobile Menu Icon */}
+        {/* Mobile Menu Icon */}
         <Box sx={{ display: { xs: "flex", md: "none" } }}>
           <IconButton onClick={handleMenuOpen}>
             <MenuIcon sx={{ color: "#0B0B31" }} />
           </IconButton>
         </Box>
 
-        {/* ✅ Mobile dropdown */}
-        <Menu anchorEl={anchorEl} open={Boolean(anchorEl)} onClose={handleMenuClose}>
-          {[
-            { label: "Learn", path: "/learn" },
-            { label: "Mentor", path: "/mentor" },
-            { label: "Create", path: "/create" },
-            { label: "Hire", path: "/hire" },
-          ].map((item) => (
+        {/* ✅ Themed Mobile Dropdown */}
+        <Menu
+          anchorEl={anchorEl}
+          open={Boolean(anchorEl)}
+          onClose={handleMenuClose}
+          PaperProps={{
+            sx: {
+              backgroundColor: "#ffffff",
+              borderRadius: "12px",
+              boxShadow: "0px 6px 24px rgba(0,0,0,0.1)",
+              mt: 1.5,
+              px: 1,
+              py: 0.5,
+              minWidth: 220,
+            },
+          }}
+          transformOrigin={{ vertical: "top", horizontal: "right" }}
+          anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
+        >
+          {navLinks.map((item) => (
             <MenuItem
               key={item.label}
               onClick={handleMenuClose}
               component={Link}
               to={item.path}
               sx={{
+                borderRadius: "8px",
                 textDecoration: "none",
-                color: "#0B0B31",
-                "&:hover": { color: "#071A7E" },
+                color:
+                  location.pathname === item.path ? "#071A7E" : "#0B0B31",
+                fontWeight: location.pathname === item.path ? 600 : 500,
+                fontSize: "0.95rem",
+                px: 2,
+                "&:hover": {
+                  backgroundColor: "#f5f6ff",
+                  color: "#071A7E",
+                },
               }}
             >
               {item.label}
             </MenuItem>
           ))}
 
-          <MenuItem onClick={handleMenuClose}>
+          <Box sx={{ p: 1, display: "flex", flexDirection: "column", gap: 1 }}>
             <Button
               variant="outlined"
               fullWidth
-              sx={{ textTransform: "none" }}
               component={Link}
               to="/signin"
+              sx={{
+                textTransform: "none",
+                borderColor: "#0B0B31",
+                color: "#0B0B31",
+                fontWeight: 500,
+                "&:hover": {
+                  borderColor: "#071A7E",
+                  color: "#071A7E",
+                },
+              }}
             >
               Sign In
             </Button>
-          </MenuItem>
 
-          <MenuItem onClick={handleMenuClose}>
             <Button
               variant="contained"
               fullWidth
-              sx={{ textTransform: "none" }}
               component={Link}
               to="/get-started"
+              sx={{
+                textTransform: "none",
+                backgroundColor: "#071A7E",
+                fontWeight: 500,
+                "&:hover": {
+                  backgroundColor: "#0F28AA",
+                },
+              }}
             >
               Get Started
             </Button>
-          </MenuItem>
+          </Box>
         </Menu>
       </Toolbar>
     </AppBar>
