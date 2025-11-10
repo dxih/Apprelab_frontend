@@ -1,8 +1,7 @@
 import React from "react";
 import { Box, Button, Typography } from "@mui/material";
 
-// ✅ Replace this with your video thumbnail file path
-import videoThumbnail from "../assets/academy_video.png";
+import videoThumbnail from "../../assets/academy_video.png";
 
 const Hero: React.FC = () => {
   return (
@@ -15,8 +14,8 @@ const Hero: React.FC = () => {
         alignItems: "center",
         textAlign: "center",
         gap: 4,
-        py: 10,
-        background: "linear-gradient(to bottom, #EEF1FF 0%, #FFFFFF 100%)",
+        py: 8,
+        background: "linear-gradient(to bottom, #eef1ffa3 0%, #FFFFFF 100%)",
       }}
     >
       {/* ✅ HEADLINE */}
@@ -25,7 +24,7 @@ const Hero: React.FC = () => {
         sx={{
           fontSize: { xs: "2rem", md: "3rem" },
           fontWeight: 700,
-          color: "#0B0B31",
+          color: "#111151ff",
         }}
       >
         Learn. Build.{" "}
@@ -36,9 +35,10 @@ const Hero: React.FC = () => {
 
       {/* ✅ SUBTITLE */}
       <Typography
+              variant="h2"
         sx={{
-          width: { xs: "90%", md: "60%" },
-          fontSize: "1.6rem",
+          width: { xs: "90%", md: "80%" },
+          fontSize: "2.0em",
           color: "#5C5C77",
           lineHeight: 1.6,
         }}
