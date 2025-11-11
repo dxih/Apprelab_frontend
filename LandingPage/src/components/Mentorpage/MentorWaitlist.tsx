@@ -1,6 +1,6 @@
 import React from "react";
 import { Box, Typography, TextField, Button } from "@mui/material";
-import mentorImage from "../../assets/mentor_waitlist.png"; // <-- Update path if needed
+import mentorImage from "../../assets/mentorwaitlist.png"; // <-- Update path if needed
 
 const MentorWaitlist: React.FC = () => {
   return (
