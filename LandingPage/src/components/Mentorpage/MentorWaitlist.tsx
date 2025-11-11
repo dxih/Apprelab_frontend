@@ -127,7 +127,7 @@ const MentorWaitlist: React.FC = () => {
           <Button
             variant="contained"
             sx={{
-              backgroundColor: "#0B0B31",
+              backgroundColor: "#14144cff",
               color: "white",
               py: 1.4,
               borderRadius: "10px",
