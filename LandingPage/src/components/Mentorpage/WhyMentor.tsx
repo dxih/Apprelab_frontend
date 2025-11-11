@@ -1,4 +1,3 @@
-import React from "react";
 import { Box, Typography, Card, CardContent } from "@mui/material";
 import MonetizationOnOutlinedIcon from "@mui/icons-material/MonetizationOnOutlined";
 import SchoolOutlinedIcon from "@mui/icons-material/SchoolOutlined";
