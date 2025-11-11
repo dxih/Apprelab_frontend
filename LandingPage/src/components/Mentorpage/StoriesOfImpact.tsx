@@ -58,11 +58,11 @@ const StoriesOfImpact: React.FC = () => {
     arrows: false,
     infinite: true,
     speed: 600,
-    slidesToShow: 2,
+    slidesToShow: 1,
     slidesToScroll: 1,
     autoplay: false,
     responsive: [
-      { breakpoint: 1200, settings: { slidesToShow: 1 } },
+      { breakpoint: 1200, settings: { slidesToShow: 2 } },
       { breakpoint: 900, settings: { slidesToShow: 1 } }, // 👈 One card on mobile
     ],
   };
