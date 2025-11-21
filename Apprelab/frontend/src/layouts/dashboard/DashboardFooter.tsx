@@ -13,7 +13,7 @@ import BehanceIcon from "@mui/icons-material/Brush"; // Replace with proper Beha
 import apprelabLogoLight from "../../assets/images/logos/apprelab_logo_light.png";
 import dxhubLogo from "../../assets/images/logos/dxhub_logo.png";
 
-const Footer: React.FC = () => {
+const DashboardFooter: React.FC = () => {
   return (
     <Box
       component="footer"
@@ -273,4 +273,4 @@ const Footer: React.FC = () => {
   );
 };
 
-export default Footer;
+export default DashboardFooter;

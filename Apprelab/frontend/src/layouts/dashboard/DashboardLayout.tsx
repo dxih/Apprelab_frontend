@@ -1,18 +1,18 @@
 import { Box } from "@mui/material";
-import Navbar from "../components/common/Navbar";
-import Footer from "../components/common/Footer";
+import DashboardNavbar from "./DashboardNavbar";
+import DashboardFooter from "./DashboardFooter";
 import { Outlet } from "react-router-dom";
 
-const WebsiteLayout = () => {
+const DashboardLayout = () => {
   return (
     <Box sx={{ backgroundColor: "#F9FAFF", minHeight: "100vh" }}>
-      <Navbar />
+      <DashboardNavbar />
       <main>
         <Outlet />
       </main>
-      <Footer />
+      <DashboardFooter />
     </Box>
   );
 };
 
-export default WebsiteLayout;
+export default DashboardLayout;
