@@ -34,11 +34,11 @@ const ForgotPassword: React.FC = () => {
       }}
     >
       {/* Logo */}
-        <Box sx={{ display: "flex", alignItems: "center",  }}>
-          <Link to="/" style={{ textDecoration: "none" }}>
-            <img src={logo} alt="apprelab logo" style={{ height: 50 }} />
-          </Link>
-        </Box>
+      <Box sx={{ display: "flex", alignItems: "center" }}>
+        <Link to="/" style={{ textDecoration: "none" }}>
+          <img src={logo} alt="apprelab logo" style={{ height: 50 }} />
+        </Link>
+      </Box>
 
       {/* CARD */}
       <Box
@@ -83,7 +83,9 @@ const ForgotPassword: React.FC = () => {
           fullWidth
           placeholder="Email address"
           value={email}
-          onChange={(e) => setEmail(e.target.value)}
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+            setEmail(e.target.value)
+          }
           sx={{
             mb: 3,
             "& .MuiInputBase-root": {
