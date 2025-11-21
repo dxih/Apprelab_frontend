@@ -55,6 +55,7 @@ const LearnHero: React.FC = () => {
            to="/signup"
           sx={{
             backgroundColor: "#21285cff",
+                      color: "#e6e6f1ff",
             textTransform: "none",
             fontWeight: 500,
             borderRadius: "8px",
