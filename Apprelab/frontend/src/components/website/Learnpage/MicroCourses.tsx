@@ -272,19 +272,21 @@ const MicroCourses = () => {
         ))}
       </Box>
 
-      {/* See More */}
-      <Typography
-        sx={{
-          color: "#D0D3E2",
-          mt: 5,
-          fontSize: "0.95rem",
-          textDecoration: "underline",
-          cursor: "pointer",
-          "&:hover": { color: "#FFD400" },
-        }}
-      >
-        See more...
-      </Typography>
+{/* See More */}
+<Link to="/signup" style={{ textDecoration: "none" }}>
+  <Typography
+    sx={{
+      color: "#D0D3E2",
+      mt: 5,
+      fontSize: "0.95rem",
+      textDecoration: "underline",
+      cursor: "pointer",
+      "&:hover": { color: "#FFD400" },
+    }}
+  >
+    See more...
+  </Typography>
+</Link>
     </Box>
   );
 };

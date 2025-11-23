@@ -6,10 +6,11 @@ import {
   Button,
   IconButton,
 } from "@mui/material";
+import { Link } from "react-router-dom";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
-import BehanceIcon from "@mui/icons-material/Brush"; // Replace with proper Behance icon if available
+import BehanceIcon from "@mui/icons-material/Brush";
 import apprelabLogoLight from "../../assets/images/logos/apprelab_logo_light.png";
 import dxhubLogo from "../../assets/images/logos/dxhub_logo.png";
 
@@ -43,20 +44,11 @@ const WebsiteFooter: React.FC = () => {
             component="img"
             src={apprelabLogoLight}
             alt="Apprelab Logo"
-            sx={{
-              height: 32,
-              mb: 3,
-            }}
+            sx={{ height: 32, mb: 3 }}
           />
 
-          <Typography
-            sx={{
-              fontSize: "0.95rem",
-              color: "#FFFFFF",
-              mb: 1,
-            }}
-          >
-            Call: +123 400 123
+          <Typography sx={{ fontSize: "0.95rem", mb: 1 }}>
+            Call: +234 913 500 4402
           </Typography>
 
           <Typography
@@ -65,25 +57,22 @@ const WebsiteFooter: React.FC = () => {
               color: "#B0B0B0",
               lineHeight: 1.6,
               mb: 1.5,
-              maxWidth: "240px",
+              maxWidth: "260px",
             }}
           >
-            Present nulla massa, hendrerit vestibulum gravida in, feugiat auctor
-            felis.
+            Apprelab helps you acquire practical tech skills through guided
+            bootcamps, project-based learning, and mentorship.
           </Typography>
 
-          <Typography
-            sx={{
-              fontSize: "0.9rem",
-              color: "#B0B0B0",
-              mb: 3,
-            }}
-          >
-            Email: example@gmail.com
+          <Typography sx={{ fontSize: "0.9rem", color: "#B0B0B0", mb: 3 }}>
+            Email: support@apprelab.com
           </Typography>
 
           <Box sx={{ display: "flex", gap: 1 }}>
             <IconButton
+              component="a"
+              href="https://facebook.com"
+              target="_blank"
               sx={{
                 backgroundColor: "#FFFFFF",
                 color: "#0B0B31",
@@ -94,7 +83,11 @@ const WebsiteFooter: React.FC = () => {
             >
               <FacebookIcon sx={{ fontSize: 18 }} />
             </IconButton>
+
             <IconButton
+              component="a"
+              href="https://instagram.com"
+              target="_blank"
               sx={{
                 backgroundColor: "#FFFFFF",
                 color: "#0B0B31",
@@ -105,7 +98,11 @@ const WebsiteFooter: React.FC = () => {
             >
               <InstagramIcon sx={{ fontSize: 18 }} />
             </IconButton>
+
             <IconButton
+              component="a"
+              href="https://linkedin.com"
+              target="_blank"
               sx={{
                 backgroundColor: "#FFFFFF",
                 color: "#0B0B31",
@@ -116,7 +113,11 @@ const WebsiteFooter: React.FC = () => {
             >
               <LinkedInIcon sx={{ fontSize: 18 }} />
             </IconButton>
+
             <IconButton
+              component="a"
+              href="https://behance.net"
+              target="_blank"
               sx={{
                 backgroundColor: "#FFFFFF",
                 color: "#0B0B31",
@@ -132,40 +133,37 @@ const WebsiteFooter: React.FC = () => {
 
         {/* === 2. Explore === */}
         <Box>
-          <Typography
-            sx={{
-              fontSize: "1rem",
-              fontWeight: 600,
-              mb: 2,
-            }}
-          >
+          <Typography sx={{ fontSize: "1rem", fontWeight: 600, mb: 2 }}>
             Explore
           </Typography>
 
-          {["Home", "About", "Course", "Blog", "Contact"].map((item) => (
+          {[
+            { label: "Home", to: "/" },
+            { label: "About", to: "/about" },
+            { label: "Courses", to: "/courses" },
+            { label: "Blog", to: "/blog" },
+            { label: "Contact", to: "/contact" },
+          ].map((item) => (
             <Typography
-              key={item}
+              key={item.label}
+              component={Link}
+              to={item.to}
               sx={{
                 fontSize: "0.9rem",
                 color: "#B0B0B0",
                 mb: 1.2,
-                "&:hover": { color: "#FFFFFF", cursor: "pointer" },
+                textDecoration: "none",
+                "&:hover": { color: "#FFFFFF" },
               }}
             >
-              {item}
+              {item.label}
             </Typography>
           ))}
         </Box>
 
         {/* === 3. Category === */}
         <Box>
-          <Typography
-            sx={{
-              fontSize: "1rem",
-              fontWeight: 600,
-              mb: 2,
-            }}
-          >
+          <Typography sx={{ fontSize: "1rem", fontWeight: 600, mb: 2 }}>
             Category
           </Typography>
 
@@ -180,11 +178,14 @@ const WebsiteFooter: React.FC = () => {
           ].map((item) => (
             <Typography
               key={item}
+              component={Link}
+              to="/signup"
               sx={{
                 fontSize: "0.9rem",
                 color: "#B0B0B0",
                 mb: 1.2,
-                "&:hover": { color: "#FFFFFF", cursor: "pointer" },
+                textDecoration: "none",
+                "&:hover": { color: "#FFFFFF" },
               }}
             >
               {item}
@@ -194,15 +195,10 @@ const WebsiteFooter: React.FC = () => {
 
         {/* === 4. Subscribe === */}
         <Box>
-          <Typography
-            sx={{
-              fontSize: "1rem",
-              fontWeight: 600,
-              mb: 2,
-            }}
-          >
+          <Typography sx={{ fontSize: "1rem", fontWeight: 600, mb: 2 }}>
             Subscribe
           </Typography>
+
           <Typography
             sx={{
               fontSize: "0.9rem",
@@ -212,26 +208,24 @@ const WebsiteFooter: React.FC = () => {
               maxWidth: "260px",
             }}
           >
-            Lorem Ipsum has been the industry standard dummy text ever since the
-            1500s.
+            Join our newsletter to receive updates on new courses, tech career
+            tips, and special offers.
           </Typography>
 
           <TextField
-            placeholder="Email here"
+            placeholder="Enter your email"
             variant="outlined"
             size="small"
             fullWidth
             sx={{
               backgroundColor: "#273164",
               borderRadius: "6px",
-              input: {
-                color: "#FFFFFF",
-                fontSize: "0.9rem",
-              },
+              input: { color: "#FFFFFF", fontSize: "0.9rem" },
               mb: 2,
               "& fieldset": { border: "none" },
             }}
           />
+
           <Button
             variant="contained"
             fullWidth
@@ -249,7 +243,7 @@ const WebsiteFooter: React.FC = () => {
         </Box>
       </Box>
 
-      {/* Divider Line */}
+      {/* Divider */}
       <Box
         sx={{
           borderTop: "1px solid rgba(255,255,255,0.1)",
@@ -263,10 +257,7 @@ const WebsiteFooter: React.FC = () => {
           component="img"
           src={dxhubLogo}
           alt="DXHub Logo"
-          sx={{
-            height: 68,
-            opacity: 0.9,
-          }}
+          sx={{ height: 68, opacity: 0.9 }}
         />
       </Box>
     </Box>
