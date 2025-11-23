@@ -17,7 +17,6 @@ import {
 import GoogleIcon from "@mui/icons-material/Google";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import AppleIcon from "@mui/icons-material/Apple";
-
 import DesignServicesOutlinedIcon from "@mui/icons-material/DesignServicesOutlined";
 import TerminalOutlinedIcon from "@mui/icons-material/TerminalOutlined";
 import SecurityOutlinedIcon from "@mui/icons-material/SecurityOutlined";
@@ -27,6 +26,62 @@ import CodeOutlinedIcon from "@mui/icons-material/CodeOutlined";
 import StorageOutlinedIcon from "@mui/icons-material/StorageOutlined";
 import PhoneIphoneOutlinedIcon from "@mui/icons-material/PhoneIphoneOutlined";
 import SmartToyOutlinedIcon from "@mui/icons-material/SmartToyOutlined";
+
+const skillsList = [
+  { label: "UI/UX", icon: <DesignServicesOutlinedIcon /> },
+  { label: "Web Dev", icon: <TerminalOutlinedIcon /> },
+  { label: "Frontend Dev", icon: <CodeOutlinedIcon /> },
+  { label: "Backend Dev", icon: <StorageOutlinedIcon /> },
+  { label: "Mobile Dev", icon: <PhoneIphoneOutlinedIcon /> },
+  { label: "iOS Dev", icon: <PhoneIphoneOutlinedIcon /> },
+  { label: "Android Dev", icon: <PhoneIphoneOutlinedIcon /> },
+  { label: "AI/ML", icon: <SmartToyOutlinedIcon /> },
+  { label: "Cyber Security", icon: <SecurityOutlinedIcon /> },
+  { label: "Data Analysis", icon: <AnalyticsOutlinedIcon /> },
+  { label: "Product Design", icon: <ArchitectureOutlinedIcon /> },
+  { label: "Database", icon: <StorageOutlinedIcon /> },
+  { label: "DevOps", icon: <TerminalOutlinedIcon /> },
+  { label: "Cloud Computing", icon: <StorageOutlinedIcon /> },
+  { label: "Game Development", icon: <SmartToyOutlinedIcon /> },
+  { label: "AR/VR", icon: <SmartToyOutlinedIcon /> },
+  { label: "Robotics", icon: <SmartToyOutlinedIcon /> },
+  { label: "Blockchain", icon: <TerminalOutlinedIcon /> },
+  { label: "SEO", icon: <DesignServicesOutlinedIcon /> },
+  { label: "Digital Marketing", icon: <DesignServicesOutlinedIcon /> },
+  { label: "Photography", icon: <DesignServicesOutlinedIcon /> },
+  { label: "Video Editing", icon: <DesignServicesOutlinedIcon /> },
+  { label: "Graphic Design", icon: <DesignServicesOutlinedIcon /> },
+  { label: "Animation", icon: <DesignServicesOutlinedIcon /> },
+  { label: "Content Writing", icon: <DesignServicesOutlinedIcon /> },
+  { label: "Technical Writing", icon: <DesignServicesOutlinedIcon /> },
+  { label: "Public Speaking", icon: <DesignServicesOutlinedIcon /> },
+  { label: "Leadership", icon: <DesignServicesOutlinedIcon /> },
+  { label: "Project Management", icon: <DesignServicesOutlinedIcon /> },
+  { label: "Agile Methodology", icon: <DesignServicesOutlinedIcon /> },
+  { label: "Scrum", icon: <DesignServicesOutlinedIcon /> },
+  { label: "Customer Support", icon: <DesignServicesOutlinedIcon /> },
+  { label: "Finance", icon: <DesignServicesOutlinedIcon /> },
+  { label: "Accounting", icon: <DesignServicesOutlinedIcon /> },
+  { label: "Investment", icon: <DesignServicesOutlinedIcon /> },
+  { label: "Entrepreneurship", icon: <DesignServicesOutlinedIcon /> },
+  { label: "UI Testing", icon: <DesignServicesOutlinedIcon /> },
+  { label: "QA Engineering", icon: <DesignServicesOutlinedIcon /> },
+  { label: "Ethical Hacking", icon: <SecurityOutlinedIcon /> },
+  { label: "Networking", icon: <SecurityOutlinedIcon /> },
+  { label: "System Admin", icon: <StorageOutlinedIcon /> },
+  { label: "Cloud Security", icon: <SecurityOutlinedIcon /> },
+  { label: "IoT", icon: <SmartToyOutlinedIcon /> },
+  { label: "Big Data", icon: <AnalyticsOutlinedIcon /> },
+  { label: "Data Science", icon: <AnalyticsOutlinedIcon /> },
+  { label: "Machine Learning Ops", icon: <SmartToyOutlinedIcon /> },
+  { label: "Natural Language Processing", icon: <SmartToyOutlinedIcon /> },
+  { label: "Computer Vision", icon: <SmartToyOutlinedIcon /> },
+  { label: "Augmented Analytics", icon: <AnalyticsOutlinedIcon /> },
+  { label: "Quantum Computing", icon: <SmartToyOutlinedIcon /> },
+  { label: "Bioinformatics", icon: <SmartToyOutlinedIcon /> },
+  { label: "Healthcare Tech", icon: <SmartToyOutlinedIcon /> },
+];
+
 
 import signupSideImg1 from "../../assets/images/components/auth/signupside1.png";
 import signupSideImg2 from "../../assets/images/components/auth/signupside2.png";
@@ -41,6 +96,10 @@ const SignUp: React.FC = () => {
   const [purpose, setPurpose] = useState("");
   const [experience, setExperience] = useState("");
   const [goal, setGoal] = useState("");
+  const [error, setError] = useState(false);
+  const [search, setSearch] = useState("");
+const [shake, setShake] = useState(false);
+
   const navigate = useNavigate();
 
   const getSideImage = () => {
@@ -59,7 +118,7 @@ const SignUp: React.FC = () => {
   };
 
   return (
-    <Box sx={{ width: "100%", minHeight: "100vh", display: "flex" }}>
+    <Box sx={{ width: "100%", maxHeight: "100vh", display: "flex" }}>
       {/* LEFT SIDE */}
       <Box
         sx={{
@@ -97,7 +156,7 @@ const SignUp: React.FC = () => {
                 fontWeight: 700,
                 color: "#0B0B31",
                 mb: 1,
-                mt: { xs: 10, md: 0 },
+                mt: { xs: 15, md: 14 },
               }}
             >
               Create Account
@@ -211,7 +270,7 @@ const SignUp: React.FC = () => {
 
         {/* ---------------- STAGE 2: PURPOSE ---------------- */}
         {stage === 2 && (
-          <Box sx={{ width: "100%", maxWidth: 420 }}>
+          <Box sx={{ width: "100%", maxWidth: 420 , mt: { xs: 15}}}>
             {/* BACK BUTTON */}
             <Box
               sx={{
@@ -286,163 +345,247 @@ const SignUp: React.FC = () => {
           </Box>
         )}
 
-        {/* ---------------- STAGE 3: SKILLS ---------------- */}
-        {stage === 3 && (
-          <Box sx={{ width: "100%", maxWidth: 520, mx: "auto" }}>
-            {/* BACK BUTTON */}
+{/* ---------------- STAGE 3: SKILLS ---------------- */}
+{stage === 3 && (
+  <Box sx={{ width: "100%", maxWidth: 520, mx: "auto" }}>
+    {/* BACK BUTTON */}
+    <Box
+      sx={{
+        display: "flex",
+        alignItems: "center",
+        gap: 1,
+        mb: 3,
+        mt: { xs: 10, md: 7 },
+        cursor: "pointer",
+        width: "fit-content",
+      }}
+      onClick={() => setStage(stage - 1)}
+    >
+      <Box
+        sx={{
+          width: 32,
+          height: 32,
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          color: "#4A4C66",
+          fontSize: "1rem",
+          fontWeight: 900,
+        }}
+      >
+        ←
+      </Box>
+      <Typography
+        sx={{
+          fontWeight: 600,
+          color: "#4A4C66",
+          alignItems: "center",
+          justifyContent: "center",
+          display: "flex",
+          mt: { xs: 1, md: 0 },
+        }}
+      >
+        Back
+      </Typography>
+    </Box>
+
+    <Typography sx={{ fontSize: "1.8rem", fontWeight: 700, mb: 1 }}>
+      Let’s personalize your learning
+    </Typography>
+
+    <Typography sx={{ color: "#5C5C77", mb: 4 }}>
+      Tell us what you want to learn so we can shape your experience
+    </Typography>
+
+    {/* SELECTED SKILLS CHIPS */}
+    {selectedSkills.length > 0 && (
+      <Box sx={{ display: "flex", gap: 1, flexWrap: "wrap", mb: 3, mt: -1 }}>
+        {selectedSkills.map((s) => (
+          <Box
+            key={s}
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              gap: 1,
+              backgroundColor: "#E8EDFF",
+              border: "1px solid #1A3EF0",
+              px: 2,
+              py: 0.7,
+              borderRadius: "14px",
+              fontSize: "0.75rem",
+              fontWeight: 700,
+              cursor: "pointer",
+            }}
+            onClick={() =>
+              setSelectedSkills(selectedSkills.filter((x) => x !== s))
+            }
+          >
+            {s} ✕
+          </Box>
+        ))}
+      </Box>
+    )}
+
+    {/* SEARCH BAR */}
+    <Box
+      sx={{
+        mb: 3,
+        background: "#F6F7FB",
+        borderRadius: "12px",
+        border: "1.5px solid #E0E0EC",
+        px: 2,
+        py: 1.2,
+      }}
+    >
+      <input
+        type="text"
+        placeholder="Search skills…"
+        value={search}
+        onChange={(e) => setSearch(e.target.value)}
+        style={{
+          width: "100%",
+          background: "transparent",
+          border: "none",
+          outline: "none",
+          fontSize: "0.9rem",
+          color: "#1A1A33",
+        }}
+      />
+    </Box>
+
+    {/* SKILLS LIST (FIRST 9) */}
+    <Box
+      sx={{
+        display: "grid",
+        gridTemplateColumns: "repeat(3, 1fr)",
+        rowGap: 2,
+        columnGap: { xs: 4, md: 5 },
+        alignItems: "center",
+        justifyItems: "center",
+      }}
+    >
+      {skillsList
+        .filter((item) =>
+          item.label.toLowerCase().includes(search.toLowerCase())
+        )
+        .slice(0, 9) // Only show first 9
+        .map((item, i) => {
+          const isActive = selectedSkills.includes(item.label);
+
+          return (
             <Box
+              key={i}
+              onClick={() => {
+                setSelectedSkills(
+                  isActive
+                    ? selectedSkills.filter((s) => s !== item.label)
+                    : [...selectedSkills, item.label]
+                );
+              }}
               sx={{
+                background: isActive ? "#E8EDFF" : "#F6F7FB",
+                border: isActive ? "2px solid #1A3EF0" : "1.5px solid #E0E0EC",
+                padding: "10px 9px",
+                width: "100%",
+                borderRadius: "12px",
+                cursor: "pointer",
                 display: "flex",
                 alignItems: "center",
                 gap: 1,
-                mb: 3,
-                cursor: "pointer",
-                width: "fit-content",
+                transition: "0.25s ease",
+                "&:hover": {
+                  background: isActive ? "#E2E9FF" : "#F0F2F8",
+                },
               }}
-              onClick={() => setStage(stage - 1)}
             >
               <Box
                 sx={{
-                  width: 32,
-                  height: 32,
+                  width: 24,
+                  height: 24,
+                  borderRadius: "50%",
+                  border: "2px solid #B9BDD4",
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "center",
-                  color: "#4A4C66",
-                  fontSize: "1rem",
-                  fontWeight: 900,
+                  color: "#676A87",
+                  "& svg": { fontSize: "17px" },
                 }}
               >
-                ←
+                {item.icon}
               </Box>
 
               <Typography
                 sx={{
-                  fontWeight: 600,
-                  color: "#4A4C66",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  display: "flex",
-                  mt: { xs: 1, md: 0 },
+                  fontWeight: 800,
+                  fontSize: { xs: "0.61rem", md: "0.7rem" },
+                  color: "#1A1A33",
                 }}
               >
-                Back
+                {item.label}
               </Typography>
             </Box>
+          );
+        })}
+    </Box>
 
-            <Typography sx={{ fontSize: "1.8rem", fontWeight: 700, mb: 1 }}>
-              Let’s personalize your learning
-            </Typography>
+    {/* ERROR MESSAGE + SHAKE ANIMATION */}
+    {error && (
+      <Typography
+        sx={{
+          color: "red",
+          mt: 2,
+          fontSize: "0.85rem",
+          fontWeight: 600,
+          animation: "fadeIn 0.3s ease",
+        }}
+      >
+        Pick at least one skill to continue
+      </Typography>
+    )}
 
-            <Typography sx={{ color: "#5C5C77", mb: 4 }}>
-              Tell us what you want to learn so we can shape your experience
-            </Typography>
+    {/* NEXT BUTTON */}
+    <Button
+      fullWidth
+      variant="contained"
+      sx={{
+        backgroundColor: "#0B0B31",
+        mt: 5,
+        py: 1.6,
+        borderRadius: "10px",
+        fontSize: "1rem",
+        fontWeight: 600,
+        textTransform: "none",
+        animation: shake ? "shake 0.4s" : "none",
+        "@keyframes shake": {
+          "0%": { transform: "translateX(0)" },
+          "20%": { transform: "translateX(-6px)" },
+          "40%": { transform: "translateX(6px)" },
+          "60%": { transform: "translateX(-6px)" },
+          "80%": { transform: "translateX(6px)" },
+          "100%": { transform: "translateX(0)" },
+        },
+      }}
+      onClick={() => {
+        if (selectedSkills.length === 0) {
+          setError(true);
+          setShake(true);
+          setTimeout(() => setShake(false), 400);
+        } else {
+          setError(false);
+          setStage(4);
+        }
+      }}
+    >
+      Next
+    </Button>
+  </Box>
+)}
 
-            {/* SKILLS GRID */}
-            <Box
-              sx={{
-                display: "grid",
-                gridTemplateColumns: "repeat(3, 1fr)",
-                rowGap: 2,
-                columnGap: { xs: 4, md: 5 },
-                alignItems: "center",
-                justifyItems: "center",
-              }}
-            >
-              {[
-                { label: "UI/UX", icon: <DesignServicesOutlinedIcon /> },
-                { label: "Web Dev", icon: <TerminalOutlinedIcon /> },
-                { label: "Cyber Security", icon: <SecurityOutlinedIcon /> },
-                { label: "Data Analysis", icon: <AnalyticsOutlinedIcon /> },
-                { label: "Product Design", icon: <ArchitectureOutlinedIcon /> },
-                { label: "Frontend Dev", icon: <CodeOutlinedIcon /> },
-                { label: "Backend Dev", icon: <StorageOutlinedIcon /> },
-                { label: "Mobile Dev", icon: <PhoneIphoneOutlinedIcon /> },
-                { label: "AI/ML", icon: <SmartToyOutlinedIcon /> },
-                { label: "Database", icon: <StorageOutlinedIcon /> },
-                { label: "IOS dev", icon: <PhoneIphoneOutlinedIcon /> },
-                { label: "Robotics", icon: <SmartToyOutlinedIcon /> },
-              ].map((item, i) => {
-                const isActive = selectedSkills.includes(item.label);
 
-                return (
-                  <Box
-                    key={i}
-                    onClick={() => {
-                      setSelectedSkills(
-                        isActive
-                          ? selectedSkills.filter((s) => s !== item.label)
-                          : [...selectedSkills, item.label]
-                      );
-                    }}
-                    sx={{
-                      background: isActive ? "#E8EDFF" : "#F6F7FB",
-                      border: isActive ? "2px solid #1A3EF0" : "1.5px solid #E0E0EC",
-                      padding: "10px 9px",
-                      width: "100%",
-                      borderRadius: "12px",
-                      cursor: "pointer",
-                      display: "flex",
-                      alignItems: "center",
-                      gap: 1,
-                      transition: "0.25s ease",
-                      "&:hover": {
-                        background: isActive ? "#E2E9FF" : "#F0F2F8",
-                      },
-                    }}
-                  >
-                    <Box
-                      sx={{
-                        width: 24,
-                        height: 24,
-                        borderRadius: "50%",
-                        border: "2px solid #B9BDD4",
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "center",
-                        color: "#676A87",
-                        "& svg": { fontSize: "17px" },
-                      }}
-                    >
-                      {item.icon}
-                    </Box>
-
-                    <Typography
-                      sx={{
-                        fontWeight: 800,
-                        fontSize: { xs: "0.61rem", md: "0.7rem" },
-                        color: "#1A1A33",
-                      }}
-                    >
-                      {item.label}
-                    </Typography>
-                  </Box>
-                );
-              })}
-            </Box>
-
-            <Button
-              fullWidth
-              variant="contained"
-              sx={{
-                backgroundColor: "#0B0B31",
-                mt: 5,
-                py: 1.6,
-                borderRadius: "10px",
-                fontSize: "1rem",
-                fontWeight: 600,
-                textTransform: "none",
-              }}
-              onClick={() => setStage(4)}
-            >
-              Next
-            </Button>
-          </Box>
-        )}
 
         {/* ---------------- STAGE 4: EXPERIENCE ---------------- */}
         {stage === 4 && (
-          <Box sx={{ width: "100%", maxWidth: 420 }}>
+          <Box sx={{ width: "100%", maxWidth: 420, mt: { xs: 15} }}>
             <Box
               sx={{
                 display: "flex",
@@ -522,7 +665,7 @@ const SignUp: React.FC = () => {
 
         {/* ---------------- STAGE 5: GOALS ---------------- */}
         {stage === 5 && (
-          <Box sx={{ width: "100%", maxWidth: 420 }}>
+          <Box sx={{ width: "100%", maxWidth: 420, mt: { xs: 15} }}>
             <Box
               sx={{
                 display: "flex",
@@ -601,6 +744,7 @@ const SignUp: React.FC = () => {
         alt="Signup Illustration"
         sx={{
           width: "50%",
+          height: "100vh",
           display: { xs: "none", md: "block" },
           objectFit: "cover",
         }}

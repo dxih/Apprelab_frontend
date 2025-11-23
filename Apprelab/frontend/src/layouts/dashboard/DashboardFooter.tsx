@@ -6,10 +6,11 @@ import {
   Button,
   IconButton,
 } from "@mui/material";
+import { Link } from "react-router-dom";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
-import BehanceIcon from "@mui/icons-material/Brush"; // Replace with proper Behance icon if available
+import BehanceIcon from "@mui/icons-material/Brush"; 
 import apprelabLogoLight from "../../assets/images/logos/apprelab_logo_light.png";
 import dxhubLogo from "../../assets/images/logos/dxhub_logo.png";
 
@@ -68,8 +69,8 @@ const DashboardFooter: React.FC = () => {
               maxWidth: "240px",
             }}
           >
-            Present nulla massa, hendrerit vestibulum gravida in, feugiat auctor
-            felis.
+            We're here to support your learning journey. Get in touch anytime
+            for assistance, partnership inquiries, or general questions.
           </Typography>
 
           <Typography
@@ -79,7 +80,7 @@ const DashboardFooter: React.FC = () => {
               mb: 3,
             }}
           >
-            Email: example@gmail.com
+            Email: support@apprelab.com
           </Typography>
 
           <Box sx={{ display: "flex", gap: 1 }}>
@@ -142,17 +143,27 @@ const DashboardFooter: React.FC = () => {
             Explore
           </Typography>
 
-          {["Home", "About", "Course", "Blog", "Contact"].map((item) => (
+          {[
+            { label: "Home", to: "/" },
+            { label: "About", to: "/about" },
+            { label: "Courses", to: "/courses" },
+            { label: "Blog", to: "/blog" },
+            { label: "Contact", to: "/contact" },
+          ].map((item) => (
             <Typography
-              key={item}
+              key={item.label}
+              component={Link}
+              to={item.to}
               sx={{
                 fontSize: "0.9rem",
                 color: "#B0B0B0",
+                textDecoration: "none",
                 mb: 1.2,
-                "&:hover": { color: "#FFFFFF", cursor: "pointer" },
+                "&:hover": { color: "#FFFFFF" },
+                display: "block",
               }}
             >
-              {item}
+              {item.label}
             </Typography>
           ))}
         </Box>
@@ -170,24 +181,28 @@ const DashboardFooter: React.FC = () => {
           </Typography>
 
           {[
-            "Design",
-            "Development",
-            "Marketing",
-            "Business",
-            "Data Science",
-            "Product Management",
-            "Cyber Security",
+            { label: "Design", to: "/courses/design" },
+            { label: "Development", to: "/courses/development" },
+            { label: "Marketing", to: "/courses/marketing" },
+            { label: "Business", to: "/courses/business" },
+            { label: "Data Science", to: "/courses/data-science" },
+            { label: "Product Management", to: "/courses/product-management" },
+            { label: "Cyber Security", to: "/courses/cyber-security" },
           ].map((item) => (
             <Typography
-              key={item}
+              key={item.label}
+              component={Link}
+              to={item.to}
               sx={{
                 fontSize: "0.9rem",
                 color: "#B0B0B0",
+                textDecoration: "none",
                 mb: 1.2,
-                "&:hover": { color: "#FFFFFF", cursor: "pointer" },
+                "&:hover": { color: "#FFFFFF" },
+                display: "block",
               }}
             >
-              {item}
+              {item.label}
             </Typography>
           ))}
         </Box>
@@ -212,12 +227,12 @@ const DashboardFooter: React.FC = () => {
               maxWidth: "260px",
             }}
           >
-            Lorem Ipsum has been the industry standard dummy text ever since the
-            1500s.
+            Stay updated with our latest courses, events, and exclusive offers.
+            Join our learning community today.
           </Typography>
 
           <TextField
-            placeholder="Email here"
+            placeholder="Enter your email"
             variant="outlined"
             size="small"
             fullWidth

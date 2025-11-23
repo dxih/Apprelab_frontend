@@ -78,7 +78,9 @@ const Hero: React.FC = () => {
 
         <Button
           variant="contained"
-          sx={{
+         component={Link}
+           to="/about"
+            sx={{
             backgroundColor: "#EFE8F0",
             textTransform: "none",
             fontSize: "1rem",
