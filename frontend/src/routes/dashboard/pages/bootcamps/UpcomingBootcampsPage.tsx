@@ -12,12 +12,13 @@ import {
   Select,
   MenuItem,
 } from "@mui/material";
-import { Link, useNavigate } from "react-router-dom"; // <-- added useNavigate
+import type { SelectChangeEvent } from "@mui/material/Select";
+import { Link, useNavigate } from "react-router-dom";
 
 // Images
-import uiuxImg from "../../../assets/images/components/microbootcamps/offers/uiuxofferimg.png";
-import contentImg from "../../../assets/images/components/microbootcamps/offers/contentofferimg.png";
-import webdevImg from "../../../assets/images/components/microbootcamps/offers/webdevofferimg.png";
+import uiuxImg from "../../../../assets/images/components/microbootcamps/offers/uiuxofferimg.png";
+import contentImg from "../../../../assets/images/components/microbootcamps/offers/contentofferimg.png";
+import webdevImg from "../../../../assets/images/components/microbootcamps/offers/webdevofferimg.png";
 
 type Bootcamp = {
   image: string;
@@ -122,7 +123,7 @@ export const bootcamps: Bootcamp[] = [
   },
 ];
 
-const duplicatedBootcamps = [...bootcamps, ...bootcamps, ...bootcamps, ...bootcamps, ...bootcamps, ...bootcamps];
+const duplicatedBootcamps = [...bootcamps, ...bootcamps, ...bootcamps];
 
 const fixedGlowingPoints = [
   { top: "10%", left: "15%", size: 120, color: "#FFD60A", blur: 80, opacity: 0.15 },
@@ -133,7 +134,7 @@ const fixedGlowingPoints = [
 ];
 
 const UpcomingBootcampsPage: React.FC = () => {
-  const navigate = useNavigate(); // <-- initialize navigate
+  const navigate = useNavigate();
 
   const [search, setSearch] = useState<string>("");
   const [categoryFilter, setCategoryFilter] = useState<string>("");
@@ -160,7 +161,7 @@ const UpcomingBootcampsPage: React.FC = () => {
 
   return (
     <Box sx={{ width: "100%", py: 8, position: "relative", overflow: "hidden", background: "rgba(170, 200, 236, 0.07)" }}>
-      {/* Fixed Glowing Points */}
+      {/* Glowing points */}
       <Box sx={{ position: "absolute", width: "100%", height: "100%", top: 0, left: 0, zIndex: 0, pointerEvents: "none" }}>
         {fixedGlowingPoints.map((point, i) => (
           <Box
@@ -180,13 +181,14 @@ const UpcomingBootcampsPage: React.FC = () => {
         ))}
       </Box>
 
-      <Box sx={{ position: "relative", width: { xs: "99%", md: "90%" }, maxWidth: { xs: "800px", md: "1200px" }, mx: "auto", px: { xs: 1, md: 2 } }}>
-        <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center", mb: 4, flexWrap: "wrap", gap: 2 }}>
-          <Typography sx={{ fontSize: { xs: "1.8rem", md: "2.4rem" }, fontWeight: 700, color: "#111", marginTop: { xs: -5, md: 0 } }}>
+      <Box sx={{ position: "relative", width: "100%", maxWidth: "1300px", mx: "auto", px: { xs: 2, sm: 3, md: 4 } }}>
+        {/* Header & filters */}
+        <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center", mb: { xs: 3, md: 5 }, flexWrap: "wrap", gap: { xs: 2, sm: 3 } }}>
+          <Typography sx={{ fontSize: { xs: "1.6rem", sm: "1.9rem", md: "2.4rem" }, fontWeight: 700, color: "#111" }}>
             Upcoming Bootcamps
           </Typography>
 
-          <Box sx={{ display: "flex", gap: 2, flexWrap: "wrap" }}>
+          <Box sx={{ display: "flex", flexWrap: "wrap", gap: { xs: 1.5, sm: 2 }, width: { xs: "100%", md: "auto" } }}>
             <TextField
               placeholder="Search bootcamps..."
               value={search}
@@ -198,7 +200,7 @@ const UpcomingBootcampsPage: React.FC = () => {
               <InputLabel>Category</InputLabel>
               <Select
                 value={categoryFilter}
-                onChange={(e: React.ChangeEvent<{ value: unknown }>) => setCategoryFilter(e.target.value as string)}
+                onChange={(e: SelectChangeEvent<string>) => setCategoryFilter(e.target.value)}
                 label="Category"
               >
                 <MenuItem value="">All</MenuItem>
@@ -212,13 +214,12 @@ const UpcomingBootcampsPage: React.FC = () => {
               <InputLabel>Level</InputLabel>
               <Select
                 value={levelFilter}
-                onChange={(e: React.ChangeEvent<{ value: unknown }>) => setLevelFilter(e.target.value as string)}
+                onChange={(e: SelectChangeEvent<string>) => setLevelFilter(e.target.value)}
                 label="Level"
               >
                 <MenuItem value="">All</MenuItem>
                 <MenuItem value="Beginner">Beginner</MenuItem>
                 <MenuItem value="Advanced">Advanced</MenuItem>
-                <MenuItem value="New!">New!</MenuItem>
               </Select>
             </FormControl>
 
@@ -226,7 +227,7 @@ const UpcomingBootcampsPage: React.FC = () => {
               <InputLabel>Duration</InputLabel>
               <Select
                 value={durationFilter}
-                onChange={(e: React.ChangeEvent<{ value: unknown }>) => setDurationFilter(e.target.value as string)}
+                onChange={(e: SelectChangeEvent<string>) => setDurationFilter(e.target.value)}
                 label="Duration"
               >
                 <MenuItem value="">All</MenuItem>
@@ -238,25 +239,23 @@ const UpcomingBootcampsPage: React.FC = () => {
           </Box>
         </Box>
 
+        {/* Bootcamps */}
         {filteredBootcamps.length === 0 ? (
           <Box sx={{ textAlign: "center", py: 12 }}>
-            <Typography sx={{ fontSize: "1.2rem", color: "#555" }}>
-              😅 Try readjusting your filter — no course found!
-            </Typography>
+            <Typography sx={{ fontSize: "1.2rem", color: "#555" }}>😅 Try readjusting your filter — no course found!</Typography>
           </Box>
         ) : (
           Object.entries(filteredGrouped).map(([category, items]) => (
-            <Box key={category} sx={{ py: 4, px: 3, borderRadius: 3, position: "relative", zIndex: 1, mb: { xs: 0, md: 2} }}>
-              <Typography sx={{ fontSize: { xs: "1.5rem", md: "2rem" }, fontWeight: 700, color: "#111", mb: 1 }}>
-                {category}
-              </Typography>
-              <Divider sx={{ borderColor: "#FFD60A", borderBottomWidth: 3, mb: 3, ml: "-15px" }} />
+            <Box key={category} sx={{ py: 4, px: 1, borderRadius: 3, position: "relative", zIndex: 1, mb: { xs: 3, md: 5 } }}>
+              <Typography sx={{ fontSize: { xs: "1.4rem", md: "2rem" }, fontWeight: 700, color: "#111", mb: 1 }}>{category}</Typography>
+              <Divider sx={{ borderColor: "#FFD60A", borderBottomWidth: 3, mb: 3 }} />
 
               <Box
                 sx={{
                   display: "grid",
-                  marginLeft: "-15px",
-                  gap: { xs: 2.5, md: 4 },
+                  marginLeft: -1,
+                  width: "calc(93% + 10px)",
+                  gap: { xs: 2, sm: 3, md: 4 },
                   gridTemplateColumns: {
                     xs: "repeat(2, 1fr)",
                     sm: "repeat(3, 1fr)",
@@ -268,19 +267,17 @@ const UpcomingBootcampsPage: React.FC = () => {
                   <Card
                     key={index}
                     onClick={() => {
-                      navigate("/dashboard/coursedetail", { state: { bootcamp: item } });
+                      navigate("/dashboard/bootcampdetail", { state: { bootcamp: item } });
                       window.scrollTo({ top: 0, behavior: "smooth" });
                     }}
                     sx={{
-                      maxWidth: { xs: 185, sm: 200, md: 300 },
+                      maxWidth: { xs: "100%", sm: 220, md: 280 },
                       mx: "auto",
-                      width: "100%",
-                      borderRadius: "14px",
+                      borderRadius: 2,
                       overflow: "hidden",
                       border: "1px solid #e3e6ed",
-                      boxShadow: "0 2px 8px rgba(0,0,0,0.05)",
-                      transition: "all 0.25s ease",
                       cursor: "pointer",
+                      transition: "all 0.25s ease",
                       "&:hover": {
                         transform: { xs: "none", md: "translateY(-6px)" },
                         boxShadow: { xs: "0 2px 8px rgba(0,0,0,0.05)", md: "0 6px 18px rgba(0,0,0,0.12)" },
@@ -288,49 +285,25 @@ const UpcomingBootcampsPage: React.FC = () => {
                     }}
                   >
                     <Box sx={{ position: "relative" }}>
-                      <CardMedia
-                        component="img"
-                        src={item.image}
-                        alt={item.title}
-                        sx={{ height: { xs: 140, sm: 120, md: 160 }, objectFit: "cover" }}
-                      />
+                      <CardMedia component="img" src={item.image} alt={item.title} sx={{ height: { xs: 120, sm: 140, md: 160 }, objectFit: "cover" }} />
                       <Chip
                         label="● Upcoming"
-                        sx={{
-                          position: "absolute",
-                          top: 8,
-                          left: 8,
-                          background: "#FFD60A",
-                          color: "#fff",
-                          fontSize: "0.6rem",
-                          height: 18,
-                          borderRadius: "6px",
-                        }}
+                        sx={{ position: "absolute", top: 8, left: 8, background: "#FFD60A", color: "#fff", fontSize: "0.6rem", height: 18, borderRadius: 1 }}
                       />
                     </Box>
-
-                    <Box sx={{ p: { xs: 1, md: 2 } }}>
-                      <Typography sx={{ fontSize: { xs: "0.7rem", md: "1rem" }, fontWeight: 600, mb: 0.4 }}>
-                        {item.title}
-                      </Typography>
-                      <Typography sx={{ fontSize: { xs: "0.6rem", md: "0.88rem" }, color: "#555", lineHeight: 1.2, mb: 1 }}>
-                        {item.desc}
-                      </Typography>
-                      <Typography sx={{ fontSize: { xs: "0.58rem", md: "0.82rem" }, color: "#777", mb: 1 }}>
-                        {item.duration}
+                    <Box sx={{ p: { xs: 1, sm: 1.5, md: 2 } }}>
+                      <Typography sx={{ fontSize: { xs: "0.7rem", sm: "0.85rem", md: "1rem" }, fontWeight: 600, mb: 0.5 }}>{item.title}</Typography>
+                      <Typography sx={{ fontSize: { xs: "0.6rem", sm: "0.75rem", md: "0.88rem" }, color: "#555", mb: 0.5 }}>{item.desc}</Typography>
+                      <Typography sx={{ fontSize: { xs: "0.55rem", sm: "0.7rem", md: "0.82rem" }, color: "#777", mb: 0.5 }}>{item.duration}</Typography>
+                      <Typography sx={{ fontSize: { xs: "0.55rem", sm: "0.7rem", md: "0.82rem" }, color: "#777", mb: 1 }}>
+                        <span style={{ color: "#111", fontWeight: 600 }}>{item.price}</span>{" "}
+                        <span style={{ textDecoration: "line-through", color: "#777" }}>{item.oldPrice}</span>{" "}
+                        <Chip label={item.discount} size="small" color="warning" sx={{ ml: 0.5 }} />
                       </Typography>
                       <Chip
                         label={item.level}
                         sx={{
-                          background:
-                            item.level === "Advanced"
-                              ? "#FFD66B"
-                              : item.level === "Beginner"
-                              ? "#E9E9E9"
-                              : "#E3E6FF",
-                          fontSize: { xs: "0.55rem", md: "0.75rem" },
-                          borderRadius: "6px",
-                          fontWeight: 500,
+                          background: item.level === "Advanced" ? "#FFD66B" : "#E9E9E9",
                           px: 1,
                         }}
                       />
@@ -343,10 +316,7 @@ const UpcomingBootcampsPage: React.FC = () => {
         )}
 
         <Box sx={{ mt: 6 }}>
-          <Link
-            to="/dashboard/microbootcamps"
-            style={{ fontWeight: 600, textDecoration: "none", color: "#111", fontSize: "0.9rem", fontFamily: "Inter" }}
-          >
+          <Link to="/dashboard/microbootcamps" style={{ fontWeight: 600, textDecoration: "none", color: "#111", fontSize: "0.9rem" }}>
             &larr; Back to Microbootcamps
           </Link>
         </Box>

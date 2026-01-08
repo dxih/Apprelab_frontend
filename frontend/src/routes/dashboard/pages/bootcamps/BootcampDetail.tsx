@@ -11,7 +11,7 @@ import StarIcon from "@mui/icons-material/Star";
 import EventAvailableIcon from "@mui/icons-material/EventAvailable";
 import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
 
-const CourseDetail: React.FC = () => {
+const BootcampDetail: React.FC = () => {
   const location = useLocation();
   const bootcamp = location.state?.bootcamp;
 
@@ -22,15 +22,16 @@ const CourseDetail: React.FC = () => {
         sx={{
           display: "flex",
           justifyContent: "space-between",
-          padding: "60px 80px",
-          gap: "60px",
+          padding: { xs: "24px", md: "60px 80px" },
+          gap: { xs: "24px", md: "60px" },
+          flexDirection: { xs: "column", md: "row" },
         }}
       >
         {/* Left Image */}
         <Box
           sx={{
-            width: "48%",
-            height: "300px",
+            width: { xs: "100%", md: "48%" },
+            height: { xs: "220px", md: "300px" },
             borderRadius: "16px",
             overflow: "hidden",
           }}
@@ -43,27 +44,72 @@ const CourseDetail: React.FC = () => {
         </Box>
 
         {/* Right Content */}
-        <Box sx={{ width: "48%" }}>
-          <Typography sx={{ fontWeight: 700, fontSize: "28px", mb: "12px" }}>
+        <Box sx={{ width: { xs: "100%", md: "48%" } }}>
+          <Typography
+            sx={{
+              fontWeight: 700,
+              fontSize: { xs: "22px", md: "28px" },
+              mb: "12px",
+            }}
+          >
             {bootcamp.title}
           </Typography>
 
-          <Typography sx={{ fontSize: "14px", color: "#555", mb: 3 }}>
+          <Typography
+            sx={{
+              fontSize: { xs: "13px", md: "14px" },
+              color: "#555",
+              mb: 3,
+            }}
+          >
             {bootcamp.desc}
           </Typography>
 
-          <Box sx={{ display: "flex", alignItems: "center", gap: 2, mb: 2 }}>
-            <Typography sx={{ textDecoration: "line-through", color: "#999" }}>
+          <Box
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              gap: 2,
+              mb: 2,
+              flexWrap: "wrap",
+            }}
+          >
+            <Typography
+              sx={{
+                textDecoration: "line-through",
+                color: "#999",
+                fontSize: { xs: "14px", md: "16px" },
+              }}
+            >
               {bootcamp.oldPrice}
             </Typography>
-            <Typography sx={{ fontWeight: 700, fontSize: "20px" }}>
+
+            <Typography
+              sx={{
+                fontWeight: 700,
+                fontSize: { xs: "18px", md: "20px" },
+              }}
+            >
               {bootcamp.price}
             </Typography>
-            <Chip label={bootcamp.discount} size="small" color="warning" />
+
+            <Chip
+              label={bootcamp.discount}
+              size="small"
+              color="warning"
+              sx={{ fontSize: { xs: "10px", md: "12px" } }}
+            />
           </Box>
 
           {/* LEVEL & DURATION */}
-          <Box sx={{ display: "flex", gap: 6, mb: 3 }}>
+          <Box
+            sx={{
+              display: "flex",
+              gap: { xs: 4, md: 6 },
+              mb: 3,
+              flexWrap: "wrap",
+            }}
+          >
             <Box>
               <Typography fontSize={12}>Level</Typography>
               <Typography fontWeight={600}>{bootcamp.level}</Typography>
@@ -82,6 +128,7 @@ const CourseDetail: React.FC = () => {
               padding: "10px 24px",
               textTransform: "none",
               fontWeight: 600,
+              width: { xs: "100%", md: "auto" },
             }}
           >
             Enroll →
@@ -90,7 +137,7 @@ const CourseDetail: React.FC = () => {
       </Box>
 
       {/* AGENDA */}
-      <Box sx={{ padding: "0 80px" }}>
+      <Box sx={{ padding: { xs: "24px", md: "0 80px" } }}>
         <Typography fontWeight={700} fontSize={20} mb={1}>
           Bootcamp agenda
         </Typography>
@@ -99,7 +146,13 @@ const CourseDetail: React.FC = () => {
           What you will learn
         </Typography>
 
-        <Box sx={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 2 }}>
+        <Box
+          sx={{
+            display: "grid",
+            gridTemplateColumns: { xs: "1fr", md: "1fr 1fr" },
+            gap: 2,
+          }}
+        >
           {bootcamp.topics.map((item: string) => (
             <Box key={item} sx={{ display: "flex", alignItems: "center", gap: 1 }}>
               <CheckCircleOutlineIcon fontSize="small" />
@@ -110,7 +163,7 @@ const CourseDetail: React.FC = () => {
       </Box>
 
       {/* WHO IS IT FOR */}
-      <Box sx={{ padding: "60px 80px 0" }}>
+      <Box sx={{ padding: { xs: "24px", md: "60px 80px 0" } }}>
         <Typography fontWeight={700} fontSize={18} mb={2}>
           Who is it for?
         </Typography>
@@ -123,12 +176,18 @@ const CourseDetail: React.FC = () => {
       </Box>
 
       {/* WHAT YOU WILL GET */}
-      <Box sx={{ padding: "40px 80px" }}>
+      <Box sx={{ padding: { xs: "24px", md: "40px 80px" } }}>
         <Typography fontWeight={700} fontSize={18} mb={2}>
           What you will get
         </Typography>
 
-        <Box sx={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 2 }}>
+        <Box
+          sx={{
+            display: "grid",
+            gridTemplateColumns: { xs: "1fr", md: "1fr 1fr" },
+            gap: 2,
+          }}
+        >
           {bootcamp.benefits.map((item: string) => (
             <Box key={item} sx={{ display: "flex", gap: 1 }}>
               <EventAvailableIcon fontSize="small" />
@@ -139,12 +198,18 @@ const CourseDetail: React.FC = () => {
       </Box>
 
       {/* REVIEWS */}
-      <Box sx={{ padding: "80px" }}>
+      <Box sx={{ padding: { xs: "24px", md: "80px" } }}>
         <Typography fontWeight={700} fontSize={20} mb={4}>
           Previous Bootcamp Review and Ratings
         </Typography>
 
-        <Box sx={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "40px" }}>
+        <Box
+          sx={{
+            display: "grid",
+            gridTemplateColumns: { xs: "1fr", md: "1fr 1fr" },
+            gap: { xs: "20px", md: "40px" },
+          }}
+        >
           {[1, 2, 3, 4].map((i) => (
             <Box
               key={i}
@@ -178,4 +243,4 @@ const CourseDetail: React.FC = () => {
   );
 };
 
-export default CourseDetail;
+export default BootcampDetail;

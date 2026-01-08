@@ -185,10 +185,9 @@ const DashboardNavbar: React.FC = () => {
             <SearchIcon sx={{ fontSize: 23, color: "#0B0B31" }} />
           </IconButton>
 
-          <IconButton>
+          <IconButton onClick={() => navigate("/dashboard/shoppingcart")}>
             <ShoppingCartOutlinedIcon sx={{ fontSize: 23, color: "#0B0B31" }} />
           </IconButton>
-
           <Box sx={{ position: "relative" }}>
             <IconButton>
               <NotificationsNoneOutlinedIcon sx={{ fontSize: 23, color: "#0B0B31" }} />

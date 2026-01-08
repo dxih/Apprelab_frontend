@@ -1,9 +1,10 @@
 import { Box } from "@mui/material";
-import Bootcamphero from "../../../components/dashboard/Microbootcamps/BootcampHero"
-import OngoingOffers from "../../../components/dashboard/Microbootcamps/OngoingOffers"
-import UpcomingBootcamps from "../../../components/dashboard/Microbootcamps/UpcomingBootcamps"
+import MentorHero from "../../../../components/dashboard/MyMentorpage/MentorHero";
+import MentorCategories from "../../../../components/dashboard/MyMentorpage/MentorCategories";
+import TopRatedMentors from "../../../../components/dashboard/MyMentorpage/TopRatedMentors";
+import MentorBanner from "../../../../components/dashboard/MyMentorpage/MentorBanner";
 
-export default function Microbootcamps() {
+export default function MyMentor() {
   return (
     <Box
       sx={{
@@ -55,9 +56,10 @@ export default function Microbootcamps() {
 
       {/* === Actual Page Content === */}
       <Box sx={{ position: "relative", zIndex: 1 }}>
-        <Bootcamphero />
-        <OngoingOffers />
-        <UpcomingBootcamps />
+        <MentorHero />
+        <MentorCategories />
+        <TopRatedMentors />
+        <MentorBanner />
         <Box sx={{ height: 40 }} /> {/* Spacer at bottom */}
       </Box>
     </Box>
