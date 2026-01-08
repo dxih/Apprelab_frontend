@@ -13,15 +13,17 @@ import Create from "./routes/website/pages/Create";
 import About from "./routes/website/pages/About";
 
 // 🧑‍💻 Dashboard Pages
-import DashboardHome from "./routes/dashboard/pages/DashboardHome";
-import Courses from "./routes/dashboard/pages/Courses";
-import Microbootcamps from "./routes/dashboard/pages/Microbootcamps";
-import OngoingBootcampsPage from "./routes/dashboard/pages/OngoingBootcampsPage";
-import UpcomingBootcampsPage from "./routes/dashboard/pages/UpcomingBootcampsPage";
-import CourseDetail from "./routes/dashboard/pages/CourseDetail";
-
-// import MyStack from "./routes/dashboard/pages/MyStack";
-// import MyMentor from "./routes/dashboard/pages/MyMentor";
+import DashboardHome from "./routes/dashboard/pages/main/DashboardHome";
+import Courses from "./routes/dashboard/pages/courses/Courses";
+import Microbootcamps from "./routes/dashboard/pages/bootcamps/Microbootcamps";
+import OngoingBootcampsPage from "./routes/dashboard/pages/bootcamps/OngoingBootcampsPage";
+import UpcomingBootcampsPage from "./routes/dashboard/pages/bootcamps/UpcomingBootcampsPage";
+import BootcampDetail from "./routes/dashboard/pages/bootcamps/BootcampDetail";
+import ShoppingCart from "./routes/dashboard/pages/payment/ShoppingCart";
+import Checkout from "./routes/dashboard/pages/payment/Checkout";
+import MyMentor from "./routes/dashboard/pages/mentor/MyMentor";
+import OurMentors from "./routes/dashboard/pages/mentor/OurMentorsPage";
+import MyStack from "./routes/dashboard/pages/stack/MyStack";
 // import Worklabs from "./routes/dashboard/pages/Worklabs";
 
 // 🔐 Auth Pages
@@ -51,10 +53,15 @@ function App() {
         <Route path="/dashboard/microbootcamps" element={<Microbootcamps />} />
         <Route path="/dashboard/ongoing-bootcamps" element={<OngoingBootcampsPage />} />
         <Route path="/dashboard/upcoming-bootcamps" element={<UpcomingBootcampsPage />} />
-        <Route path="/dashboard/coursedetail" element={<CourseDetail />} />
-        {/*<Route path="/dashboard/mystack" element={<MyStack />} />
+        <Route path="/dashboard/bootcampdetail" element={<BootcampDetail />} />
+        {/* Mentor Pages */}
         <Route path="/dashboard/mymentor" element={<MyMentor />} />
-        <Route path="/dashboard/worklabs" element={<Worklabs />} />*/}
+        <Route path="/dashboard/ourmentors" element={<OurMentors />} />
+        <Route path="/dashboard/mystack" element={<MyStack />} />
+        {/* Payment Pages */}
+        <Route path="/dashboard/shoppingcart" element={<ShoppingCart />} />
+        <Route path="/dashboard/checkout" element={<Checkout />} />
+        {/* <Route path="/dashboard/worklabs" element={<Worklabs />} /> */}
       </Route>
 
       {/* 🔐 Auth (NO navbar + NO footer) */}
