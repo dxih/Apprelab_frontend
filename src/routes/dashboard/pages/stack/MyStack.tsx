@@ -3,7 +3,7 @@ import { useState } from "react";
 import StackNavbar from "../../../../components/dashboard/MyStackpage/StackNavbar";
 import StackOngoingBootcamps from "../../../../components/dashboard/MyStackpage/StackBootcamps/StackOngoingBootcamps";
 import StackPreSavedBootcamps from "../../../../components/dashboard/MyStackpage/StackBootcamps/StackPreSavedBootcamps";
-import StackSidebar from "../../../../components/dashboard/MyStackpage/StackBootcamps/StackSidebar";
+// import StackSidebar from "../../../../components/dashboard/MyStackpage/StackBootcamps/StackSidebar";
 
 // Example Data
 const ongoingBootcamps = [
@@ -74,7 +74,7 @@ export default function MyStack() {
 
           {/* Right Column: Sidebar */}
           <Box sx={{ flex: 1, minWidth: { xs: "100%", md: 280 } }}>
-            <StackSidebar />
+            {/* <StackSidebar /> */}
           </Box>
         </Box>
       )}

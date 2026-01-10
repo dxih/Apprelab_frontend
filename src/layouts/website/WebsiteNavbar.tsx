@@ -11,6 +11,7 @@ import {
   ListItemButton,
   ListItemText,
   Divider,
+  useTheme,
 } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import MenuIcon from "@mui/icons-material/Menu";
@@ -18,9 +19,11 @@ import CloseIcon from "@mui/icons-material/Close";
 import { motion, AnimatePresence } from "framer-motion";
 import logo from "../../assets/images/logos/apprelab_logo_dark.png";
 
+
 const WebsiteNavbar: React.FC = () => {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const location = useLocation();
+  const theme = useTheme();
 
   const navLinks = [
     { label: "Learn", path: "/learn" },
@@ -37,9 +40,9 @@ const WebsiteNavbar: React.FC = () => {
     <AppBar
       position="static"
       sx={{
-        backgroundColor: "#ffffff",
+        backgroundColor: theme.palette.background.paper,
         boxShadow: "none",
-        borderBottom: "1px solid #E5E5E5",
+        borderBottom: `1px solid ${theme.palette.divider}`,
       }}
     >
       <Toolbar
@@ -80,10 +83,13 @@ const WebsiteNavbar: React.FC = () => {
                 sx={{
                   position: "relative",
                   textDecoration: "none",
-                  color: "#0B0B31",
-                  fontFamily: "'Inter', sans-serif",
+                  color: theme.palette.text.primary,
+                  fontFamily: theme.typography.fontFamily,
                   fontWeight: 500,
-                  "&:hover": { color: "#071A7E" },
+                  transition: "color 0.2s ease",
+                  "&:hover": { 
+                    color: theme.palette.primary.main 
+                  },
                   "&::after": {
                     content: '""',
                     position: "absolute",
@@ -91,7 +97,7 @@ const WebsiteNavbar: React.FC = () => {
                     left: 0,
                     width: isActive ? "100%" : "0%",
                     height: "3px",
-                    backgroundColor: "#FFD60A",
+                    backgroundColor: theme.palette.secondary.main,
                     borderRadius: "3px",
                     transition: "width 0.3s ease",
                   },
@@ -110,8 +116,13 @@ const WebsiteNavbar: React.FC = () => {
         <Box sx={{ flexGrow: 1 }} />
 
         {/* Search Icon */}
-        <IconButton sx={{ display: { xs: "none", md: "flex" } }}>
-          <SearchIcon sx={{ fontSize: 22, color: "#0B0B31" }} />
+        <IconButton 
+          sx={{ 
+            display: { xs: "none", md: "flex" },
+            color: theme.palette.text.primary,
+          }}
+        >
+          <SearchIcon sx={{ fontSize: 22 }} />
         </IconButton>
 
         {/* Login */}
@@ -122,15 +133,16 @@ const WebsiteNavbar: React.FC = () => {
           sx={{
             display: { xs: "none", md: "flex" },
             textTransform: "none",
-            borderRadius: "8px",
-            borderColor: "#0B0B31",
-            color: "#0B0B31",
+            borderRadius: theme.shape.borderRadius,
+            borderColor: theme.palette.text.primary,
+            color: theme.palette.text.primary,
             px: 3,
             height: 40,
             fontWeight: 500,
             "&:hover": {
-              borderColor: "#071A7E",
-              color: "#071A7E",
+              borderColor: theme.palette.primary.main,
+              color: theme.palette.primary.main,
+              backgroundColor: "rgba(0, 87, 255, 0.04)",
             },
           }}
         >
@@ -144,13 +156,15 @@ const WebsiteNavbar: React.FC = () => {
           to="/signup"
           sx={{
             display: { xs: "none", md: "flex" },
-            backgroundColor: "#071A7E",
+            backgroundColor: theme.palette.primary.main,
             textTransform: "none",
-            borderRadius: "8px",
+            borderRadius: theme.shape.borderRadius,
             px: 3,
             height: 40,
             fontWeight: 500,
-            "&:hover": { backgroundColor: "#0F28AA" },
+            "&:hover": { 
+              backgroundColor: theme.palette.primary.dark,
+            },
           }}
         >
           Get Started
@@ -160,9 +174,9 @@ const WebsiteNavbar: React.FC = () => {
         <Box sx={{ display: { xs: "flex", md: "none" } }}>
           <IconButton onClick={() => toggleDrawer(true)}>
             {isDrawerOpen ? (
-              <CloseIcon sx={{ color: "#0B0B31" }} />
+              <CloseIcon sx={{ color: theme.palette.text.primary }} />
             ) : (
-              <MenuIcon sx={{ color: "#0B0B31" }} />
+              <MenuIcon sx={{ color: theme.palette.text.primary }} />
             )}
           </IconButton>
         </Box>
@@ -174,13 +188,13 @@ const WebsiteNavbar: React.FC = () => {
           onClose={() => toggleDrawer(false)}
           PaperProps={{
             sx: {
-              backgroundColor: "#ffffffcc",
+              backgroundColor: "rgba(255, 255, 255, 0.95)",
               backdropFilter: "blur(16px)",
               width: "80%",
               maxWidth: 320,
-              borderTopLeftRadius: "16px",
-              borderBottomLeftRadius: "16px",
-              boxShadow: "0px 4px 24px rgba(0,0,0,0.15)",
+              borderTopLeftRadius: theme.shape.borderRadius,
+              borderBottomLeftRadius: theme.shape.borderRadius,
+              boxShadow: theme.shadows[8],
               p: 2,
             },
           }}
@@ -207,13 +221,13 @@ const WebsiteNavbar: React.FC = () => {
                       sx={{
                         borderRadius: "10px",
                         py: 1.2,
-                        color:
-                          location.pathname === path ? "#071A7E" : "#0B0B31",
-                        fontWeight:
-                          location.pathname === path ? 600 : 500,
+                        color: location.pathname === path 
+                          ? theme.palette.primary.main 
+                          : theme.palette.text.primary,
+                        fontWeight: location.pathname === path ? 600 : 500,
                         "&:hover": {
-                          backgroundColor: "#f5f6ff",
-                          color: "#071A7E",
+                          backgroundColor: "rgba(0, 87, 255, 0.08)",
+                          color: theme.palette.primary.main,
                         },
                       }}
                     >
@@ -234,12 +248,12 @@ const WebsiteNavbar: React.FC = () => {
                   onClick={() => toggleDrawer(false)}
                   sx={{
                     textTransform: "none",
-                    borderColor: "#0B0B31",
-                    color: "#0B0B31",
+                    borderColor: theme.palette.text.primary,
+                    color: theme.palette.text.primary,
                     fontWeight: 500,
                     "&:hover": {
-                      borderColor: "#071A7E",
-                      color: "#071A7E",
+                      borderColor: theme.palette.primary.main,
+                      color: theme.palette.primary.main,
                     },
                   }}
                 >
@@ -253,10 +267,10 @@ const WebsiteNavbar: React.FC = () => {
                   onClick={() => toggleDrawer(false)}
                   sx={{
                     textTransform: "none",
-                    backgroundColor: "#071A7E",
+                    backgroundColor: theme.palette.primary.main,
                     fontWeight: 500,
                     "&:hover": {
-                      backgroundColor: "#0F28AA",
+                      backgroundColor: theme.palette.primary.dark,
                     },
                   }}
                 >
