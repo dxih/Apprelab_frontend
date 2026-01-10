@@ -25,6 +25,7 @@ import MyMentor from "./routes/dashboard/pages/mentor/MyMentor";
 import OurMentors from "./routes/dashboard/pages/mentor/OurMentorsPage";
 import MyStack from "./routes/dashboard/pages/stack/MyStack";
 // import Worklabs from "./routes/dashboard/pages/Worklabs";
+import Worklabs from "./routes/dashboard/pages/worklab/worklabs";
 
 // 🔐 Auth Pages
 import Signup from "./routes/auth/Signup";
@@ -61,7 +62,7 @@ function App() {
         {/* Payment Pages */}
         <Route path="/dashboard/shoppingcart" element={<ShoppingCart />} />
         <Route path="/dashboard/checkout" element={<Checkout />} />
-        {/* <Route path="/dashboard/worklabs" element={<Worklabs />} /> */}
+        <Route path="/dashboard/worklabs" element={<Worklabs/>} />
       </Route>
 
       {/* 🔐 Auth (NO navbar + NO footer) */}
