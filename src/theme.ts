@@ -4,7 +4,7 @@ export const theme = createTheme({
   palette: {
     mode: 'light',
     primary: {
-      main: '#0057FF',
+      main: '#05379cff',
       light: '#4D8CFF',
       dark: '#003BB8',
       contrastText: '#FFFFFF',
@@ -154,7 +154,7 @@ export const theme = createTheme({
   spacing: 8,
 
   shape: {
-    borderRadius: 12,
+    borderRadius: 3,
   },
 
   shadows: [
