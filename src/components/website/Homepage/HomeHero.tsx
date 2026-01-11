@@ -22,10 +22,10 @@ const Hero: React.FC = () => {
     >
       {/* ✅ HEADLINE - Using theme typography */}
       <Typography
-        variant="h1"
+        variant="h3"
         sx={{
-          fontSize: { xs: "2.5rem", sm: "3rem", md: "3.5rem" },
-          fontWeight: 700,
+          fontSize: { xs: "3.0rem", sm: "3rem", md: "4.0rem" },
+          fontWeight: 800,
           color: "text.primary",
         }}
       >
