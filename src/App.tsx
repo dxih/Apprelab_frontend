@@ -25,7 +25,10 @@ import MyMentor from "./routes/dashboard/pages/mentor/MyMentor";
 import OurMentors from "./routes/dashboard/pages/mentor/OurMentorsPage";
 import MyStack from "./routes/dashboard/pages/stack/MyStack";
 // import Worklabs from "./routes/dashboard/pages/Worklabs";
-import Worklabs from "./routes/dashboard/pages/worklab/worklabs";
+import Worklabs from "./routes/dashboard/pages/worklab/Worklabs";
+import ProjectFeeds from "./routes/dashboard/pages/worklab/projectfeeds";
+import ProjectDetails from "./routes/dashboard/pages/worklab/ProjectDetails";
+import ApplyPage from "./routes/dashboard/pages/worklab/DetailsApply";
 
 // 🔐 Auth Pages
 import Signup from "./routes/auth/Signup";
@@ -35,7 +38,6 @@ import ForgotPassword from "./routes/auth/ForgotPassword";
 function App() {
   return (
     <Routes>
-
       {/* 🌐 Public Website (Navbar + Footer) */}
       <Route element={<WebsiteLayout />}>
         <Route path="/" element={<Home />} />
@@ -52,8 +54,14 @@ function App() {
         <Route path="/dashboard" element={<DashboardHome />} />
         <Route path="/dashboard/courses" element={<Courses />} />
         <Route path="/dashboard/microbootcamps" element={<Microbootcamps />} />
-        <Route path="/dashboard/ongoing-bootcamps" element={<OngoingBootcampsPage />} />
-        <Route path="/dashboard/upcoming-bootcamps" element={<UpcomingBootcampsPage />} />
+        <Route
+          path="/dashboard/ongoing-bootcamps"
+          element={<OngoingBootcampsPage />}
+        />
+        <Route
+          path="/dashboard/upcoming-bootcamps"
+          element={<UpcomingBootcampsPage />}
+        />
         <Route path="/dashboard/bootcampdetail" element={<BootcampDetail />} />
         {/* Mentor Pages */}
         <Route path="/dashboard/mymentor" element={<MyMentor />} />
@@ -62,14 +70,17 @@ function App() {
         {/* Payment Pages */}
         <Route path="/dashboard/shoppingcart" element={<ShoppingCart />} />
         <Route path="/dashboard/checkout" element={<Checkout />} />
-        <Route path="/dashboard/worklabs" element={<Worklabs/>} />
+        {/*           WORKLABS PAGES */}
+        <Route path="/dashboard/worklabs" element={<Worklabs />} />
+        <Route path="/worklabs/project-feeds" element={<ProjectFeeds />} />
+        <Route path="/project-feeds/Details/:id" element={<ProjectDetails />} />
+        <Route path="/project-feeds/apply/:id" element={<ApplyPage />} />
       </Route>
 
       {/* 🔐 Auth (NO navbar + NO footer) */}
       <Route path="/signup" element={<Signup />} />
       <Route path="/login" element={<Login />} />
       <Route path="/forgot-password" element={<ForgotPassword />} />
-
     </Routes>
   );
 }
