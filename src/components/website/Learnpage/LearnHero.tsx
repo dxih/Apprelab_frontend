@@ -38,7 +38,6 @@ const LearnHero: React.FC = () => {
               variant="h2"
         sx={{
           
-          width: { xs: "90%", md: "90%" },
           fontSize: { xs: "1.5rem", md: "2rem" },
           color: "#5C5C77",
           py: { xs: 3, md: 3 },

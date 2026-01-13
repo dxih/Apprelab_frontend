@@ -83,6 +83,7 @@ const skillsList = [
 ];
 
 
+
 import signupSideImg1 from "../../assets/images/components/auth/signupside1.png";
 import signupSideImg2 from "../../assets/images/components/auth/signupside2.png";
 import signupSideImg3 from "../../assets/images/components/auth/signupside3.png";
@@ -97,8 +98,23 @@ const SignUp: React.FC = () => {
   const [experience, setExperience] = useState("");
   const [goal, setGoal] = useState("");
   const [error, setError] = useState(false);
-  const [search, setSearch] = useState("");
+const [search, setSearch] = useState("");
 const [shake, setShake] = useState(false);
+const [mentorDetails, setMentorDetails] = useState<{
+  firstName: string;
+  emailPhone: string;
+  fieldOfExpertise: string;
+  yearsOfExperience: string;
+  bio: string;
+  proofDocument: File | null;
+}>({
+  firstName: "",
+  emailPhone: "",
+  fieldOfExpertise: "",
+  yearsOfExperience: "",
+  bio: "",
+  proofDocument: null,
+});
 
   const navigate = useNavigate();
 
@@ -338,8 +354,7 @@ const [shake, setShake] = useState(false);
                 borderRadius: "10px",
                 "&.Mui-disabled": { backgroundColor: "#DCDCE6" },
               }}
-              onClick={() => setStage(3)}
-            >
+onClick={() => setStage(purpose === "mentor" ? 6 : 3)}            >
               Next
             </Button>
           </Box>
@@ -735,7 +750,169 @@ const [shake, setShake] = useState(false);
             </Button>
           </Box>
         )}
+
+      {/* ---------------- STAGE 6: MENTOR DETAILS ---------------- */}
+{stage === 6 && (
+  <Box sx={{ width: "100%", maxWidth: 420 , mt: { xs: 15, md: 20} }}>
+    <Box
+      sx={{
+        display: "flex",
+        alignItems: "center",
+        gap: 1,
+        mb: 3,
+        cursor: "pointer",
+      }}
+      onClick={() => setStage(2)}
+    >
+      <Box
+        sx={{
+          width: 32,
+          height: 32,
+          alignItems: "center",
+          justifyContent: "center",
+          color: "#4A4C66",
+          fontSize: "1rem",
+          fontWeight: 900,
+        }}
+      >
+        ←
       </Box>
+      <Typography
+        sx={{
+          fontWeight: 600,
+          color: "#4A4C66",
+          alignItems: "center",
+          justifyContent: "center",
+          display: "flex",
+        }}
+      >
+        Back
+      </Typography>
+    </Box>
+
+    <Typography sx={{ fontSize: "1.5rem", fontWeight: 700, mb: 1 }}>
+      Detail Form
+    </Typography>
+
+    <Typography sx={{ color: "#5C5C77", mb: 4 }}>
+      Tell us more about your expertise
+    </Typography>
+
+    <TextField
+      fullWidth
+      placeholder="First Name"
+      value={mentorDetails.firstName}
+      onChange={(e) => setMentorDetails({...mentorDetails, firstName: e.target.value})}
+      sx={{
+        mb: 2,
+        "& .MuiInputBase-root": {
+          backgroundColor: "#F6F7FB",
+          borderRadius: "10px",
+          height: 50,
+        },
+      }}
+    />
+
+    <TextField
+      fullWidth
+      placeholder="Email/Phone number"
+      value={mentorDetails.emailPhone}
+      onChange={(e) => setMentorDetails({...mentorDetails, emailPhone: e.target.value})}
+      sx={{
+        mb: 2,
+        "& .MuiInputBase-root": {
+          backgroundColor: "#F6F7FB",
+          borderRadius: "10px",
+          height: 50,
+        },
+      }}
+    />
+
+    <TextField
+      fullWidth
+      placeholder="Field of Expertise"
+      value={mentorDetails.fieldOfExpertise}
+      onChange={(e) => setMentorDetails({...mentorDetails, fieldOfExpertise: e.target.value})}
+      sx={{
+        mb: 2,
+        "& .MuiInputBase-root": {
+          backgroundColor: "#F6F7FB",
+          borderRadius: "10px",
+          height: 50,
+        },
+      }}
+    />
+
+    <TextField
+      fullWidth
+      placeholder="Years of Experience"
+      value={mentorDetails.yearsOfExperience}
+      onChange={(e) => setMentorDetails({...mentorDetails, yearsOfExperience: e.target.value})}
+      sx={{
+        mb: 2,
+        "& .MuiInputBase-root": {
+          backgroundColor: "#F6F7FB",
+          borderRadius: "10px",
+          height: 50,
+        },
+      }}
+    />
+
+    <TextField
+      fullWidth
+      placeholder="Bio/About"
+      multiline
+      rows={3}
+      value={mentorDetails.bio}
+      onChange={(e) => setMentorDetails({...mentorDetails, bio: e.target.value})}
+      sx={{
+        mb: 2,
+        "& .MuiInputBase-root": {
+          backgroundColor: "#F6F7FB",
+          borderRadius: "10px",
+        },
+      }}
+    />
+
+    <Button
+      variant="outlined"
+      component="label"
+      sx={{
+        mb: 3,
+        py: 1.6,
+        borderRadius: "10px",
+        borderColor: "#0000ffff",
+        color: "#5ad1daff",
+        textTransform: "none",
+        justifyContent: "flex-start",
+        backgroundColor: "#2447d5ff",
+      }}
+    >
+      {mentorDetails.proofDocument ? mentorDetails.proofDocument.name : "Upload proof of experience"}
+      <input
+        type="file"
+        hidden
+        onChange={(e) => setMentorDetails({...mentorDetails, proofDocument: e.target.files?.[0] || null})}
+      />
+    </Button>
+
+    <Button
+      fullWidth
+      variant="contained"
+      disabled={!mentorDetails.firstName || !mentorDetails.emailPhone || !mentorDetails.fieldOfExpertise}
+      sx={{
+        backgroundColor: "#0B0B31",
+        py: 1.6,
+        borderRadius: "10px",
+        "&.Mui-disabled": { backgroundColor: "#DCDCE6" },
+      }}
+      onClick={() => navigate("/dashboard")}
+    >
+      Next
+    </Button>
+  </Box>
+)}
+</Box>
 
       {/* RIGHT SIDE IMAGE */}
       <Box
@@ -744,7 +921,7 @@ const [shake, setShake] = useState(false);
         alt="Signup Illustration"
         sx={{
           width: "50%",
-          height: "100vh",
+          height: "100%",
           display: { xs: "none", md: "block" },
           objectFit: "cover",
         }}

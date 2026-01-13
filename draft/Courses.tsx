@@ -1,4 +1,7 @@
 import { Box } from "@mui/material";
+import CourseHero from "./CourseHero"
+import UpcomingCourses from "./UpcomingCourses"
+import OngoingCourses from "./OngoingCourses";
 
 export default function Courses() {
   return (
@@ -52,7 +55,10 @@ export default function Courses() {
 
       {/* === Actual Page Content === */}
       <Box sx={{ position: "relative", zIndex: 1 }}>
-
+        <CourseHero />
+        <OngoingCourses />
+        <UpcomingCourses />
+        <Box sx={{ height: 40 }} /> {/* Spacer at bottom */}
       </Box>
     </Box>
   );

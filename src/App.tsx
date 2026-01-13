@@ -14,11 +14,14 @@ import About from "./routes/website/pages/About";
 
 // 🧑‍💻 Dashboard Pages
 import DashboardHome from "./routes/dashboard/pages/main/DashboardHome";
-import Courses from "./routes/dashboard/pages/courses/Courses";
+// import Courses from "../draft/Courses";
 import Microbootcamps from "./routes/dashboard/pages/bootcamps/Microbootcamps";
 import OngoingBootcampsPage from "./routes/dashboard/pages/bootcamps/OngoingBootcampsPage";
+// import OngoingCoursesPage from "../draft/OngoingCoursesPage";
 import UpcomingBootcampsPage from "./routes/dashboard/pages/bootcamps/UpcomingBootcampsPage";
+// import UpcomingCoursesPage from "../draft/UpcomingCoursesPage";
 import BootcampDetail from "./routes/dashboard/pages/bootcamps/BootcampDetail";
+// import CourseDetail from "../draft/CourseDetail";
 import ShoppingCart from "./routes/dashboard/pages/payment/ShoppingCart";
 import Checkout from "./routes/dashboard/pages/payment/Checkout";
 import MyMentor from "./routes/dashboard/pages/mentor/MyMentor";
@@ -49,11 +52,14 @@ function App() {
       {/* 🧑‍💻 Dashboard (DashboardNavbar + Sidebar) */}
       <Route element={<DashboardLayout />}>
         <Route path="/dashboard" element={<DashboardHome />} />
-        <Route path="/dashboard/courses" element={<Courses />} />
+        {/* <Route path="/dashboard/courses" element={<Courses />} /> */}
         <Route path="/dashboard/microbootcamps" element={<Microbootcamps />} />
         <Route path="/dashboard/ongoing-bootcamps" element={<OngoingBootcampsPage />} />
+        {/* <Route path="/dashboard/ongoing-courses" element={<OngoingCoursesPage />} /> */}
         <Route path="/dashboard/upcoming-bootcamps" element={<UpcomingBootcampsPage />} />
+        {/* <Route path="/dashboard/upcoming-courses" element={<UpcomingCoursesPage />} /> */}
         <Route path="/dashboard/bootcampdetail" element={<BootcampDetail />} />
+        {/* <Route path="/dashboard/coursedetail" element={<CourseDetail />} /> */}
         {/* Mentor Pages */}
         <Route path="/dashboard/mymentor" element={<MyMentor />} />
         <Route path="/dashboard/ourmentors" element={<OurMentors />} />
