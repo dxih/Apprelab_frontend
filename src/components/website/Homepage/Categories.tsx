@@ -30,7 +30,6 @@ export default function Categories() {
       sx={{
         position: "relative",
         overflow: "hidden",
-        width: { xs: "93%", md: "97%" },
         background: "#030E46",
         color: "#fff",
         py: { xs: 9, sm: 10, md: 12 },

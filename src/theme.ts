@@ -1,46 +1,46 @@
-// import { createTheme } from '@mui/material/styles';
+import { createTheme } from '@mui/material/styles';
 
-// export const theme = createTheme({
-//   palette: {
-//     mode: 'light',
-//     primary: {
-//       main: '#05379cff',
-//       light: '#4D8CFF',
-//       dark: '#003BB8',
-//       contrastText: '#FFFFFF',
-//     },
-//     secondary: {
-//       main: '#FFD93D',
-//       light: '#FFE680',
-//       dark: '#FFC300',
-//       contrastText: '#1A1A1A',
-//     },
-//     background: {
-//       default: '#F8FAFC',
-//       paper: '#FFFFFF',
-//     },
-//     text: {
-//       primary: '#1A1A1A',
-//       secondary: '#64748B',
-//       disabled: '#94A3B8',
-//     },
-//     divider: '#E2E8F0',
-//     error: {
-//       main: '#EF4444',
-//       light: '#FCA5A5',
-//       dark: '#DC2626',
-//     },
-//     success: {
-//       main: '#10B981',
-//       light: '#6EE7B7',
-//       dark: '#059669',
-//     },
-//     warning: {
-//       main: '#F59E0B',
-//       light: '#FCD34D',
-//       dark: '#D97706',
-//     },
-//   },
+export const theme = createTheme({
+  palette: {
+    mode: 'light',
+    primary: {
+      main: '#05379cff',
+      light: '#4D8CFF',
+      dark: '#003BB8',
+      contrastText: '#FFFFFF',
+    },
+    secondary: {
+      main: '#FFD93D',
+      light: '#FFE680',
+      dark: '#FFC300',
+      contrastText: '#1A1A1A',
+    },
+    background: {
+      default: '#F8FAFC',
+      paper: '#FFFFFF',
+    },
+    text: {
+      primary: '#1A1A1A',
+      secondary: '#64748B',
+      disabled: '#94A3B8',
+    },
+    divider: '#E2E8F0',
+    error: {
+      main: '#EF4444',
+      light: '#FCA5A5',
+      dark: '#DC2626',
+    },
+    success: {
+      main: '#10B981',
+      light: '#6EE7B7',
+      dark: '#059669',
+    },
+    warning: {
+      main: '#F59E0B',
+      light: '#FCD34D',
+      dark: '#D97706',
+    },
+  },
 
 //   typography: {
 //     fontFamily: '"Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Helvetica Neue", sans-serif',
@@ -346,4 +346,4 @@
 //       },
 //     },
 //   },
-// });
+});
