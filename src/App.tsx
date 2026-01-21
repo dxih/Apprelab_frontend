@@ -23,8 +23,14 @@ import ShoppingCart from "./routes/dashboard/pages/payment/ShoppingCart";
 import Checkout from "./routes/dashboard/pages/payment/Checkout";
 import MyMentor from "./routes/dashboard/pages/mentor/MyMentor";
 import OurMentors from "./routes/dashboard/pages/mentor/OurMentorsPage";
+// mystack pages
 import MyStack from "./routes/dashboard/pages/stack/MyStack";
-// import Worklabs from "./routes/dashboard/pages/Worklabs";
+import MyStackResourcePage from "./routes/dashboard/pages/stack/MyStackResources";
+import MyStackAssetsmentPage from "./routes/dashboard/pages/stack/MyStackAssetsment";
+import MyStackOverviewPage from "./routes/dashboard/pages/stack/MyStackOverView"
+import MyStackDiscussionPage from "./routes/dashboard/pages/stack/MyStackDiscussion"
+import BootcampLayout from "./layouts/website/MyStackBootCampLayout/BootcampLayout";
+// WORKLAB PAGES
 import Worklabs from "./routes/dashboard/pages/worklab/Worklabs";
 import ProjectFeeds from "./routes/dashboard/pages/worklab/projectfeeds";
 import ProjectDetails from "./routes/dashboard/pages/worklab/ProjectDetails";
@@ -66,7 +72,15 @@ function App() {
         {/* Mentor Pages */}
         <Route path="/dashboard/mymentor" element={<MyMentor />} />
         <Route path="/dashboard/ourmentors" element={<OurMentors />} />
+        {/* MYSTACK PAGES */}
         <Route path="/dashboard/mystack" element={<MyStack />} />
+        <Route path="/bootcamp/:id/:tab" element={<BootcampLayout />}>
+          <Route path="overview" element={<div />} />
+          <Route path="resources" element={<MyStackResourcePage />} />
+          <Route path="assessments" element={<MyStackAssetsmentPage/>} />
+          <Route path="overview" element={<MyStackOverviewPage/>} />
+          <Route path="discussions" element={<MyStackDiscussionPage/>} />
+        </Route>
         {/* Payment Pages */}
         <Route path="/dashboard/shoppingcart" element={<ShoppingCart />} />
         <Route path="/dashboard/checkout" element={<Checkout />} />
