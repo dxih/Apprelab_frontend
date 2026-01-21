@@ -8,6 +8,14 @@ export interface IResource {
   title: string;   
   type: "video" | "slides" | "brief" | "link";
 }
+export interface IAssessment {
+  id: string;
+  type: "Quiz" | "Project";
+  title: string;
+  status: "pending" | "submitted";
+  deadline: string;
+  number: number;
+}
 
 // 1. Define an interface for the Bootcamp object so TypeScript knows what to expect
 
@@ -75,7 +83,34 @@ export const ongoingBootcamps: Bootcamp[] = [
       },
       
     ],
+    assessments: [
+      {
+        id: "p1",
+        type: "Project",
+        title: "Build the frontend framework for a calculator app",
+        status: "pending",
+        deadline: "12:00 Tomorrow",
+        number:1
+      },
+      {
+        id: "q1",
+        type: "Quiz",
+        title: "Test your knowledge on responsive layouts and design",
+        status: "pending",
+        deadline: "10:00 Tomorrow",
+        number:2
+      },
+      {
+        id: "q1",
+        type: "Quiz",
+        title: "Test your knowledge on responsive layouts and design",
+        status: "submitted",
+        deadline: "10:00 Tomorrow",
+        number:2
+      }
+    ]
   },
+  // ------NEW ID===========
   {
     id: "ux_laws_&_principles(C1)",
     title: "UX Laws & Principles (C1)",
@@ -138,5 +173,16 @@ export const ongoingBootcamps: Bootcamp[] = [
       },
       
     ],
+    // =====Asseessment==========
+    assessments: [
+      // {
+      //   id: "q_ux",
+      //   type: "Quiz",
+      //   title: "UX Laws and Cognitive Psychology Quiz",
+      //   status: "pending",
+      //   deadline: "12:00 Friday",
+      //   number:1,
+      // }
+    ]
   },
 ];

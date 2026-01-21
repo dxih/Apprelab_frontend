@@ -149,7 +149,7 @@ export default function StackCompletedBootcamps() {
                     px: 2,
                     py: 1,
                     borderRadius: "12px",
-                    width: { xs: "90%", sm: "154px" },
+                    width: { xs: "50%", sm: "154px" },
                     minHeight: { xs: "30px", md: "55px" },
                     textAlign: "center",
                   }}

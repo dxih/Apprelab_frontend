@@ -38,6 +38,24 @@ const ongoingBootcamps: Bootcamp[] = [
         type: "slides",
       },
     ],
+    assessments: [
+      {
+        id: "frontend_p1",
+        type: "Project",
+        title: "Build the frontend framework for a calculator app",
+        status: "pending",
+        deadline: "12:00 Tomorrow",
+        number:1,
+      },
+      {
+        id: "frontend_q1",
+        type: "Quiz",
+        title: "Test your knowledge on HTML/CSS",
+        status: "submitted",
+        deadline: "Completed",
+        number:2,
+      }
+    ]
   },
   {
     id: "ux_laws_&_principles(C1)",
@@ -61,6 +79,16 @@ const ongoingBootcamps: Bootcamp[] = [
         type: "brief",
       },
     ],
+    assessments: [
+      {
+        id: "ux_q1",
+        type: "Quiz",
+        title: "Test your knowledge on Hick's Law and Fitts's Law",
+        status: "pending",
+        deadline: "12:00 Tomorrow",
+        number:1
+      }
+    ]
   },
 ];
 
