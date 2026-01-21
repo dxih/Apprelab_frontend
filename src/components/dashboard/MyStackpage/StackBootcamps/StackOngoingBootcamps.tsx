@@ -10,14 +10,18 @@ import {
 } from "@mui/material";
 import { useTheme } from "@mui/material";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
+import { Link } from "react-router-dom"; // Import Link
+import type { IResource } from "../../../../Data/MyStackBootcamp.data";
 
-interface Bootcamp {
+ export interface Bootcamp {
+  id: string; // 1. ADDED ID HERE
   title: string;
   description: string;
   duration: string;
   progress: number;
   nextClass: string;
   image: string;
+ resources: IResource[];
 }
 
 interface Props {
@@ -26,6 +30,7 @@ interface Props {
 
 const StackOngoingBootcamps: React.FC<Props> = ({ bootcamps }) => {
   const theme = useTheme();
+  
   return (
     <Box>
       <Box
@@ -37,7 +42,7 @@ const StackOngoingBootcamps: React.FC<Props> = ({ bootcamps }) => {
       >
         {bootcamps.map((bootcamp, i) => (
           <Card
-            key={i}
+            key={bootcamp.id || i} // Use ID as key for better performance
             sx={{
               display: "flex",
               flexDirection: { xs: "column", md: "row" },
@@ -47,10 +52,9 @@ const StackOngoingBootcamps: React.FC<Props> = ({ bootcamps }) => {
               bgcolor: "#edf1f3",
               justifyContent: "flex-start",
               position: "relative",
-              overflow: "visible", // Prevents button from being clipped on mobile
+              overflow: "visible",
             }}
           >
-            {/* FLOATING BUTTON - High zIndex for mobile visibility */}
             <IconButton
               size="small"
               sx={{
@@ -59,13 +63,12 @@ const StackOngoingBootcamps: React.FC<Props> = ({ bootcamps }) => {
                 right: 12,
                 zIndex: 100,
                 color: "#666",
-                bgcolor: "rgba(255, 255, 255, 0.5)", // Makes it visible against image
+                bgcolor: "rgba(255, 255, 255, 0.5)",
               }}
             >
               <MoreVertIcon fontSize="small" />
             </IconButton>
 
-            {/* Main container */}
             <Box sx={{ display: "flex", flexDirection: "column", width: "100%" }}>
               <Box
                 sx={{
@@ -74,7 +77,6 @@ const StackOngoingBootcamps: React.FC<Props> = ({ bootcamps }) => {
                   alignItems: "flex-start",
                   gap: { xs: 2, md: 2 },
                   width: "100%",
-                  flexShrink: 1,
                 }}
               >
                 <CardMedia
@@ -89,7 +91,7 @@ const StackOngoingBootcamps: React.FC<Props> = ({ bootcamps }) => {
                     mb: 1.5,
                   }}
                 />
-                {/* TEXT WRAPPING FIX: flex: 1 and minWidth: 0 */}
+                
                 <Box sx={{ flex: 1, minWidth: 0 }}>
                   <Typography
                     variant="h5"
@@ -97,7 +99,7 @@ const StackOngoingBootcamps: React.FC<Props> = ({ bootcamps }) => {
                       fontWeight: 600,
                       mb: 2,
                       fontFamily: theme.typography.fontFamily,
-                      pr: 4, // Prevents text overlap with menu icon
+                      pr: 4,
                     }}
                   >
                     {bootcamp.title}
@@ -110,59 +112,21 @@ const StackOngoingBootcamps: React.FC<Props> = ({ bootcamps }) => {
                       mb: 2.5,
                       fontFamily: theme.typography.fontFamily,
                       lineHeight: 1.5,
-                      wordBreak: "break-word", // Critical for long sentences
+                      wordBreak: "break-word",
                     }}
                   >
                     {bootcamp.description}{" "}
                     <strong>(Duration: {bootcamp.duration})</strong>
                   </Typography>
-                  <Box
-                    sx={{
-                      display: "flex",
-                      flexDirection: { xs: "column", md: "row" },
-                      alignItems: { xs: "flex-start", md: "center" },
-                      gap: { xs: 1.5, md: 2 },
-                      mb: 4.5,
-                    }}
-                  >
-                    <Typography
-                      variant="subtitle1"
-                      sx={{
-                        fontSize: { xs: "0.75rem", sm: "0.8rem", md: "0.8rem" },
-                        whiteSpace: "nowrap",
-                        fontFamily: theme.typography.fontFamily,
-                        fontWeight: 500,
-                      }}
-                    >
+
+                  {/* Progress Section */}
+                  <Box sx={{ display: "flex", flexDirection: { xs: "column", md: "row" }, alignItems: "center", gap: 2, mb: 4.5 }}>
+                    <Typography variant="subtitle1" sx={{ fontSize: "0.8rem", fontWeight: 500 }}>
                       Progress Status
                     </Typography>
-                    <Box
-                      sx={{
-                        display: "flex",
-                        flexDirection: "column",
-                        gap: 0.75,
-                        width: { xs: "100%", md: "auto" },
-                        alignItems: { xs: "flex-start", md: "center" },
-                      }}
-                    >
-                      <LinearProgress
-                        variant="determinate"
-                        value={bootcamp.progress}
-                        sx={{
-                          height: 8,
-                          borderRadius: 2,
-                          width: { xs: "100%", md: "120px" },
-                          fontFamily: theme.typography.fontFamily,
-                        }}
-                      />
-                      <Typography
-                        variant="subtitle2"
-                        sx={{
-                          fontSize: { xs: "0.75rem", sm: "0.8rem", md: "0.8rem" },
-                          color: "#333",
-                          fontFamily: theme.typography.fontFamily,
-                        }}
-                      >
+                    <Box sx={{ flex: 1, width: "100%" }}>
+                      <LinearProgress variant="determinate" value={bootcamp.progress} sx={{ height: 8, borderRadius: 2 }} />
+                      <Typography variant="subtitle2" sx={{ fontSize: "0.75rem", mt: 0.5 }}>
                         {bootcamp.progress}% Completed
                       </Typography>
                     </Box>
@@ -170,13 +134,13 @@ const StackOngoingBootcamps: React.FC<Props> = ({ bootcamps }) => {
                 </Box>
               </Box>
 
-              {/* footer */}
+              {/* Footer */}
               <Box
                 sx={{
                   display: "flex",
                   alignItems: "center",
                   flexDirection: { xs: "column", md: "row" },
-                  gap: 5,
+                  gap: { xs: 2, md: 5 },
                 }}
               >
                 <Typography
@@ -187,39 +151,45 @@ const StackOngoingBootcamps: React.FC<Props> = ({ bootcamps }) => {
                     px: 1,
                     py: 1,
                     borderRadius: "16px",
-                    width: { xs: "90%", md: "267px" },
-                    minHeight: { xs: "30px", md: "66px" },
+                    width: { xs: "100%", md: "267px" },
+                    minHeight: { xs: "40px", md: "66px" },
                     textAlign: "center",
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
-                    fontFamily: theme.typography.fontFamily,
                   }}
                 >
                   Next Class: {bootcamp.nextClass}
                 </Typography>
 
-                <Box sx={{ display: "flex", gap: { xs: 1, sm: 2, md: 3 } }}>
+                <Box sx={{ display: "flex", gap: 2, width: { xs: "100%", md: "auto" } }}>
+                  {/* 2. UPDATED RESOURCES BUTTON WITH LINK */}
                   <Button
+                    component={Link}
+                    to={`/bootcamp/${bootcamp.id}/resources`} // Dynamically goes to /bootcamp/id/resources
                     variant="outlined"
                     size="small"
                     sx={{
-                      width: { xs: "230px", md: "110px" },
+                      width: { xs: "100%", md: "110px" },
                       height: "40px",
-                      fontSize: { xs: "0.8rem", md: "0.875rem" },
+                      textTransform: "none",
                     }}
                   >
                     Resources
                   </Button>
+                  
+                  {/* 3. UPDATED ASSESSMENTS BUTTON WITH LINK */}
                   <Button
+                    component={Link}
+                    to={`/bootcamp/${bootcamp.id}/assessments`}
                     variant="contained"
                     size="small"
                     sx={{
                       background: "#001B44",
                       "&:hover": { backgroundColor: "#003366" },
-                      width: { xs: "230px", md: "110px" },
+                      width: { xs: "100%", md: "110px" },
                       height: "40px",
-                      fontSize: { xs: "0.8rem", md: "0.875rem" },
+                      textTransform: "none",
                     }}
                   >
                     Assessments

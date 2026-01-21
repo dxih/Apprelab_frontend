@@ -10,25 +10,57 @@ import stackCompletedBootCamps_img2 from "../../../../assets/images/components/O
 import PreSavedBootCamps_img1 from "../../../../assets/images/components/PreSavedBootCamp/PreSavedBootCamp_1.png";
 import PreSavedBootCamps_img2 from "../../../../assets/images/components/PreSavedBootCamp/PreSavedBootCamps_2.png";
 import { PageWrapper } from "../worklab/WorkLabCard";
-import {useTheme} from "@mui/material/styles";
+import { useTheme } from "@mui/material/styles";
 
-const ongoingBootcamps = [
+// IMPORT the interface to type the local array
+import type { Bootcamp } from "../../../../components/dashboard/MyStackpage/StackBootcamps/StackOngoingBootcamps";
+
+const ongoingBootcamps: Bootcamp[] = [
   {
+    id: "intro_to_frontend(c8)",
     title: "Intro to Frontend (C8)",
     description: "Go from beginner to intermediate frontend developer",
     duration: "4 Weeks",
     progress: 50,
     nextClass: "10th November, 2025, 6PM WAT",
     image: StackCompletedBootcamps_image,
+    resources: [
+      {
+        week: "Week 1",
+        topic: "HTML and CSS Foundations",
+        title: "Lecture Video",
+        type: "video",
+      },
+      {
+        week: "Week 1",
+        topic: "HTML and CSS Foundations",
+        title: "Lecture Slides",
+        type: "slides",
+      },
+    ],
   },
   {
+    id: "ux_laws_&_principles(C1)",
     title: "UX Laws & Principles (C1)",
-    description:
-      "Deep dive into all the laws of UX and basic design principlescccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccbbb",
+    description: "Deep dive into all the laws of UX and basic design principles",
     duration: "6 Weeks",
     progress: 30,
     nextClass: "12th November, 2025, 2PM WAT",
     image: stackCompletedBootCamps_img2,
+    resources: [
+      {
+        week: "Week 1",
+        topic: "Introduction to Figma",
+        title: "Figma Interface Tour",
+        type: "video",
+      },
+      {
+        week: "Week 1",
+        topic: "Introduction to Figma",
+        title: "Design Brief",
+        type: "brief",
+      },
+    ],
   },
 ];
 
@@ -54,7 +86,7 @@ export default function MyStack() {
   const [activeTab] = useState<string>("Bootcamp");
 
   return (
-    <PageWrapper >
+    <PageWrapper>
       <Box
         sx={{
           position: "relative",
@@ -63,7 +95,6 @@ export default function MyStack() {
           width: "100%",
         }}
       >
-        {/* Navbar */}
         <Box sx={{ position: "relative", zIndex: 1 }}>
           <StackNavbar />
         </Box>
@@ -82,7 +113,6 @@ export default function MyStack() {
           Ongoing Bootcamps
         </Typography>
 
-        {/* Content */}
         {activeTab === "Bootcamp" && (
           <Box
             sx={{
@@ -90,11 +120,9 @@ export default function MyStack() {
               flexDirection: { xs: "column", md: "row" },
               gap: { xs: 3, md: 4 },
               py: { xs: 3, md: 4 },
-              // px: { xs: 2, sm: 3, md: 4 },
               alignItems: "stretch",
             }}
           >
-            {/* Left Column */}
             <Box
               sx={{
                 flex: { xs: 1, md: 1.9 },
@@ -109,7 +137,6 @@ export default function MyStack() {
               <StackPreSavedBootcamps bootcamps={preSavedBootcamps} />
             </Box>
 
-            {/* Right Column: Sidebar */}
             <Box
               sx={{
                 flex: { xs: 1, md: 1 },
