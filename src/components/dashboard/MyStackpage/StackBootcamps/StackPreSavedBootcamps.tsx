@@ -126,7 +126,7 @@ const StackPreSavedBootcamps: React.FC<Props> = ({ bootcamps }) => {
                     px: 1,
                     py: 1,
                     borderRadius: "16px",
-                    width: { xs: "90%", md: "267px" },
+                    width: { xs: "60%", md: "267px" },
                     minHeight: { xs: "30px", md: "66px" },
                     textAlign: "center",
                     display: "flex",

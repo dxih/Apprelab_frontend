@@ -10,8 +10,9 @@ import {
 } from "@mui/material";
 import { useTheme } from "@mui/material";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
-import { Link } from "react-router-dom"; // Import Link
+import { Link } from "react-router-dom"; 
 import type { IResource } from "../../../../Data/MyStackBootcamp.data";
+import type { IAssessment } from "../../../../Data/MyStackBootcamp.data";
 
  export interface Bootcamp {
   id: string; // 1. ADDED ID HERE
@@ -22,6 +23,8 @@ import type { IResource } from "../../../../Data/MyStackBootcamp.data";
   nextClass: string;
   image: string;
  resources: IResource[];
+ assessments: IAssessment[];
+
 }
 
 interface Props {
@@ -42,7 +45,7 @@ const StackOngoingBootcamps: React.FC<Props> = ({ bootcamps }) => {
       >
         {bootcamps.map((bootcamp, i) => (
           <Card
-            key={bootcamp.id || i} // Use ID as key for better performance
+            key={bootcamp.id || i} 
             sx={{
               display: "flex",
               flexDirection: { xs: "column", md: "row" },
@@ -151,7 +154,7 @@ const StackOngoingBootcamps: React.FC<Props> = ({ bootcamps }) => {
                     px: 1,
                     py: 1,
                     borderRadius: "16px",
-                    width: { xs: "100%", md: "267px" },
+                    width: { xs: "50%", md: "267px" },
                     minHeight: { xs: "40px", md: "66px" },
                     textAlign: "center",
                     display: "flex",
