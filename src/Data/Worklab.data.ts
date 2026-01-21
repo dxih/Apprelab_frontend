@@ -7,7 +7,7 @@ import type { ProjectItem } from "../types/project";
 
  const featuredData: ProjectItem[] = [
   {
-    id: 1,
+    id: "frontend-developer-ecommerce-website",
     title: "Frontend Developer for E-commerce Website",
     subtitle: "Re-imagining our customers facing data Analystic dashboard for better",
     category: "TECH",
@@ -19,7 +19,7 @@ import type { ProjectItem } from "../types/project";
     image: workframeOpportunity4,
   },
   {
-    id: 2,
+    id: "junior-data-analyst-agritech",
     title: "Junior Data Analyst Position",
     subtitle: "Re-imagining our customers facing data Analystic dashboard for better",
     category: "DESIGN",
@@ -31,7 +31,7 @@ import type { ProjectItem } from "../types/project";
     image: workFrameOppurtunity1,
   },
   {
-    id: 3,
+    id: "ui-ux-designer-agricultural-company",
     title: "UI/UX Designer for Agricultural Company",
     subtitle: "Re-imagining our customers facing data Analystic dashboard for better",
     category: "MARKETING",
@@ -43,7 +43,7 @@ import type { ProjectItem } from "../types/project";
     image: workframeOpportunity2,
   },
   {
-    id: 4,
+    id: "backend-developer-datapoint",
     title: "Social Media Manager Role",
     subtitle: "Re-imagining our customers facing data Analystic dashboard for better",
     category: "DATA",
@@ -55,7 +55,7 @@ import type { ProjectItem } from "../types/project";
     image: workframeOpportunity3,
   },
   {
-    id: 4,
+    id: "social-media-manager-datapoint",
     title: "Social Media Manager Role",
     subtitle: "Re-imagining our customers facing data Analystic dashboard for better",
     category: "DATA",
@@ -67,7 +67,7 @@ import type { ProjectItem } from "../types/project";
     image: workframeOpportunity3,
   },
   {
-    id: 4,
+    id: "social-media-manager-datapoint-2",
     title: "Social Media Manager Role",
     subtitle: "Re-imagining our customers facing data Analystic dashboard for better",
     category: "DATA",

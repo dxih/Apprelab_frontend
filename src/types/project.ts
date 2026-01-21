@@ -1,5 +1,5 @@
 export  interface ProjectItem {
-  id: number;
+  id: number | string;
   title: string;
   subtitle: string;
   category: string;

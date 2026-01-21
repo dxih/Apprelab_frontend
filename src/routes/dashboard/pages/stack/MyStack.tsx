@@ -1,11 +1,17 @@
-import { Box } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import { useState } from "react";
 import StackNavbar from "../../../../components/dashboard/MyStackpage/StackNavbar";
 import StackOngoingBootcamps from "../../../../components/dashboard/MyStackpage/StackBootcamps/StackOngoingBootcamps";
 import StackPreSavedBootcamps from "../../../../components/dashboard/MyStackpage/StackBootcamps/StackPreSavedBootcamps";
-// import StackSidebar from "../../../../components/dashboard/MyStackpage/StackBootcamps/StackSidebar";
+import StackSideBar from "../../../../components/dashboard/MyStackpage/StackBootcamps/StackSideBar";
+import StackCompletedBootcamps from "../../../../components/dashboard/MyStackpage/StackBootcamps/StackCompletetedBootCamps";
+import StackCompletedBootcamps_image from "../../../../assets/images/components/OnGoingBootCamps/StackOnGoingBootCamp_1.png";
+import stackCompletedBootCamps_img2 from "../../../../assets/images/components/OnGoingBootCamps/StackOnGoingBootCamp_2.png";
+import PreSavedBootCamps_img1 from "../../../../assets/images/components/PreSavedBootCamp/PreSavedBootCamp_1.png";
+import PreSavedBootCamps_img2 from "../../../../assets/images/components/PreSavedBootCamp/PreSavedBootCamps_2.png";
+import { PageWrapper } from "../worklab/WorkLabCard";
+import {useTheme} from "@mui/material/styles";
 
-// Example Data
 const ongoingBootcamps = [
   {
     title: "Intro to Frontend (C8)",
@@ -13,15 +19,16 @@ const ongoingBootcamps = [
     duration: "4 Weeks",
     progress: 50,
     nextClass: "10th November, 2025, 6PM WAT",
-    image: "https://via.placeholder.com/150",
+    image: StackCompletedBootcamps_image,
   },
   {
     title: "UX Laws & Principles (C1)",
-    description: "Deep dive into all the laws of UX and basic design principles",
+    description:
+      "Deep dive into all the laws of UX and basic design principlescccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccbbb",
     duration: "6 Weeks",
     progress: 30,
     nextClass: "12th November, 2025, 2PM WAT",
-    image: "https://via.placeholder.com/150",
+    image: stackCompletedBootCamps_img2,
   },
 ];
 
@@ -31,56 +38,93 @@ const preSavedBootcamps = [
     description: "Go from beginner to intermediate frontend developer",
     duration: "4 Weeks",
     startDate: "20th November, 2025",
-    image: "https://via.placeholder.com/150",
+    image: PreSavedBootCamps_img1,
   },
   {
     title: "Wireframing UX (C2)",
     description: "Go from beginner to intermediate frontend developer",
     duration: "4 Weeks",
     startDate: "25th November, 2025",
-    image: "https://via.placeholder.com/150",
+    image: PreSavedBootCamps_img2,
   },
 ];
 
 export default function MyStack() {
+  const theme = useTheme();
   const [activeTab] = useState<string>("Bootcamp");
 
   return (
-    <Box sx={{ position: "relative", overflow: "hidden", backgroundColor: "#FFFFFF" }}>
-      {/* === Navbar === */}
-      <Box sx={{ position: "relative", zIndex: 1 }}>
-        <StackNavbar />
-      </Box>
+    <PageWrapper >
+      <Box
+        sx={{
+          position: "relative",
+          overflow: "hidden",
+          backgroundColor: "#FFFFFF",
+          width: "100%",
+        }}
+      >
+        {/* Navbar */}
+        <Box sx={{ position: "relative", zIndex: 1 }}>
+          <StackNavbar />
+        </Box>
 
-      <Box sx={{ height: 20 }} /> {/* Spacer */}
+        <Box sx={{ height: { xs: 16, sm: 20 } }} />
 
-      {/* === Content === */}
-      {activeTab === "Bootcamp" && (
-        <Box
+        <Typography
+          variant="h3"
           sx={{
-            display: "flex",
-            flexDirection: { xs: "column", md: "row" },
-            gap: 4,
-            px: 4,
-            py: 4,
-            alignItems: "flex-start",
+            mb: 2,
+            fontWeight: 600,
+            px: { xs: 2, sm: 3, md: 4 },
+            fontFamily: theme.typography.fontFamily,
           }}
         >
-          {/* Left Column: Bootcamps */}
-          <Box sx={{ flex: 2, display: "flex", flexDirection: "column", gap: 4 }}>
-            <StackOngoingBootcamps bootcamps={ongoingBootcamps} />
-            <StackPreSavedBootcamps bootcamps={preSavedBootcamps} />
-          </Box>
+          Ongoing Bootcamps
+        </Typography>
 
-          {/* Right Column: Sidebar */}
-          <Box sx={{ flex: 1, minWidth: { xs: "100%", md: 280 } }}>
-            {/* <StackSidebar /> */}
-          </Box>
-        </Box>
-      )}
+        {/* Content */}
+        {activeTab === "Bootcamp" && (
+          <Box
+            sx={{
+              display: "flex",
+              flexDirection: { xs: "column", md: "row" },
+              gap: { xs: 3, md: 4 },
+              py: { xs: 3, md: 4 },
+              // px: { xs: 2, sm: 3, md: 4 },
+              alignItems: "stretch",
+            }}
+          >
+            {/* Left Column */}
+            <Box
+              sx={{
+                flex: { xs: 1, md: 1.9 },
+                display: "flex",
+                flexDirection: "column",
+                gap: 4,
+                minWidth: 0,
+                fontFamily: theme.typography.fontFamily,
+              }}
+            >
+              <StackOngoingBootcamps bootcamps={ongoingBootcamps} />
+              <StackPreSavedBootcamps bootcamps={preSavedBootcamps} />
+            </Box>
 
-      {/* Spacer at bottom */}
-      <Box sx={{ height: 40 }} />
-    </Box>
+            {/* Right Column: Sidebar */}
+            <Box
+              sx={{
+                flex: { xs: 1, md: 1 },
+                width: "100%",
+                fontFamily: theme.typography.fontFamily,
+              }}
+            >
+              <StackSideBar />
+            </Box>
+          </Box>
+        )}
+
+        <Box sx={{ height: { xs: 30, md: 40 } }} />
+        <StackCompletedBootcamps />
+      </Box>
+    </PageWrapper>
   );
 }
