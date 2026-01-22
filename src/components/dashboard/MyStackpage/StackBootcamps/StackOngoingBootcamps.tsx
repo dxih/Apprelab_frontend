@@ -13,6 +13,8 @@ import MoreVertIcon from "@mui/icons-material/MoreVert";
 import { Link } from "react-router-dom"; 
 import type { IResource } from "../../../../Data/MyStackBootcamp.data";
 import type { IAssessment } from "../../../../Data/MyStackBootcamp.data";
+import type { IReview } from "../../../../Data/MyStackBootcamp.data";
+import type { IDiscussion } from "../../../../Data/MyStackBootcamp.data";
 
  export interface Bootcamp {
   id: string; // 1. ADDED ID HERE
@@ -22,8 +24,20 @@ import type { IAssessment } from "../../../../Data/MyStackBootcamp.data";
   progress: number;
   nextClass: string;
   image: string;
+  agenda: string;
+  learnList: string[];
+  audience: string[];
+  level: "Beginner" | "Intermediate" | "Advanced";
+  nextCohort: {
+    date: string;
+    oldPrice: string; 
+    newPrice: string;
+  };
  resources: IResource[];
  assessments: IAssessment[];
+ reviews: IReview[];
+ discussions: IDiscussion[];
+announcements: string[];
 
 }
 
@@ -169,7 +183,7 @@ const StackOngoingBootcamps: React.FC<Props> = ({ bootcamps }) => {
                   {/* 2. UPDATED RESOURCES BUTTON WITH LINK */}
                   <Button
                     component={Link}
-                    to={`/bootcamp/${bootcamp.id}/resources`} // Dynamically goes to /bootcamp/id/resources
+                    to={`/bootcamp/${bootcamp.id}/resources`} 
                     variant="outlined"
                     size="small"
                     sx={{

@@ -1,11 +1,11 @@
 import StackCompletedBootcamps_image from "../assets/images/components/OnGoingBootCamps/StackOnGoingBootCamp_1.png";
 import StackCompletedBootCamps_img2 from "../assets/images/components/OnGoingBootCamps/StackOnGoingBootCamp_2.png";
 import type { Bootcamp } from "../components/dashboard/MyStackpage/StackBootcamps/StackOngoingBootcamps";
-
+import avatar_1 from "../assets/images/components/OnGoingBootCamps/Avatar_1.png"
 export interface IResource {
-  week: string;   
-  topic: string;   
-  title: string;   
+  week: string;
+  topic: string;
+  title: string;
   type: "video" | "slides" | "brief" | "link";
 }
 export interface IAssessment {
@@ -16,11 +16,28 @@ export interface IAssessment {
   deadline: string;
   number: number;
 }
+export interface IReview {
+  id: string;
+  name: string;
+  rating: number;
+  date: string;
+  comment: string;
+  avatar?: string;
+}
+export interface IDiscussion {
+  id: string;
+  name: string;
+  time: string;
+  title: string;
+  body: string;
+  replies: number;
+  trending: boolean;
+}
 
-// 1. Define an interface for the Bootcamp object so TypeScript knows what to expect
 
 
-// 2. Use the interface to type the array, and provide actual data values
+
+//  Use the interface to type the array, and provide actual data values
 export const ongoingBootcamps: Bootcamp[] = [
   {
     id: "intro_to_frontend(c8)",
@@ -30,7 +47,25 @@ export const ongoingBootcamps: Bootcamp[] = [
     progress: 50,
     nextClass: "10th November, 2025, 6PM WAT",
     image: StackCompletedBootcamps_image,
-    // Provide actual resource data here
+    agenda: "Our 4-week Bootcamp is a hybrid format — combining a 1-hour live class every Monday with self-paced video lessons in the week.",
+    learnList: [
+      "HTML, CSS, and JavaScript basics",
+      "Building responsive web pages",
+      "How to use AI tools for frontend design",
+      "Deploying your first live project"
+    ],
+    audience: [
+      "Beginners in tech or design",
+      "Anyone looking to switch to web development",
+      "Student and creatives exploring tech"
+    ],
+    level: "Advanced",
+    nextCohort: {
+      date: "Jan 2026",
+      oldPrice: "₦250k",
+      newPrice: "₦200k"
+    },
+    // actual resource data here
     resources: [
       {
         week: "Week 1",
@@ -81,7 +116,7 @@ export const ongoingBootcamps: Bootcamp[] = [
         title: "Assignment link",
         type: "link",
       },
-      
+
     ],
     assessments: [
       {
@@ -90,7 +125,7 @@ export const ongoingBootcamps: Bootcamp[] = [
         title: "Build the frontend framework for a calculator app",
         status: "pending",
         deadline: "12:00 Tomorrow",
-        number:1
+        number: 1
       },
       {
         id: "q1",
@@ -98,7 +133,7 @@ export const ongoingBootcamps: Bootcamp[] = [
         title: "Test your knowledge on responsive layouts and design",
         status: "pending",
         deadline: "10:00 Tomorrow",
-        number:2
+        number: 2
       },
       {
         id: "q1",
@@ -106,8 +141,58 @@ export const ongoingBootcamps: Bootcamp[] = [
         title: "Test your knowledge on responsive layouts and design",
         status: "submitted",
         deadline: "10:00 Tomorrow",
-        number:2
+        number: 2
       }
+    ],
+    reviews: [
+      {
+        id: "rev1",
+        name: "Jenny Miu",
+        rating: 5,
+        avatar: avatar_1,
+        date: "3 weeks ago",
+        comment: "Teaching style and patterns are very extremely good. Appropriate amount of exercise to gets hands on the tool and understanding how exactly Figma works."
+      },
+      {
+        id: "rev2",
+        name: "Jenny Miu",
+        rating: 5,
+        avatar: avatar_1,
+        date: "3 weeks ago",
+        comment: "The pace of the cohort was perfect for someone starting from scratch. Highly recommended!"
+      },
+      {
+        id: "rev3",
+        name: "Jenny Miu",
+        rating: 5,
+        avatar: avatar_1,
+        date: "3 weeks ago",
+        comment: "The pace of the cohort was perfect for someone starting from scratch. Highly recommended!"
+      },
+      {
+        id: "rev4",
+        name: "Jenny Miu",
+        rating: 5,
+        avatar: avatar_1,
+        date: "3 weeks ago",
+        comment: "The pace of the cohort was perfect for someone starting from scratch. Highly recommended!"
+      },
+    ],
+
+    discussions: [
+      {
+        id: "d1",
+        name: "Cynthia E.",
+        time: "2hrs ago",
+        title: "How do I make my nav bar responsive?",
+        body: "I’m struggling to make a responsive nav bar...",
+        replies: 3,
+        trending: true
+      }
+    ],
+    announcements: [
+      "In-Cohort Competition coming up",
+      "Tuesday’s class has been rescheduled"
     ]
   },
   // ------NEW ID===========
@@ -119,9 +204,27 @@ export const ongoingBootcamps: Bootcamp[] = [
     progress: 30,
     nextClass: "12th November, 2025, 2PM WAT",
     image: StackCompletedBootCamps_img2,
-    // Even if it's empty, use [] instead of the interface name
+    agenda: "Our 4-weeks Bootcamp is a hybrid format — combining a 1-hour live class every Monday with self-paced video lessons in the week.",
+    learnList: [
+      "UI and UX Overview",
+      "Ui and UX Principles",
+      "How to use Ai tools for designs",
+      "Deploying your first live project on Figma"
+    ],
+    audience: [
+      "Beginners in tech or design",
+      "Anyone looking to switch to UI and UX",
+      "Student and creatives exploring tech"
+    ],
+    level: "Beginner",
+    nextCohort: {
+      date: "FEB 2026",
+      oldPrice: "₦250k",
+      newPrice: "₦200k"
+    },
+    //RESOURCES
     resources: [
-       {
+      {
         week: "Week 1",
         topic: "Introduction to UX Laws",
         title: "Hick's Law Overview",
@@ -135,7 +238,7 @@ export const ongoingBootcamps: Bootcamp[] = [
       },
       {
         week: "Week 1",
-         topic: "Introduction to UX Laws",
+        topic: "Introduction to UX Laws",
         title: "Assigmnent Brief",
         type: "brief",
       },
@@ -147,7 +250,7 @@ export const ongoingBootcamps: Bootcamp[] = [
       },
 
       // =====WEEK 2 =========
-        {
+      {
         week: "Week 2",
         topic: "Ui and Ux Principle",
         title: "Lecture Slides",
@@ -161,7 +264,7 @@ export const ongoingBootcamps: Bootcamp[] = [
       },
       {
         week: "Week 2",
-      topic: "Ui and Ux Principle",
+        topic: "Ui and Ux Principle",
         title: "Assignment brief",
         type: "brief",
       },
@@ -171,7 +274,7 @@ export const ongoingBootcamps: Bootcamp[] = [
         title: "Assignment link",
         type: "link",
       },
-      
+
     ],
     // =====Asseessment==========
     assessments: [
@@ -183,6 +286,40 @@ export const ongoingBootcamps: Bootcamp[] = [
       //   deadline: "12:00 Friday",
       //   number:1,
       // }
+    ],
+    reviews: [
+      {
+        id: "rev1",
+        name: "Jenny Miu",
+        rating: 5,
+        date: "3 weeks ago",
+        comment: "Teaching style and patterns are very extremely good. Appropriate amount of exercise to gets hands on the tool and understanding how exactly Figma works."
+      },
+      {
+        id: "rev2",
+        name: "Jenny Miu",
+        rating: 4,
+        avatar: avatar_1,
+        date: "1 weeks ago",
+        comment: "The pace of the cohort was perfect for someone starting from scratch. Highly recommended!"
+      }
+    ],
+
+   
+    discussions: [
+      {
+        id: "d1",
+        name: "Cynthia E.",
+        time: "2hrs ago",
+        title: "How do I make use of figma?",
+        body: "I’m struggling to make use of figma...",
+        replies: 3,
+        trending: true
+      }
+    ],
+    announcements: [
+      "In-Cohort Competition coming up",
+      "Tuesday’s class has been rescheduled"
     ]
   },
 ];

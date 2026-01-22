@@ -19,10 +19,10 @@ import { useTheme } from "@mui/material/styles";
 
 // IMPORT YOUR DATA ARRAY - Using your specific paths
 import { ongoingBootcamps } from "../../../Data/MyStackBootcamp.data";
-import ResourcesTab from "../../../routes/dashboard/pages/stack/MyStackResources";
-import AssessmentsTab from "../../../routes/dashboard/pages/stack/MyStackAssetsment";
-import OverviewTab from "../../../routes/dashboard/pages/stack/MyStackOverView";
-import DiscussionsTab from "../../../routes/dashboard/pages/stack/MyStackDiscussion";
+import ResourcesTab from "../../../routes/dashboard/pages/main/stack/MyStackResources";
+import AssessmentsTab from "../../../routes/dashboard/pages/main/stack/MyStackAssetsment";
+import OverviewTab from "../../../routes/dashboard/pages/main/stack/MyStackOverView";
+import DiscussionsTab from "../../../routes/dashboard/pages/main/stack/MyStackDiscussion";
 
 const BootcampLayout = () => {
   const { id, tab } = useParams<{ id: string; tab: string }>();
@@ -155,12 +155,16 @@ const BootcampLayout = () => {
                     pt: { sx: 0, md: 6 },
                   }}
                 >
-                  
                   <Box sx={{ position: "relative", mb: 4 }}>
                     <LinearProgress
                       variant="determinate"
                       value={currentBootcamp?.progress || 0}
-                      sx={{ height: 6, borderRadius: 5, bgcolor: "#E0E0E0",  mb:3, }}
+                      sx={{
+                        height: 6,
+                        borderRadius: 5,
+                        bgcolor: "#E0E0E0",
+                        mb: 3,
+                      }}
                     />
                     <Box
                       sx={{
@@ -173,15 +177,13 @@ const BootcampLayout = () => {
                         border: "3px solid #0056FF",
                         borderRadius: "50%",
                         transform: "translateX(-50%)",
-                      
                       }}
                     />
                     <Typography
-                    sx={{ color: "#666", fontSize: "0.85rem", mb: 2 }}
-                  >
-                    Your bootcamp is {currentBootcamp?.progress || 0}% through
-                  </Typography>
-
+                      sx={{ color: "#666", fontSize: "0.85rem", mb: 2 }}
+                    >
+                      Your bootcamp is {currentBootcamp?.progress || 0}% through
+                    </Typography>
                   </Box>
 
                   <Typography
@@ -194,7 +196,6 @@ const BootcampLayout = () => {
                   >
                     Your Progress
                   </Typography>
-                  
 
                   <Stack spacing={2} sx={{ mb: 4 }}>
                     <Box
