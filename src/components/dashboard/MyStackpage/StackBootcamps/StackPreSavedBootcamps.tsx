@@ -38,7 +38,7 @@ const StackPreSavedBootcamps: React.FC<Props> = ({ bootcamps }) => {
               bgcolor: "#edf1f3",
               justifyContent: "flex-start",
               position: "relative",
-              overflow: "visible", // Ensures button stays visible on mobile
+              overflow: "visible", 
             }}
           >
             {/* FLOATING BUTTON */}

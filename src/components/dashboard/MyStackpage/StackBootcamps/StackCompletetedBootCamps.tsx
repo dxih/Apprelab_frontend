@@ -138,7 +138,7 @@ export default function StackCompletedBootcamps() {
                   p: 2,
                   bgcolor: "rgba(0, 27, 68, 0.03)",
                   borderTop: "1px solid #E9E9E9",
-                  gap: { xs: 2, sm: 1 }, // Gap between date and buttons
+                  gap: { xs: 2, sm: 1 }, 
                 }}
               >
                 {/* Completed Date Tag */}
