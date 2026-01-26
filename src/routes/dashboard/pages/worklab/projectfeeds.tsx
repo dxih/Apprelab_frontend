@@ -24,7 +24,7 @@ const ProjectFeed = () => {
 
   const projects = [
     {
-      id: 1,
+      id: "market-researcher-solutions-inc",
       company: "Market Researchech Solutions Inc.",
       category: "Marketer",
       role: "Data Analyst for Non - Profit Organisation",
@@ -36,7 +36,7 @@ const ProjectFeed = () => {
       image: workFrameOppurtunity1,
     },
     {
-      id: 2,
+      id: "creators-corner-social-media-manager",
       company: "Creators Corner.",
       category: "Technology",
       role: "Social media manager for a local bussiness",
@@ -48,7 +48,7 @@ const ProjectFeed = () => {
       image: workframeOpportunity2,
     },
     {
-      id: 3,
+      id: "tech-solutions-backend-developer",
       company: "Tech Solutions Inc.",
       category: "Technology",
       role: "Backend Developer for Api Integration",
@@ -60,7 +60,7 @@ const ProjectFeed = () => {
       image: workframeOpportunity3,
     },
     {
-      id: 4,
+      id: "tech-solutions-ui-ux-designer",
       company: "Tech Solutions Inc.",
       category: "Technology",
       role: "UI/UX Designer for Mobile App",
@@ -125,7 +125,7 @@ const ProjectFeed = () => {
 };
 
 export interface IProject {
-  id: number;
+  id: number | string;
   company: string;
   category: string;
   role: string;
