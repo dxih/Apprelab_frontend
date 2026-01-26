@@ -141,7 +141,7 @@ const StackOngoingBootcamps: React.FC<Props> = ({ bootcamps }) => {
                     <Typography variant="subtitle1" sx={{ fontSize: "0.8rem", fontWeight: 500 }}>
                       Progress Status
                     </Typography>
-                    <Box sx={{ flex: 1, width: "100%" }}>
+                    <Box sx={{ flex: 1, width: "100%", display:"flex", flexDirection:"column", textAlign:"center" }}>
                       <LinearProgress variant="determinate" value={bootcamp.progress} sx={{ height: 8, borderRadius: 2 }} />
                       <Typography variant="subtitle2" sx={{ fontSize: "0.75rem", mt: 0.5 }}>
                         {bootcamp.progress}% Completed
