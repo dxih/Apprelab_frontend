@@ -7,9 +7,9 @@ import {
 } from "@mui/material";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import { useTheme } from "@mui/material/styles";
-import {CompletedBootcampData} from "../../../../Data/MyStackBootcamp.data"
+import {CompletedCourseData} from "../../../../Data/MyStackCourses.data"
 
-export default function StackCompletedBootcamps() {
+export default function StackCompletedCourses() {
   const theme = useTheme();
   return (
     <Box sx={{ mt: 6, pb: 4 }}>
@@ -23,11 +23,11 @@ export default function StackCompletedBootcamps() {
           fontFamily: theme.typography.fontFamily,
         }}
       >
-        Completed Bootcamps
+        Completed Courses
       </Typography>
 
       <Grid container spacing={3}>
-        {CompletedBootcampData.map((item, index) => (
+        {CompletedCourseData.map((item, index) => (
           <Grid item xs={12} md={6} key={index}>
             <Box
               sx={{
@@ -127,8 +127,8 @@ export default function StackCompletedBootcamps() {
                 {/* Completed Date Tag */}
                 <Box
                   sx={{
-                    bgcolor: "#001B44",
-                    color: "white",
+                    bgcolor:theme.palette.warning.light,
+                    color: theme.palette.text.primary,
                     px: 2,
                     py: 1,
                     borderRadius: "12px",
@@ -137,7 +137,7 @@ export default function StackCompletedBootcamps() {
                     textAlign: "center",
                   }}
                 >
-                  <Typography sx={{ fontSize: "11px", color: "white", fontWeight: 600 }}>
+                  <Typography sx={{ fontSize: "11px", color: theme.palette.text.primary, fontWeight: 600 }}>
                     {item.date}
                   </Typography>
                 </Box>
