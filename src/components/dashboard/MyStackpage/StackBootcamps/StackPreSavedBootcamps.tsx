@@ -20,7 +20,7 @@ const StackPreSavedBootcamps: React.FC<Props> = ({ bootcamps }) => {
   return (
     <Box sx={{ mt: 6, fontFamily: theme.typography.fontFamily }}>
       <Typography
-        variant="h3"
+        variant="h4"
         sx={{ mb: 2, fontWeight: 600, fontFamily: theme.typography.fontFamily }}
       >
         Pre-Saved Bootcamps
