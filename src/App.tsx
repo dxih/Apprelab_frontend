@@ -37,6 +37,7 @@ import ApplyPage from "./routes/dashboard/pages/worklab/DetailsApply";
 import Signup from "./routes/auth/Signup";
 import Login from "./routes/auth/Login";
 import ForgotPassword from "./routes/auth/ForgotPassword";
+import Sme from "./routes/website/pages/Sme";
 
 function App() {
   return (
@@ -50,6 +51,7 @@ function App() {
         <Route path="/hire" element={<Hire />} />
         <Route path="/create" element={<Create />} />
         <Route path="/about" element={<About />} />
+        <Route path="/sme" element={<Sme />} />
       </Route>
 
       {/* 🧑‍💻 Dashboard (DashboardNavbar + Sidebar) */}

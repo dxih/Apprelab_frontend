@@ -30,6 +30,7 @@ const WebsiteNavbar: React.FC = () => {
     { label: "Mentor", path: "/mentor" },
     { label: "Create", path: "/create" },
     { label: "Hire", path: "/hire" },
+    { label: "SMEs", path: "/sme" },
   ];
 
   const toggleDrawer = (open: boolean) => {
