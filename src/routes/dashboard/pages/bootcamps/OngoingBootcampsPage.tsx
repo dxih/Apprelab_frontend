@@ -21,7 +21,7 @@ import contentImg from "../../../../assets/images/components/microbootcamps/offe
 import webdevImg from "../../../../assets/images/components/microbootcamps/offers/webdevofferimg.png";
 
 type Bootcamp = {
-  image: string;
+  image: any;
   title: string;
   desc: string;
   price: string;
