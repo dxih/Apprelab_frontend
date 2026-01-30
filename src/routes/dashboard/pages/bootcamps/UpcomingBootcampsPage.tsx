@@ -126,11 +126,46 @@ export const bootcamps: Bootcamp[] = [
 const duplicatedBootcamps = [...bootcamps, ...bootcamps, ...bootcamps];
 
 const fixedGlowingPoints = [
-  { top: "10%", left: "15%", size: 120, color: "#FFD60A", blur: 80, opacity: 0.15 },
-  { top: "40%", left: "70%", size: 160, color: "#4D9EFF", blur: 100, opacity: 0.12 },
-  { top: "70%", left: "25%", size: 140, color: "#FFD60A", blur: 90, opacity: 0.18 },
-  { top: "20%", left: "80%", size: 180, color: "#4D9EFF", blur: 120, opacity: 0.1 },
-  { top: "60%", left: "55%", size: 130, color: "#FFD60A", blur: 85, opacity: 0.14 },
+  {
+    top: "10%",
+    left: "15%",
+    size: 120,
+    color: "#FFD60A",
+    blur: 80,
+    opacity: 0.15,
+  },
+  {
+    top: "40%",
+    left: "70%",
+    size: 160,
+    color: "#4D9EFF",
+    blur: 100,
+    opacity: 0.12,
+  },
+  {
+    top: "70%",
+    left: "25%",
+    size: 140,
+    color: "#FFD60A",
+    blur: 90,
+    opacity: 0.18,
+  },
+  {
+    top: "20%",
+    left: "80%",
+    size: 180,
+    color: "#4D9EFF",
+    blur: 120,
+    opacity: 0.1,
+  },
+  {
+    top: "60%",
+    left: "55%",
+    size: 130,
+    color: "#FFD60A",
+    blur: 85,
+    opacity: 0.14,
+  },
 ];
 
 const UpcomingBootcampsPage: React.FC = () => {
@@ -156,13 +191,31 @@ const UpcomingBootcampsPage: React.FC = () => {
       acc[item.category].push(item);
       return acc;
     },
-    {}
+    {},
   );
 
   return (
-    <Box sx={{ width: "100%", py: 8, position: "relative", overflow: "hidden", background: "rgba(170, 200, 236, 0.07)" }}>
+    <Box
+      sx={{
+        width: "100%",
+        py: 8,
+        position: "relative",
+        overflow: "hidden",
+        background: "rgba(170, 200, 236, 0.07)",
+      }}
+    >
       {/* Glowing points */}
-      <Box sx={{ position: "absolute", width: "100%", height: "100%", top: 0, left: 0, zIndex: 0, pointerEvents: "none" }}>
+      <Box
+        sx={{
+          position: "absolute",
+          width: "100%",
+          height: "100%",
+          top: 0,
+          left: 0,
+          zIndex: 0,
+          pointerEvents: "none",
+        }}
+      >
         {fixedGlowingPoints.map((point, i) => (
           <Box
             key={i}
@@ -181,18 +234,50 @@ const UpcomingBootcampsPage: React.FC = () => {
         ))}
       </Box>
 
-      <Box sx={{ position: "relative", width: "100%", maxWidth: "1300px", mx: "auto", px: { xs: 2, sm: 3, md: 4 } }}>
+      <Box
+        sx={{
+          position: "relative",
+          width: "100%",
+          maxWidth: "1300px",
+          mx: "auto",
+          px: { xs: 2, sm: 3, md: 4 },
+        }}
+      >
         {/* Header & filters */}
-        <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center", mb: { xs: 3, md: 5 }, flexWrap: "wrap", gap: { xs: 2, sm: 3 } }}>
-          <Typography sx={{ fontSize: { xs: "1.6rem", sm: "1.9rem", md: "2.4rem" }, fontWeight: 700, color: "#111" }}>
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+            mb: { xs: 3, md: 5 },
+            flexWrap: "wrap",
+            gap: { xs: 2, sm: 3 },
+          }}
+        >
+          <Typography
+            sx={{
+              fontSize: { xs: "1.6rem", sm: "1.9rem", md: "2.4rem" },
+              fontWeight: 700,
+              color: "#111",
+            }}
+          >
             Upcoming Bootcamps
           </Typography>
 
-          <Box sx={{ display: "flex", flexWrap: "wrap", gap: { xs: 1.5, sm: 2 }, width: { xs: "100%", md: "auto" } }}>
+          <Box
+            sx={{
+              display: "flex",
+              flexWrap: "wrap",
+              gap: { xs: 1.5, sm: 2 },
+              width: { xs: "100%", md: "auto" },
+            }}
+          >
             <TextField
               placeholder="Search bootcamps..."
               value={search}
-              onChange={(e: React.ChangeEvent<HTMLInputElement>) => setSearch(e.target.value)}
+              onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                setSearch(e.target.value)
+              }
               size="small"
             />
 
@@ -200,7 +285,9 @@ const UpcomingBootcampsPage: React.FC = () => {
               <InputLabel>Category</InputLabel>
               <Select
                 value={categoryFilter}
-                onChange={(e: SelectChangeEvent<string>) => setCategoryFilter(e.target.value)}
+                onChange={(e: SelectChangeEvent<string>) =>
+                  setCategoryFilter(e.target.value)
+                }
                 label="Category"
               >
                 <MenuItem value="">All</MenuItem>
@@ -214,7 +301,9 @@ const UpcomingBootcampsPage: React.FC = () => {
               <InputLabel>Level</InputLabel>
               <Select
                 value={levelFilter}
-                onChange={(e: SelectChangeEvent<string>) => setLevelFilter(e.target.value)}
+                onChange={(e: SelectChangeEvent<string>) =>
+                  setLevelFilter(e.target.value)
+                }
                 label="Level"
               >
                 <MenuItem value="">All</MenuItem>
@@ -227,7 +316,9 @@ const UpcomingBootcampsPage: React.FC = () => {
               <InputLabel>Duration</InputLabel>
               <Select
                 value={durationFilter}
-                onChange={(e: SelectChangeEvent<string>) => setDurationFilter(e.target.value)}
+                onChange={(e: SelectChangeEvent<string>) =>
+                  setDurationFilter(e.target.value)
+                }
                 label="Duration"
               >
                 <MenuItem value="">All</MenuItem>
@@ -242,13 +333,36 @@ const UpcomingBootcampsPage: React.FC = () => {
         {/* Bootcamps */}
         {filteredBootcamps.length === 0 ? (
           <Box sx={{ textAlign: "center", py: 12 }}>
-            <Typography sx={{ fontSize: "1.2rem", color: "#555" }}>😅 Try readjusting your filter — no course found!</Typography>
+            <Typography sx={{ fontSize: "1.2rem", color: "#555" }}>
+              😅 Try readjusting your filter — no course found!
+            </Typography>
           </Box>
         ) : (
           Object.entries(filteredGrouped).map(([category, items]) => (
-            <Box key={category} sx={{ py: 4, px: 1, borderRadius: 3, position: "relative", zIndex: 1, mb: { xs: 3, md: 5 } }}>
-              <Typography sx={{ fontSize: { xs: "1.4rem", md: "2rem" }, fontWeight: 700, color: "#111", mb: 1 }}>{category}</Typography>
-              <Divider sx={{ borderColor: "#FFD60A", borderBottomWidth: 3, mb: 3 }} />
+            <Box
+              key={category}
+              sx={{
+                py: 4,
+                px: 1,
+                borderRadius: 3,
+                position: "relative",
+                zIndex: 1,
+                mb: { xs: 3, md: 5 },
+              }}
+            >
+              <Typography
+                sx={{
+                  fontSize: { xs: "1.4rem", md: "2rem" },
+                  fontWeight: 700,
+                  color: "#111",
+                  mb: 1,
+                }}
+              >
+                {category}
+              </Typography>
+              <Divider
+                sx={{ borderColor: "#FFD60A", borderBottomWidth: 3, mb: 3 }}
+              />
 
               <Box
                 sx={{
@@ -267,7 +381,9 @@ const UpcomingBootcampsPage: React.FC = () => {
                   <Card
                     key={index}
                     onClick={() => {
-                      navigate("/dashboard/bootcampdetail", { state: { bootcamp: item } });
+                      navigate("/dashboard/bootcampdetail", {
+                        state: { bootcamp: item },
+                      });
                       window.scrollTo({ top: 0, behavior: "smooth" });
                     }}
                     sx={{
@@ -280,30 +396,107 @@ const UpcomingBootcampsPage: React.FC = () => {
                       transition: "all 0.25s ease",
                       "&:hover": {
                         transform: { xs: "none", md: "translateY(-6px)" },
-                        boxShadow: { xs: "0 2px 8px rgba(0,0,0,0.05)", md: "0 6px 18px rgba(0,0,0,0.12)" },
+                        boxShadow: {
+                          xs: "0 2px 8px rgba(0,0,0,0.05)",
+                          md: "0 6px 18px rgba(0,0,0,0.12)",
+                        },
                       },
                     }}
                   >
                     <Box sx={{ position: "relative" }}>
-                      <CardMedia component="img" src={item.image} alt={item.title} sx={{ height: { xs: 120, sm: 140, md: 160 }, objectFit: "cover" }} />
+                      <CardMedia
+                        component="img"
+                        src={item.image}
+                        alt={item.title}
+                        sx={{
+                          height: { xs: 120, sm: 140, md: 160 },
+                          objectFit: "cover",
+                        }}
+                      />
                       <Chip
                         label="● Upcoming"
-                        sx={{ position: "absolute", top: 8, left: 8, background: "#FFD60A", color: "#fff", fontSize: "0.6rem", height: 18, borderRadius: 1 }}
+                        sx={{
+                          position: "absolute",
+                          top: 8,
+                          left: 8,
+                          background: "#FFD60A",
+                          color: "#fff",
+                          fontSize: "0.6rem",
+                          height: 18,
+                          borderRadius: 1,
+                        }}
                       />
                     </Box>
                     <Box sx={{ p: { xs: 1, sm: 1.5, md: 2 } }}>
-                      <Typography sx={{ fontSize: { xs: "0.7rem", sm: "0.85rem", md: "1rem" }, fontWeight: 600, mb: 0.5 }}>{item.title}</Typography>
-                      <Typography sx={{ fontSize: { xs: "0.6rem", sm: "0.75rem", md: "0.88rem" }, color: "#555", mb: 0.5 }}>{item.desc}</Typography>
-                      <Typography sx={{ fontSize: { xs: "0.55rem", sm: "0.7rem", md: "0.82rem" }, color: "#777", mb: 0.5 }}>{item.duration}</Typography>
-                      <Typography sx={{ fontSize: { xs: "0.55rem", sm: "0.7rem", md: "0.82rem" }, color: "#777", mb: 1 }}>
-                        <span style={{ color: "#111", fontWeight: 600 }}>{item.price}</span>{" "}
-                        <span style={{ textDecoration: "line-through", color: "#777" }}>{item.oldPrice}</span>{" "}
-                        <Chip label={item.discount} size="small" color="warning" sx={{ ml: 0.5 }} />
+                      <Typography
+                        sx={{
+                          fontSize: { xs: "0.7rem", sm: "0.85rem", md: "1rem" },
+                          fontWeight: 600,
+                          mb: 0.5,
+                        }}
+                      >
+                        {item.title}
+                      </Typography>
+                      <Typography
+                        sx={{
+                          fontSize: {
+                            xs: "0.6rem",
+                            sm: "0.75rem",
+                            md: "0.88rem",
+                          },
+                          color: "#555",
+                          mb: 0.5,
+                        }}
+                      >
+                        {item.desc}
+                      </Typography>
+                      <Typography
+                        sx={{
+                          fontSize: {
+                            xs: "0.55rem",
+                            sm: "0.7rem",
+                            md: "0.82rem",
+                          },
+                          color: "#777",
+                          mb: 0.5,
+                        }}
+                      >
+                        {item.duration}
+                      </Typography>
+                      <Typography
+                        sx={{
+                          fontSize: {
+                            xs: "0.55rem",
+                            sm: "0.7rem",
+                            md: "0.82rem",
+                          },
+                          color: "#777",
+                          mb: 1,
+                        }}
+                      >
+                        <span style={{ color: "#111", fontWeight: 600 }}>
+                          {item.price}
+                        </span>{" "}
+                        <span
+                          style={{
+                            textDecoration: "line-through",
+                            color: "#777",
+                          }}
+                        >
+                          {item.oldPrice}
+                        </span>{" "}
+                        <Chip
+                          label={item.discount}
+                          size="small"
+                          color="warning"
+                          sx={{ ml: 0.5 }}
+                        />
                       </Typography>
                       <Chip
                         label={item.level}
                         sx={{
-                          background: item.level === "Advanced" ? "#FFD66B" : "#E9E9E9",
+                          background:
+                            item.level === "Advanced" ? "#FFD66B" : "#E9E9E9",
                           px: 1,
                         }}
                       />
@@ -316,7 +509,15 @@ const UpcomingBootcampsPage: React.FC = () => {
         )}
 
         <Box sx={{ mt: 6 }}>
-          <Link to="/dashboard/microbootcamps" style={{ fontWeight: 600, textDecoration: "none", color: "#111", fontSize: "0.9rem" }}>
+          <Link
+            to="/dashboard/microbootcamps"
+            style={{
+              fontWeight: 600,
+              textDecoration: "none",
+              color: "#111",
+              fontSize: "0.9rem",
+            }}
+          >
             &larr; Back to Microbootcamps
           </Link>
         </Box>
