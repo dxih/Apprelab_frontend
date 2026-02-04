@@ -7,10 +7,22 @@ import {
 } from "@mui/material";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import { useTheme } from "@mui/material/styles";
-import {CompletedCourseData} from "../../../../Data/MyStackCourses.data"
+import { CompletedCourseData } from "../../../../Data/MyStackCourses.data";
+import { Link } from "react-router-dom";
+
+// Interface to ensure data consistency
+interface CompletedCourse {
+  id: string;
+  title: string;
+  description: string;
+  duration: string;
+  date: string;
+  image: string;
+}
 
 export default function StackCompletedCourses() {
   const theme = useTheme();
+  
   return (
     <Box sx={{ mt: 6, pb: 4 }}>
       <Typography
@@ -27,8 +39,8 @@ export default function StackCompletedCourses() {
       </Typography>
 
       <Grid container spacing={3}>
-        {CompletedCourseData.map((item, index) => (
-          <Grid item xs={12} md={6} key={index}>
+        {(CompletedCourseData as CompletedCourse[]).map((item, index) => (
+          <Grid item xs={12} md={6} key={item.id || index}>
             <Box
               sx={{
                 display: "flex",
@@ -110,11 +122,10 @@ export default function StackCompletedCourses() {
                 </Box>
               </Box>
 
-              {/* === FOOTER WITH RESPONSIVE FLEX DIRECTION === */}
+              {/* FOOTER - Original Styling Maintained */}
               <Box
                 sx={{
                   display: "flex",
-                  // Mobile: Column | Desktop: Row
                   flexDirection: { xs: "column", sm: "row" },
                   justifyContent: "space-between",
                   alignItems: "center",
@@ -124,10 +135,9 @@ export default function StackCompletedCourses() {
                   gap: { xs: 2, sm: 1 }, 
                 }}
               >
-                {/* Completed Date Tag */}
                 <Box
                   sx={{
-                    bgcolor:theme.palette.warning.light,
+                    bgcolor: theme.palette.warning.light,
                     color: theme.palette.text.primary,
                     px: 2,
                     py: 1,
@@ -135,6 +145,9 @@ export default function StackCompletedCourses() {
                     width: { xs: "50%", sm: "154px" },
                     minHeight: { xs: "30px", md: "55px" },
                     textAlign: "center",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center"
                   }}
                 >
                   <Typography sx={{ fontSize: "11px", color: theme.palette.text.primary, fontWeight: 600 }}>
@@ -142,7 +155,6 @@ export default function StackCompletedCourses() {
                   </Typography>
                 </Box>
 
-                {/* Buttons Container */}
                 <Box 
                   sx={{ 
                     display: "flex", 
@@ -154,6 +166,8 @@ export default function StackCompletedCourses() {
                   <Button
                     size="small"
                     variant="outlined"
+                    component={Link}
+                    to={`/certificates/${item.id}`}
                     sx={{
                       fontSize: "11px",
                       textTransform: "none",

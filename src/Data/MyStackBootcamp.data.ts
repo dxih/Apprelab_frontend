@@ -332,6 +332,7 @@ export const ongoingBootcamps: Bootcamp[] = [
 ];
 
 // ===========PRESAVEBOOTCAMPDATA==============================================
+
 export const preSavedBootcamps = [
   {
     title: "Using Figma Like a Pro (C6)",
@@ -351,15 +352,26 @@ export const preSavedBootcamps = [
 
 
 //================================COMPLETED BOOTCAMP DATA=============================
- export const CompletedBootcampData = [
+export interface CompletedBootcamp {
+  id: string;
+  title: string;
+  description: string;
+  duration: string;
+  date: string;
+  image: string;
+}
+ export const CompletedBootcampData: CompletedBootcamp[] =  [
   {
+    id:"Wireframing_the_basis_of_us_design",
     title: "Wireframing, the basis of Ux Design (Cohort 2)",
     description: "Go from beginner to intermediate frontend developer in four weeks",
     duration: "4 Weeks",
     date: "Completed on 6th November, 2025",
     image: stackCompletedBootCamps_img2,
+   
   },
   {
+    id:"uiux-4",
     title: "Using Figma Like a Pro (Cohort 6)",
     description: "Go from beginner to intermediate frontend developer in four weeks",
     duration: "4 Weeks",

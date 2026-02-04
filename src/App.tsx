@@ -43,6 +43,9 @@ import ApplyPage from "./routes/dashboard/pages/worklab/DetailsApply";
 import CertificatesList from "./routes/dashboard/pages/Certificates/CertificatesList"
 import CertificateDetail from "./routes/dashboard/pages/Certificates/CertificateDetails";
 
+// join community
+import JoinCommunity from "./routes/dashboard/pages/community/JoinCommunity";
+
 // 🔐 Auth Pages
 import Signup from "./routes/auth/Signup";
 import Login from "./routes/auth/Login";
@@ -88,6 +91,8 @@ function App() {
         {/* Certificate */}
         <Route path="/certificates" element={<CertificatesList />} />
         <Route path="/certificates/:id" element={<CertificateDetail />} />
+        {/* join community */}
+        <Route path="/community/join" element={<JoinCommunity />} />
         {/* Payment Pages */}
         <Route path="/dashboard/shoppingcart" element={<ShoppingCart />} />
         <Route path="/dashboard/checkout" element={<Checkout />} />
