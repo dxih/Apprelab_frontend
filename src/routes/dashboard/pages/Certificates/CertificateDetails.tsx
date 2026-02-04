@@ -18,11 +18,13 @@ import Logo from "../../../../assets/images/logos/apprelab_logo_dark.png";
 
 import { userCertificates } from "../../../../Data/CertificateData";
 import type { Certificate } from "../../../../Data/CertificateData";
+import { CompletedBootcampData } from "../../../../Data/MyStackBootcamp.data";
 
 const CertificateDetail: React.FC = () => {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
   const theme = useTheme();
+  const certificate = CompletedBootcampData.find((item) => item.id === id);
 
   const certInfo = userCertificates.find(
     (cert: Certificate) => cert.id.toString() === id,
@@ -37,7 +39,7 @@ const CertificateDetail: React.FC = () => {
           fontFamily: theme.typography.fontFamily,
         }}
       >
-        <Typography variant="h5">Certificate Not Found</Typography>
+        <Typography variant="h5" sx={{fontFamily:theme.typography.fontFamily, mb:3}}>Certificate Not Found</Typography>
         <Button onClick={() => navigate(-1)}>Go Back</Button>
       </Box>
     );
@@ -57,7 +59,6 @@ const CertificateDetail: React.FC = () => {
         onClick={() => navigate(-1)}
         sx={{
           color: "#000",
-          // mb: 3,
           textTransform: "none",
           fontWeight: 600,
           fontFamily: theme.typography.fontFamily,
@@ -78,7 +79,7 @@ const CertificateDetail: React.FC = () => {
               flexDirection: "column",
               justifyContent: "center",
               alignItems: "center",
-              p: { xs: 3, md: 6 },
+              // p: { xs: 3, md: 6 },
               minHeight: "650px",
             }}
           >
@@ -132,7 +133,7 @@ const CertificateDetail: React.FC = () => {
                 sx={{
                   fontWeight: 800,
                   letterSpacing: 1.5,
-                  mb: 3,
+                  mb: 2,
                   fontFamily: theme.typography.fontFamily,
                 }}
               >

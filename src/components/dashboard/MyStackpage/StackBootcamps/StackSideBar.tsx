@@ -29,7 +29,7 @@ const quickActions = [
   {
     text: "Join a Community",
     icon: <GroupsIcon fontSize="small" />,
-    path: "/community",
+    path: "/community/join",
   },
   {
     text: "Report an Issue",

@@ -77,8 +77,17 @@ export const cartCoursesData: Course[] = [
 
 
 // =================================================COMPLETE COURSES DATA=========================
-export const CompletedCourseData = [
+interface CompletedCourse {
+  id: string;
+  title: string;
+  description: string;
+  duration: string;
+  date: string;
+  image: string;
+}
+export const CompletedCourseData: CompletedCourse[] = [
   {
+    id:"WireFraming_the_basis_of_ux_Design_{cohort_2}",
     title: "Wireframing, the basis of Ux Design (Cohort 2)",
     description: "Go from beginner to intermediate frontend developer in four weeks",
     duration: "4 Weeks",
@@ -86,6 +95,7 @@ export const CompletedCourseData = [
     image: stackCompletedCourse_img2
   },
   {
+    id:"using_figma_like_a_pro_{cohort_6}",
     title: "Using Figma Like a Pro (Cohort 6)",
     description: "Go from beginner to intermediate frontend developer in four weeks",
     duration: "4 Weeks",
