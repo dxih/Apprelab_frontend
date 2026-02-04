@@ -20,9 +20,13 @@ export interface Course {
   progress: number;
   image: string;
   currentLesson: string;
+  // optional
+  instructor?: string;
+  nextLesson?: string;
+  timeLeft?: string;
 }
 
-interface Props {
+ export interface Props {
   courses: Course[];
 }
 
@@ -103,7 +107,7 @@ const StackOngoingCourses: React.FC<Props> = ({ courses }) => {
                       fontWeight: 600,
                       mb: 2,
                       fontFamily: theme.typography.fontFamily,
-                      pr: 4, 
+                      pr: 4,
                     }}
                   >
                     {course.title}
@@ -155,7 +159,7 @@ const StackOngoingCourses: React.FC<Props> = ({ courses }) => {
                           height: 8,
                           borderRadius: 2,
                           bgcolor: "#e0e0e0",
-                         
+
                           "& .MuiLinearProgress-bar": { bgcolor: "#001B44" },
                         }}
                       />
@@ -176,7 +180,7 @@ const StackOngoingCourses: React.FC<Props> = ({ courses }) => {
                   display: "flex",
                   flexDirection: { xs: "column", md: "row" },
                   alignItems: { xs: "stretch", md: "center" },
-                  justifyContent: {xs:"center", md:"flex-start"},
+                  justifyContent: { xs: "center", md: "flex-start" },
                   gap: 1.5,
                   mt: "auto",
                 }}
@@ -185,7 +189,7 @@ const StackOngoingCourses: React.FC<Props> = ({ courses }) => {
                 <Box
                   sx={{
                     display: "flex",
-                    flexDirection: { xs: "column", md: "row" }, 
+                    flexDirection: { xs: "column", md: "row" },
                     gap: 1.5,
                     width: { xs: "100%", md: "auto" },
                   }}
@@ -201,9 +205,9 @@ const StackOngoingCourses: React.FC<Props> = ({ courses }) => {
                       fontWeight: 600,
                       borderRadius: "8px",
                       height: "36px",
-                      px: 2.5, 
+                      px: 2.5,
                       fontSize: "0.8rem",
-                      width: { xs: "100%", sm: "auto" }, 
+                      width: { xs: "100%", sm: "auto" },
                       "&:hover": {
                         borderColor: "#003366",
                         bgcolor: "rgba(0, 27, 68, 0.04)",
@@ -225,7 +229,7 @@ const StackOngoingCourses: React.FC<Props> = ({ courses }) => {
                       height: "36px",
                       px: 2.5,
                       fontSize: "0.8rem",
-                      width: { xs: "100%", sm: "auto" }, 
+                      width: { xs: "100%", sm: "auto" },
                       boxShadow: "none",
                       "&:hover": {
                         backgroundColor: "#003366",
@@ -247,13 +251,13 @@ const StackOngoingCourses: React.FC<Props> = ({ courses }) => {
                     color: "white",
                     borderRadius: "8px",
                     height: "36px",
-                    px: 3, 
+                    px: 3,
                     textTransform: "none",
                     fontWeight: 600,
                     fontSize: "0.8rem",
                     whiteSpace: "nowrap",
                     boxShadow: "none",
-                    width: { xs: "100%", md: "auto" }, 
+                    width: { xs: "100%", md: "auto" },
                     "&:hover": {
                       backgroundColor: "#003366",
                       boxShadow: "none",
