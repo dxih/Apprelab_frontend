@@ -1,29 +1,34 @@
-import React, { useState } from "react";
+import React from "react";
 import { Box, Typography } from "@mui/material";
 
 const menuItems = ["Bootcamp", "Courses", "Mentorship Sessions"];
 
-const StackNavbar: React.FC = () => {
-  const [active, setActive] = useState<string>("Bootcamp");
 
+interface StackNavbarProps {
+  activeTab: string;
+  setActiveTab: (tab: string) => void;
+}
+
+const StackNavbar: React.FC<StackNavbarProps> = ({ activeTab, setActiveTab }) => {
   return (
     <Box
       sx={{
         display: "flex",
-        justifyContent: "center", // center the items horizontally
-        gap: 6,                   // space between items
+        justifyContent: "space-around", 
+        gap: 6, 
         backgroundColor: "#0B1A4A",
         px: 4,
         py: 1.5,
         borderRadius: 2,
-        width: "auto",            // doesn't cover the whole width
-        mx: "auto",               // center the navbar on page
+        width: "auto", 
+        mx: "auto",  
+        mb:3,
       }}
     >
       {menuItems.map((item) => (
         <Typography
           key={item}
-          onClick={() => setActive(item)}
+          onClick={() => setActiveTab(item)}
           sx={{
             color: "#fff",
             fontWeight: 600,
@@ -31,13 +36,15 @@ const StackNavbar: React.FC = () => {
             position: "relative",
             textAlign: "center",
             transition: "color 0.3s",
+            // YOUR HOVER EFFECT
             "&:hover": { color: "#FFC107" },
+            // YOUR FOCUS/ACTIVE EFFECT
             "&::after": {
               content: '""',
               position: "absolute",
               bottom: -2,
               left: 0,
-              width: active === item ? "100%" : 0,
+              width: activeTab === item ? "100%" : 0,
               height: "2px",
               backgroundColor: "#fff",
               transition: "width 0.3s",

@@ -27,17 +27,24 @@ import Checkout from "./routes/dashboard/pages/payment/Checkout";
 import MyMentor from "./routes/dashboard/pages/mentor/MyMentor";
 import OurMentors from "./routes/dashboard/pages/mentor/OurMentorsPage";
 // mystack pages
-import MyStack from "./routes/dashboard/pages/main/stack/MyStack";
-import MyStackResourcePage from "./routes/dashboard/pages/main/stack/MyStackResources";
-import MyStackAssetsmentPage from "./routes/dashboard/pages/main/stack/MyStackAssetsment";
-import MyStackOverviewPage from "./routes/dashboard/pages/main/stack/MyStackOverView";
-import MyStackDiscussionPage from "./routes/dashboard/pages/main/stack/MyStackDiscussion";
+import MyStack from "./routes/dashboard/pages/stack/MyStack";
+import MyStackResourcePage from "./routes/dashboard/pages/stack/MyStackResources";
+import MyStackAssetsmentPage from "./routes/dashboard/pages/stack/MyStackAssetsment";
+import MyStackOverviewPage from "./routes/dashboard/pages/stack/MyStackOverView";
+import MyStackDiscussionPage from "./routes/dashboard/pages/stack/MyStackDiscussion";
 import BootcampLayout from "./layouts/website/MyStackBootCampLayout/BootcampLayout";
 // WORKLAB PAGES
 import Worklabs from "./routes/dashboard/pages/worklab/Worklabs";
 import ProjectFeeds from "./routes/dashboard/pages/worklab/projectfeeds";
 import ProjectDetails from "./routes/dashboard/pages/worklab/ProjectDetails";
 import ApplyPage from "./routes/dashboard/pages/worklab/DetailsApply";
+
+// Certificates Pages
+import CertificatesList from "./routes/dashboard/pages/Certificates/CertificatesList"
+import CertificateDetail from "./routes/dashboard/pages/Certificates/CertificateDetails";
+
+// join community
+import JoinCommunity from "./routes/dashboard/pages/community/JoinCommunity";
 
 // 🔐 Auth Pages
 import Signup from "./routes/auth/Signup";
@@ -81,6 +88,11 @@ function App() {
           <Route path="overview" element={<MyStackOverviewPage />} />
           <Route path="discussions" element={<MyStackDiscussionPage />} />
         </Route>
+        {/* Certificate */}
+        <Route path="/certificates" element={<CertificatesList />} />
+        <Route path="/certificates/:id" element={<CertificateDetail />} />
+        {/* join community */}
+        <Route path="/community/join" element={<JoinCommunity />} />
         {/* Payment Pages */}
         <Route path="/dashboard/shoppingcart" element={<ShoppingCart />} />
         <Route path="/dashboard/checkout" element={<Checkout />} />

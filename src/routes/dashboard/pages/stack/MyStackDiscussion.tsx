@@ -1,6 +1,14 @@
-import { Box, Typography, Button, Stack, Avatar, Grid, useTheme } from "@mui/material";
+import {
+  Box,
+  Typography,
+  Button,
+  Stack,
+  Avatar,
+  Grid,
+  useTheme,
+} from "@mui/material";
 import { useParams } from "react-router-dom";
-import { ongoingBootcamps } from "../../../../../Data/MyStackBootcamp.data";
+import { ongoingBootcamps } from "../../../../Data/MyStackBootcamp.data";
 
 // --- Sub-Component: Individual Discussion Thread ---
 const DiscussionItem = ({ name, time, title, body, replies }: any) => (
@@ -8,14 +16,20 @@ const DiscussionItem = ({ name, time, title, body, replies }: any) => (
     <Stack direction="row" spacing={2} alignItems="center" sx={{ mb: 1 }}>
       <Avatar sx={{ width: 42, height: 42, bgcolor: "#f0f0f0" }} />
       <Stack direction="row" spacing={1} alignItems="baseline">
-        <Typography sx={{ fontWeight: 700, fontSize: "1rem" }}>{name}</Typography>
-        <Typography sx={{ color: "#999", fontSize: "0.75rem" }}>{time}</Typography>
+        <Typography sx={{ fontWeight: 700, fontSize: "1rem" }}>
+          {name}
+        </Typography>
+        <Typography sx={{ color: "#999", fontSize: "0.75rem" }}>
+          {time}
+        </Typography>
       </Stack>
     </Stack>
 
     {/* Indented content to align with the name, */}
     <Box sx={{ pl: 7.2 }}>
-      <Typography sx={{ fontWeight: 800, fontSize: "1.05rem", mb: 0.5, color: "#000" }}>
+      <Typography
+        sx={{ fontWeight: 800, fontSize: "1.05rem", mb: 0.5, color: "#000" }}
+      >
         {title}
       </Typography>
       <Typography
@@ -31,7 +45,7 @@ const DiscussionItem = ({ name, time, title, body, replies }: any) => (
             fontWeight: 700,
             textDecoration: "underline",
             cursor: "pointer",
-            color: "#000"
+            color: "#000",
           }}
         >
           Reply.....
@@ -55,7 +69,9 @@ const SidebarCard = ({ title, items }: { title: string; items: string[] }) => (
       bgcolor: "transparent",
     }}
   >
-    <Typography sx={{ fontWeight: 800, mb: 3, fontSize: "1.1rem", color: "#000" }}>
+    <Typography
+      sx={{ fontWeight: 800, mb: 3, fontSize: "1.1rem", color: "#000" }}
+    >
       {title}
     </Typography>
     <Stack spacing={2.5}>
@@ -75,7 +91,9 @@ const SidebarCard = ({ title, items }: { title: string; items: string[] }) => (
           </Typography>
         ))
       ) : (
-        <Typography sx={{ color: "#999", fontSize: "0.85rem", fontStyle: "italic" }}>
+        <Typography
+          sx={{ color: "#999", fontSize: "0.85rem", fontStyle: "italic" }}
+        >
           No recent items
         </Typography>
       )}
@@ -90,26 +108,32 @@ const DiscussionsTab = () => {
   // Find the specific bootcamp data dynamically based on URL ID
   const bootcamp = ongoingBootcamps.find((b) => b.id === id);
 
-  if (!bootcamp) return <Typography sx={{ p: 4 }}>Bootcamp not found.</Typography>;
+  if (!bootcamp)
+    return <Typography sx={{ p: 4 }}>Bootcamp not found.</Typography>;
 
   return (
     <Box sx={{ mt: 4, pb: 8 }}>
       <Grid container spacing={6}>
-        
         {/* LEFT CONTENT: Discussion Threads */}
         <Grid item xs={12} md={7.5}>
           {/* Header Section based on your screenshot */}
           <Box sx={{ mb: 6 }}>
-            <Stack 
-              direction="row" 
-              justifyContent="space-between" 
-              alignItems="center" 
+            <Stack
+              direction="row"
+              justifyContent="space-between"
+              alignItems="center"
               sx={{ mb: 1 }}
             >
-              <Typography variant="h4" sx={{ fontWeight: 800, fontFamily: theme.typography.fontFamily }}>
+              <Typography
+                variant="h4"
+                sx={{
+                  fontWeight: 800,
+                  fontFamily: theme.typography.fontFamily,
+                }}
+              >
                 Discussions
               </Typography>
-              
+
               <Button
                 variant="contained"
                 sx={{
@@ -121,15 +145,18 @@ const DiscussionsTab = () => {
                   py: 0.7,
                   fontSize: "0.85rem",
                   whiteSpace: "nowrap",
-                  "&:hover": { bgcolor: "#001030" }
+                  "&:hover": { bgcolor: "#001030" },
                 }}
               >
                 Start New Thread +
               </Button>
             </Stack>
-            
-            <Typography sx={{ color: "#666", fontSize: "0.85rem", maxWidth: "450px" }}>
-              Share your thoughts, ask questions, collaborate with other learners in the {bootcamp.title} cohort.
+
+            <Typography
+              sx={{ color: "#666", fontSize: "0.85rem", maxWidth: "450px" }}
+            >
+              Share your thoughts, ask questions, collaborate with other
+              learners in the {bootcamp.title} cohort.
             </Typography>
           </Box>
 

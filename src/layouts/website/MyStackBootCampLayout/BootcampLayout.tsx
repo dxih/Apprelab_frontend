@@ -19,10 +19,10 @@ import { useTheme } from "@mui/material/styles";
 
 // IMPORT YOUR DATA ARRAY - Using your specific paths
 import { ongoingBootcamps } from "../../../Data/MyStackBootcamp.data";
-import ResourcesTab from "../../../routes/dashboard/pages/main/stack/MyStackResources";
-import AssessmentsTab from "../../../routes/dashboard/pages/main/stack/MyStackAssetsment";
-import OverviewTab from "../../../routes/dashboard/pages/main/stack/MyStackOverView";
-import DiscussionsTab from "../../../routes/dashboard/pages/main/stack/MyStackDiscussion";
+import ResourcesTab from "../../../routes/dashboard/pages/stack/MyStackResources";
+import AssessmentsTab from "../../../routes/dashboard/pages/stack/MyStackAssetsment";
+import OverviewTab from "../../../routes/dashboard/pages/stack/MyStackOverView";
+import DiscussionsTab from "../../../routes/dashboard/pages/stack/MyStackDiscussion";
 
 const BootcampLayout = () => {
   const { id, tab } = useParams<{ id: string; tab: string }>();

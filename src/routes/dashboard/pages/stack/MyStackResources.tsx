@@ -6,8 +6,8 @@ import DescriptionIcon from "@mui/icons-material/Description";
 import AssignmentIcon from "@mui/icons-material/Assignment";
 import LinkIcon from "@mui/icons-material/Link";
 import { useParams } from "react-router-dom";
-import { ongoingBootcamps } from "../../../../../Data/MyStackBootcamp.data";
-import type { IResource } from "../../../../../Data/MyStackBootcamp.data";
+import { ongoingBootcamps } from "../../../../Data/MyStackBootcamp.data";
+import type { IResource } from "../../../../Data/MyStackBootcamp.data";
 const ResourceRow = ({ type, label }: { type: string; label: string }) => {
   // Map the type from data to the correct icon
   const getIcon = () => {
