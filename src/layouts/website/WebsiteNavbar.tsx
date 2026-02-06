@@ -70,7 +70,7 @@ const WebsiteNavbar: React.FC = () => {
             ml: 4,
             display: { xs: "none", md: "flex" },
             alignItems: "center",
-            gap: 4,
+            gap: 5,
             fontWeight: 500,
           }}
         >
