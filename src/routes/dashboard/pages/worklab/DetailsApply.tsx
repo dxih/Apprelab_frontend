@@ -20,6 +20,13 @@ const ProjectApply = () => {
   const { id } = useParams();
   const { state } = useLocation();
   const navigate = useNavigate();
+  const [selectedFile, setSelectedFile] = useState<File | null>(null);
+  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (file) {
+      setSelectedFile(file);
+    }
+  };
   const theme = useTheme();
 
   const [project, setProject] = useState<{
@@ -126,20 +133,35 @@ const ProjectApply = () => {
               sx={{
                 height: { xs: "48px", md: "56px" },
                 justifyContent: "space-between",
-                borderColor: "#E0E0E0",
-                color: "#999",
+                borderColor: selectedFile ? "#1976D2" : "#E0E0E0",
+                color: selectedFile ? "#000" : "#999",
                 borderRadius: "8px",
                 textTransform: "none",
                 px: { xs: 2, md: 3 },
                 fontSize: { xs: "0.875rem", md: "1rem" },
               }}
             >
-              Select a file
-              <input type="file" hidden />
+              {selectedFile ? selectedFile.name : "Select a file"}
+              <input type="file" hidden accept=".pdf,.doc,.docx" onChange={handleFileChange} />
               <CloudUploadIcon
                 sx={{ color: "#1976D2", fontSize: { xs: "20px", md: "24px" } }}
               />
             </Button>
+            {selectedFile && (
+              <Typography
+                variant="caption"
+                onClick={() => setSelectedFile(null)}
+                sx={{
+                  cursor: "pointer",
+                  color: "red",
+                  mt: 1,
+                  display: "block",
+                  textAlign: "right",
+                }}
+              >
+                Remove file
+              </Typography>
+            )}
           </Grid>
 
           <Grid item xs={12}>

@@ -2,6 +2,13 @@ import StackCompletedBootcamps_image from "../assets/images/components/OnGoingBo
 import StackCompletedBootCamps_img2 from "../assets/images/components/OnGoingBootCamps/StackOnGoingBootCamp_2.png";
 import type { Bootcamp } from "../components/dashboard/MyStackpage/StackBootcamps/StackOngoingBootcamps";
 import avatar_1 from "../assets/images/components/OnGoingBootCamps/Avatar_1.png"
+// PRESAVED IMPORT
+import PreSavedBootCamps_img1 from "../assets/images/components/PreSavedBootCamp/PreSavedBootCamp_1.png";
+import PreSavedBootCamps_img2 from "../assets/images/components/PreSavedBootCamp/PreSavedBootCamps_2.png";
+
+// COMPLETED BOOTCAMP DATA
+import stackCompletedBootCamps_img2 from "../assets/images/components/PreSavedBootCamp/PreSavedBootCamps_2.png";
+
 export interface IResource {
   week: string;
   topic: string;
@@ -321,5 +328,54 @@ export const ongoingBootcamps: Bootcamp[] = [
       "In-Cohort Competition coming up",
       "Tuesday’s class has been rescheduled"
     ]
+  },
+];
+
+// ===========PRESAVEBOOTCAMPDATA==============================================
+
+export const preSavedBootcamps = [
+  {
+    title: "Using Figma Like a Pro (C6)",
+    description: "Go from beginner to intermediate frontend developer",
+    duration: "4 Weeks",
+    startDate: "20th November, 2025",
+    image: PreSavedBootCamps_img1,
+  },
+  {
+    title: "Wireframing UX (C2)",
+    description: "Go from beginner to intermediate frontend developer",
+    duration: "4 Weeks",
+    startDate: "25th November, 2025",
+    image: PreSavedBootCamps_img2,
+  },
+];
+
+
+//================================COMPLETED BOOTCAMP DATA=============================
+export interface CompletedBootcamp {
+  id: string;
+  title: string;
+  description: string;
+  duration: string;
+  date: string;
+  image: string;
+}
+ export const CompletedBootcampData: CompletedBootcamp[] =  [
+  {
+    id:"Wireframing_the_basis_of_us_design",
+    title: "Wireframing, the basis of Ux Design (Cohort 2)",
+    description: "Go from beginner to intermediate frontend developer in four weeks",
+    duration: "4 Weeks",
+    date: "Completed on 6th November, 2025",
+    image: stackCompletedBootCamps_img2,
+   
+  },
+  {
+    id:"uiux-4",
+    title: "Using Figma Like a Pro (Cohort 6)",
+    description: "Go from beginner to intermediate frontend developer in four weeks",
+    duration: "4 Weeks",
+    date: "Completed on 1st November, 2025",
+    image: stackCompletedBootCamps_img2,
   },
 ];

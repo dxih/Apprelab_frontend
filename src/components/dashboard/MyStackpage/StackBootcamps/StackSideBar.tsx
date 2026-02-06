@@ -13,12 +13,29 @@ import BookIcon from "@mui/icons-material/Book";
 import GroupsIcon from "@mui/icons-material/Groups";
 import ReportIcon from "@mui/icons-material/Report";
 import { useTheme } from "@mui/material/styles";
+import { Link } from "react-router-dom";
 
 const quickActions = [
-  { text: "View your certificates", icon: <VerifiedIcon fontSize="small" /> },
-  { text: "Book a Mentor", icon: <BookIcon fontSize="small" /> },
-  { text: "Join a Community", icon: <GroupsIcon fontSize="small" /> },
-  { text: "Report an Issue", icon: <ReportIcon fontSize="small" /> },
+  {
+    text: "View your certificates",
+    icon: <VerifiedIcon fontSize="small" />,
+    path: "/certificates",
+  },
+  {
+    text: "Book a Mentor",
+    icon: <BookIcon fontSize="small" />,
+    path: "/mentor",
+  },
+  {
+    text: "Join a Community",
+    icon: <GroupsIcon fontSize="small" />,
+    path: "/community/join",
+  },
+  {
+    text: "Report an Issue",
+    icon: <ReportIcon fontSize="small" />,
+    path: "/report",
+  },
 ];
 
 export default function StackSideBar() {
@@ -135,10 +152,11 @@ export default function StackSideBar() {
             {quickActions.map((action, index) => (
               <ListItem
                 key={index}
+                component={Link} 
+                to={action.path}
                 sx={{
                   bgcolor: "#FFFFFF",
                   borderRadius: "8px",
-
                   border: "1px solid #E9E9E9",
                   cursor: "pointer",
                   "&:hover": { bgcolor: "#F0F7FF" },
@@ -149,9 +167,15 @@ export default function StackSideBar() {
                 </ListItemIcon>
                 <ListItemText
                   primary={action.text}
-                  primaryTypographyProps={{ fontSize: "13px", fontWeight: 500, fontFamily: theme.typography.fontFamily }}
+                  primaryTypographyProps={{
+                    fontSize: "13px",
+                    fontWeight: 500,
+                    fontFamily: theme.typography.fontFamily,
+                  }}
                 />
-                <ChevronRightIcon sx={{ color:theme.typography.h3.color, fontSize: "18px" }} />
+                <ChevronRightIcon
+                  sx={{ color: theme.typography.h3.color, fontSize: "18px" }}
+                />
               </ListItem>
             ))}
           </List>

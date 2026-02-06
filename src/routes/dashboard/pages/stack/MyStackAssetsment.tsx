@@ -1,8 +1,16 @@
 // src/routes/dashboard/pages/stack/tabs/AssessmentsTab.tsx
 import React, { useState, useEffect } from "react";
-import { Box, Typography, Button, Stack, Chip, useTheme, Skeleton } from "@mui/material";
+import {
+  Box,
+  Typography,
+  Button,
+  Stack,
+  Chip,
+  useTheme,
+  Skeleton,
+} from "@mui/material";
 import { useParams } from "react-router-dom";
-import { ongoingBootcamps } from "../../../../../Data/MyStackBootcamp.data";
+import { ongoingBootcamps } from "../../../../Data/MyStackBootcamp.data";
 
 interface AssessmentItemProps {
   type: "Project" | "Quiz";
@@ -128,8 +136,8 @@ const AssessmentCard: React.FC<AssessmentItemProps> = ({
 
 const AssessmentsTab = () => {
   const { id } = useParams<{ id: string }>();
-  const theme = useTheme(); 
-  
+  const theme = useTheme();
+
   // --- LOADER LOGIC ---
   const [loading, setLoading] = useState(true);
 
@@ -137,7 +145,7 @@ const AssessmentsTab = () => {
     setLoading(true);
     const timer = setTimeout(() => {
       setLoading(false);
-    }, 1000); 
+    }, 1000);
     return () => clearTimeout(timer);
   }, [id]);
 
@@ -165,8 +173,16 @@ const AssessmentsTab = () => {
         {[1, 2].map((section) => (
           <Box key={section} sx={{ mb: 4 }}>
             <Skeleton variant="text" width="100px" height={30} sx={{ mb: 2 }} />
-            <Skeleton variant="rectangular" height={140} sx={{ borderRadius: "12px", mb: 2 }} />
-            <Skeleton variant="rectangular" height={140} sx={{ borderRadius: "12px" }} />
+            <Skeleton
+              variant="rectangular"
+              height={140}
+              sx={{ borderRadius: "12px", mb: 2 }}
+            />
+            <Skeleton
+              variant="rectangular"
+              height={140}
+              sx={{ borderRadius: "12px" }}
+            />
           </Box>
         ))}
       </Box>

@@ -8,6 +8,7 @@ import {
   Science
 } from "@mui/icons-material";
 
+import { ongoingCoursesData } from "../../../../Data/MyStackCourses.data";
 import dashboardIllustration from "../../../../assets/images/components/dashboard/illustration.png";
 
 export default function DashboardHome() {
@@ -18,29 +19,29 @@ export default function DashboardHome() {
     { label: "Hours Learned", value: "120h", icon: <Schedule />, change: "+15h this week", color: "#9C27B0" },
   ];
 
-  const ongoingCourses = [
-    {
-      title: "UI/UX Design Bootcamp ",
-      progress: 65,
-      instructor: "Dr. Sarah Johnson",
-      nextLesson: "UX Deep Dive",
-      timeLeft: "2h 30m remaining"
-    },
-    {
-      title: "Advanced Content Creation Bootcamp",
-      progress: 42,
-      instructor: "Prof. Michael Chen",
-      nextLesson: "Content Strategy Deep Dive",
-      timeLeft: "4h 15m remaining"
-    },
-    {
-      title: "Web Development Bootcamp",
-      progress: 88,
-      instructor: "Emily Rodriguez",
-      nextLesson: "Web Code Splitting & Lazy Loading",
-      timeLeft: "45m remaining"
-    }
-  ];
+  // const ongoingCourses = [
+  //   {
+  //     title: "UI/UX Design Bootcamp ",
+  //     progress: 65,
+  //     instructor: "Dr. Sarah Johnson",
+  //     nextLesson: "UX Deep Dive",
+  //     timeLeft: "2h 30m remaining"
+  //   },
+  //   {
+  //     title: "Advanced Content Creation Bootcamp",
+  //     progress: 42,
+  //     instructor: "Prof. Michael Chen",
+  //     nextLesson: "Content Strategy Deep Dive",
+  //     timeLeft: "4h 15m remaining"
+  //   },
+  //   {
+  //     title: "Web Development Bootcamp",
+  //     progress: 88,
+  //     instructor: "Emily Rodriguez",
+  //     nextLesson: "Web Code Splitting & Lazy Loading",
+  //     timeLeft: "45m remaining"
+  //   }
+  // ];
 
   const upcomingEvents = [
     { title: "1-on-1 Mentor Session", time: "Today, 3:00 PM", type: "Mentorship" },
@@ -151,7 +152,7 @@ export default function DashboardHome() {
               Continue Learning
             </Typography>
 
-            {ongoingCourses.map((course, i) => (
+            {ongoingCoursesData.map((course, i) => (
               <Card key={i} sx={{ p: 3, mb: 3, borderRadius: "16px" }}>
                 <Box sx={{ display: "flex", justifyContent: "space-between" }}>
                   <Box>
