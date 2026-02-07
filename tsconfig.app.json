@@ -24,5 +24,4 @@
     "noFallthroughCasesInSwitch": true,
     "noUncheckedSideEffectImports": true
   },
-  "include": ["src", "draft/UpcomingCoursesPage.tsx", "draft/OngoingCoursesPage.tsx", "draft/Courses.tsx", "draft/CourseDetail.tsx", "draft/UpcomingCourses.tsx", "draft/OngoingCourses.tsx", "draft/CourseHero.tsx"]
 }

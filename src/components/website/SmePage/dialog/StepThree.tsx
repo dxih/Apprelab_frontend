@@ -7,6 +7,7 @@ const StepThree = () => {
     "& .MuiOutlinedInput-root": {
       borderRadius: "10px",
       padding: "12px 16px",
+      alignItems: "flex-start",
       "& fieldset": {
         borderTop: "1px solid #D1D5DC",
       },
@@ -14,16 +15,15 @@ const StepThree = () => {
     "& .MuiInputBase-input": {
       padding: 0,
       overflow: "auto",
+      lineHeight: "20px",
     },
   };
 
   const labelSx = {
     fontFamily: "Arial, sans-serif",
     fontWeight: 400,
-    fontStyle: "normal",
     fontSize: "14px",
     lineHeight: "20px",
-    letterSpacing: 0,
     color: "#364153",
     display: "flex",
     alignItems: "center",
@@ -53,28 +53,13 @@ const StepThree = () => {
           </Typography>
         </Typography>
 
-   
         <TextField
           fullWidth
           multiline
           rows={4}
           placeholder="Describe what your startup does, the problem you're solving, and who your target audience is..."
           variant="outlined"
-          sx={{
-            height: 98,
-            borderRadius: "10px",
-            "& .MuiOutlinedInput-root": {
-              borderRadius: "10px",
-              padding: "12px 16px",
-              "& fieldset": {
-                borderTop: "1px solid #D1D5DC",
-              },
-            },
-            "& .MuiInputBase-input": {
-              padding: 0,
-              overflow: "auto",
-            },
-          }}
+          sx={inputSx}
         />
       </Box>
 
@@ -93,21 +78,7 @@ const StepThree = () => {
           rows={4}
           placeholder="Where do you see this going? What's your long-term vision?"
           variant="outlined"
-          sx={{
-            height: 78,
-            borderRadius: "10px",
-            "& .MuiOutlinedInput-root": {
-              borderRadius: "10px",
-              padding: "12px 16px",
-              "& fieldset": {
-                borderTop: "1px solid #D1D5DC",
-              },
-            },
-            "& .MuiInputBase-input": {
-              padding: 0,
-              overflow: "auto",
-            },
-          }}
+          sx={inputSx}
         />
       </Box>
     </Box>

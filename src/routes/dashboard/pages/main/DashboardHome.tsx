@@ -12,36 +12,13 @@ import { ongoingCoursesData } from "../../../../Data/MyStackCourses.data";
 import dashboardIllustration from "../../../../assets/images/components/dashboard/illustration.png";
 
 export default function DashboardHome() {
+
   const stats = [
     { label: "Courses Completed", value: "12", icon: <MenuBook />, change: "+2 this month", color: "#4CAF50" },
     { label: "Active Mentors", value: "5", icon: <People />, change: "2 sessions this week", color: "#2196F3" },
     { label: "Projects", value: "8", icon: <Science />, change: "3 in progress", color: "#FF9800" },
     { label: "Hours Learned", value: "120h", icon: <Schedule />, change: "+15h this week", color: "#9C27B0" },
   ];
-
-  // const ongoingCourses = [
-  //   {
-  //     title: "UI/UX Design Bootcamp ",
-  //     progress: 65,
-  //     instructor: "Dr. Sarah Johnson",
-  //     nextLesson: "UX Deep Dive",
-  //     timeLeft: "2h 30m remaining"
-  //   },
-  //   {
-  //     title: "Advanced Content Creation Bootcamp",
-  //     progress: 42,
-  //     instructor: "Prof. Michael Chen",
-  //     nextLesson: "Content Strategy Deep Dive",
-  //     timeLeft: "4h 15m remaining"
-  //   },
-  //   {
-  //     title: "Web Development Bootcamp",
-  //     progress: 88,
-  //     instructor: "Emily Rodriguez",
-  //     nextLesson: "Web Code Splitting & Lazy Loading",
-  //     timeLeft: "45m remaining"
-  //   }
-  // ];
 
   const upcomingEvents = [
     { title: "1-on-1 Mentor Session", time: "Today, 3:00 PM", type: "Mentorship" },
@@ -84,17 +61,7 @@ export default function DashboardHome() {
               You’re on beast mode 🚀 Keep smashing those goals!
             </Typography>
             <Box sx={{ display: "flex", gap: 2 }}>
-              <Button variant="contained" endIcon={<ArrowForward />} sx={{
-                background: "667eea",
-                color: "#fff",
-                fontWeight: 700,
-                borderRadius: "12px",
-                boxShadow: "0px 4px 15px rgba(102, 126, 234, 0.4)",
-                "&:hover": {
-                  color: "#667eea",
-                  background: "#f0f0f0"
-                }
-              }}>
+              <Button variant="contained" endIcon={<ArrowForward />}>
                 Continue Learning
               </Button>
               <Button variant="outlined" sx={{ color: "#fff", borderColor: "#fff" }}>
@@ -113,22 +80,9 @@ export default function DashboardHome() {
       <Box sx={{ maxWidth: "1400px", mx: "auto", px: { xs: 3, md: 6 } }}>
 
         {/* STATS */}
-        <Box sx={{
-          display: "flex",
-          flexWrap: "wrap",
-          gap: 3,
-          mb: 6
-        }}>
+        <Box sx={{ display: "flex", flexWrap: "wrap", gap: 3, mb: 6 }}>
           {stats.map((stat, i) => (
-            <Card key={i} sx={{
-              flex: "1 1 250px",
-              p: 3,
-              borderRadius: "16px",
-                boxShadow: "0px 4px 15px rgba(102, 126, 234, 0.4)",
-                "&:hover": {
-                  background: "#f0f0f0"
-                }
-            }}>
+            <Card key={i} sx={{ flex: "1 1 250px", p: 3, borderRadius: "16px" }}>
               <Box sx={{ display: "flex", justifyContent: "space-between" }}>
                 <Box sx={{ color: stat.color }}>{stat.icon}</Box>
                 <Chip label={stat.change} size="small" sx={{ color: stat.color }} />
@@ -139,12 +93,8 @@ export default function DashboardHome() {
           ))}
         </Box>
 
-        {/* MAIN LAYOUT */}
-        <Box sx={{
-          display: "flex",
-          flexWrap: "wrap",
-          gap: 4
-        }}>
+        {/* MAIN */}
+        <Box sx={{ display: "flex", flexWrap: "wrap", gap: 4 }}>
 
           {/* COURSES */}
           <Box sx={{ flex: "2 1 600px" }}>
@@ -152,32 +102,48 @@ export default function DashboardHome() {
               Continue Learning
             </Typography>
 
-            {ongoingCoursesData.map((course, i) => (
-              <Card key={i} sx={{ p: 3, mb: 3, borderRadius: "16px" }}>
-                <Box sx={{ display: "flex", justifyContent: "space-between" }}>
-                  <Box>
-                    <Typography fontWeight={700}>{course.title}</Typography>
-                    <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
-                      <Avatar>{course.instructor.charAt(0)}</Avatar>
-                      <Typography>{course.instructor}</Typography>
-                    </Box>
-                  </Box>
-                  <Button variant="contained" startIcon={<PlayCircleOutline />}>
-                    Resume
-                  </Button>
-                </Box>
+            {ongoingCoursesData.map((course, i) => {
+              const instructorName = course.instructor ?? "Unknown Instructor";
 
-                <Typography sx={{ mt: 2 }}>Next: {course.nextLesson}</Typography>
-                <LinearProgress variant="determinate" value={course.progress} sx={{ my: 1 }} />
-                <Typography>⏱ {course.timeLeft}</Typography>
-              </Card>
-            ))}
+              return (
+                <Card key={i} sx={{ p: 3, mb: 3, borderRadius: "16px" }}>
+                  <Box sx={{ display: "flex", justifyContent: "space-between", gap: 2 }}>
+                    <Box>
+                      <Typography fontWeight={700}>{course.title}</Typography>
+
+                      <Box sx={{ display: "flex", alignItems: "center", gap: 1, mt: 1 }}>
+                        <Avatar>
+                          {instructorName.charAt(0)}
+                        </Avatar>
+                        <Typography>{instructorName}</Typography>
+                      </Box>
+                    </Box>
+
+                    <Button variant="contained" startIcon={<PlayCircleOutline />}>
+                      Resume
+                    </Button>
+                  </Box>
+
+                  <Typography sx={{ mt: 2 }}>
+                    Next: {course.nextLesson ?? "Coming soon"}
+                  </Typography>
+
+                  <LinearProgress
+                    variant="determinate"
+                    value={course.progress ?? 0}
+                    sx={{ my: 1 }}
+                  />
+
+                  <Typography>
+                    ⏱ {course.timeLeft ?? "—"}
+                  </Typography>
+                </Card>
+              );
+            })}
           </Box>
 
           {/* SIDEBAR */}
           <Box sx={{ flex: "1 1 350px" }}>
-
-            {/* EVENTS */}
             <Typography fontWeight={700} mb={2}>Upcoming Events</Typography>
             <Card sx={{ p: 3, mb: 4 }}>
               {upcomingEvents.map((event, i) => (
@@ -189,17 +155,17 @@ export default function DashboardHome() {
               ))}
             </Card>
 
-            {/* ACHIEVEMENTS */}
             <Typography fontWeight={700} mb={2}>Recent Achievements</Typography>
             <Card sx={{ p: 3, background: "#FEF3C7" }}>
               {achievements.map((a, i) => (
                 <Box key={i} mb={2}>
-                  <Typography fontSize="1.5rem">{a.icon} {a.title}</Typography>
+                  <Typography fontSize="1.5rem">
+                    {a.icon} {a.title}
+                  </Typography>
                   <Typography>{a.description}</Typography>
                 </Box>
               ))}
             </Card>
-
           </Box>
         </Box>
       </Box>
