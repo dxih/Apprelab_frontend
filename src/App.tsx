@@ -14,18 +14,20 @@ import About from "./routes/website/pages/About";
 
 // 🧑‍💻 Dashboard Pages
 import DashboardHome from "./routes/dashboard/pages/main/DashboardHome";
-// import Courses from "../draft/Courses";
+import Courses from "./routes/dashboard/pages/courses/Courses";
 import Microbootcamps from "./routes/dashboard/pages/bootcamps/Microbootcamps";
 import OngoingBootcampsPage from "./routes/dashboard/pages/bootcamps/OngoingBootcampsPage";
-// import OngoingCoursesPage from "../draft/OngoingCoursesPage";
+import OngoingCoursesPage from "./routes/dashboard/pages/courses/OngoingCoursesPage";
 import UpcomingBootcampsPage from "./routes/dashboard/pages/bootcamps/UpcomingBootcampsPage";
-// import UpcomingCoursesPage from "../draft/UpcomingCoursesPage";
+import UpcomingCoursesPage from "./routes/dashboard/pages/courses/UpcomingCoursesPage";
 import BootcampDetail from "./routes/dashboard/pages/bootcamps/BootcampDetail";
-// import CourseDetail from "../draft/CourseDetail";
+import CourseDetail from "./routes/dashboard/pages/courses/CourseDetail";
 import ShoppingCart from "./routes/dashboard/pages/payment/ShoppingCart";
 import Checkout from "./routes/dashboard/pages/payment/Checkout";
 import MyMentor from "./routes/dashboard/pages/mentor/MyMentor";
 import OurMentors from "./routes/dashboard/pages/mentor/OurMentorsPage";
+import Profile from "./routes/dashboard/pages/main/Profile";
+import Settings from "./routes/dashboard/pages/main/Settings";
 // mystack pages
 import MyStack from "./routes/dashboard/pages/stack/MyStack";
 import MyStackResourcePage from "./routes/dashboard/pages/stack/MyStackResources";
@@ -70,14 +72,17 @@ function App() {
       {/* 🧑‍💻 Dashboard (DashboardNavbar + Sidebar) */}
       <Route element={<DashboardLayout />}>
         <Route path="/dashboard" element={<DashboardHome />} />
-        {/* <Route path="/dashboard/courses" element={<Courses />} /> */}
+        <Route path="/dashboard/courses" element={<Courses />} />
         <Route path="/dashboard/microbootcamps" element={<Microbootcamps />} />
         <Route path="/dashboard/ongoing-bootcamps" element={<OngoingBootcampsPage />} />
-        {/* <Route path="/dashboard/ongoing-courses" element={<OngoingCoursesPage />} /> */}
+        <Route path="/dashboard/ongoing-courses" element={<OngoingCoursesPage />} />
         <Route path="/dashboard/upcoming-bootcamps" element={<UpcomingBootcampsPage />} />
-        {/* <Route path="/dashboard/upcoming-courses" element={<UpcomingCoursesPage />} /> */}
+        <Route path="/dashboard/upcoming-courses" element={<UpcomingCoursesPage />} />
         <Route path="/dashboard/bootcampdetail" element={<BootcampDetail />} />
-        {/* <Route path="/dashboard/coursedetail" element={<CourseDetail />} /> */}
+        <Route path="/dashboard/coursedetail" element={<CourseDetail />} />
+        {/* Profile Pages */}
+        <Route path="/dashboard/profile" element={<Profile />} />
+        <Route path="/dashboard/settings" element={<Settings />} />
         {/* Mentor Pages */}
         <Route path="/dashboard/mymentor" element={<MyMentor />} />
         <Route path="/dashboard/ourmentors" element={<OurMentors />} />

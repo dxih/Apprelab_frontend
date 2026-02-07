@@ -1,7 +1,7 @@
 import { Box } from "@mui/material";
-import CourseHero from "./CourseHero"
-import UpcomingCourses from "./UpcomingCourses"
-import OngoingCourses from "./OngoingCourses";
+import CourseHero from "../../../../components/dashboard/Explorepage/CourseHero"
+import UpcomingCourses from "../../../../components/dashboard/Explorepage/UpcomingCourses"
+import OngoingCourses from "../../../../components/dashboard/Explorepage/OngoingCourses";
 
 export default function Courses() {
   return (

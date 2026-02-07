@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { Box, Button, Typography } from "@mui/material";
 
-import videoThumbnail from "../../../assets/videos/academy_video.png";
+import videoThumbnail from "../../../assets/images/academy_video.png";
 
 const Hero: React.FC = () => {
   return (
