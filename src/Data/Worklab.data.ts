@@ -1,8 +1,8 @@
 
-import workFrameOppurtunity1 from "../assets/images/components/worklabs/worklab_opportunity/workslab_frame_1.png";
-import workframeOpportunity2 from "../assets/images/components/worklabs/worklab_opportunity/workslab_frame_2.png";
-import workframeOpportunity3 from "../assets/images/components/worklabs/worklab_opportunity/workslab_frame_3.png";
-import workframeOpportunity4 from "../assets/images/components/worklabs/worklab_opportunity/workslab_frame_4.png";
+import workFrameOppurtunity1 from "../assets/images/components/worklabs/worklabopportunity/workslabframe1.png";
+import workframeOpportunity2 from "../assets/images/components/worklabs/worklabopportunity/workslabframe2.png";
+import workframeOpportunity3 from "../assets/images/components/worklabs/worklabopportunity/workslabframe3.png";
+import workframeOpportunity4 from "../assets/images/components/worklabs/worklabopportunity/workslabframe4.png";
 import type { ProjectItem } from "../types/project";
 
  const featuredData: ProjectItem[] = [
