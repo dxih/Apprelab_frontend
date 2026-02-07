@@ -17,7 +17,7 @@ import { Link, useNavigate } from "react-router-dom";
 
 // Images
 import uiuxImg from "../../../../assets/images/components/microbootcamps/offers/uiuxofferimg.png";
-import contentImg from "../../../../assets/images/components/microbootcamps/offers/contentofferimg1.png";
+import contentImg from "../../../../assets/images/components/microbootcamps/offers/contentofferimg.png";
 import webdevImg from "../../../../assets/images/components/microbootcamps/offers/webdevofferimg.png";
 
 type Course = {
