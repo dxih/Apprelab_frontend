@@ -16,9 +16,9 @@ import type { SelectChangeEvent } from "@mui/material/Select";
 import { Link, useNavigate } from "react-router-dom";
 
 // Images
-import uiuxImg from "../../../../assets/images/components/microbootcamps/upcoming/uiuxupcomingimg1.png";
-import contentImg from "../../../../assets/images/components/microbootcamps/upcoming/contentofferimg1.png";
-import webdevImg from "../../../../assets/images/components/microbootcamps/upcoming/webdevofferimg1.png";
+import uiuxImg from "../../../../assets/images/components/microbootcamps/upcoming/uiuxup.png";
+import contentImg from "../../../../assets/images/components/microbootcamps/upcoming/contentup.png";
+import webdevImg from "../../../../assets/images/components/microbootcamps/upcoming/webdevup.png";
 
 type Bootcamp = {
   image: string;
