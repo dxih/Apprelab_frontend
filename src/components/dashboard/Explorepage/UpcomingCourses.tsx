@@ -3,9 +3,9 @@ import { Box, Typography, Card, CardMedia, Chip } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 
 // Images
-import uiuxImg from "../../../assets/images/components/microbootcamps/offers/uiuxofferimg.png";
-import contentImg from "../../../assets/images/components/microbootcamps/offers/contentofferimg.png";
-import webdevImg from "../../../assets/images/components/microbootcamps/offers/webdevofferimg.png";
+import uiuxImg from "../../../assets/images/components/microbootcamps/upcoming/uiuxup.png";
+import contentImg from "../../../assets/images/components/microbootcamps/upcoming/contentup.png";
+import webdevImg from "../../../assets/images/components/microbootcamps/upcoming/webdevup.png";
 
 export const courses = [
   {
