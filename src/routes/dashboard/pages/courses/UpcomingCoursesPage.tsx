@@ -53,7 +53,7 @@ export const courses: Course[] = [
       "Usability testing and feedback loops",
     ],
     audience: [
-      "Beginners interested in design",
+      "Beginners interested in design 101",
       "Developers transitioning to UI/UX",
       "Creatives seeking digital skills",
     ],
