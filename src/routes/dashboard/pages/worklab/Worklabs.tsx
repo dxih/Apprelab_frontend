@@ -2,12 +2,12 @@ import React from "react";
 import { Box, Grid, Typography, Button, useTheme } from "@mui/material";
 import type { SxProps, Theme } from "@mui/material";
 // Import assets (Assuming these paths are correct in your TS config)
-import workLabHero from "../../../../assets/images/components/worklabs/work_lab_hero.png";
-import workFrame_1 from "../../../../assets/images/components/worklabs/worklab_Frames/Worklab_frame_1.png";
-import workFrame_2 from "../../../../assets/images/components/worklabs/worklab_Frames/worklab_frame_2.png";
-import workFrame_3 from "../../../../assets/images/components/worklabs/worklab_Frames/Worklab_frame_3.png";
-import workFrame_4 from "../../../../assets/images/components/worklabs/worklab_Frames/Worklab_frame_4.png";
-import workFrame_works from "../../../../assets/images/components/worklabs/worklab_Frames/WorksLab_works.png";
+import workLabHero from "../../../../assets/images/components/worklabs/worklabhero.png";
+import workFrame_1 from "../../../../assets/images/components/worklabs/worklabFrames/worklabframe1.png";
+import workFrame_2 from "../../../../assets/images/components/worklabs/worklabFrames/worklabframe2.png";
+import workFrame_3 from "../../../../assets/images/components/worklabs/worklabFrames/worklabframe3.png";
+import workFrame_4 from "../../../../assets/images/components/worklabs/worklabFrames/worklabframe4.png";
+import workFrame_works from "../../../../assets/images/components/worklabs/worklabFrames/worksLabworks.png";
 import WorklabCard from "./WorkLabCard";
 
 
