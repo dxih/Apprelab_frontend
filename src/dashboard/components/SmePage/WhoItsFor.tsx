@@ -1,30 +1,35 @@
 import { Box, Typography, Grid, Button } from "@mui/material";
 
+import img1 from "../../assets/icons/img1.png";
+import img2 from "../../assets/icons/img2.png";
+import img3 from "../../assets/icons/img3.png";
+import img4 from "../../assets/icons/img4.png";
+
 const cardData = [
   {
     id: 1,
-    image: "/img1.png",
+    image: img1,
     title: "Early-stage startups",
     description:
       "Building your MVP and need technical talent to bring your vision to life.",
   },
   {
     id: 2,
-    image: "/img2.png",
+    image: img2,
     title: "SMEs",
     description:
       "Established businesses looking to scale with experienced developers and designers.",
   },
   {
     id: 3,
-    image: "/img3.png",
+    image: img3,
     title: "Solo Founders",
     description:
       "Need a development partner or team to execute on your product roadmap",
   },
   {
     id: 4,
-    image: "/img4.png",
+    image: img4,
     title: "Agencies",
     description:
       "Expand your capacity with reliable freelance talent for client projects",

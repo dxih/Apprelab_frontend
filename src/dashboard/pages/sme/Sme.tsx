@@ -7,6 +7,11 @@ import { useState } from "react";
 import StartupDialog from "../../components/SmePage/dialog/StartupDialog";
 import ConfirmationDialog from "../../components/SmePage/dialog/Confirmation";
 
+import heroVisual from "../../assets/images/heroImg.png";
+import arrow from "../../assets/icons/arrow.png";
+import arrow2 from "../../assets/icons/arrow2.png";
+import checkGreen from "../../assets/icons/checkGreen.png";
+
 export default function Sme() {
   const [open, setOpen] = useState(false);
   const [confirmationOpen, setConfirmationOpen] = useState(false);
@@ -118,13 +123,14 @@ export default function Sme() {
                   sx={{
                     fontSize: 16,
                     whiteSpace: "nowrap",
+                    color: "#FFFFFF",
                   }}
                 >
                   Get Started as a Startup
                 </Typography>
                 <Box
                   component="img"
-                  src="/arrow.png"
+                  src={arrow}
                   alt="arrow"
                   sx={{ width: 16, height: 16 }}
                 />
@@ -170,7 +176,7 @@ export default function Sme() {
               Not a Startup?
               <Box
                 component="img"
-                src="/arrow2.png"
+                src={arrow2}
                 alt="arrow"
                 sx={{ width: 16, height: 16 }}
               />
@@ -197,7 +203,7 @@ export default function Sme() {
               >
                 <Box
                   component="img"
-                  src="/checkGreen.png"
+                  src={checkGreen}
                   alt="check"
                   sx={{ width: 20, height: 20 }}
                 />
@@ -222,7 +228,7 @@ export default function Sme() {
         {/* Hero Right */}
         <Box
           component="img"
-          src="/heroImg.png"
+          src={heroVisual}
           alt="hero visual"
           sx={{
             width: { xs: "100%", md: "559px" },
