@@ -3,7 +3,7 @@ import { Box, Typography, TextField, InputAdornment } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 
 // Your mentor imports here
-import mentor1 from "../../assets/images/mentors/Mentor1.png";
+import mentor1 from "../../assets/images/mentors/mentor1.png";
 import mentor2 from "../../assets/images/mentors/mentor2.png";
 import mentor3 from "../../assets/images/mentors/mentor3.png";
 import mentor4 from "../../assets/images/mentors/mentor4.png";
