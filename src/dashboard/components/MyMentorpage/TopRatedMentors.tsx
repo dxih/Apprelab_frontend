@@ -2,15 +2,15 @@ import React from "react";
 import { Box, Typography, Card, CardMedia, Button, Chip, Rating } from "@mui/material";
 
 // Mentor Images
-import mentor1 from "../../assets/images/mentors/Mentor1.png";
-import mentor2 from "../../assets/images/mentors/Mentor2.png";
-import mentor3 from "../../assets/images/mentors/Mentor3.png";
-import mentor4 from "../../assets/images/mentors/Mentor4.png";
-import mentor5 from "../../assets/images/mentors/Mentor5.png";
-import mentor6 from "../../assets/images/mentors/Mentor6.png";
-import mentor7 from "../../assets/images/mentors/Mentor7.png";
-import mentor8 from "../../assets/images/mentors/Mentor8.png";
-import mentor9 from "../../assets/images/mentors/Mentor9.png";
+import mentor1 from "../../assets/images/mentors/mentor1.png";
+import mentor2 from "../../assets/images/mentors/mentor2.png";
+import mentor3 from "../../assets/images/mentors/mentor3.png";
+import mentor4 from "../../assets/images/mentors/mentor4.png";
+import mentor5 from "../../assets/images/mentors/mentor5.png";
+import mentor6 from "../../assets/images/mentors/mentor6.png";
+import mentor7 from "../../assets/images/mentors/mentor7.png";
+import mentor8 from "../../assets/images/mentors/mentor8.png";
+import mentor9 from "../../assets/images/mentors/mentor9.png";
 
 const topMentors = [
   {
