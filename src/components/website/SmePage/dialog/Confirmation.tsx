@@ -7,6 +7,7 @@ import {
   Button,
   Stack,
 } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
 interface ConfirmationDialogProps {
   open: boolean;
@@ -17,6 +18,12 @@ const ConfirmationDialog: React.FC<ConfirmationDialogProps> = ({
   open,
   onClose,
 }) => {
+  const navigate = useNavigate();
+
+  const goToDashboard = () => {
+    onClose();
+    navigate("/founder/overview");
+  };
   return (
     <Dialog
       open={open}
@@ -31,8 +38,8 @@ const ConfirmationDialog: React.FC<ConfirmationDialogProps> = ({
       }}
       BackdropProps={{
         sx: {
-          backdropFilter: "blur(6px)", 
-          backgroundColor: "rgba(0, 0, 0, 0.35)", 
+          backdropFilter: "blur(6px)",
+          backgroundColor: "rgba(0, 0, 0, 0.35)",
         },
       }}
     >
@@ -45,7 +52,7 @@ const ConfirmationDialog: React.FC<ConfirmationDialogProps> = ({
           sx={{
             width: 80,
             height: 80,
-            mb: 4, 
+            mb: 4,
             mx: "auto",
             display: "block",
             borderRadius: "50%",
@@ -62,7 +69,7 @@ const ConfirmationDialog: React.FC<ConfirmationDialogProps> = ({
             lineHeight: "36px",
             letterSpacing: 0,
             textAlign: "center",
-            mb: 2, 
+            mb: 2,
           }}
         >
           You're All Set! 🎉
@@ -95,7 +102,7 @@ const ConfirmationDialog: React.FC<ConfirmationDialogProps> = ({
             letterSpacing: 0,
             textAlign: "center",
             color: "#4A5565",
-            mb: 4, 
+            mb: 4,
           }}
         >
           You can start posting projects and connecting with talent immediately.
@@ -122,6 +129,7 @@ const ConfirmationDialog: React.FC<ConfirmationDialogProps> = ({
                 backgroundColor: "#020F66",
               },
             }}
+            onClick={goToDashboard} 
           >
             Go to Founder Hub
           </Button>
