@@ -12,8 +12,8 @@ import InstagramIcon from "@mui/icons-material/Instagram";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import BehanceIcon from "@mui/icons-material/Brush";
 
-import apprelabLogoLight from "../../assets/images/logos/apprelab_logo_light.png";
-import dxhubLogo from "../../assets/images/logos/dxhub_logo.png";
+import apprelabLogoLight from "../../assets/logos/apprelab_logo_light.png";
+import dxhubLogo from "../../assets/logos/dxhub_logo.png";
 
 const WebsiteFooter: React.FC = () => {
   return (
