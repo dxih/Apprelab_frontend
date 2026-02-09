@@ -5,54 +5,54 @@ import WebsiteLayout from "./layouts/website/WebsiteLayout";
 import DashboardLayout from "./layouts/dashboard/DashboardLayout";
 
 // 🌐 Website Pages
-import Home from "./routes/website/pages/Home";
-import Mentor from "./routes/website/pages/Mentor";
-import Learn from "./routes/website/pages/Learn";
-import Hire from "./routes/website/pages/Hire";
-import Create from "./routes/website/pages/Create";
-import About from "./routes/website/pages/About";
+import Home from "./website/pages/Home";
+import Mentor from "./website/pages/Mentor";
+import Learn from "./website/pages/Learn";
+import Hire from "./website/pages/Hire";
+import Create from "./website/pages/Create";
+import About from "./website/pages/About";
 
 // 🧑‍💻 Dashboard Pages
-import DashboardHome from "./routes/dashboard/pages/main/DashboardHome";
-import Courses from "./routes/dashboard/pages/courses/Courses";
-import Microbootcamps from "./routes/dashboard/pages/bootcamps/Microbootcamps";
-import OngoingBootcampsPage from "./routes/dashboard/pages/bootcamps/OngoingBootcampsPage";
-import OngoingCoursesPage from "./routes/dashboard/pages/courses/OngoingCoursesPage";
-import UpcomingBootcampsPage from "./routes/dashboard/pages/bootcamps/UpcomingBootcampsPage";
-import UpcomingCoursesPage from "./routes/dashboard/pages/courses/UpcomingCoursesPage";
-import BootcampDetail from "./routes/dashboard/pages/bootcamps/BootcampDetail";
-import CourseDetail from "./routes/dashboard/pages/courses/CourseDetail";
-import ShoppingCart from "./routes/dashboard/pages/payment/ShoppingCart";
-import Checkout from "./routes/dashboard/pages/payment/Checkout";
-import MyMentor from "./routes/dashboard/pages/mentor/MyMentor";
-import OurMentors from "./routes/dashboard/pages/mentor/OurMentorsPage";
-import Profile from "./routes/dashboard/pages/main/Profile";
-import Settings from "./routes/dashboard/pages/main/Settings";
+import DashboardHome from "./dashboard/pages/main/DashboardHome";
+import Courses from "./dashboard/pages/courses/Courses";
+import Microbootcamps from "./dashboard/pages/microbootcamps/Microbootcamps";
+import OngoingBootcampsPage from "./dashboard/pages/microbootcamps/OngoingBootcampsPage";
+import OngoingCoursesPage from "./dashboard/pages/courses/OngoingCoursesPage";
+import UpcomingBootcampsPage from "./dashboard/pages/microbootcamps/UpcomingBootcampsPage";
+import UpcomingCoursesPage from "./dashboard/pages/courses/UpcomingCoursesPage";
+import BootcampDetail from "./dashboard/pages/microbootcamps/MicrobootcampDetail";
+import CourseDetail from "./dashboard/pages/courses/CourseDetail";
+import ShoppingCart from "./dashboard/pages/payment/ShoppingCart";
+import Checkout from "./dashboard/pages/payment/Checkout";
+import MyMentor from "./dashboard/pages/mentor/MyMentor";
+import OurMentors from "./dashboard/pages/mentor/OurMentorsPage";
+import Profile from "./dashboard/pages/main/Profile";
+import Settings from "./dashboard/pages/main/Settings";
 // mystack pages
-import MyStack from "./routes/dashboard/pages/stack/MyStack";
-import MyStackResourcePage from "./routes/dashboard/pages/stack/MyStackResources";
-import MyStackAssetsmentPage from "./routes/dashboard/pages/stack/MyStackAssetsment";
-import MyStackOverviewPage from "./routes/dashboard/pages/stack/MyStackOverView";
-import MyStackDiscussionPage from "./routes/dashboard/pages/stack/MyStackDiscussion";
-import BootcampLayout from "./layouts/website/MyStackBootCampLayout/BootcampLayout";
+import MyStack from "./dashboard/pages/mystack/MyStack";
+import MyStackResourcePage from "./dashboard/pages/mystack/MyStackResources";
+import MyStackAssetsmentPage from "./dashboard/pages/mystack/MyStackAssetsment";
+import MyStackOverviewPage from "./dashboard/pages/mystack/MyStackOverView";
+import MyStackDiscussionPage from "./dashboard/pages/mystack/MyStackDiscussion";
+import BootcampLayout from "./layouts/dashboard/MyStackBootCampLayout/BootcampLayout";
 // WORKLAB PAGES
-import Worklabs from "./routes/dashboard/pages/worklab/Worklabs";
-import ProjectFeeds from "./routes/dashboard/pages/worklab/projectfeeds";
-import ProjectDetails from "./routes/dashboard/pages/worklab/ProjectDetails";
-import ApplyPage from "./routes/dashboard/pages/worklab/DetailsApply";
+import Worklabs from "./dashboard/pages/worklab/Worklabs";
+import ProjectFeeds from "./dashboard/pages/worklab/projectfeeds";
+import ProjectDetails from "./dashboard/pages/worklab/ProjectDetails";
+import ApplyPage from "./dashboard/pages/worklab/DetailsApply";
 
 // Certificates Pages
-import CertificatesList from "./routes/dashboard/pages/Certificates/CertificatesList"
-import CertificateDetail from "./routes/dashboard/pages/Certificates/CertificateDetails";
+import CertificatesList from "./dashboard/pages/certificates/CertificatesList"
+import CertificateDetail from "./dashboard/pages/certificates/CertificateDetails";
 
 // join community
-import JoinCommunity from "./routes/dashboard/pages/community/JoinCommunity";
+import JoinCommunity from "./dashboard/pages/community/JoinCommunity";
 
 // 🔐 Auth Pages
-import Signup from "./routes/auth/Signup";
-import Login from "./routes/auth/Login";
-import ForgotPassword from "./routes/auth/ForgotPassword";
-import Sme from "./routes/website/pages/Sme";
+import Signup from "./dashboard/pages/auth/Signup";
+import Login from "./dashboard/pages/auth/Login";
+import ForgotPassword from "./dashboard/pages/auth/ForgotPassword";
+import Sme from "./dashboard/pages/sme/Sme";
 
 function App() {
   return (
