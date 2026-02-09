@@ -66,7 +66,6 @@ function App() {
         <Route path="/hire" element={<Hire />} />
         <Route path="/create" element={<Create />} />
         <Route path="/about" element={<About />} />
-        <Route path="/sme" element={<Sme />} />
       </Route>
 
       {/* 🧑‍💻 Dashboard (DashboardNavbar + Sidebar) */}
@@ -83,6 +82,10 @@ function App() {
         {/* Profile Pages */}
         <Route path="/dashboard/profile" element={<Profile />} />
         <Route path="/dashboard/settings" element={<Settings />} />
+
+          {/* SME Pages */}
+        <Route path="/dashboard/sme" element={<Sme />} /> 
+        
         {/* Mentor Pages */}
         <Route path="/dashboard/mymentor" element={<MyMentor />} />
         <Route path="/dashboard/ourmentors" element={<OurMentors />} />

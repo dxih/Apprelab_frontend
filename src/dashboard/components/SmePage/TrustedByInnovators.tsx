@@ -1,27 +1,33 @@
+
 import { Box, Container, Grid, Typography } from "@mui/material";
+
+import star from "../../assets/icons/star.png";
+import innov1 from "../../assets/icons/innov1.png";
+import innov2 from "../../assets/icons/innov2.png";
+import innov3 from "../../assets/icons/innov3.png";
 
 const reviewData = [
   {
-    stars: "/star.png",
+    stars: star,
     description:
       "“Apprelab helped us find the perfect developer for our MVP. The quality of talent is exceptional.”",
-    profileImage: "/innov1.png",
+    profileImage: innov1,
     name: "Sarah Chen",
     position: "Founder, TechFlow",
   },
   {
-    stars: "/star.png",
+    stars: star,
     description:
       "“We've hired 3 designers through apprelab. The platform makes collaboration seamless and efficient.”",
-    profileImage: "/innov2.png",
+    profileImage: innov2,
     name: "David Okonkwo",
     position: "CTO, MarketPulse",
   },
   {
-    stars: "/star.png",
+    stars: star,
     description:
       "“As a solo founder, apprelab gave me access to a team I couldn't afford to hire full-time. Game changer!”",
-    profileImage: "/innov3.png",
+    profileImage: innov3,
     name: "Amina Hassan",
     position: "CEO, EduConnect",
   },

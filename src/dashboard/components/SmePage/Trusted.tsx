@@ -1,23 +1,28 @@
 import { Box, Grid, Typography } from "@mui/material";
 
+import trust1 from "../../assets/icons/trust1.png";
+import trust2 from "../../assets/icons/trust2.png";
+import trust3 from "../../assets/icons/trust3.png";
+import trust4 from "../../assets/icons/trust4.png";
+
 const cardData = [
   {
-    image: "/trust1.png",
+    image: trust1,
     title: "150+",
     subtitle: "Startups using apprelab.",
   },
   {
-    image: "/trust2.png",
+    image: trust2,
     title: "500+",
     subtitle: "Vetted learners & mentors",
   },
   {
-    image: "/trust3.png",
+    image: trust3,
     title: "300+",
     subtitle: "Projects completed",
   },
   {
-    image: "/trust4.png",
+    image: trust4,
     title: "4.8/5",
     subtitle: "Average satisfaction rating",
   },

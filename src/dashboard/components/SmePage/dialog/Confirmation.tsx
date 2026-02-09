@@ -6,7 +6,10 @@ import {
   Typography,
   Button,
   Stack,
+
 } from "@mui/material";
+
+import checkicon from "../../../assets/icons/checkicon.png";
 
 interface ConfirmationDialogProps {
   open: boolean;
@@ -40,7 +43,7 @@ const ConfirmationDialog: React.FC<ConfirmationDialogProps> = ({
         {/* Check Icon */}
         <Box
           component="img"
-          src="/checkicon.png"
+          src={checkicon}
           alt="Success"
           sx={{
             width: 80,

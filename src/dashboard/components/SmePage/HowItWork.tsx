@@ -1,24 +1,29 @@
 import { Box, Grid, Typography } from "@mui/material";
 
+import work1 from "../../assets/icons/work1.png";
+import work2 from "../../assets/icons/work2.png";
+import work3 from "../../assets/icons/work3.png";
+
+
 export default function HowItWork() {
   const cards = [
     {
       id: 1,
-      image: "/work1.png",
+      image: work1,
       title: "Submit your startup info",
       description:
         "Tell us about your company, team size, and what you're building.",
     },
     {
       id: 2,
-      image: "/work2.png",
+      image: work2,
       title: "Post a project or role",
       description:
         "Define your requirements, timeline, and budget. Get matched with qualified talent.",
     },
     {
       id: 3,
-      image: "/work3.png",
+      image: work3,
       title: "Hire & collaborate",
       description:
         "Review applications, interview candidates, and start working together seamlessly.",

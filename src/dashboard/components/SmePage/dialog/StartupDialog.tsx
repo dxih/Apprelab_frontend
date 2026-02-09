@@ -17,6 +17,9 @@ import StepThree from "./StepThree";
 import StepFour from "./StepFour";
 import StepFive from "./StepFive";
 
+import arrowLeft from "../../../assets/icons/arrowleft.png";
+import arrowRight from "../../../assets/icons/arrowright.png";
+
 interface StartupDialogProps {
   open: boolean;
   onClose: () => void;
@@ -131,7 +134,7 @@ const StartupDialog: React.FC<StartupDialogProps> = ({
             gap: 1.5,
           }}
         >
-          <img src="/arrowleft.png" alt="Back" />
+          <img src= {arrowLeft} alt="Back" />
           <Typography fontSize={16}>Back</Typography>
         </Button>
 
@@ -156,8 +159,8 @@ const StartupDialog: React.FC<StartupDialogProps> = ({
           }}
           onClick={handleNext}
         >
-          <Typography>{step === TOTAL_STEPS ? "Submit" : "Next"}</Typography>
-          <img src="/arrowright.png" alt="" /> 
+          <Typography sx={{ color: "#FFFFFF" }}>{step === TOTAL_STEPS ? "Submit" : "Next"}</Typography>
+          <img src= {arrowRight} alt="" /> 
         </Button>
       </Box>
     </Dialog>

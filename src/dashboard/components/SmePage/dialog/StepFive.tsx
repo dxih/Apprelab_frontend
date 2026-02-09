@@ -1,6 +1,8 @@
 import * as React from "react";
 import { Box, Divider, Typography, Button, Stack, Paper } from "@mui/material";
 
+import cloud from "../../../assets/icons/cloud.png";
+
 const StepFive = () => {
   const fileInputRef = React.useRef<HTMLInputElement>(null);
 
@@ -81,7 +83,7 @@ const StepFive = () => {
             <Stack spacing={2} alignItems="center">
               <Box
                 component="img"
-                src="/cloud.png"
+                src={cloud}
                 alt="Description"
                 sx={{
                   width: 108,
