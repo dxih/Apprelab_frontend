@@ -31,11 +31,12 @@ import OurMentors from "./routes/dashboard/pages/mentor/OurMentorsPage";
 import Profile from "./routes/dashboard/pages/main/Profile";
 import Settings from "./routes/dashboard/pages/main/Settings";
 // mystack pages
-// import MyStack from "./routes/dashboard/pages/main/stack/MyStack";
-// import MyStackResourcePage from "./routes/dashboard/pages/main/stack/MyStackResources";
-// import MyStackAssetsmentPage from "./routes/dashboard/pages/main/stack/MyStackAssetsment";
-// import MyStackOverviewPage from "./routes/dashboard/pages/main/stack/MyStackOverView";
-// import MyStackDiscussionPage from "./routes/dashboard/pages/main/stack/MyStackDiscussion";
+import MyStack from "./routes/dashboard/pages/stack/MyStack";
+import MyStackResourcePage from "./routes/dashboard/pages/stack/MyStackResources";
+import MyStackAssetsmentPage from "./routes/dashboard/pages/stack/MyStackAssetsment";
+import MyStackOverviewPage from "./routes/dashboard/pages/stack/MyStackOverView";
+import MyStackDiscussionPage from "./routes/dashboard/pages/stack/MyStackDiscussion";
+
 import BootcampLayout from "./layouts/website/MyStackBootCampLayout/BootcampLayout";
 import Worklabs from "./routes/dashboard/pages/worklab/Worklabs";
 import ProjectFeeds from "./routes/dashboard/pages/worklab/projectfeeds";
@@ -65,8 +66,7 @@ import ForgotPassword from "./routes/auth/ForgotPassword";
 
 /* ================= Dashboard Context ================= */
 import { DashboardProvider } from "./context/DashboardContext";
-import MyStack from "./routes/dashboard/pages/stack/MyStack";
-// import MyStack from "./routes/dashboard/pages/stack/MyStack";
+
 
 function App() {
   return (
@@ -120,12 +120,12 @@ function App() {
         <Route path="/dashboard/ourmentors" element={<OurMentors />} />
         <Route path="/dashboard/mystack" element={<MyStack />} />
 
-        {/* <Route path="/bootcamp/:id/:tab" element={<BootcampLayout />}>
+        <Route path="/bootcamp/:id/:tab" element={<BootcampLayout />}>
           <Route path="overview" element={<MyStackOverviewPage />} />
           <Route path="resources" element={<MyStackResourcePage />} />
           <Route path="assessments" element={<MyStackAssetsmentPage />} />
           <Route path="discussions" element={<MyStackDiscussionPage />} />
-        </Route> */}
+        </Route>
  
         {/* Certificate */}
         <Route path="/certificates" element={<CertificatesList />} />
