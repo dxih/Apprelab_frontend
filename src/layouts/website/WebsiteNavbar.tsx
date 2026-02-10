@@ -17,7 +17,7 @@ import SearchIcon from "@mui/icons-material/Search";
 import MenuIcon from "@mui/icons-material/Menu";
 import CloseIcon from "@mui/icons-material/Close";
 import { motion, AnimatePresence } from "framer-motion";
-import logo from "../../assets/images/logos/apprelab_logo_dark.png";
+import logo from "../../assets/logos/apprelab_logo_dark.png";
 
 
 const WebsiteNavbar: React.FC = () => {

@@ -1,5 +1,4 @@
 import React from "react";
-import { Box, Typography, Grid, Paper } from "@mui/material";
 import FounderDashboardLayout from "../../layouts/founder-hub/FounderDashboardLayout";
 
 const FounderDashboard: React.FC = () => {
