@@ -57,13 +57,13 @@ export default function DashboardHeading({
         <Box sx={{ position: "relative", width: 15, height: 12.5 }}>
           <Box
             component="img"
-            src="/bell.png"
+            src="/src/assets/bell.png"
             sx={{ width: 15, height: 12.5 }}
           />
           <Box
             sx={{
               position: "absolute",
-              top: -4,
+              top: -2,
               right: 0,
               width: 8,
               height: 8,
@@ -87,7 +87,7 @@ export default function DashboardHeading({
             cursor:'pointer'
           }}
         >
-          <Box component="img" src="/wallet.png" sx={{ width: 16 }} />
+          <Box component="img" src="/src/assets/wallet.png" sx={{ width: 16 }} />
           <Typography
             sx={{
               fontFamily: "Arial",
@@ -110,7 +110,7 @@ export default function DashboardHeading({
             </Typography>
           </Box>
 
-          <Avatar src="/dp.png" sx={{ width: 40, height: 40 }} />
+          <Avatar src="/src/assets/dp.png" sx={{ width: 40, height: 40 }} />
         </Box>
       </Box>
     </Box>
