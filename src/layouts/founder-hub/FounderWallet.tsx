@@ -1,9 +1,7 @@
-import React from 'react'
-
 export default function FounderWallet() {
   return (
     <div>
-      Founder Wallet
+      Founder Wallet page
     </div>
   )
 }
