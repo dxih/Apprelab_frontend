@@ -17,16 +17,16 @@ import { useDashboard } from "../../context/DashboardContext";
 const drawerWidth = 260;
 
 const navItems = [
-  { label: "Overview", img: "/overview.png", path: "/founder/overview" },
-  { label: "Projects", img: "/projects.png", path: "/founder/projects" },
-  { label: "Talent", img: "/talent.png", path: "/founder/talent" },
+  { label: "Overview", img: "/src/assets/overview.png", path: "/founder/overview" },
+  { label: "Projects", img: "/src/assets/projects.png", path: "/founder/projects" },
+  { label: "Talent", img: "/src/assets/talent.png", path: "/founder/talent" },
   {
     label: "Collaboration",
-    img: "/collab.png",
+    img: "/src/assets/collab.png",
     path: "/founder/collaboration",
   },
-  { label: "Wallet", img: "/wallet.png", path: "/founder/wallet" },
-  { label: "Settings", img: "/settings.png", path: "/founder/settings" },
+  { label: "Wallet", img: "/src/assets/wallet.png", path: "/founder/wallet" },
+  { label: "Settings", img: "/src/assets/settings.png", path: "/founder/settings" },
 ];
 
 export default function FounderDashboardLayout() {
@@ -58,7 +58,7 @@ export default function FounderDashboardLayout() {
           {/* Logo */}
           <Box>
             <img
-              src="/flogo.png"
+              src="/src/assets/flogo.png"
               alt="Apprelab"
               style={{ width: 166, height: 40 }}
             />

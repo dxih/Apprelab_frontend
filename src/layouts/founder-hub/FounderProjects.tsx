@@ -228,7 +228,7 @@ export default function FounderProjects() {
         >
           <Box
             component="img"
-            src="/plusicon.png"
+            src="/src/assets/plusicon.png"
             alt=""
             sx={{ width: 16, height: 16 }}
           />
@@ -321,7 +321,7 @@ export default function FounderProjects() {
                   />
                 </Box>
 
-                <img src="/dots.png" alt="" style={{ width: 16, height: 16 }} />
+                <img src="/src/assets/dots.png" alt="" style={{ width: 16, height: 16 }} />
               </Box>
 
               <Typography
@@ -383,7 +383,7 @@ export default function FounderProjects() {
                     }}
                   >
                     <img
-                      src="/clock.png"
+                      src="/src/assets/clock.png"
                       alt=""
                       style={{ width: 16, height: 16 }}
                     />
@@ -400,7 +400,7 @@ export default function FounderProjects() {
                     }}
                   >
                     <img
-                      src="/dollar.png"
+                      src="/src/assets/dollar.png"
                       alt=""
                       style={{ width: 16, height: 16 }}
                     />
@@ -417,7 +417,7 @@ export default function FounderProjects() {
                       gap: 0.6,
                     }}
                   >
-                    <img src="/talent.png" alt="" />
+                    <img src="/src/assets/talent.png" alt="" />
                     <Typography variant="body2" fontWeight="medium">
                       {project.applications} applications
                     </Typography>
