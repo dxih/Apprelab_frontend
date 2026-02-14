@@ -43,61 +43,51 @@ export const theme = createTheme({
   },
 
   typography: {
-    fontFamily: '"Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Helvetica Neue", sans-serif',
-    
+    fontFamily: '"Poppins", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", sans-serif',
+
     h1: {
-      fontFamily: '"Orbitron", "Inter", sans-serif',
       fontWeight: 700,
       fontSize: '3.75rem',
       lineHeight: 1.15,
       letterSpacing: '-0.02em',
-      color: '#1A1A1A',
       '@media (max-width:1200px)': { fontSize: '3rem' },
       '@media (max-width:900px)': { fontSize: '2.5rem' },
       '@media (max-width:600px)': { fontSize: '2rem' },
     },
 
     h2: {
-      fontFamily: '"Orbitron", "Inter", sans-serif',
       fontWeight: 600,
       fontSize: '2.75rem',
       lineHeight: 1.25,
       letterSpacing: '-0.015em',
-      color: '#1A1A1A',
       '@media (max-width:1200px)': { fontSize: '2.25rem' },
       '@media (max-width:900px)': { fontSize: '2rem' },
       '@media (max-width:600px)': { fontSize: '1.75rem' },
     },
 
     h3: {
-      fontFamily: '"Orbitron", "Inter", sans-serif',
       fontWeight: 600,
       fontSize: '2rem',
       lineHeight: 1.3,
       letterSpacing: '-0.01em',
-      color: '#1A1A1A',
       '@media (max-width:900px)': { fontSize: '1.75rem' },
       '@media (max-width:600px)': { fontSize: '1.5rem' },
     },
 
     h4: {
-      fontFamily: '"Orbitron", "Inter", sans-serif',
       fontWeight: 600,
       fontSize: '1.5rem',
       lineHeight: 1.35,
-      letterSpacing: '-0.005em',
       '@media (max-width:600px)': { fontSize: '1.25rem' },
     },
 
     h5: {
-      fontFamily: '"Orbitron", "Inter", sans-serif',
       fontWeight: 600,
       fontSize: '1.25rem',
       lineHeight: 1.4,
     },
 
     h6: {
-      fontFamily: '"Orbitron", "Inter", sans-serif',
       fontWeight: 600,
       fontSize: '1.125rem',
       lineHeight: 1.4,
@@ -154,7 +144,7 @@ export const theme = createTheme({
   spacing: 8,
 
   shape: {
-    borderRadius: 3,
+    borderRadius: 12,
   },
 
   shadows: [
@@ -190,158 +180,7 @@ export const theme = createTheme({
       styleOverrides: {
         body: {
           scrollBehavior: 'smooth',
-          '&::-webkit-scrollbar': {
-            width: '10px',
-          },
-          '&::-webkit-scrollbar-track': {
-            background: '#F1F5F9',
-          },
-          '&::-webkit-scrollbar-thumb': {
-            background: '#CBD5E1',
-            borderRadius: '5px',
-            '&:hover': {
-              background: '#94A3B8',
-            },
-          },
-        },
-      },
-    },
-
-    MuiButton: {
-      styleOverrides: {
-        root: {
-          textTransform: 'none',
-          borderRadius: '12px',
-          padding: '12px 32px',
-          fontSize: '1rem',
-          fontWeight: 600,
-          boxShadow: 'none',
-          transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
-          '&:hover': {
-            transform: 'translateY(-2px)',
-            boxShadow: '0 8px 24px rgba(0, 87, 255, 0.25)',
-          },
-          '&:active': {
-            transform: 'translateY(0)',
-          },
-        },
-        contained: {
-          boxShadow: '0 4px 12px rgba(0, 87, 255, 0.2)',
-          '&:hover': {
-            boxShadow: '0 8px 24px rgba(0, 87, 255, 0.3)',
-          },
-        },
-        outlined: {
-          borderWidth: '2px',
-          '&:hover': {
-            borderWidth: '2px',
-            backgroundColor: 'rgba(0, 87, 255, 0.04)',
-          },
-        },
-        sizeLarge: {
-          padding: '14px 40px',
-          fontSize: '1.125rem',
-        },
-        sizeSmall: {
-          padding: '8px 20px',
-          fontSize: '0.875rem',
-        },
-      },
-    },
-
-    MuiTextField: {
-      styleOverrides: {
-        root: {
-          '& .MuiOutlinedInput-root': {
-            borderRadius: '12px',
-            backgroundColor: '#FFFFFF',
-            transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
-            '& fieldset': {
-              borderColor: '#E2E8F0',
-              borderWidth: '2px',
-            },
-            '&:hover fieldset': {
-              borderColor: '#CBD5E1',
-            },
-            '&.Mui-focused fieldset': {
-              borderColor: '#0057FF',
-            },
-            '&.Mui-focused': {
-              boxShadow: '0 0 0 4px rgba(0, 87, 255, 0.1)',
-            },
-          },
-          '& .MuiInputLabel-root': {
-            '&.Mui-focused': {
-              color: '#0057FF',
-            },
-          },
-        },
-      },
-    },
-
-    MuiPaper: {
-      styleOverrides: {
-        root: {
-          backgroundImage: 'none',
-          borderRadius: '16px',
-          boxShadow: '0 4px 24px rgba(0, 0, 0, 0.06)',
-          transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
-        },
-        elevation1: {
-          boxShadow: '0 2px 8px rgba(0, 0, 0, 0.04)',
-        },
-        elevation2: {
-          boxShadow: '0 4px 16px rgba(0, 0, 0, 0.06)',
-        },
-        elevation3: {
-          boxShadow: '0 8px 24px rgba(0, 0, 0, 0.08)',
-        },
-      },
-    },
-
-    MuiCard: {
-      styleOverrides: {
-        root: {
-          borderRadius: '16px',
-          boxShadow: '0 4px 24px rgba(0, 0, 0, 0.06)',
-          transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
-          '&:hover': {
-            boxShadow: '0 8px 32px rgba(0, 0, 0, 0.12)',
-            transform: 'translateY(-4px)',
-          },
-        },
-      },
-    },
-
-    MuiChip: {
-      styleOverrides: {
-        root: {
-          borderRadius: '8px',
-          fontWeight: 600,
-          fontSize: '0.875rem',
-        },
-      },
-    },
-
-    MuiDivider: {
-      styleOverrides: {
-        root: {
-          borderColor: '#E2E8F0',
-        },
-      },
-    },
-
-    MuiLink: {
-      styleOverrides: {
-        root: {
-          textDecoration: 'none',
-          color: '#0057FF',
-          fontWeight: 500,
-          transition: 'all 0.2s ease',
-          '&:hover': {
-            color: '#003BB8',
-            textDecoration: 'underline',
-          },
+          fontFamily: '"Poppins", sans-serif',
         },
       },
     },
