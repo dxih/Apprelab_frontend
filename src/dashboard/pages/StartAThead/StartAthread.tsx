@@ -52,7 +52,7 @@ const StartThread: React.FC = () => {
     replies: 0,
     trending: false,
   };
-
+// testing
 
       setLoading(false);
       navigate(`/bootcamp/${id}/discussions`, { state: { newThread } });
