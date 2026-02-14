@@ -34,7 +34,7 @@ const quickActions = [
   {
     text: "Report an Issue",
     icon: <ReportIcon fontSize="small" />,
-    path: "/report",
+    path: "/report-issue",
   },
 ];
 

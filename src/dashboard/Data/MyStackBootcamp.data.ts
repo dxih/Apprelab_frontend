@@ -194,7 +194,7 @@ export const ongoingBootcamps: Bootcamp[] = [
         title: "How do I make my nav bar responsive?",
         body: "I’m struggling to make a responsive nav bar...",
         replies: 3,
-        trending: true
+        trending: true,
       }
     ],
     announcements: [

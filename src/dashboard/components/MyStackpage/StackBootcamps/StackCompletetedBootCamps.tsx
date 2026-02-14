@@ -187,6 +187,8 @@ export default function StackCompletedBootcamps() {
                   <Button
                     size="small"
                     variant="contained"
+                    component={Link}
+                    to="/contact-organizers"
                     sx={{
                       bgcolor: "#001B44",
                       fontSize: "11px",
