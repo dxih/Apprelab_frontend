@@ -101,7 +101,7 @@ export default function PostNewProjectDialogContent({
           Project Type
           <span style={{ color: "#fb2c36", marginLeft: 4 }}>*</span>
         </label>
-        <Stack direction="row" spacing={1} flexWrap="wrap" gap={1}>
+        <Stack direction="row" spacing={1.5} flexWrap="wrap" gap={1}>
           {projectTypes.map((type) => (
             <Chip
               key={type}
@@ -113,7 +113,7 @@ export default function PostNewProjectDialogContent({
                 bgcolor: formData.type === type ? "#010a45" : "grey.200",
                 color: formData.type === type ? "white" : "text.primary",
                 fontWeight: formData.type === type ? 600 : 400,
-                px: 2.5,
+                px: 2.2,
                 py: 3,
                 "&:hover": {
                   bgcolor: formData.type === type ? "#010a45" : "grey.200",
@@ -406,7 +406,7 @@ export default function PostNewProjectDialogContent({
           Who can apply?
           <span style={{ color: "#fb2c36", marginLeft: 4 }}>*</span>
         </label>
-        <Stack direction="row" spacing={1} flexWrap="wrap" gap={1}>
+        <Stack direction="row" spacing={1.5} flexWrap="wrap" gap={1}>
           {applicantsList.map((type) => (
             <Chip
               key={type}

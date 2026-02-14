@@ -95,8 +95,8 @@ export default function FounderOverview() {
         spacing={5}
         mb={3}
         sx={{
-          flexWrap: "wrap", // lets cards go to next line if screen is small
-          justifyContent: "flex-start", // aligns left normally
+          flexWrap: "wrap",
+          justifyContent: "flex-start", 
         }}
       >
         {statsCards.map((item) => (
@@ -121,21 +121,10 @@ export default function FounderOverview() {
                 sx={{ width: 48, height: 48 }}
               />
 
-              {/* <Typography
-                sx={{
-                  fontFamily: "Arial",
-                  fontWeight: 700,
-                  fontSize: "20px",
-                  lineHeight: "28px",
-                  color: "#101828",
-                }}
-              >
-                {item.value}
-              </Typography> */}
               <Typography
                 sx={{
                   fontFamily: "Arial",
-                  fontWeight: 700, // Bold
+                  fontWeight: 700, 
                   fontStyle: "normal",
                   fontSize: "30px",
                   lineHeight: "36px",
@@ -310,7 +299,6 @@ export default function FounderOverview() {
         {/* Right Column */}
         <Stack spacing={2} flex={1}>
           <Card
-            //    sx={{ p: 2, borderRadius: "14px" }}
             sx={{
               borderRadius: "14px",
               px: 3,
@@ -421,14 +409,6 @@ export default function FounderOverview() {
             </Stack>
           </Card>
 
-          {/* <Card
-            sx={{
-              p: 2.5,
-              borderRadius: "14px",
-              background: "linear-gradient(135deg, #615FFF 0%, #010A45 100%)",
-              color: "#fff",
-            }}
-          > */}
           <Card
             sx={{
               p: 2.5,

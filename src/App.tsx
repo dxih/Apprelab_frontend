@@ -70,6 +70,8 @@ import FounderCollaboration from "./layouts/founder-hub/FounderCollaboration";
 import FounderWallet from "./layouts/founder-hub/FounderWallet";
 import FounderSettings from "./layouts/founder-hub/FounderSettings";
 import FounderOverview from "./layouts/founder-hub/FounderOverview";
+import FounderProjectDetail from "./layouts/founder-hub/FounderProjectDetail";
+
 
 
 function App() {
@@ -86,6 +88,7 @@ function App() {
       >
         <Route index element={<FounderDashboard />} />
         <Route path="projects" element={<FounderProjects />} />
+        <Route path="projects/:id" element={<FounderProjectDetail />} /> 
         <Route path="talent" element={<FounderTalent />} />
         <Route path="collaboration" element={<FounderCollaboration />} />
         <Route path="wallet" element={<FounderWallet />} />

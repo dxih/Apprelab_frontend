@@ -16,54 +16,14 @@ import SearchIcon from "@mui/icons-material/Search";
 import DashboardHeading from "./DashboardHeading";
 import { useDashboard } from "../../context/DashboardContext";
 import PostNewProjectDialog from "./PostNewProjectDialog";
-
-// Data
-const initialProjects = [
-  {
-    title: "Mobile App Development",
-    status: "open",
-    category: "Development",
-    description:
-      "Need a React Native developer to build a fitness tracking app",
-    tags: ["React Native", "JavaScript", "Firebase"],
-    duration: "3 months",
-    budget: "$3,000",
-    budgetType: "(Fixed)",
-    applications: 8,
-    posted: "Posted 2 days ago",
-  },
-  {
-    title: "Dashboard Redesign",
-    status: "in-progress",
-    category: "Design",
-    description: "Looking for UI/UX designer to revamp our analytics dashboard",
-    tags: ["Figma", "UI/UX", "Design Systems"],
-    duration: "1 month",
-    budget: "$1,500",
-    budgetType: "(Milestone-based)",
-    applications: 4,
-    posted: "Posted 1 week ago",
-  },
-  {
-    title: "Data Analysis & Visualization",
-    status: "open",
-    category: "Data",
-    description: "Analyze customer data and create interactive dashboards",
-    tags: ["Python", "Data Analysis", "Tableau"],
-    duration: "2 weeks",
-    budget: "$800",
-    budgetType: "(Fixed)",
-    applications: 12,
-    posted: "Posted 5 days ago",
-  },
-];
+import { useNavigate } from "react-router-dom";
 
 // color mappings
 const statusColors: Record<string, { bg: string; color: string }> = {
-  open: { bg: "#DCFCE7", color: "#008236" },
-  "in-progress": { bg: "#DBEAFE", color: "#1447E6" },
-  pending: { bg: "#FEF3C7", color: "#B45309" },
-  completed: { bg: "#F3E8FF", color: "#8200DB" },
+  Open: { bg: "#DCFCE7", color: "#008236" },
+  "In Progress": { bg: "#DBEAFE", color: "#1447E6" },
+  Pending: { bg: "#FEF3C7", color: "#B45309" },
+  Completed: { bg: "#F3E8FF", color: "#8200DB" },
 };
 
 const categoryColors: Record<string, { bg: string; color: string }> = {
@@ -82,8 +42,8 @@ const chipTypography = {
 };
 
 export default function FounderProjects() {
-  
-  const [projects, setProjects] = useState(initialProjects);
+  const { projects, addProject } = useDashboard();
+
   const [tabValue, setTabValue] = useState(0);
   const [openNewProject, setOpenNewProject] = useState(false);
 
@@ -91,15 +51,27 @@ export default function FounderProjects() {
 
   useEffect(() => {
     setProjectsCount(projects.length);
-  }, []); 
+  }, []);
 
   const handleTabChange = (event: React.SyntheticEvent, newValue: number) => {
     setTabValue(newValue);
   };
 
   const handleNewProjectSubmit = (projectData: any) => {
-    setProjects((prev) => [...prev, projectData]);
+    addProject(projectData);
   };
+
+  const navigate = useNavigate();
+
+  const tabs = ["All", "Open", "In Progress", "Completed"];
+
+  const filteredProjects =
+    tabs[tabValue] === "All"
+      ? projects
+      : projects.filter(
+          (project) =>
+            project.status.toLowerCase() === tabs[tabValue].toLowerCase(),
+        );
 
   return (
     <Box sx={{ p: 3, maxWidth: 1200, mx: "auto" }}>
@@ -179,7 +151,7 @@ export default function FounderProjects() {
             },
           }}
         >
-          {["All", "Open", "In Progress", "Completed"].map((label, index) => (
+          {tabs.map((label, index) => (
             <Tab
               key={index}
               label={label}
@@ -245,9 +217,9 @@ export default function FounderProjects() {
 
       {/* Project Cards */}
       <Stack spacing={2}>
-        {projects.map((project, index) => (
+        {filteredProjects.map((project) =>  (
           <Card
-            key={index}
+            key={project.id}
             variant="outlined"
             sx={{
               width: "full",
@@ -321,7 +293,11 @@ export default function FounderProjects() {
                   />
                 </Box>
 
-                <img src="/src/assets/dots.png" alt="" style={{ width: 16, height: 16 }} />
+                <img
+                  src="/src/assets/dots.png"
+                  alt=""
+                  style={{ width: 16, height: 16 }}
+                />
               </Box>
 
               <Typography
@@ -347,9 +323,9 @@ export default function FounderProjects() {
                     size="small"
                     variant="outlined"
                     sx={{
-                      px: "12px", // left + right padding
-                      py: "4px", // top + bottom padding
-                      borderRadius: "9999px", // fully rounded pill
+                      px: "12px",
+                      py: "4px",
+                      borderRadius: "9999px",
                       backgroundColor: "#F3F4F6",
                       color: "#364153",
                       fontFamily: "Arial",
@@ -359,9 +335,9 @@ export default function FounderProjects() {
                       lineHeight: "20px",
                       letterSpacing: 0,
                       textTransform: "none",
-                      border: "none", // remove outlined default border
+                      border: "none",
                       height: 28,
-                      minWidth: 101.22, // optional: exact width from Figma
+                      minWidth: 101.22,
                     }}
                   />
                 ))}
@@ -440,6 +416,7 @@ export default function FounderProjects() {
                 </Typography>
 
                 <Button
+                  onClick={() => navigate(`/founder/projects/${project.id}`)}
                   sx={{
                     width: 95,
                     height: 20,
