@@ -10,10 +10,12 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@emailjs/browser": "^4.4.1",
     "@formspree/react": "^3.0.0",
     "@mui/icons-material": "^5.18.0",
     "@mui/material": "^5.18.0",
     "@mui/styled-engine-sc": "^7.3.7",
+    "date-fns": "^4.1.0",
     "framer-motion": "^12.23.24",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",

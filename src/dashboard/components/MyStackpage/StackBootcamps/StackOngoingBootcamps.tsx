@@ -9,13 +9,13 @@ import {
 } from "@mui/material";
 import { useTheme } from "@mui/material";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
-import { Link } from "react-router-dom"; 
+import { Link } from "react-router-dom";
 import type { IResource } from "../../../Data/MyStackBootcamp.data";
 import type { IAssessment } from "../../../Data/MyStackBootcamp.data";
 import type { IReview } from "../../../Data/MyStackBootcamp.data";
 import type { IDiscussion } from "../../../Data/MyStackBootcamp.data";
 
- export interface Bootcamp {
+export interface Bootcamp {
   id: string; // 1. ADDED ID HERE
   title: string;
   description: string;
@@ -29,15 +29,14 @@ import type { IDiscussion } from "../../../Data/MyStackBootcamp.data";
   level: "Beginner" | "Intermediate" | "Advanced";
   nextCohort: {
     date: string;
-    oldPrice: string; 
+    oldPrice: string;
     newPrice: string;
   };
- resources: IResource[];
- assessments: IAssessment[];
- reviews: IReview[];
- discussions: IDiscussion[];
-announcements: string[];
-
+  resources: IResource[];
+  assessments: IAssessment[];
+  reviews: IReview[];
+  discussions: IDiscussion[];
+  announcements: string[];
 }
 
 interface Props {
@@ -46,7 +45,7 @@ interface Props {
 
 const StackOngoingBootcamps: React.FC<Props> = ({ bootcamps }) => {
   const theme = useTheme();
-  
+
   return (
     <Box>
       <Box
@@ -58,7 +57,7 @@ const StackOngoingBootcamps: React.FC<Props> = ({ bootcamps }) => {
       >
         {bootcamps.map((bootcamp, i) => (
           <Card
-            key={bootcamp.id || i} 
+            key={bootcamp.id || i}
             sx={{
               display: "flex",
               flexDirection: { xs: "column", md: "row" },
@@ -85,7 +84,9 @@ const StackOngoingBootcamps: React.FC<Props> = ({ bootcamps }) => {
               <MoreVertIcon fontSize="small" />
             </IconButton>
 
-            <Box sx={{ display: "flex", flexDirection: "column", width: "100%" }}>
+            <Box
+              sx={{ display: "flex", flexDirection: "column", width: "100%" }}
+            >
               <Box
                 sx={{
                   display: "flex",
@@ -107,7 +108,7 @@ const StackOngoingBootcamps: React.FC<Props> = ({ bootcamps }) => {
                     mb: 1.5,
                   }}
                 />
-                
+
                 <Box sx={{ flex: 1, minWidth: 0 }}>
                   <Typography
                     variant="h5"
@@ -134,17 +135,65 @@ const StackOngoingBootcamps: React.FC<Props> = ({ bootcamps }) => {
                     {bootcamp.description}{" "}
                     <strong>(Duration: {bootcamp.duration})</strong>
                   </Typography>
-
+                  
                   {/* Progress Section */}
-                  <Box sx={{ display: "flex", flexDirection: { xs: "column", md: "row" }, alignItems: "center", gap: 2, mb: 4.5 }}>
-                    <Typography variant="subtitle1" sx={{ fontSize: "0.8rem", fontWeight: 500 }}>
-                      Progress Status
-                    </Typography>
-                    <Box sx={{ flex: 1, width: "100%", display:"flex", flexDirection:"column", textAlign:"center" }}>
-                      <LinearProgress variant="determinate" value={bootcamp.progress} sx={{ height: 8, borderRadius: 2 }} />
-                      <Typography variant="subtitle2" sx={{ fontSize: "0.75rem", mt: 0.5 }}>
+                  <Box
+                    sx={{
+                      display: "flex",
+                      flexDirection: "column",
+                      width: "100%",
+                      mb: 4.5,
+                    }}
+                  >
+                    {/* Row for Labels */}
+                    <Box
+                      sx={{
+                        display: "flex",
+                        justifyContent: "space-between", 
+                        alignItems: "flex-end", 
+                        mb: 1.5, 
+                      }}
+                    >
+                      <Typography
+                        variant="subtitle1"
+                        sx={{
+                          fontSize: "0.8rem",
+                          fontWeight: 600,
+                          color: "#001B44",
+                          lineHeight: 1, 
+                        }}
+                      >
+                        Progress Status
+                      </Typography>
+
+                      <Typography
+                        variant="subtitle2"
+                        sx={{
+                          fontSize: "0.75rem",
+                          fontWeight: 700,
+                          color: "#001B44",
+                          lineHeight: 1,
+                        }}
+                      >
                         {bootcamp.progress}% Completed
                       </Typography>
+                    </Box>
+
+                    {/* Progress Bar Container */}
+                    <Box sx={{ width: "100%" }}>
+                      <LinearProgress
+                        variant="determinate"
+                        value={bootcamp.progress}
+                        sx={{
+                          height: 8,
+                          borderRadius: 10,
+                          bgcolor: "#F1F4FF",
+                          "& .MuiLinearProgress-bar": {
+                            bgcolor: "#001B44",
+                            borderRadius: 10,
+                          },
+                        }}
+                      />
                     </Box>
                   </Box>
                 </Box>
@@ -178,11 +227,17 @@ const StackOngoingBootcamps: React.FC<Props> = ({ bootcamps }) => {
                   Next Class: {bootcamp.nextClass}
                 </Typography>
 
-                <Box sx={{ display: "flex", gap: 2, width: { xs: "100%", md: "auto" } }}>
+                <Box
+                  sx={{
+                    display: "flex",
+                    gap: 2,
+                    width: { xs: "100%", md: "auto" },
+                  }}
+                >
                   {/* 2. UPDATED RESOURCES BUTTON WITH LINK */}
                   <Button
                     component={Link}
-                    to={`/bootcamp/${bootcamp.id}/resources`} 
+                    to={`/bootcamp/${bootcamp.id}/resources`}
                     variant="outlined"
                     size="small"
                     sx={{
@@ -193,7 +248,7 @@ const StackOngoingBootcamps: React.FC<Props> = ({ bootcamps }) => {
                   >
                     Resources
                   </Button>
-                  
+
                   {/* 3. UPDATED ASSESSMENTS BUTTON WITH LINK */}
                   <Button
                     component={Link}

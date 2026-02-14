@@ -77,7 +77,7 @@ const StackAddedToCart: React.FC<StackAddedToCartProps> = ({ courses }) => {
             <Box
               sx={{
                 display: "flex",
-                flexDirection: { xs: "column", sm: "row" },
+                flexDirection: "row",
                 gap: 1,
                 justifyContent: "flex-start",
                 width: "100%",

@@ -54,25 +54,31 @@ const JoinCommunity: React.FC = () => {
             <Stack spacing={2} sx={{ py: 4 }}>
               <Typography
                 variant="h4"
-                sx={{ fontWeight: 800, color: "#001B44", fontFamily:theme.typography.fontFamily }}
+                sx={{
+                  fontWeight: 800,
+                  color: "#001B44",
+                  fontFamily: theme.typography.fontFamily,
+                }}
               >
                 Success! 🎉
               </Typography>
-              <Typography sx={{ color: "#666", fontFamily:theme.typography.fontFamily }}>
+              <Typography
+                sx={{ color: "#666", fontFamily: theme.typography.fontFamily }}
+              >
                 Thank you for joining. We've received your request and will
                 reach out shortly.
               </Typography>
-              <Button 
-                component="a" 
-                href="/dashboard" 
-                sx={{ 
-                    fontWeight: 700, 
-                    textTransform: "none", 
-                    color: "#001B44", 
-                    fontFamily: theme.typography.fontFamily,
+              <Button
+                component="a"
+                href="/dashboard/mystack"
+                sx={{
+                  fontWeight: 700,
+                  textTransform: "none",
+                  color: "#001B44",
+                  fontFamily: theme.typography.fontFamily,
                 }}
               >
-                Back to Dashboard
+                Continue Learning
               </Button>
             </Stack>
           ) : (
@@ -135,10 +141,10 @@ const JoinCommunity: React.FC = () => {
                         },
                       }}
                     />
-                    <ValidationError 
-                      prefix="Name" 
-                      field="name" 
-                      errors={state.errors} 
+                    <ValidationError
+                      prefix="Name"
+                      field="name"
+                      errors={state.errors}
                     />
                   </Box>
 
@@ -171,25 +177,37 @@ const JoinCommunity: React.FC = () => {
                   </Box>
                 </Stack>
 
-                <Button
-                  type="submit"
-                  disabled={state.submitting}
-                  variant="contained"
-                  sx={{
-                    bgcolor: "#001B44",
-                    color: "#fff",
-                    textTransform: "none",
-                    fontSize: "1rem",
-                    fontWeight: 700,
-                    py: 1.8,
-                    width: "100%",
-                    borderRadius: "12px",
-                    boxShadow: "0 4px 14px 0 rgba(0,27,68,0.3)",
-                    "&:hover": { bgcolor: "#001230" },
-                  }}
-                >
-                  {state.submitting ? "Joining..." : "Join Now →"}
-                </Button>
+                <Box sx={{ display: "flex", justifyContent: "center", mt: 4 }}>
+                  <Button
+                    type="submit"
+                    disabled={state.submitting}
+                    variant="contained"
+                    sx={{
+                      bgcolor: "#001B44",
+                      color: "#fff",
+                      textTransform: "none",
+                      fontSize: "1rem",
+                      fontWeight: 700,
+                      py: 1.8,
+                      width: { xs: "100%", sm: "473px" },
+                      borderRadius: "12px",
+                      fontFamily: theme.typography.fontFamily,
+                      boxShadow: "0 4px 14px 0 rgba(0,27,68,0.3)",
+                      "&.Mui-disabled": {
+                        bgcolor: "#001B44",
+                        color: "#fff", 
+                        opacity: 0.8, 
+                      },
+
+                      "&:hover": {
+                        bgcolor: "#001230",
+                        boxShadow: "0 6px 20px 0 rgba(0,27,68,0.4)",
+                      },
+                    }}
+                  >
+                    {state.submitting ? "Joining..." : "Join Now →"}
+                  </Button>
+                </Box>
               </Box>
             </>
           )}

@@ -26,7 +26,7 @@ export interface Course {
   timeLeft?: string;
 }
 
- export interface Props {
+export interface Props {
   courses: Course[];
 }
 
@@ -131,45 +131,71 @@ const StackOngoingCourses: React.FC<Props> = ({ courses }) => {
                   <Box
                     sx={{
                       display: "flex",
-                      flexDirection: { xs: "column", md: "row" },
-                      alignItems: "center",
-                      gap: 2,
+                      flexDirection: "column", // Stack vertically for a cleaner mobile look
+                      width: "100%",
                       mb: { xs: 2, md: 4.5 },
                     }}
                   >
-                    <Typography
-                      variant="subtitle1"
-                      sx={{ fontSize: "0.8rem", fontWeight: 500 }}
-                    >
-                      Progress Status
-                    </Typography>
+                    {/* Top Label Row: Status on left, Percentage on right */}
                     <Box
                       sx={{
-                        flex: 1,
-                        width: "100%",
                         display: "flex",
-                        flexDirection: "column",
-                        textAlign: "center",
+                        justifyContent: "space-between",
+                        alignItems: "center",
+                        mb: 1, // Space between text and the bar
                       }}
                     >
-                      <LinearProgress
-                        variant="determinate"
-                        value={course.progress}
+                      <Typography
+                        variant="subtitle1"
                         sx={{
-                          height: 8,
-                          borderRadius: 2,
-                          bgcolor: "#e0e0e0",
-
-                          "& .MuiLinearProgress-bar": { bgcolor: "#001B44" },
+                          fontSize: { xs: "0.75rem", md: "0.8rem" },
+                          fontWeight: 600,
+                          color: "#001B44",
+                          textTransform: "uppercase",
+                          letterSpacing: "0.5px",
                         }}
-                      />
+                      >
+                        Progress Status
+                      </Typography>
+
                       <Typography
                         variant="subtitle2"
-                        sx={{ fontSize: "0.75rem", mt: 0.5 }}
+                        sx={{
+                          fontSize: { xs: "0.75rem", md: "0.8rem" },
+                          fontWeight: 700,
+                          color: "#001B44",
+                        }}
                       >
-                        {course.progress}% Completed
+                        {course.progress}%
                       </Typography>
                     </Box>
+
+                    {/* The Progress Bar */}
+                    <LinearProgress
+                      variant="determinate"
+                      value={course.progress}
+                      sx={{
+                        height: 8,
+                        borderRadius: 4,
+                        bgcolor: "#F1F4FF", 
+                        "& .MuiLinearProgress-bar": {
+                          bgcolor: "#001B44",
+                          borderRadius: 4, 
+                        },
+                      }}
+                    />
+
+                    <Typography
+                      variant="caption"
+                      sx={{
+                        fontSize: "0.7rem",
+                        color: "#666",
+                        mt: 0.5,
+                        display: { xs: "block", md: "none" }, 
+                      }}
+                    >
+                      Keep going! You're doing great.
+                    </Typography>
                   </Box>
                 </Box>
               </Box>

@@ -50,7 +50,12 @@ import CertificateDetail from "./dashboard/pages/certificates/CertificateDetails
 
 // join community
 import JoinCommunity from "./dashboard/pages/community/JoinCommunity";
-
+// contact Organizers
+import ContactOrganizers from "./dashboard/pages/contactOrganiser/ContactOrganiser";
+// Report an Issue
+import ReportIssue from "./dashboard/pages/ReportAnIssue/ReportAnIssue";
+// start a thread
+import StartThread from "./dashboard/pages/StartAThead/StartAthread";
 // 🔐 Auth Pages
 import Signup from "./dashboard/pages/auth/Signup";
 import Login from "./dashboard/pages/auth/Login";
@@ -139,7 +144,12 @@ function App() {
         <Route path="/certificates/:id" element={<CertificateDetail />} />
         {/* join community */}
         <Route path="/community/join" element={<JoinCommunity />} />
-
+        {/* contact Organiser */}
+        <Route path="/contact-organizers" element={<ContactOrganizers />} />
+        {/* Report an Isssue */}
+        <Route path="/report-issue" element={<ReportIssue />} />
+        {/* start a thread */}
+        <Route path="/bootcamp/:id/start-thread" element={<StartThread />} />
         {/* Payment Pages */}
         <Route path="/dashboard/shoppingcart" element={<ShoppingCart />} />
         <Route path="/dashboard/checkout" element={<Checkout />} />
