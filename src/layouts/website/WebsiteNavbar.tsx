@@ -16,8 +16,9 @@ import {
 import SearchIcon from "@mui/icons-material/Search";
 import MenuIcon from "@mui/icons-material/Menu";
 import CloseIcon from "@mui/icons-material/Close";
-import { motion, AnimatePresence } from "framer-motion";
-import logo from "../../assets/images/logos/apprelab_logo_dark.png";
+import { motion, AnimatePresence } from "framer-motion"
+import logo from "../../assets/logos/apprelab_logo_dark.png";
+
 
 
 const WebsiteNavbar: React.FC = () => {
@@ -69,7 +70,7 @@ const WebsiteNavbar: React.FC = () => {
             ml: 4,
             display: { xs: "none", md: "flex" },
             alignItems: "center",
-            gap: 4,
+            gap: 5,
             fontWeight: 500,
           }}
         >
