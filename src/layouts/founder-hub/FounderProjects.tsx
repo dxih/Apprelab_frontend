@@ -183,17 +183,25 @@ export default function FounderProjects() {
 
         <Button
           sx={{
-            width: 199,
+            width: 199.390625,
             height: 48,
             borderRadius: "10px",
             backgroundColor: "#010A45",
             color: "#fff",
-            textTransform: "none",
+            fontFamily: "Arial",
+            fontWeight: 400,
+            fontStyle: "normal",
             fontSize: 16,
+            lineHeight: "24px",
+            letterSpacing: 0,
+            textAlign: "center",
+            textTransform: "none",
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
+            whiteSpace: "nowrap",
             gap: 1,
+            opacity: 1,
             "&:hover": { backgroundColor: "#010A45" },
           }}
           onClick={() => setOpenNewProject(true)}
@@ -217,7 +225,7 @@ export default function FounderProjects() {
 
       {/* Project Cards */}
       <Stack spacing={2}>
-        {filteredProjects.map((project) =>  (
+        {filteredProjects.map((project) => (
           <Card
             key={project.id}
             variant="outlined"
