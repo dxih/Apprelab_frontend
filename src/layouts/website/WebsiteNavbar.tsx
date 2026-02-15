@@ -17,7 +17,11 @@ import SearchIcon from "@mui/icons-material/Search";
 import MenuIcon from "@mui/icons-material/Menu";
 import CloseIcon from "@mui/icons-material/Close";
 import { motion, AnimatePresence } from "framer-motion";
+<<<<<<< HEAD
 import logo from "../../assets/images/logos/apprelab_logo_dark.png";
+=======
+import logo from "../../assets/logos/apprelab_logo_dark.png";
+>>>>>>> ft/details
 
 
 const WebsiteNavbar: React.FC = () => {
@@ -30,6 +34,10 @@ const WebsiteNavbar: React.FC = () => {
     { label: "Mentor", path: "/mentor" },
     { label: "Create", path: "/create" },
     { label: "Hire", path: "/hire" },
+<<<<<<< HEAD
+=======
+
+>>>>>>> ft/details
   ];
 
   const toggleDrawer = (open: boolean) => {
@@ -69,7 +77,11 @@ const WebsiteNavbar: React.FC = () => {
             ml: 4,
             display: { xs: "none", md: "flex" },
             alignItems: "center",
+<<<<<<< HEAD
             gap: 4,
+=======
+            gap: 5,
+>>>>>>> ft/details
             fontWeight: 500,
           }}
         >

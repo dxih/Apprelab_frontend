@@ -43,61 +43,51 @@ export const theme = createTheme({
   },
 
   typography: {
-    fontFamily: '"Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Helvetica Neue", sans-serif',
-    
+    fontFamily: '"Poppins", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", sans-serif',
+
     h1: {
-      fontFamily: '"Orbitron", "Inter", sans-serif',
       fontWeight: 700,
       fontSize: '3.75rem',
       lineHeight: 1.15,
       letterSpacing: '-0.02em',
-      color: '#1A1A1A',
       '@media (max-width:1200px)': { fontSize: '3rem' },
       '@media (max-width:900px)': { fontSize: '2.5rem' },
       '@media (max-width:600px)': { fontSize: '2rem' },
     },
 
     h2: {
-      fontFamily: '"Orbitron", "Inter", sans-serif',
       fontWeight: 600,
       fontSize: '2.75rem',
       lineHeight: 1.25,
       letterSpacing: '-0.015em',
-      color: '#1A1A1A',
       '@media (max-width:1200px)': { fontSize: '2.25rem' },
       '@media (max-width:900px)': { fontSize: '2rem' },
       '@media (max-width:600px)': { fontSize: '1.75rem' },
     },
 
     h3: {
-      fontFamily: '"Orbitron", "Inter", sans-serif',
       fontWeight: 600,
       fontSize: '2rem',
       lineHeight: 1.3,
       letterSpacing: '-0.01em',
-      color: '#1A1A1A',
       '@media (max-width:900px)': { fontSize: '1.75rem' },
       '@media (max-width:600px)': { fontSize: '1.5rem' },
     },
 
     h4: {
-      fontFamily: '"Orbitron", "Inter", sans-serif',
       fontWeight: 600,
       fontSize: '1.5rem',
       lineHeight: 1.35,
-      letterSpacing: '-0.005em',
       '@media (max-width:600px)': { fontSize: '1.25rem' },
     },
 
     h5: {
-      fontFamily: '"Orbitron", "Inter", sans-serif',
       fontWeight: 600,
       fontSize: '1.25rem',
       lineHeight: 1.4,
     },
 
     h6: {
-      fontFamily: '"Orbitron", "Inter", sans-serif',
       fontWeight: 600,
       fontSize: '1.125rem',
       lineHeight: 1.4,
@@ -154,7 +144,7 @@ export const theme = createTheme({
   spacing: 8,
 
   shape: {
-    borderRadius: 3,
+    borderRadius: 12,
   },
 
   shadows: [
@@ -347,3 +337,4 @@ export const theme = createTheme({
     },
   },
 });
+
