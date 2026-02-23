@@ -122,3 +122,7 @@ Turning learning into real-world earning.
 ## 📄 License
 This project is proprietary and owned by AppreLab.
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> main

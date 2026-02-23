@@ -14,13 +14,21 @@ import BehanceIcon from "@mui/icons-material/Brush";
 
 import apprelabLogoLight from "../../assets/logos/apprelab_logo_light.png";
 import dxhubLogo from "../../assets/logos/dxhub_logo.png";
+<<<<<<< HEAD
+=======
+
+>>>>>>> main
 
 const WebsiteFooter: React.FC = () => {
   return (
     <Box
       component="footer"
       sx={{
+<<<<<<< HEAD
         backgroundColor: "#020C38", // Keep your custom dark blue
+=======
+        backgroundColor: "#020C38", 
+>>>>>>> main
         color: "common.white",
         px: { xs: 4, sm: 6, md: 10 },
         py: { xs: 8, md: 10 },
@@ -56,6 +64,10 @@ const WebsiteFooter: React.FC = () => {
             variant="body2"
             sx={{
               color: "text.disabled",
+<<<<<<< HEAD
+=======
+
+>>>>>>> main
               lineHeight: 1.6,
               mb: 1.5,
               maxWidth: "260px",
@@ -64,7 +76,10 @@ const WebsiteFooter: React.FC = () => {
             Apprelab helps you acquire practical tech skills through guided
             bootcamps, project-based learning, and mentorship.
           </Typography>
+<<<<<<< HEAD
 
+=======
+>>>>>>> main
           <Typography variant="body2" sx={{ color: "text.disabled", mb: 3 }}>
             Email: support@apprelab.com
           </Typography>
@@ -138,7 +153,6 @@ const WebsiteFooter: React.FC = () => {
           <Typography variant="h6" sx={{ mb: 2 }}>
             Category
           </Typography>
-
           {[
             { label: "Design", to: "/category/design" },
             { label: "Development", to: "/category/development" },
@@ -199,7 +213,11 @@ const WebsiteFooter: React.FC = () => {
               "& .MuiInputBase-input::placeholder": {
                 color: "text.disabled",
                 opacity: 0.7,
+<<<<<<< HEAD
               },
+=======
+              }
+>>>>>>> main
             }}
           />
 

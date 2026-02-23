@@ -9,13 +9,21 @@ import {
 } from "@mui/material";
 import { useTheme } from "@mui/material";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
+<<<<<<< HEAD
 import { Link } from "react-router-dom";
+=======
+import { Link } from "react-router-dom"; 
+>>>>>>> main
 import type { IResource } from "../../../Data/MyStackBootcamp.data";
 import type { IAssessment } from "../../../Data/MyStackBootcamp.data";
 import type { IReview } from "../../../Data/MyStackBootcamp.data";
 import type { IDiscussion } from "../../../Data/MyStackBootcamp.data";
 
+<<<<<<< HEAD
 export interface Bootcamp {
+=======
+ export interface Bootcamp {
+>>>>>>> main
   id: string; // 1. ADDED ID HERE
   title: string;
   description: string;
@@ -29,6 +37,7 @@ export interface Bootcamp {
   level: "Beginner" | "Intermediate" | "Advanced";
   nextCohort: {
     date: string;
+<<<<<<< HEAD
     oldPrice: string;
     newPrice: string;
   };
@@ -37,6 +46,17 @@ export interface Bootcamp {
   reviews: IReview[];
   discussions: IDiscussion[];
   announcements: string[];
+=======
+    oldPrice: string; 
+    newPrice: string;
+  };
+ resources: IResource[];
+ assessments: IAssessment[];
+ reviews: IReview[];
+ discussions: IDiscussion[];
+announcements: string[];
+
+>>>>>>> main
 }
 
 interface Props {
@@ -45,7 +65,11 @@ interface Props {
 
 const StackOngoingBootcamps: React.FC<Props> = ({ bootcamps }) => {
   const theme = useTheme();
+<<<<<<< HEAD
 
+=======
+  
+>>>>>>> main
   return (
     <Box>
       <Box
@@ -57,7 +81,11 @@ const StackOngoingBootcamps: React.FC<Props> = ({ bootcamps }) => {
       >
         {bootcamps.map((bootcamp, i) => (
           <Card
+<<<<<<< HEAD
             key={bootcamp.id || i}
+=======
+            key={bootcamp.id || i} 
+>>>>>>> main
             sx={{
               display: "flex",
               flexDirection: { xs: "column", md: "row" },
@@ -84,9 +112,13 @@ const StackOngoingBootcamps: React.FC<Props> = ({ bootcamps }) => {
               <MoreVertIcon fontSize="small" />
             </IconButton>
 
+<<<<<<< HEAD
             <Box
               sx={{ display: "flex", flexDirection: "column", width: "100%" }}
             >
+=======
+            <Box sx={{ display: "flex", flexDirection: "column", width: "100%" }}>
+>>>>>>> main
               <Box
                 sx={{
                   display: "flex",
@@ -108,7 +140,11 @@ const StackOngoingBootcamps: React.FC<Props> = ({ bootcamps }) => {
                     mb: 1.5,
                   }}
                 />
+<<<<<<< HEAD
 
+=======
+                
+>>>>>>> main
                 <Box sx={{ flex: 1, minWidth: 0 }}>
                   <Typography
                     variant="h5"
@@ -135,6 +171,7 @@ const StackOngoingBootcamps: React.FC<Props> = ({ bootcamps }) => {
                     {bootcamp.description}{" "}
                     <strong>(Duration: {bootcamp.duration})</strong>
                   </Typography>
+<<<<<<< HEAD
                   
                   {/* Progress Section */}
                   <Box
@@ -195,6 +232,20 @@ const StackOngoingBootcamps: React.FC<Props> = ({ bootcamps }) => {
                         }}
                       />
                     </Box>
+=======
+
+                  {/* Progress Section */}
+                  <Box sx={{ display: "flex", flexDirection: { xs: "column", md: "row" }, alignItems: "center", gap: 2, mb: 4.5 }}>
+                    <Typography variant="subtitle1" sx={{ fontSize: "0.8rem", fontWeight: 500 }}>
+                      Progress Status
+                    </Typography>
+                    <Box sx={{ flex: 1, width: "100%", display:"flex", flexDirection:"column", textAlign:"center" }}>
+                      <LinearProgress variant="determinate" value={bootcamp.progress} sx={{ height: 8, borderRadius: 2 }} />
+                      <Typography variant="subtitle2" sx={{ fontSize: "0.75rem", mt: 0.5 }}>
+                        {bootcamp.progress}% Completed
+                      </Typography>
+                    </Box>
+>>>>>>> main
                   </Box>
                 </Box>
               </Box>
@@ -227,6 +278,7 @@ const StackOngoingBootcamps: React.FC<Props> = ({ bootcamps }) => {
                   Next Class: {bootcamp.nextClass}
                 </Typography>
 
+<<<<<<< HEAD
                 <Box
                   sx={{
                     display: "flex",
@@ -238,6 +290,13 @@ const StackOngoingBootcamps: React.FC<Props> = ({ bootcamps }) => {
                   <Button
                     component={Link}
                     to={`/bootcamp/${bootcamp.id}/resources`}
+=======
+                <Box sx={{ display: "flex", gap: 2, width: { xs: "100%", md: "auto" } }}>
+                  {/* 2. UPDATED RESOURCES BUTTON WITH LINK */}
+                  <Button
+                    component={Link}
+                    to={`/bootcamp/${bootcamp.id}/resources`} 
+>>>>>>> main
                     variant="outlined"
                     size="small"
                     sx={{
@@ -248,7 +307,11 @@ const StackOngoingBootcamps: React.FC<Props> = ({ bootcamps }) => {
                   >
                     Resources
                   </Button>
+<<<<<<< HEAD
 
+=======
+                  
+>>>>>>> main
                   {/* 3. UPDATED ASSESSMENTS BUTTON WITH LINK */}
                   <Button
                     component={Link}
@@ -275,4 +338,8 @@ const StackOngoingBootcamps: React.FC<Props> = ({ bootcamps }) => {
   );
 };
 
+<<<<<<< HEAD
 export default StackOngoingBootcamps;
+=======
+export default StackOngoingBootcamps;
+>>>>>>> main

@@ -187,8 +187,11 @@ export default function StackCompletedBootcamps() {
                   <Button
                     size="small"
                     variant="contained"
+<<<<<<< HEAD
                     component={Link}
                     to="/contact-organizers"
+=======
+>>>>>>> main
                     sx={{
                       bgcolor: "#001B44",
                       fontSize: "11px",
@@ -210,4 +213,8 @@ export default function StackCompletedBootcamps() {
       </Grid>
     </Box>
   );
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> main

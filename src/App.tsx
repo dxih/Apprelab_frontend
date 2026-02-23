@@ -76,7 +76,6 @@ import FounderWallet from "./layouts/founder-hub/FounderWallet";
 import FounderSettings from "./layouts/founder-hub/FounderSettings";
 import FounderOverview from "./layouts/founder-hub/FounderOverview";
 
-
 function App() {
   return (
     <Routes>

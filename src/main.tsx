@@ -9,16 +9,15 @@ import { theme } from './theme'
 
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
-<React.StrictMode>
-  <ThemeProvider theme={theme}>
-    <CssBaseline />
-    <ErrorBoundary>
-      <BrowserRouter>
-        <ScrollToTop />
-        <App />
-      </BrowserRouter>
-    </ErrorBoundary>
-  </ThemeProvider>
-</React.StrictMode>
-
+  <React.StrictMode>
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
+      <ErrorBoundary>
+        <BrowserRouter>
+          <ScrollToTop />
+          <App />
+        </BrowserRouter>
+      </ErrorBoundary>
+    </ThemeProvider>
+  </React.StrictMode>,
 );
