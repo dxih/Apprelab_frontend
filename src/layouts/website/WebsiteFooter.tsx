@@ -12,19 +12,19 @@ import InstagramIcon from "@mui/icons-material/Instagram";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import BehanceIcon from "@mui/icons-material/Brush";
 
-import apprelabLogoLight from "../../assets/images/logos/apprelab_logo_light.png";
-import dxhubLogo from "../../assets/images/logos/dxhub_logo.png";
+import apprelabLogoLight from "../../assets/logos/apprelab_logo_light.png";
+import dxhubLogo from "../../assets/logos/dxhub_logo.png";
+
 
 const WebsiteFooter: React.FC = () => {
   return (
     <Box
       component="footer"
       sx={{
-        backgroundColor: "#020C38",
-        color: "#FFFFFF",
+        backgroundColor: "#020C38", 
+        color: "common.white",
         px: { xs: 4, sm: 6, md: 10 },
         py: { xs: 8, md: 10 },
-        fontFamily: "Inter, sans-serif",
       }}
     >
       {/* MAIN GRID */}
@@ -49,14 +49,15 @@ const WebsiteFooter: React.FC = () => {
             sx={{ height: 32, mb: 3 }}
           />
 
-          <Typography sx={{ fontSize: "0.95rem", mb: 1 }}>
+          <Typography variant="body1" sx={{ mb: 1 }}>
             Call: +234 913 500 4402
           </Typography>
 
           <Typography
+            variant="body2"
             sx={{
-              fontSize: "0.9rem",
-              color: "#B0B0B0",
+              color: "text.disabled",
+
               lineHeight: 1.6,
               mb: 1.5,
               maxWidth: "260px",
@@ -65,78 +66,45 @@ const WebsiteFooter: React.FC = () => {
             Apprelab helps you acquire practical tech skills through guided
             bootcamps, project-based learning, and mentorship.
           </Typography>
-
-          <Typography sx={{ fontSize: "0.9rem", color: "#B0B0B0", mb: 3 }}>
+          <Typography variant="body2" sx={{ color: "text.disabled", mb: 3 }}>
             Email: support@apprelab.com
           </Typography>
 
           {/* SOCIALS */}
           <Box sx={{ display: "flex", gap: 1 }}>
-            <IconButton
-              component="a"
-              href="https://facebook.com"
-              target="_blank"
-              sx={{
-                backgroundColor: "#FFFFFF",
-                color: "#0B0B31",
-                "&:hover": { backgroundColor: "#E9B300" },
-                width: 36,
-                height: 36,
-              }}
-            >
-              <FacebookIcon sx={{ fontSize: 18 }} />
-            </IconButton>
-
-            <IconButton
-              component="a"
-              href="https://instagram.com"
-              target="_blank"
-              sx={{
-                backgroundColor: "#FFFFFF",
-                color: "#0B0B31",
-                "&:hover": { backgroundColor: "#E9B300" },
-                width: 36,
-                height: 36,
-              }}
-            >
-              <InstagramIcon sx={{ fontSize: 18 }} />
-            </IconButton>
-
-            <IconButton
-              component="a"
-              href="https://linkedin.com"
-              target="_blank"
-              sx={{
-                backgroundColor: "#FFFFFF",
-                color: "#0B0B31",
-                "&:hover": { backgroundColor: "#E9B300" },
-                width: 36,
-                height: 36,
-              }}
-            >
-              <LinkedInIcon sx={{ fontSize: 18 }} />
-            </IconButton>
-
-            <IconButton
-              component="a"
-              href="https://behance.net"
-              target="_blank"
-              sx={{
-                backgroundColor: "#FFFFFF",
-                color: "#0B0B31",
-                "&:hover": { backgroundColor: "#E9B300" },
-                width: 36,
-                height: 36,
-              }}
-            >
-              <BehanceIcon sx={{ fontSize: 18 }} />
-            </IconButton>
+            {[
+              { icon: <FacebookIcon />, href: "https://facebook.com" },
+              { icon: <InstagramIcon />, href: "https://instagram.com" },
+              { icon: <LinkedInIcon />, href: "https://linkedin.com" },
+              { icon: <BehanceIcon />, href: "https://behance.net" },
+            ].map((social, index) => (
+              <IconButton
+                key={index}
+                component="a"
+                href={social.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                sx={{
+                  backgroundColor: "common.white",
+                  color: "#0B0B31",
+                  "&:hover": {
+                    backgroundColor: "secondary.main",
+                    transform: "translateY(-2px)",
+                  },
+                  width: 36,
+                  height: 36,
+                  transition: "all 0.3s ease",
+                }}
+              >
+                {React.cloneElement(social.icon, { sx: { fontSize: 18 } })}
+              </IconButton>
+            ))}
           </Box>
         </Box>
 
         {/* 2. EXPLORE */}
         <Box>
-          <Typography sx={{ fontSize: "1rem", fontWeight: 600, mb: 2 }}>
+          <Typography variant="h6" sx={{ mb: 2 }}>
             Explore
           </Typography>
 
@@ -151,13 +119,14 @@ const WebsiteFooter: React.FC = () => {
               key={item.label}
               component={Link}
               to={item.to}
+              variant="body2"
               sx={{
-                fontSize: "0.9rem",
                 display: "block",
-                color: "#B0B0B0",
+                color: "text.disabled",
                 mb: 1.2,
                 textDecoration: "none",
-                "&:hover": { color: "#FFFFFF" },
+                transition: "color 0.2s ease",
+                "&:hover": { color: "common.white" },
               }}
             >
               {item.label}
@@ -167,10 +136,9 @@ const WebsiteFooter: React.FC = () => {
 
         {/* 3. CATEGORY */}
         <Box>
-          <Typography sx={{ fontSize: "1rem", fontWeight: 600, mb: 2 }}>
+          <Typography variant="h6" sx={{ mb: 2 }}>
             Category
           </Typography>
-
           {[
             { label: "Design", to: "/category/design" },
             { label: "Development", to: "/category/development" },
@@ -184,13 +152,14 @@ const WebsiteFooter: React.FC = () => {
               key={item.label}
               component={Link}
               to={item.to}
+              variant="body2"
               sx={{
-                fontSize: "0.9rem",
                 display: "block",
-                color: "#B0B0B0",
+                color: "text.disabled",
                 mb: 1.2,
                 textDecoration: "none",
-                "&:hover": { color: "#FFFFFF" },
+                transition: "color 0.2s ease",
+                "&:hover": { color: "common.white" },
               }}
             >
               {item.label}
@@ -200,14 +169,14 @@ const WebsiteFooter: React.FC = () => {
 
         {/* 4. SUBSCRIBE */}
         <Box>
-          <Typography sx={{ fontSize: "1rem", fontWeight: 600, mb: 2 }}>
+          <Typography variant="h6" sx={{ mb: 2 }}>
             Subscribe
           </Typography>
 
           <Typography
+            variant="body2"
             sx={{
-              fontSize: "0.9rem",
-              color: "#B0B0B0",
+              color: "text.disabled",
               lineHeight: 1.6,
               mb: 2,
               maxWidth: "260px",
@@ -223,24 +192,28 @@ const WebsiteFooter: React.FC = () => {
             size="small"
             fullWidth
             sx={{
-              backgroundColor: "#273164",
-              borderRadius: "6px",
-              input: { color: "#FFFFFF", fontSize: "0.9rem" },
+              backgroundColor: "#273164", // Keep custom input background
+              input: { color: "common.white" },
               mb: 2,
               "& fieldset": { border: "none" },
+              "& .MuiInputBase-input::placeholder": {
+                color: "text.disabled",
+                opacity: 0.7,
+              }
             }}
           />
 
           <Button
             variant="contained"
             fullWidth
+            color="success"
             sx={{
               textTransform: "none",
-              backgroundColor: "#00B67A",
-              borderRadius: "6px",
               fontWeight: 600,
-              fontSize: "0.9rem",
-              "&:hover": { backgroundColor: "#009E69" },
+              "&:hover": {
+                transform: "translateY(-2px)",
+                boxShadow: (theme) => theme.shadows[6],
+              },
             }}
           >
             Subscribe Now
@@ -251,7 +224,8 @@ const WebsiteFooter: React.FC = () => {
       {/* FOOTER DIVIDER */}
       <Box
         sx={{
-          borderTop: "1px solid rgba(255,255,255,0.1)",
+          borderTop: "1px solid",
+          borderColor: "divider",
           mt: { xs: 6, md: 8 },
           pt: 3,
           display: "flex",
@@ -270,3 +244,4 @@ const WebsiteFooter: React.FC = () => {
 };
 
 export default WebsiteFooter;
+

@@ -20,8 +20,9 @@ import SearchIcon from "@mui/icons-material/Search";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import NotificationsNoneOutlinedIcon from "@mui/icons-material/NotificationsNoneOutlined";
 
-import logo from "../../assets/images/logos/apprelab_logo_dark.png";
-import profileImg from "../../assets/images/components/dashboardprofile.png";
+import logo from "../../assets/logos/apprelab_logo_dark.png";
+import profileImg from "../../dashboard/assets/images/dashboard/dashboardprofile.png";
+
 
 const DashboardNavbar: React.FC = () => {
   const location = useLocation();
