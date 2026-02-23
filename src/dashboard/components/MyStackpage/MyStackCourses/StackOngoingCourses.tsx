@@ -26,11 +26,7 @@ export interface Course {
   timeLeft?: string;
 }
 
-<<<<<<< HEAD
 export interface Props {
-=======
- export interface Props {
->>>>>>> main
   courses: Course[];
 }
 
@@ -135,7 +131,6 @@ const StackOngoingCourses: React.FC<Props> = ({ courses }) => {
                   <Box
                     sx={{
                       display: "flex",
-<<<<<<< HEAD
                       flexDirection: "column", // Stack vertically for a cleaner mobile look
                       width: "100%",
                       mb: { xs: 2, md: 4.5 },
@@ -201,47 +196,6 @@ const StackOngoingCourses: React.FC<Props> = ({ courses }) => {
                     >
                       Keep going! You're doing great.
                     </Typography>
-=======
-                      flexDirection: { xs: "column", md: "row" },
-                      alignItems: "center",
-                      gap: 2,
-                      mb: { xs: 2, md: 4.5 },
-                    }}
-                  >
-                    <Typography
-                      variant="subtitle1"
-                      sx={{ fontSize: "0.8rem", fontWeight: 500 }}
-                    >
-                      Progress Status
-                    </Typography>
-                    <Box
-                      sx={{
-                        flex: 1,
-                        width: "100%",
-                        display: "flex",
-                        flexDirection: "column",
-                        textAlign: "center",
-                      }}
-                    >
-                      <LinearProgress
-                        variant="determinate"
-                        value={course.progress}
-                        sx={{
-                          height: 8,
-                          borderRadius: 2,
-                          bgcolor: "#e0e0e0",
-
-                          "& .MuiLinearProgress-bar": { bgcolor: "#001B44" },
-                        }}
-                      />
-                      <Typography
-                        variant="subtitle2"
-                        sx={{ fontSize: "0.75rem", mt: 0.5 }}
-                      >
-                        {course.progress}% Completed
-                      </Typography>
-                    </Box>
->>>>>>> main
                   </Box>
                 </Box>
               </Box>

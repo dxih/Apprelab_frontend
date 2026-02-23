@@ -34,11 +34,7 @@ const quickActions = [
   {
     text: "Report an Issue",
     icon: <ReportIcon fontSize="small" />,
-<<<<<<< HEAD
     path: "/report-issue",
-=======
-    path: "/report",
->>>>>>> main
   },
 ];
 
