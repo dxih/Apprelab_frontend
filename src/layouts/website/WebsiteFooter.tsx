@@ -15,13 +15,12 @@ import BehanceIcon from "@mui/icons-material/Brush";
 import apprelabLogoLight from "../../assets/logos/apprelab_logo_light.png";
 import dxhubLogo from "../../assets/logos/dxhub_logo.png";
 
-
 const WebsiteFooter: React.FC = () => {
   return (
     <Box
       component="footer"
       sx={{
-        backgroundColor: "#020C38", 
+        backgroundColor: "#020C38", // Keep your custom dark blue
         color: "common.white",
         px: { xs: 4, sm: 6, md: 10 },
         py: { xs: 8, md: 10 },
@@ -57,7 +56,6 @@ const WebsiteFooter: React.FC = () => {
             variant="body2"
             sx={{
               color: "text.disabled",
-
               lineHeight: 1.6,
               mb: 1.5,
               maxWidth: "260px",
@@ -199,7 +197,7 @@ const WebsiteFooter: React.FC = () => {
               "& .MuiInputBase-input::placeholder": {
                 color: "text.disabled",
                 opacity: 0.7,
-              }
+              },
             }}
           />
 
@@ -244,4 +242,3 @@ const WebsiteFooter: React.FC = () => {
 };
 
 export default WebsiteFooter;
-

@@ -14,48 +14,30 @@ import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import QrCode2Icon from "@mui/icons-material/QrCode2";
 
 import Logo from "../../../assets/logos/apprelab_logo_dark.png";
-
 import { userCertificates } from "../../Data/CertificateData";
 import type { Certificate } from "../../Data/CertificateData";
+import {PageWrapper} from "../worklab/WorkLabCard";
 
 const CertificateDetail: React.FC = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const theme = useTheme();
 
-  // 🚨 Guard against undefined param
-  if (!id) {
-    return (
-      <Box p={5} textAlign="center">
-        <Typography variant="h5">Invalid Certificate</Typography>
-        <Button onClick={() => navigate(-1)}>Go Back</Button>
-      </Box>
-    );
-  }
-
-  // ✅ Normalize ID comparison
   const certInfo: Certificate | undefined = userCertificates.find(
     (cert) => String(cert.id) === String(id)
   );
 
   if (!certInfo) {
     return (
-      <Box
-        sx={{
-          p: 5,
-          textAlign: "center",
-          fontFamily: theme.typography.fontFamily,
-        }}
-      >
-        <Typography variant="h5" mb={3}>
-          Certificate Not Found
-        </Typography>
+      <Box sx={{ p: 5, textAlign: "center", fontFamily: theme.typography.fontFamily }}>
+        <Typography variant="h5" mb={3}>Certificate Not Found</Typography>
         <Button onClick={() => navigate(-1)}>Go Back</Button>
       </Box>
     );
   }
 
   return (
+    <PageWrapper>
     <Box
       sx={{
         p: { xs: 2, md: 4 },
@@ -67,11 +49,7 @@ const CertificateDetail: React.FC = () => {
       <Button
         startIcon={<ArrowBackIcon />}
         onClick={() => navigate(-1)}
-        sx={{
-          color: "#000",
-          textTransform: "none",
-          fontWeight: 600,
-        }}
+        sx={{ color: "#000", textTransform: "none", fontWeight: 600, mb: 2 }}
       >
         Back
       </Button>
@@ -84,23 +62,24 @@ const CertificateDetail: React.FC = () => {
             sx={{
               bgcolor: "#F3F4FF",
               borderRadius: "16px",
-              minHeight: "650px",
               display: "flex",
               flexDirection: "column",
               alignItems: "center",
               justifyContent: "center",
+              py: 8, 
+              minHeight: "650px",
             }}
           >
             <Box
               sx={{
-                width: "100%",
+                width: "90%",
                 maxWidth: 600,
-                aspectRatio: "1.4/1",
                 border: "1.5px solid #000",
                 borderRadius: "8px",
-                p: 4,
+                p: 6, 
                 textAlign: "center",
                 boxShadow: "2px 2px 15px #00000026",
+                bgcolor: "#F3F4FF",
                 backgroundImage: `
                   radial-gradient(#AEB5DF 0.8px, transparent 0.8px),
                   radial-gradient(#AEB5DF 0.8px, #F3F4FF 0.8px)
@@ -113,30 +92,31 @@ const CertificateDetail: React.FC = () => {
                 component="img"
                 src={Logo}
                 alt="Apprelab Logo"
-                sx={{ height: 40, mb: 1 }}
+                sx={{ height: 40, mb: 3 }}
               />
 
-              <Typography variant="h4" fontWeight={800} mb={2}>
+              <Typography variant="h4" fontWeight={800} mb={2} sx={{ fontSize: { xs: "1.5rem", md: "2.1rem" } }}>
                 CERTIFICATE OF COMPLETION
               </Typography>
 
-              <Typography fontStyle="italic" color="#666">
+              <Typography fontStyle="italic" color="#666" mb={1}>
                 presented to
               </Typography>
 
-              <Typography variant="h5" fontWeight={700} my={2}>
+              <Typography variant="h5" fontWeight={700} mb={3}>
                 {certInfo.userName}
               </Typography>
 
-              <Typography fontSize="0.8rem" color="#666">
-                For completing a bootcamp on
+              <Typography fontSize="0.8rem" color="#666" mb={1}>
+                For completing a {certInfo.CertificateType.toLowerCase()} in
               </Typography>
 
-              <Typography fontSize="1.25rem" fontWeight={800}>
+              <Typography fontSize="1.25rem" fontWeight={800} color="#001B44">
                 {certInfo.title}
               </Typography>
             </Box>
 
+            {/* Buttons now sit perfectly relative to the certificate box */}
             <Stack spacing={2} mt={5} width="100%" maxWidth={540}>
               <Button
                 variant="contained"
@@ -145,6 +125,7 @@ const CertificateDetail: React.FC = () => {
                   borderRadius: "12px",
                   py: 1.5,
                   fontWeight: 700,
+                  textTransform: "none",
                 }}
               >
                 Download PDF
@@ -157,6 +138,7 @@ const CertificateDetail: React.FC = () => {
                   fontWeight: 700,
                   borderColor: "#000",
                   color: "#000",
+                  textTransform: "none",
                 }}
               >
                 Share
@@ -168,10 +150,13 @@ const CertificateDetail: React.FC = () => {
         {/* RIGHT: DETAILS */}
         <Grid item xs={12} md={3.5}>
           <Paper
+            elevation={0}
             sx={{
               p: 3,
               borderRadius: "16px",
               boxShadow: "2px 2px 10px #0000000D",
+              border: "1px solid #E5E7EB",
+              height: "100%",
             }}
           >
             <Typography fontWeight={800} mb={4} textAlign="center">
@@ -193,7 +178,7 @@ const CertificateDetail: React.FC = () => {
                       key={tag}
                       label={tag}
                       size="small"
-                      sx={{ bgcolor: "#F3F4FF", fontWeight: 700 }}
+                      sx={{ bgcolor: "#F3F4FF", fontWeight: 700, color: "#001B44" }}
                     />
                   ))}
                 </Box>
@@ -203,7 +188,7 @@ const CertificateDetail: React.FC = () => {
                 <Typography fontWeight={800} mb={2}>
                   Verification
                 </Typography>
-                <QrCode2Icon sx={{ fontSize: 120 }} />
+                <QrCode2Icon sx={{ fontSize: 120, color: "#001B44" }} />
                 <Typography color="#666" fontSize="0.85rem">
                   Scan to verify certificate
                 </Typography>
@@ -213,17 +198,18 @@ const CertificateDetail: React.FC = () => {
         </Grid>
       </Grid>
     </Box>
+    </PageWrapper>
   );
 };
-
-export default CertificateDetail;
 
 /* 🔹 Small helper component */
 const Detail = ({ label, value }: { label: string; value?: string }) => (
   <Box>
-    <Typography fontSize="0.75rem" fontWeight={600}>
+    <Typography fontSize="0.75rem" fontWeight={600} color="#666">
       {label}
     </Typography>
-    <Typography fontWeight={700}>{value || "—"}</Typography>
+    <Typography fontWeight={700} color="#001B44">{value || "—"}</Typography>
   </Box>
 );
+
+export default CertificateDetail;
