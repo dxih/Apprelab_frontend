@@ -66,6 +66,12 @@ export default function PostNewProjectDialog({
     setFormData((prev) => ({ ...prev, type }));
   };
 
+  const handleSubmit = () => {
+    if (onSubmit) onSubmit(formData);
+    setFormData(initialFormData);
+    onClose();
+  };
+
   const isFormValid = Boolean(
     formData.title.trim() &&
     formData.type &&
@@ -74,14 +80,6 @@ export default function PostNewProjectDialog({
     formData.duration.trim() &&
     formData.budgetAmount.trim(),
   );
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-
-    if (!onSubmit) return;
-    setFormData(initialFormData);
-    onClose();
-  };
 
   return (
     <Dialog

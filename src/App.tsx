@@ -50,7 +50,12 @@ import CertificateDetail from "./dashboard/pages/certificates/CertificateDetails
 
 // join community
 import JoinCommunity from "./dashboard/pages/community/JoinCommunity";
-
+// contact Organizers
+import ContactOrganizers from "./dashboard/pages/contactOrganiser/ContactOrganiser";
+// Report an Issue
+import ReportIssue from "./dashboard/pages/ReportAnIssue/ReportAnIssue";
+// start a thread
+import StartThread from "./dashboard/pages/StartAThead/StartAthread";
 // 🔐 Auth Pages
 import Signup from "./dashboard/pages/auth/Signup";
 import Login from "./dashboard/pages/auth/Login";
@@ -70,10 +75,6 @@ import FounderCollaboration from "./layouts/founder-hub/FounderCollaboration";
 import FounderWallet from "./layouts/founder-hub/FounderWallet";
 import FounderSettings from "./layouts/founder-hub/FounderSettings";
 import FounderOverview from "./layouts/founder-hub/FounderOverview";
-import FounderProjectDetail from "./layouts/founder-hub/FounderProjectDetail";
-
-
-// >>>>>>> ft/details
 
 function App() {
   return (
@@ -89,7 +90,6 @@ function App() {
       >
         <Route index element={<FounderDashboard />} />
         <Route path="projects" element={<FounderProjects />} />
-        <Route path="projects/:id" element={<FounderProjectDetail />} /> 
         <Route path="talent" element={<FounderTalent />} />
         <Route path="collaboration" element={<FounderCollaboration />} />
         <Route path="wallet" element={<FounderWallet />} />
@@ -108,14 +108,12 @@ function App() {
         <Route path="/about" element={<About />} />
       </Route>
 
-
       {/*  User Dashboard */}
       <Route element={<DashboardLayout />}>
         <Route path="/dashboard" element={<DashboardHome />} />
         <Route path="/dashboard/courses" element={<Courses />} />
         <Route path="/dashboard/microbootcamps" element={<Microbootcamps />} />
         <Route path="/dashboard/ongoing-bootcamps" element={<OngoingBootcampsPage />} />
-
         <Route path="/dashboard/ongoing-courses" element={<OngoingCoursesPage />} />
         <Route path="/dashboard/upcoming-bootcamps" element={<UpcomingBootcampsPage />} />
         <Route path="/dashboard/upcoming-courses" element={<UpcomingCoursesPage />} />
@@ -133,7 +131,6 @@ function App() {
         <Route path="/dashboard/ourmentors" element={<OurMentors />} />
         <Route path="/dashboard/mystack" element={<MyStack />} />
 
-
         <Route path="/bootcamp/:id/:tab" element={<BootcampLayout />}>
           <Route path="overview" element={<MyStackOverviewPage />} />
           <Route path="resources" element={<MyStackResourcePage />} />
@@ -146,7 +143,12 @@ function App() {
         <Route path="/certificates/:id" element={<CertificateDetail />} />
         {/* join community */}
         <Route path="/community/join" element={<JoinCommunity />} />
-
+        {/* contact Organiser */}
+        <Route path="/contact-organizers" element={<ContactOrganizers />} />
+        {/* Report an Isssue */}
+        <Route path="/report-issue" element={<ReportIssue />} />
+        {/* start a thread */}
+        <Route path="/bootcamp/:id/start-thread" element={<StartThread />} />
         {/* Payment Pages */}
         <Route path="/dashboard/shoppingcart" element={<ShoppingCart />} />
         <Route path="/dashboard/checkout" element={<Checkout />} />
@@ -167,5 +169,3 @@ function App() {
 export default App;
 
 
-
-// >>>>>>> ft/details

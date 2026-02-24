@@ -24,7 +24,7 @@ export default function DashboardHeading({
         mb: 3,
       }}
     >
-      {/* Left */}
+      {/* Left: Title */}
       <Box>
         <Typography
           sx={{
@@ -51,7 +51,7 @@ export default function DashboardHeading({
         </Typography>
       </Box>
 
-      {/* Right */}
+      {/* Right: Actions */}
       <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
         {/* Notification */}
         <Box sx={{ position: "relative", width: 15, height: 12.5 }}>

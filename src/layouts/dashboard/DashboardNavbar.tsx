@@ -23,7 +23,6 @@ import NotificationsNoneOutlinedIcon from "@mui/icons-material/NotificationsNone
 import logo from "../../assets/logos/apprelab_logo_dark.png";
 import profileImg from "../../dashboard/assets/images/dashboard/dashboardprofile.png";
 
-
 const DashboardNavbar: React.FC = () => {
   const location = useLocation();
   const navigate = useNavigate();

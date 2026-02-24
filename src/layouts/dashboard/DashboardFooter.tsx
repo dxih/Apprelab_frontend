@@ -14,7 +14,6 @@ import BehanceIcon from "@mui/icons-material/Brush";
 import apprelabLogoLight from "../../assets/logos/apprelab_logo_light.png";
 import dxhubLogo from "../../assets/logos/dxhub_logo.png";
 
-
 const DashboardFooter: React.FC = () => {
   return (
     <Box

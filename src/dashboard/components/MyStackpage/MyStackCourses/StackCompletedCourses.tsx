@@ -1,10 +1,4 @@
-import {
-  Box,
-  Typography,
-  Grid,
-  Button,
-  IconButton,
-} from "@mui/material";
+import { Box, Typography, Grid, Button, IconButton } from "@mui/material";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import { useTheme } from "@mui/material/styles";
 import { CompletedCourseData } from "../../../Data/MyStackCourses.data";
@@ -22,15 +16,14 @@ interface CompletedCourse {
 
 export default function StackCompletedCourses() {
   const theme = useTheme();
-  
   return (
     <Box sx={{ mt: 6, pb: 4 }}>
       <Typography
         variant="h5"
-        sx={{ 
-          fontWeight: 700, 
-          mb: 3, 
-          color: "#111", 
+        sx={{
+          fontWeight: 700,
+          mb: 3,
+          color: "#111",
           fontSize: "1.1rem",
           fontFamily: theme.typography.fontFamily,
         }}
@@ -47,11 +40,11 @@ export default function StackCompletedCourses() {
                 flexDirection: "column",
                 bgcolor: "#F3F6FF",
                 borderRadius: "16px",
-                overflow: "visible", 
+                overflow: "visible",
                 border: "1px solid #E9E9E9",
-                position: "relative", 
+                position: "relative",
                 transition: "transform 0.2s",
-                "&:hover": { transform: "translateY(-4px)" }
+                "&:hover": { transform: "translateY(-4px)" },
               }}
             >
               <IconButton
@@ -63,7 +56,7 @@ export default function StackCompletedCourses() {
                   zIndex: 100,
                   color: "#666",
                   bgcolor: "rgba(255, 255, 255, 0.6)",
-                  "&:hover": { bgcolor: "rgba(255, 255, 255, 0.9)" }
+                  "&:hover": { bgcolor: "rgba(255, 255, 255, 0.9)" },
                 }}
               >
                 <MoreVertIcon sx={{ fontSize: "1.2rem" }} />
@@ -101,21 +94,24 @@ export default function StackCompletedCourses() {
                       mb: 1,
                       color: "#000",
                       fontFamily: theme.typography.fontFamily,
-                      pr: 3, 
+                      pr: 3,
                     }}
                   >
                     {item.title}
                   </Typography>
-                  <Typography 
-                    sx={{ 
-                      fontSize: "0.75rem", 
-                      color: "#555", 
+                  <Typography
+                    sx={{
+                      fontSize: "0.75rem",
+                      color: "#555",
                       lineHeight: 1.4,
                       wordBreak: "break-word",
                     }}
                   >
                     {item.description} <br />
-                    <Box component="span" sx={{ fontWeight: 700, color: "#111" }}>
+                    <Box
+                      component="span"
+                      sx={{ fontWeight: 700, color: "#111" }}
+                    >
                       (Duration: {item.duration})
                     </Box>
                   </Typography>
@@ -132,7 +128,7 @@ export default function StackCompletedCourses() {
                   p: 2,
                   bgcolor: "rgba(0, 27, 68, 0.03)",
                   borderTop: "1px solid #E9E9E9",
-                  gap: { xs: 2, sm: 1 }, 
+                  gap: { xs: 2, sm: 1 },
                 }}
               >
                 <Box
@@ -147,20 +143,26 @@ export default function StackCompletedCourses() {
                     textAlign: "center",
                     display: "flex",
                     alignItems: "center",
-                    justifyContent: "center"
+                    justifyContent: "center",
                   }}
                 >
-                  <Typography sx={{ fontSize: "11px", color: theme.palette.text.primary, fontWeight: 600 }}>
+                  <Typography
+                    sx={{
+                      fontSize: "11px",
+                      color: theme.palette.text.primary,
+                      fontWeight: 600,
+                    }}
+                  >
                     {item.date}
                   </Typography>
                 </Box>
 
-                <Box 
-                  sx={{ 
-                    display: "flex", 
-                    gap: 1.5, 
+                <Box
+                  sx={{
+                    display: "flex",
+                    gap: 1.5,
                     width: { xs: "100%", sm: "auto" },
-                    justifyContent: "center"
+                    justifyContent: "center",
                   }}
                 >
                   <Button
@@ -177,16 +179,18 @@ export default function StackCompletedCourses() {
                       fontWeight: 600,
                       width: { xs: "100%", sm: "140px", md: "133px" },
                       height: 40,
-                      "&:hover": { 
-                        borderColor: "#003366", 
-                        bgcolor: "rgba(0,27,68,0.05)" 
-                      }
+                      "&:hover": {
+                        borderColor: "#003366",
+                        bgcolor: "rgba(0,27,68,0.05)",
+                      },
                     }}
                   >
                     View Certificate
                   </Button>
                   <Button
                     size="small"
+                    component={Link}
+                    to="/contact-organizers"
                     variant="contained"
                     sx={{
                       bgcolor: "#001B44",
@@ -196,7 +200,7 @@ export default function StackCompletedCourses() {
                       fontWeight: 600,
                       width: { xs: "100%", sm: "140px", md: "153px" },
                       height: 40,
-                      "&:hover": { bgcolor: "#003366" }
+                      "&:hover": { bgcolor: "#003366" },
                     }}
                   >
                     Contact Organizers

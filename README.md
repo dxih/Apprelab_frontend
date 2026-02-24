@@ -1,4 +1,3 @@
-
 # AppreLab Frontend
 
 > **Building Africa’s Learn → Work → Earn ecosystem (Frontend)**
@@ -123,4 +122,7 @@ Turning learning into real-world earning.
 ## 📄 License
 This project is proprietary and owned by AppreLab.
 
+<<<<<<< HEAD
+=======
 
+>>>>>>> main

@@ -5,6 +5,7 @@ export interface Certificate {
   title: string;
   issuer: string;
   image: string;
+  CertificateType: string
   userName?: string;
   duration?: string;
   certId?: string;
@@ -21,6 +22,7 @@ export const userCertificates: Certificate[] = [
     certId: "AFR-6780",
     tags: ["#HTML", "#Javascript", "#CSS", "#Frontend"],
     issuer: "Apprelab Academy",
+    CertificateType: "Bootcamp",
     image: Cert_1,
   },
   {
@@ -31,6 +33,7 @@ export const userCertificates: Certificate[] = [
     tags: ["#Python", "#Excel", "#SQL", "#DataViz"],
     issuer: "Apprelab Academy",
     duration: "4 Weeks",
+    CertificateType: "Course",
     image: Cert_1,
   },
   {
@@ -41,6 +44,7 @@ export const userCertificates: Certificate[] = [
     certId: "DES-9930",
     tags: ["#Figma", "#UIUX", "#Prototyping"],
     issuer: "Apprelab Academy",
+    CertificateType: "Bootcamp",
     image: Cert_1,
   },
   {
@@ -51,15 +55,17 @@ export const userCertificates: Certificate[] = [
     certId: "FES-9930",
     tags: ["#Figma", "#UIUX", "#Prototyping"],
     issuer: "Apprelab Academy",
+    CertificateType: "Course",
     image: Cert_1,
   },
   {
-   id:"using_figma_like_a_pro_{cohort_6}",
+    id: "using_figma_like_a_pro_{cohort_6}",
     title: "Using Figma Like a Pro (Cohort 6)",
     duration: "4 Weeks",
     certId: "ffES-9930",
     tags: ["#Figma", "#UIUX", "#Prototyping"],
     issuer: "Apprelab Academy",
+    CertificateType: "Course",
     image: Cert_1,
   },
 ];
