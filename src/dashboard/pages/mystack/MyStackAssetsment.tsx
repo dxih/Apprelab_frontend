@@ -193,7 +193,7 @@ const AssessmentsTab = () => {
     bootcamp.assessments?.filter((a) => a.status === "pending") || [];
   const submittedAssessments =
     bootcamp.assessments?.filter((a) => a.status === "submitted") || [];
-
+// when there is no assessment
   return (
     <Box sx={{ mt: 2 }}>
       <Typography

@@ -56,6 +56,10 @@ import ContactOrganizers from "./dashboard/pages/contactOrganiser/ContactOrganis
 import ReportIssue from "./dashboard/pages/ReportAnIssue/ReportAnIssue";
 // start a thread
 import StartThread from "./dashboard/pages/StartAThead/StartAthread";
+// Live session
+import JoinAclass from "./dashboard/pages/JoinAClass/JoinAClass";
+import JoinLObby from "./dashboard/pages/JoinAClass/JoinLobby";
+
 // 🔐 Auth Pages
 import Signup from "./dashboard/pages/auth/Signup";
 import Login from "./dashboard/pages/auth/Login";
@@ -149,6 +153,9 @@ function App() {
         <Route path="/report-issue" element={<ReportIssue />} />
         {/* start a thread */}
         <Route path="/bootcamp/:id/start-thread" element={<StartThread />} />
+        {/* Live session */}
+        <Route path="/bootcamp/:id/live-session" element={<JoinAclass />} />
+        <Route path="/bootcamp/:id/lobby" element={<JoinLObby />} />
         {/* Payment Pages */}
         <Route path="/dashboard/shoppingcart" element={<ShoppingCart />} />
         <Route path="/dashboard/checkout" element={<Checkout />} />

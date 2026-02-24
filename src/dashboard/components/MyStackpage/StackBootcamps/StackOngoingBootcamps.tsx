@@ -37,6 +37,13 @@ export interface Bootcamp {
   reviews: IReview[];
   discussions: IDiscussion[];
   announcements: string[];
+   // for Live session details
+  instructor: string;
+  classStep: string;
+  instructorImg: string;
+  durationLiveSession: string;
+  timeSession: string;
+  displayTime: string;
 }
 
 interface Props {
