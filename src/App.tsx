@@ -153,7 +153,10 @@ function App() {
         <Route path="/dashboard/shoppingcart" element={<ShoppingCart />} />
         <Route path="/dashboard/checkout" element={<Checkout />} />
         <Route path="/dashboard/worklabs" element={<Worklabs />} />
+
+        {/* Worklabs Pages */}
         <Route path="/worklabs/project-feeds" element={<ProjectFeeds />} />
+        
         <Route path="/project-feeds/Details/:id" element={<ProjectDetails />} />
         <Route path="/project-feeds/apply/:id" element={<ApplyPage />} />
       </Route>
