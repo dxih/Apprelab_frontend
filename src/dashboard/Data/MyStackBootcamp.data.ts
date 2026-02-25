@@ -50,6 +50,12 @@ export const ongoingBootcamps: Bootcamp[] = [
     id: "intro_to_frontend(c8)",
     title: "Intro to Frontend (C8)",
     description: "Go from beginner to intermediate frontend developer",
+    instructor: "Sarah May",
+    instructorImg: "https://link-to-john-image.jpg",
+    durationLiveSession: "2hrs",
+   timeSession: "2026-03-25T15:00:00",
+    displayTimeSession: "4:00 PM",
+    classStep: "Week 3 - week 4",
     duration: "4 Weeks",
     progress: 50,
     nextClass: "10th November, 2025, 6PM WAT",
@@ -208,8 +214,14 @@ export const ongoingBootcamps: Bootcamp[] = [
     title: "UX Laws & Principles (C1)",
     description: "Deep dive into all the laws of UX and basic design principles",
     duration: "6 Weeks",
+    instructor: "Shreda",
+    timeSession: "2026-02-24T22:00:00",
+    displayTimeSession: "10:00 PM",
+    durationLiveSession: "1hr 30mins",
     progress: 30,
     nextClass: "12th November, 2025, 2PM WAT",
+    classStep: "Week 3 - class 2 of 4",
+    instructorImg: "https://link-to-sarah-image.jpg",
     image: StackCompletedBootCamps_img2,
     agenda: "Our 4-weeks Bootcamp is a hybrid format — combining a 1-hour live class every Monday with self-paced video lessons in the week.",
     learnList: [
@@ -312,7 +324,7 @@ export const ongoingBootcamps: Bootcamp[] = [
       }
     ],
 
-   
+
     discussions: [
       {
         id: "d1",
@@ -360,18 +372,18 @@ export interface CompletedBootcamp {
   date: string;
   image: string;
 }
- export const CompletedBootcampData: CompletedBootcamp[] =  [
+export const CompletedBootcampData: CompletedBootcamp[] = [
   {
-    id:"Wireframing_the_basis_of_us_design",
+    id: "Wireframing_the_basis_of_us_design",
     title: "Wireframing, the basis of Ux Design (Cohort 2)",
     description: "Go from beginner to intermediate frontend developer in four weeks",
     duration: "4 Weeks",
     date: "Completed on 6th November, 2025",
     image: stackCompletedBootCamps_img2,
-   
+
   },
   {
-    id:"uiux-4",
+    id: "uiux-4",
     title: "Using Figma Like a Pro (Cohort 6)",
     description: "Go from beginner to intermediate frontend developer in four weeks",
     duration: "4 Weeks",
