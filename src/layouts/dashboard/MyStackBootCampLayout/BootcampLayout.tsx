@@ -240,6 +240,7 @@ const BootcampLayout = () => {
                     <Button
                       variant="contained"
                       size="small"
+                      onClick={() => navigate(`/bootcamp/${id}/lobby`)}
                       sx={{
                         bgcolor: "#001B44",
                         textTransform: "none",

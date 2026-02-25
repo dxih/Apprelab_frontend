@@ -13,6 +13,7 @@ import {
 } from "@mui/material";
 import type { Theme } from "@mui/material";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
+import CancelIcon from "@mui/icons-material/Cancel";
 import CloudUploadIcon from "@mui/icons-material/CloudUpload";
 import { useForm, ValidationError } from "@formspree/react";
 import { useNavigate } from "react-router-dom";
@@ -107,10 +108,17 @@ const ReportIssue: React.FC = () => {
 
     handleSubmit(data);
   };
-
+  // function to close the modal
   const handleCloseModal = () => {
     setOpenModal(false);
     navigate("/dashboard");
+  };
+  // button to remove the file
+  const handleRemoveFile = () => {
+    setFileName("");
+    setPreviewUrl(null);
+    setSelectedFile(null);
+    setFileError("");
   };
 
   return (
@@ -264,21 +272,51 @@ const ReportIssue: React.FC = () => {
                     )}
 
                     {previewUrl && !fileError && (
-                      <Stack spacing={1}>
+                      <Stack
+                        direction="row"
+                        alignItems="flex-start"
+                        spacing={1}
+                      >
                         <Box
-                          component="img"
-                          src={previewUrl}
                           sx={{
+                            position: "relative",
                             width: "120px",
                             height: "120px",
-                            objectFit: "cover",
-                            borderRadius: "12px",
-                            border: "1px solid #E5E7EB",
                           }}
-                        />
+                        >
+                          <Box
+                            component="img"
+                            src={previewUrl}
+                            sx={{
+                              width: "100%",
+                              height: "100%",
+                              objectFit: "cover",
+                              borderRadius: "12px",
+                              border: "1px solid #E5E7EB",
+                            }}
+                          />
+                          {/* The Cancel Button */}
+                          <IconButton
+                            onClick={handleRemoveFile}
+                            size="small"
+                            sx={{
+                              position: "absolute",
+                              top: -10,
+                              right: -10,
+                              bgcolor: "#fff",
+                              boxShadow: "0px 2px 4px rgba(0,0,0,0.2)",
+                              "&:hover": { bgcolor: "#f0f0f0" },
+                            }}
+                          >
+                            <CancelIcon
+                              sx={{ color: "red", fontSize: "1.2rem" }}
+                            />
+                          </IconButton>
+                        </Box>
+
                         <Typography
                           variant="caption"
-                          sx={{ color: "#001B44", fontWeight: 600 }}
+                          sx={{ color: "#001B44", fontWeight: 600, mt: 1 }}
                         >
                           {fileName}
                         </Typography>
@@ -286,7 +324,7 @@ const ReportIssue: React.FC = () => {
                     )}
                   </Stack>
                 </Box>
-
+                {/* SUMBIT BUTTON */}
                 <Box sx={{ display: "flex", justifyContent: "center", mt: 2 }}>
                   <Button
                     type="submit"
@@ -304,7 +342,7 @@ const ReportIssue: React.FC = () => {
                       "&.Mui-disabled": {
                         bgcolor: "#001B44",
                         color: "#fff",
-                        opacity: 0.7, 
+                        opacity: 0.7,
                       },
                       "&:hover": { bgcolor: "#001230" },
                     }}
