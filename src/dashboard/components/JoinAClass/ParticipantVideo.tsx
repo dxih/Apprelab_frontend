@@ -28,8 +28,6 @@ const ParticipantVideo = ({
   onToggleVideo, // Destructure from props
   onToggleMute,
 }: ParticipantProps) => {
-//   const [isVideoOff, setIsVideoOff] = useState(isVideoOff || false);
-
   return (
     <Box sx={{ width: "100%" }}>
       <Box
@@ -113,7 +111,7 @@ const ParticipantVideo = ({
         <Stack direction="row" spacing={3} sx={{ mt: 1.5, ml: 1 }}>
           <Stack alignItems="center">
             <IconButton
-              onClick={onToggleVideo} // Call the parent function here
+              onClick={onToggleVideo} 
               sx={{
                 bgcolor: isVideoOff ? "#FF4D4D" : "#E0E0E0",
                 color: isVideoOff ? "white" : "#000",

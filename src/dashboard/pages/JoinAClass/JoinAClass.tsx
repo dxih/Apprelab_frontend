@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom"; 
 import {
   Box,
   Typography,
@@ -17,6 +17,7 @@ import { PageWrapper } from "../../pages/worklab/WorkLabCard";
 
 const JoinAclass = () => {
   const { id } = useParams<{ id: string }>();
+  const navigate = useNavigate(); 
   const currentBootcamp = ongoingBootcamps.find((b) => b.id === id);
   const [openToast, setOpenToast] = useState(false);
 
@@ -44,6 +45,7 @@ const JoinAclass = () => {
       isVideoOff: false,
     },
   ]);
+
   // toggle mute
   const toggleMute = (participantId: number) => {
     setParticipants((prev) =>
@@ -52,6 +54,7 @@ const JoinAclass = () => {
       ),
     );
   };
+
   // toggle video
   const toggleVideo = (participantId: number) => {
     setParticipants((prev) =>
@@ -66,6 +69,20 @@ const JoinAclass = () => {
     return () => clearTimeout(timer);
   }, []);
 
+  // --- SAFETY CHECK START ---
+  // This stops the code from running further if the bootcamp doesn't exist
+  if (!currentBootcamp) {
+    return (
+      <PageWrapper>
+        <Box sx={{ p: 4, textAlign: 'center' }}>
+          <Typography variant="h6">Session not found.</Typography>
+          <Button onClick={() => navigate(-1)} sx={{ mt: 2 }}>Go Back</Button>
+        </Box>
+      </PageWrapper>
+    );
+  }
+  // --- SAFETY CHECK END ---
+
   return (
     <PageWrapper>
       <Box
@@ -76,7 +93,7 @@ const JoinAclass = () => {
           width: "100%",
         }}
       >
-        {/* 1. TOP HEADER - Adjusted for mobile stacking */}
+        {/* 1. TOP HEADER */}
         <Stack
           direction={{ xs: "column", sm: "row" }}
           justifyContent="space-between"
@@ -91,8 +108,7 @@ const JoinAclass = () => {
                 fontSize: { xs: "1.1rem", sm: "1.3rem", md: "1.5rem" },
               }}
             >
-              LIVE BOOTCAMP SESSION -{" "}
-              {currentBootcamp?.title || "UI/UX Design Fundamentals"}
+              LIVE BOOTCAMP SESSION - {currentBootcamp.title}
             </Typography>
             <Stack
               direction="row"
@@ -117,7 +133,7 @@ const JoinAclass = () => {
                   fontSize: { xs: "0.75rem", sm: "0.875rem" },
                 }}
               >
-                today by 3:00 PM
+                today by {currentBootcamp.displayTimeSession || "4:00 PM"}
               </Typography>
               <Typography
                 variant="body2"
@@ -134,6 +150,7 @@ const JoinAclass = () => {
 
           <Button
             variant="contained"
+            onClick={() => navigate(`/dashboard/mark-attendance/${currentBootcamp.id}`)}
             sx={{
               bgcolor: "#001B44",
               borderRadius: "8px",
@@ -161,14 +178,12 @@ const JoinAclass = () => {
           {/* LEFT - VIDEOS */}
           <Box sx={{ width: { xs: "100%", sm: "68%" }, flexShrink: 0 }}>
             <Stack spacing={3}>
-              {/* Instructor Section */}
               <ParticipantVideo
                 isInstructor
-                name="Sarah May"
-                img="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=1000"
+                name={currentBootcamp.instructor || "Sarah May"}
+                img={currentBootcamp.instructorImg ||"https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=1000"}
               />
 
-              {/* Participant Grid Section */}
               <Box
                 sx={{
                   maxHeight: { xs: "none", sm: "600px" },
@@ -231,3 +246,4 @@ const JoinAclass = () => {
 };
 
 export default JoinAclass;
+ 

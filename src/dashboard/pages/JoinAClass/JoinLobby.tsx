@@ -76,6 +76,7 @@ const JoinLobby = () => {
     return () => clearInterval(timer);
   }, [currentBootcamp]);
 
+// the function that handles the submission button
   const handleJoinSession = () => {
     if (!canJoin || isEnded) return;
 
@@ -84,11 +85,14 @@ const JoinLobby = () => {
       navigate(`/bootcamp/${id}/live-session`);
     }, 2500);
   };
-
+  
   if (!currentBootcamp)
     return (
       <PageWrapper>
-        <Typography>Not Found</Typography>
+        <Box sx={{display:"flex", flexDirection:"column", placeItems:"center", p:3}}>
+        <Typography>Ooops, There is currently no Session for this BootCamp. Come back later!!</Typography>
+       <Button onClick={() => navigate(-1)} sx={{ mt: 2 }}>Go Back</Button>
+       </Box>
       </PageWrapper>
     );
 
@@ -124,7 +128,7 @@ const JoinLobby = () => {
             </Alert>
           ) : null}
         </Stack>
-
+        {/* details of the ongoing bootcamp. */}
         <Stack
           direction="row"
           justifyContent="space-between"
@@ -142,7 +146,7 @@ const JoinLobby = () => {
               }}
             />
             <Typography variant="body2" sx={{ color: "#666" }}>
-              Scheduled Time: {currentBootcamp.displayTime || "4:00 PM"}
+              Scheduled Time: {currentBootcamp.displayTimeSession || "4:00 PM"}
             </Typography>
           </Stack>
         </Stack>
@@ -163,6 +167,7 @@ const JoinLobby = () => {
             {currentBootcamp.title} - Practical Class
           </Typography>
 
+          {/* The Second container, instructor */}
           <Box
             sx={{
               bgcolor: "#fff",

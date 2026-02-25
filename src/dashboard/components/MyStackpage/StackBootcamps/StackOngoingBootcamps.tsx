@@ -43,7 +43,7 @@ export interface Bootcamp {
   instructorImg: string;
   durationLiveSession: string;
   timeSession: string;
-  displayTime: string;
+  displayTimeSession: string;
 }
 
 interface Props {
