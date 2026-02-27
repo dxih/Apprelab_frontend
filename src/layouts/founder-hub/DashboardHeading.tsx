@@ -33,6 +33,7 @@ export default function DashboardHeading({
             fontSize: "24px",
             lineHeight: "32px",
             color: "#101828",
+            mb:0.5
           }}
         >
           {title}
