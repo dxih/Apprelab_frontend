@@ -1,3 +1,4 @@
+import { useState } from "react";
 import {
   Avatar,
   Badge,
@@ -23,126 +24,19 @@ import MoreVertIcon from "@mui/icons-material/MoreVert";
 import PanoramaFishEyeIcon from "@mui/icons-material/PanoramaFishEye";
 import PictureAsPdfIcon from "@mui/icons-material/PictureAsPdf";
 import DashboardHeading from "./DashboardHeading";
-
+import {
+  projects,
+  teamMembers,
+  projectChats,
+  milestones,
+  tasks,
+  files,
+} from "./founderData";
 
 const theme = createTheme({
   palette: { primary: { main: "#1a2340" } },
   typography: { fontFamily: "Inter, sans-serif" },
 });
-
-// ─── Data ───────────────────────────────────────────────────────
-const projects = [
-  { name: "Mobile App Development", badge: 3, active: true },
-  { name: "Dashboard Redesign", badge: 0, active: false },
-  { name: "Data Visualization", badge: 1, active: false },
-];
-
-const teamMembers = [
-  {
-    name: "John Doe",
-    role: "Developer",
-    avatar: "https://i.pravatar.cc/150?img=11",
-    online: true,
-  },
-  {
-    name: "Sarah Chen",
-    role: "Designer",
-    avatar: "https://i.pravatar.cc/150?img=47",
-    online: true,
-  },
-  {
-    name: "Mike Johnson",
-    role: "Developer",
-    avatar: "https://i.pravatar.cc/150?img=12",
-    online: false,
-  },
-];
-
-const messages = [
-  {
-    id: 1,
-    sender: "John Doe",
-    avatar: "https://i.pravatar.cc/150?img=11",
-    text: "Hey team! I've completed the authentication flow. Ready for review.",
-    time: "10:30 AM",
-    own: false,
-  },
-  {
-    id: 2,
-    text: "Great work! I'll review it this afternoon.",
-    time: "10:45 AM",
-    own: true,
-  },
-  {
-    id: 3,
-    sender: "Sarah Chen",
-    avatar: "https://i.pravatar.cc/150?img=47",
-    text: "I've uploaded the design files to the shared folder 📁",
-    time: "11:15 AM",
-    own: false,
-  },
-  {
-    id: 4,
-    text: "Perfect timing! Thanks Sarah.",
-    time: "11:20 AM",
-    own: true,
-  },
-];
-
-const milestones = [
-  { label: "Design Phase", amount: "$500", status: "done" },
-  { label: "Development Phase 1", amount: "$1,000", status: "active" },
-  { label: "Testing & QA", amount: "$500", status: "pending" },
-  { label: "Deployment", amount: "$500", status: "pending" },
-];
-
-const tasks = [
-  {
-    label: "Complete authentication flow",
-    assignee: "John Doe",
-    due: "Today",
-    done: true,
-  },
-  {
-    label: "Design onboarding screens",
-    assignee: "Sarah Chen",
-    due: "Tomorrow",
-    done: false,
-  },
-  {
-    label: "API integration for user profile",
-    assignee: "Mike Johnson",
-    due: "Dec 20",
-    done: false,
-  },
-  {
-    label: "Write unit tests",
-    assignee: "John Doe",
-    due: "Dec 22",
-    done: false,
-  },
-];
-
-const files = [
-  {
-    name: "Design_Mockups_v2.fig",
-    size: "2.4 MB",
-    date: "Today",
-    type: "fig",
-  },
-  {
-    name: "API_Documentation.pdf",
-    size: "896 KB",
-    date: "Yesterday",
-    type: "pdf",
-  },
-  {
-    name: "Sprint_Planning.docx",
-    size: "124 KB",
-    date: "2 days ago",
-    type: "doc",
-  },
-];
 
 // ─── Helpers ────────────────────────────────────────────────────
 function MilestoneIcon({ status }: { status: string }) {
@@ -168,8 +62,19 @@ const cardSx = {
   boxShadow: "0 1px 4px rgba(0,0,0,0.05)",
 };
 
+const headingTypo = {
+  fontFamily: "Arial, sans-serif",
+  fontWeight: 700,
+  fontSize: "16px",
+  lineHeight: "24px",
+  color: "#101828",
+};
+
 // ─── Main ────────────────────────────────────────────────────────
 export default function FounderCollaboration() {
+  const [activeProject, setActiveProject] = useState(projects[0].name);
+  const chat = projectChats[activeProject];
+
   return (
     <ThemeProvider theme={theme}>
       <Box sx={{ p: 3, maxWidth: 1200, mx: "auto" }}>
@@ -213,74 +118,69 @@ export default function FounderCollaboration() {
             {/* Projects Card */}
             <Box sx={cardSx}>
               <Box sx={{ px: 2.5, pt: 2.5, pb: 2 }}>
-                <Typography
-                  sx={{
-                    fontFamily: "Arial, sans-serif",
-                    fontWeight: 700,
-                    fontSize: "16px",
-                    lineHeight: "24px",
-                    letterSpacing: "0px",
-                    color: "#101828",
-                    mb: 1.5,
-                  }}
-                >
+                <Typography sx={{ ...headingTypo, mb: 1.5 }}>
                   Active Projects
                 </Typography>
-
                 <List disablePadding dense>
-                  {projects.map((p) => (
-                    <ListItem
-                      key={p.name}
-                      disablePadding
-                      sx={{
-                        mb: 0.5,
-                        width: "100%",
-                        borderRadius: 1.5,
-                        borderLeft: p.active
-                          ? "3px solid #1a2340"
-                          : "3px solid transparent",
-                        backgroundColor: p.active ? "#f7f8fa" : "transparent",
-                        cursor: "pointer",
-                        px: 1.5,
-                        py: 1,
-                        "&:hover": { backgroundColor: "#f7f8fa" },
-                      }}
-                    >
-                      <ListItemText
-                        primary={
-                          <Typography
-                            variant="body2"
-                            fontWeight={p.active ? 600 : 400}
+                  {projects.map((p) => {
+                    const isActive = activeProject === p.name;
+                    return (
+                      <ListItem
+                        key={p.name}
+                        disablePadding
+                        onClick={() => setActiveProject(p.name)}
+                        sx={{
+                          mb: 0.5,
+                          width: "100%",
+                          borderRadius: 1.5,
+                          borderLeft: isActive
+                            ? "3px solid #1a2340"
+                            : "3px solid transparent",
+                          backgroundColor: isActive ? "#f7f8fa" : "transparent",
+                          cursor: "pointer",
+                          px: 1.5,
+                          py: 1,
+                          "&:hover": { backgroundColor: "#f7f8fa" },
+                          transition: "background-color 0.15s ease",
+                        }}
+                      >
+                        <ListItemText
+                          primary={
+                            <Typography
+                              variant="body2"
+                              fontWeight={isActive ? 600 : 400}
+                              sx={{
+                                fontSize: 13,
+                                color: isActive ? "#1a2340" : "#555",
+                              }}
+                            >
+                              {p.name}
+                            </Typography>
+                          }
+                        />
+                        {p.badge > 0 && (
+                          <Box
                             sx={{
-                              fontSize: 13,
-                              color: p.active ? "#1a2340" : "#555",
+                              bgcolor: isActive ? "#1a2340" : "#e0e0e0",
+                              color: isActive ? "#fff" : "#555",
+                              borderRadius: "50%",
+                              width: 22,
+                              height: 22,
+                              display: "flex",
+                              alignItems: "center",
+                              justifyContent: "center",
+                              fontSize: 11,
+                              fontWeight: 700,
+                              flexShrink: 0,
+                              transition: "background-color 0.15s ease",
                             }}
                           >
-                            {p.name}
-                          </Typography>
-                        }
-                      />
-                      {p.badge > 0 && (
-                        <Box
-                          sx={{
-                            bgcolor: "#1a2340",
-                            color: "#fff",
-                            borderRadius: "50%",
-                            width: 22,
-                            height: 22,
-                            display: "flex",
-                            alignItems: "center",
-                            justifyContent: "center",
-                            fontSize: 11,
-                            fontWeight: 700,
-                            flexShrink: 0,
-                          }}
-                        >
-                          {p.badge}
-                        </Box>
-                      )}
-                    </ListItem>
-                  ))}
+                            {p.badge}
+                          </Box>
+                        )}
+                      </ListItem>
+                    );
+                  })}
                 </List>
               </Box>
             </Box>
@@ -288,109 +188,19 @@ export default function FounderCollaboration() {
             {/* Team Members Card */}
             <Box sx={cardSx}>
               <Box sx={{ px: 2.5, pt: 2.5, pb: 2 }}>
-                <Box
-                  sx={{
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    gap: 1,
-                    mb: 1.5,
-                  }}
-                >
+                <Box sx={{ display: "flex", alignItems: "center", gap: 1, mb: 1.5 }}>
                   <img src="/src/assets/team.png" alt="" />
-                  <Typography
-                    sx={{
-                      fontFamily: "Arial, sans-serif",
-                      fontWeight: 700,
-                      fontSize: "16px",
-                      lineHeight: "24px",
-                      letterSpacing: "0px",
-                      color: "#101828",
-                    }}
-                  >
-                    Team Members
-                  </Typography>
+                  <Typography sx={headingTypo}>Team Members</Typography>
                 </Box>
-
                 <List disablePadding dense>
-                  {/* {teamMembers.map((m) => (
-                    <ListItem key={m.name} sx={{ px: 0, py: 0.75 }}>
-                      <ListItemAvatar sx={{ minWidth: 44 }}>
-                        <Badge
-                          overlap="circular"
-                          anchorOrigin={{
-                            vertical: "bottom",
-                            horizontal: "right",
-                          }}
-                          badgeContent={
-                            m.online ? (
-                              <Box
-                                sx={{
-                                  width: 10,
-                                  height: 10,
-                                  bgcolor: "#43a047",
-                                  borderRadius: "50%",
-                                  border: "2px solid #fff",
-                                }}
-                              />
-                            ) : null
-                          }
-                        >
-                          <Avatar
-                            src={m.avatar}
-                            sx={{ width: "40px", height: "40px" }}
-                          />
-                        </Badge>
-                      </ListItemAvatar>
-
-                      <ListItemText
-                        primary={
-                          <Typography
-                            variant="body2"
-                            sx={{
-                              fontFamily: "Arial, sans-serif",
-                              fontWeight: 400,
-                              fontSize: "14px",
-                              lineHeight: "20px",
-                              letterSpacing: "0px",
-                              color: "#101828",
-                            }}
-                          >
-                            {m.name}
-                          </Typography>
-                        }
-                        secondary={
-                          <Typography variant="caption" sx={{
-                              fontFamily: "Arial, sans-serif",
-                              fontWeight: 400,
-                              fontSize: "12px",
-                              lineHeight: "16px",
-                              letterSpacing: "0px",
-                              color: "#101828",
-                            }}>
-                            {m.role}
-                          </Typography>
-                        }
-                      />
-                    </ListItem>
-                  ))} */}
                   {teamMembers.map((m) => (
                     <ListItem
                       key={m.name}
-                      sx={{
-                        px: 0,
-                        py: 1,
-                        display: "flex",
-                        alignItems: "center",
-                        gap: 2, 
-                      }}
+                      sx={{ px: 0, py: 1, display: "flex", alignItems: "center", gap: 2 }}
                     >
                       <Badge
                         overlap="circular"
-                        anchorOrigin={{
-                          vertical: "bottom",
-                          horizontal: "right",
-                        }}
+                        anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
                         badgeContent={
                           m.online ? (
                             <Box
@@ -407,35 +217,24 @@ export default function FounderCollaboration() {
                       >
                         <Avatar src={m.avatar} sx={{ width: 40, height: 40 }} />
                       </Badge>
-
-                      {/* Text block */}
-                      <Box
-                        sx={{
-                          display: "flex",
-                          flexDirection: "column",
-                          gap: 0.5, 
-                        }}
-                      >
+                      <Box sx={{ display: "flex", flexDirection: "column", gap: 0.5 }}>
                         <Typography
                           sx={{
                             fontFamily: "Arial, sans-serif",
                             fontWeight: 400,
                             fontSize: "14px",
                             lineHeight: "20px",
-                            letterSpacing: "0px",
                             color: "#101828",
                           }}
                         >
                           {m.name}
                         </Typography>
-
                         <Typography
                           sx={{
                             fontFamily: "Arial, sans-serif",
                             fontWeight: 400,
                             fontSize: "12px",
                             lineHeight: "16px",
-                            letterSpacing: "0px",
                             color: "#6a7282",
                           }}
                         >
@@ -449,15 +248,8 @@ export default function FounderCollaboration() {
             </Box>
           </Box>
 
-          {/* ══ CENTER: Chat ══ */}
-          <Box
-            sx={{
-              ...cardSx,
-              display: "flex",
-              flexDirection: "column",
-              minHeight: 580,
-            }}
-          >
+          {/* ══ CENTER: Chat (driven by activeProject) ══ */}
+          <Box sx={{ ...cardSx, display: "flex", flexDirection: "column", minHeight: 580 }}>
             {/* Chat header */}
             <Box
               sx={{
@@ -470,29 +262,17 @@ export default function FounderCollaboration() {
               }}
             >
               <Box>
-                <Typography
-                  sx={{
-                    fontFamily: "Arial, sans-serif",
-                    fontWeight: 700,
-                    fontSize: "16px",
-                    lineHeight: "24px",
-                    letterSpacing: "0px",
-                    color: "#101828",
-                  }}
-                >
-                  Mobile App Development
-                </Typography>
+                <Typography sx={headingTypo}>{chat.projectName}</Typography>
                 <Typography
                   sx={{
                     fontFamily: "Arial, sans-serif",
                     fontWeight: 400,
                     fontSize: "14px",
                     lineHeight: "20px",
-                    letterSpacing: "0px",
-                    color: "#101828",
+                    color: "#6a7282",
                   }}
                 >
-                  3 members online
+                  {chat.membersOnline} members online
                 </Typography>
               </Box>
               <IconButton size="small">
@@ -512,12 +292,9 @@ export default function FounderCollaboration() {
                 gap: 2.5,
               }}
             >
-              {messages.map((msg) =>
+              {chat.messages.map((msg) =>
                 msg.own ? (
-                  <Box
-                    key={msg.id}
-                    sx={{ display: "flex", justifyContent: "flex-end" }}
-                  >
+                  <Box key={msg.id} sx={{ display: "flex", justifyContent: "flex-end" }}>
                     <Box sx={{ maxWidth: "70%" }}>
                       <Box
                         sx={{
@@ -528,10 +305,7 @@ export default function FounderCollaboration() {
                           py: 1.5,
                         }}
                       >
-                        <Typography
-                          variant="body2"
-                          sx={{ fontSize: "12px", lineHeight: "16px" }}
-                        >
+                        <Typography variant="body2" sx={{ fontSize: "12px", lineHeight: "16px" }}>
                           {msg.text}
                         </Typography>
                       </Box>
@@ -545,14 +319,8 @@ export default function FounderCollaboration() {
                     </Box>
                   </Box>
                 ) : (
-                  <Box
-                    key={msg.id}
-                    sx={{ display: "flex", gap: 1.5, alignItems: "flex-start" }}
-                  >
-                    <Avatar
-                      src={msg.avatar}
-                      sx={{ width: 40, height: 40, flexShrink: 0 }}
-                    />
+                  <Box key={msg.id} sx={{ display: "flex", gap: 1.5, alignItems: "flex-start" }}>
+                    <Avatar src={msg.avatar} sx={{ width: 40, height: 40, flexShrink: 0 }} />
                     <Box sx={{ maxWidth: "70%" }}>
                       <Typography
                         variant="caption"
@@ -561,18 +329,8 @@ export default function FounderCollaboration() {
                       >
                         {msg.sender}
                       </Typography>
-                      <Box
-                        sx={{
-                          bgcolor: "#f4f5f7",
-                          borderRadius: "10px",
-                          px: 2.5,
-                          py: 1.5,
-                        }}
-                      >
-                        <Typography
-                          variant="body2"
-                          sx={{ fontSize: 13, lineHeight: 1.5 }}
-                        >
+                      <Box sx={{ bgcolor: "#f4f5f7", borderRadius: "10px", px: 2.5, py: 1.5 }}>
+                        <Typography variant="body2" sx={{ fontSize: 13, lineHeight: 1.5 }}>
                           {msg.text}
                         </Typography>
                       </Box>
@@ -585,7 +343,7 @@ export default function FounderCollaboration() {
                       </Typography>
                     </Box>
                   </Box>
-                ),
+                )
               )}
             </Box>
 
@@ -631,13 +389,7 @@ export default function FounderCollaboration() {
                   borderRadius: "10px",
                 }}
               >
-                {/* <SendIcon fontSize="small" /> */}
-                <img
-                  src="/src/assets/sendd.png"
-                  alt=""
-                  width={20}
-                  height={20}
-                />
+                <img src="/src/assets/sendd.png" alt="" width={20} height={20} />
               </IconButton>
             </Box>
           </Box>
@@ -647,25 +399,10 @@ export default function FounderCollaboration() {
             {/* Milestones Card */}
             <Box sx={cardSx}>
               <Box sx={{ px: 2.5, pt: 2.5, pb: 2 }}>
-                <Typography
-                  sx={{
-                    fontFamily: "Arial, sans-serif",
-                    fontWeight: 700,
-                    fontSize: "16px",
-                    lineHeight: "24px",
-                    letterSpacing: "0px",
-                    color: "#101828",
-                  }}
-                >
-                  Milestones
-                </Typography>
-
+                <Typography sx={{ ...headingTypo, mb: 1.5 }}>Milestones</Typography>
                 <List disablePadding dense>
                   {milestones.map((m) => (
-                    <ListItem
-                      key={m.label}
-                      sx={{ px: 0, py: 0.75, alignItems: "center" }}
-                    >
+                    <ListItem key={m.label} sx={{ px: 0, py: 0.75, alignItems: "center" }}>
                       <ListItemAvatar sx={{ minWidth: 34 }}>
                         <MilestoneIcon status={m.status} />
                       </ListItemAvatar>
@@ -685,12 +422,7 @@ export default function FounderCollaboration() {
                         secondary={
                           <Typography
                             variant="caption"
-                            sx={{
-                              color:
-                                m.status === "pending"
-                                  ? "#ccc"
-                                  : "text.secondary",
-                            }}
+                            sx={{ color: m.status === "pending" ? "#ccc" : "text.secondary" }}
                           >
                             {m.amount}
                           </Typography>
@@ -705,34 +437,13 @@ export default function FounderCollaboration() {
             {/* Tasks Card */}
             <Box sx={cardSx}>
               <Box sx={{ px: 2.5, pt: 2.5, pb: 1.5 }}>
-                <Box
-                  sx={{
-                    display: "flex",
-                    alignItems: "center",
-                    gap: 0.75,
-                    mb: 1.5,
-                  }}
-                >
+                <Box sx={{ display: "flex", alignItems: "center", gap: 0.75, mb: 1.5 }}>
                   <img src="/src/assets/task.png" alt="" />
-                  <Typography
-                    sx={{
-                      fontFamily: "Arial, sans-serif",
-                      fontWeight: 700,
-                      fontSize: "16px",
-                      lineHeight: "24px",
-                      letterSpacing: "0px",
-                      color: "#101828",
-                    }}
-                  >
-                    Tasks
-                  </Typography>
+                  <Typography sx={headingTypo}>Tasks</Typography>
                 </Box>
                 <List disablePadding dense>
                   {tasks.map((t) => (
-                    <ListItem
-                      key={t.label}
-                      sx={{ px: 0, py: 0.1, alignItems: "flex-start" }}
-                    >
+                    <ListItem key={t.label} sx={{ px: 0, py: 0.1, alignItems: "flex-start" }}>
                       <ListItemText
                         primary={
                           <Typography
@@ -789,20 +500,9 @@ export default function FounderCollaboration() {
             {/* Files Card */}
             <Box sx={cardSx}>
               <Box sx={{ px: 2.5, pt: 2.5, pb: 2 }}>
-                <Box
-                  sx={{
-                    display: "flex",
-                    alignItems: "center",
-                    gap: 0.75,
-                    mb: 1.5,
-                  }}
-                >
+                <Box sx={{ display: "flex", alignItems: "center", gap: 0.75, mb: 1.5 }}>
                   <img src="/src/assets/files.png" alt="" />
-                  <Typography
-                    variant="subtitle2"
-                    fontWeight={700}
-                    sx={{ fontSize: 14 }}
-                  >
+                  <Typography variant="subtitle2" fontWeight={700} sx={{ fontSize: 14 }}>
                     Files
                   </Typography>
                 </Box>
@@ -828,15 +528,13 @@ export default function FounderCollaboration() {
                               fontWeight: 700,
                               fontSize: "12px",
                               lineHeight: "16px",
-                              letterSpacing: "0px",
                               color: "#101828",
                             }}
                           >
-                            FIG
+                            {f.type.toUpperCase()}
                           </Typography>
                         </Box>
                       </ListItemAvatar>
-
                       <ListItemText
                         primary={
                           <Typography
@@ -845,7 +543,6 @@ export default function FounderCollaboration() {
                               fontWeight: 400,
                               fontSize: "14px",
                               lineHeight: "20px",
-                              letterSpacing: "0px",
                               color: "#101828",
                             }}
                           >
@@ -859,7 +556,6 @@ export default function FounderCollaboration() {
                               fontWeight: 400,
                               fontSize: "12px",
                               lineHeight: "16px",
-                              letterSpacing: "0px",
                               color: "#6a7282",
                             }}
                           >
