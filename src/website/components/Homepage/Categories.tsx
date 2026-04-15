@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { Box, Typography, SvgIcon } from "@mui/material";
+import { motion } from "framer-motion";
 import ArrowOutwardIcon from "@mui/icons-material/ArrowOutward";
 
 import PaletteOutlinedIcon from "@mui/icons-material/PaletteOutlined";
@@ -30,26 +31,25 @@ export default function Categories() {
       sx={{
         position: "relative",
         overflow: "hidden",
-        background: "#030E46",
+        background: "radial-gradient(circle at 10% 20%, rgb(3, 14, 70) 0%, rgb(1, 10, 69) 100%)",
         color: "#fff",
-        py: { xs: 9, sm: 10, md: 12 },
-        px: { xs: 2, sm: 4, md: 3 },
+        py: { xs: 10, md: 15 },
+        px: { xs: 2.5, md: 4 },
       }}
     >
-      {/* 🔹 GIANT RESPONSIVE SLANTED "S" IN BACKGROUND */}
+      {/* 🔹 GIANT RESPONSIVE SLANTED "S" IN BACKGROUND - More subtle for S+ vibe */}
       <Typography
         sx={{
           position: "absolute",
           top: "50%",
           left: "50%",
-          transform: "translate(-50%, -50%) rotate(-20deg)",
+          transform: "translate(-50%, -50%) rotate(-15deg)",
           fontSize: {
-            xs: "660vw", // fills screen width on mobile
-            sm: "620vw",
-            md: "300vw",
+            xs: "150vw",
+            md: "230vw",
           },
           fontWeight: 900,
-          color: "rgba(255, 255, 255, 0.1)",
+          color: "rgba(255, 255, 255, 0.03)",
           zIndex: 0,
           userSelect: "none",
           pointerEvents: "none",
@@ -65,112 +65,130 @@ export default function Categories() {
         sx={{
           position: "relative",
           zIndex: 1,
-          maxWidth: "1200px",
+          maxWidth: "1240px",
           mx: "auto",
-          px: { xs: 2, sm: 6, md: 12 },
           textAlign: { xs: "center", md: "left" },
         }}
       >
         {/* HEADER */}
-        <Typography
-          variant="h4"
-          fontWeight={700}
-          sx={{
-            mb: 1,
-            color: "#fff",
-            fontSize: { xs: "1.8rem", sm: "2rem", md: "2.2rem" },
-          }}
+        <motion.div
+          initial={{ opacity: 0, x: -20 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
         >
-          Most{" "}
-          <Box component="span" sx={{ color: "#E6C117" }}>
-            Popular Categories
-          </Box>
-        </Typography>
+          <Typography
+            variant="h4"
+            sx={{
+              fontWeight: 800,
+              mb: 2,
+              color: "#fff",
+              fontSize: { xs: "2rem", md: "2.5rem" },
+              letterSpacing: "-0.01em",
+            }}
+          >
+            Most{" "}
+            <Box component="span" sx={{ color: "secondary.main" }}>
+              Popular Categories
+            </Box>
+          </Typography>
 
-        <Typography
-          sx={{
-            color: "#bfc7e0",
-            mt: 1,
-            mb: { xs: 5, md: 6 },
-            fontSize: { xs: "1rem", sm: "1.1rem", md: "1.125rem" },
-          }}
-        >
-          Various versions have evolved over the years, sometimes by accident.
-        </Typography>
+          <Typography
+            sx={{
+              color: "rgba(191, 199, 224, 0.8)",
+              mt: 1,
+              mb: { xs: 6, md: 8 },
+              fontSize: { xs: "1rem", md: "1.1rem" },
+              maxWidth: "600px",
+              mx: { xs: "auto", md: 0 },
+            }}
+          >
+            Explore diverse fields and find the path that matches your ambition.
+            Industry-aligned learning for the next generation of African talent.
+          </Typography>
+        </motion.div>
 
         {/* CATEGORY CARDS */}
         <Box
           sx={{
-            display: "flex",
-            flexWrap: "wrap",
-            justifyContent: "center",
-            gap: { xs: 2.5, sm: 3 },
+            display: "grid",
+            gridTemplateColumns: {
+              xs: "1fr",
+              sm: "repeat(2, 1fr)",
+              md: "repeat(3, 1fr)",
+            },
+            gap: 3,
           }}
         >
           {categories.map((item, index) => (
-            <Box
+            <motion.div
               key={index}
-              component={Link}
-              to="/"
-              sx={{
-                textDecoration: "none",
-                flex: { xs: "1 1 100%", sm: "0 1 300px", md: "0 1 320px" },
-                display: "flex",
-                justifyContent: "center",
-              }}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.4, delay: index * 0.05 }}
             >
               <Box
+                component={Link}
+                to="/"
                 sx={{
+                  textDecoration: "none",
                   display: "flex",
                   justifyContent: "space-between",
                   alignItems: "center",
-                  width: "100%",
-                  bgcolor: "#fff",
-                  borderRadius: 3,
-                  p: { xs: 2, sm: 2.5 },
-                  color: "#000",
-                  transition: "0.25s",
+                  bgcolor: "rgba(255, 255, 255, 1)",
+                  backdropFilter: "blur(5px)",
+                  border: "1px solid rgba(255, 255, 255, 0.1)",
+                  borderRadius: 4,
+                  p: 3,
+                  color: "#fff",
+                  transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
+                  "& .arrow-box": {
+                    bgcolor: "secondary.main",
+                    color: "primary.main",
+                    borderColor: "secondary.main",
+                  },
                   "&:hover": {
-                    boxShadow: "0px 4px 16px rgba(255,255,255,0.25)",
-                    transform: "translateY(-3px)",
+                    bgcolor: "rgba(255, 255, 255, 0.43)",
+                    border: "1px solid rgba(255, 255, 255, 0.2)",
+                    transform: "translateY(-5px)",
+                    boxShadow: "0 15px 30px rgba(0,0,0,0.2)",
+                    "& .arrow-box": {
+                      bgcolor: "secondary.main",
+                      color: "primary.main",
+                      borderColor: "secondary.main",
+                    }
                   },
                 }}
               >
                 {/* ICON / LABEL */}
-                <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
-                  <SvgIcon
-                    sx={{
-                      fontSize: 26,
-                      color: "#030E46",
-                    }}
-                  >
+                <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
+                  <SvgIcon sx={{ fontSize: 24, color: "secondary.main" }}>
                     {item.icon}
                   </SvgIcon>
-                  <Typography fontWeight={500}>{item.title}</Typography>
+                  <Typography sx={{ fontWeight: 600, fontSize: "1.05rem" }}>
+                    {item.title}
+                  </Typography>
                 </Box>
 
                 {/* ARROW BOX */}
                 <Box
+                  className="arrow-box"
                   sx={{
-                    width: 32,
-                    height: 32,
+                    width: 36,
+                    height: 36,
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
-                    border: "1px solid #d0d0d0",
-                    borderRadius: 1,
-                    transition: "0.25s",
-                    "&:hover": {
-                      background: "#0a0d2c",
-                      color: "#fff",
-                      borderColor: "#0a0d2c",
-                    },
+                    border: "1px solid rgba(255, 255, 255, 0.2)",
+                    borderRadius: "10px",
+                    transition: "all 0.3s ease",
                   }}
                 >
                   <ArrowOutwardIcon fontSize="small" />
                 </Box>
               </Box>
-            </Box>
+            </motion.div>
           ))}
         </Box>
       </Box>

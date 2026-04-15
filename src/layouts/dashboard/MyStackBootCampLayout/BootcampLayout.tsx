@@ -1,5 +1,3 @@
-// src/layouts/BootcampLayout.tsx
-import React from "react";
 import {
   Box,
   Container,
@@ -11,11 +9,12 @@ import {
   Grid,
   LinearProgress,
   Button,
+  Card,
 } from "@mui/material";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import { useParams, useNavigate } from "react-router-dom";
 import { PageWrapper } from "../../../dashboard/pages/worklab/WorkLabCard";
-import { useTheme } from "@mui/material/styles";
+import { motion, AnimatePresence } from "framer-motion";
 
 // IMPORT YOUR DATA ARRAY - Using your specific paths
 import { ongoingBootcamps } from "../../../dashboard/Data/MyStackBootcamp.data";
@@ -27,12 +26,9 @@ import DiscussionsTab from "../../../dashboard/pages/mystack/MyStackDiscussion";
 const BootcampLayout = () => {
   const { id, tab } = useParams<{ id: string; tab: string }>();
   const navigate = useNavigate();
-  const theme = useTheme();
 
-  // 1. FIND DATA BASED ON URL ID
   const currentBootcamp = ongoingBootcamps.find((b) => b.id === id);
 
-  // 2. MAP URL PATHS TO TAB INDEX NUMBERS
   const tabMap: Record<string, number> = {
     overview: 0,
     resources: 1,
@@ -40,59 +36,69 @@ const BootcampLayout = () => {
     discussions: 3,
   };
 
-  // Get current index from URL (default to Resources/1 if not found)
   const activeTab = tab !== undefined ? tabMap[tab] : 1;
-
-  // LOGIC: Only show sidebar on Resources (1) and Assessments (2)
   const showSidebar = activeTab === 1 || activeTab === 2;
 
-  // 3. TAB CHANGE HANDLER
   const handleTabChange = (_: React.SyntheticEvent, newValue: number) => {
     const paths = ["overview", "resources", "assessments", "discussions"];
-    // Using { replace: true } helps with the back button issue we fixed earlier
     navigate(`/bootcamp/${id}/${paths[newValue]}`, { replace: true });
   };
 
-  // 4. CONTENT RENDERER
   const renderContent = () => {
-    switch (activeTab) {
-      case 0:
-        return <OverviewTab />;
-      case 1:
-        return <ResourcesTab />;
-      case 2:
-        return <AssessmentsTab />;
-      case 3:
-        return <DiscussionsTab />;
-      default:
-        return <ResourcesTab />;
-    }
+    return (
+        <AnimatePresence mode="wait">
+            <motion.div
+                key={activeTab}
+                initial={{ opacity: 0, x: 20 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: -20 }}
+                transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+            >
+                {(() => {
+                    switch (activeTab) {
+                        case 0: return <OverviewTab />;
+                        case 1: return <ResourcesTab />;
+                        case 2: return <AssessmentsTab />;
+                        case 3: return <DiscussionsTab />;
+                        default: return <ResourcesTab />;
+                    }
+                })()}
+            </motion.div>
+        </AnimatePresence>
+    );
   };
 
   return (
     <PageWrapper>
-      <Box sx={{ bgcolor: "white", minHeight: "100vh" }}>
-        {/* HEADER SECTION - FIXED ACROSS ALL TABS */}
-        <Box sx={{ pt: 4, borderBottom: "1px solid #EEE" }}>
-          <Container maxWidth="xl">
+      <Box sx={{ bgcolor: "#F9FAFB", minHeight: "100vh" }}>
+        {/* HEADER SECTION */}
+        <Box sx={{ pt: 6, borderBottom: "1px solid rgba(0,0,0,0.05)", backgroundColor: "#FFFFFF" }}>
+          <Container maxWidth="lg">
             <Stack
               direction="row"
               alignItems="center"
-              spacing={1}
-              sx={{ mb: 2 }}
+              spacing={2}
+              sx={{ mb: 4 }}
             >
               <IconButton
                 onClick={() => navigate("/dashboard/mystack")}
-                size="small"
+                sx={{ 
+                    backgroundColor: "#F1F5F9", 
+                    "&:hover": { backgroundColor: "#E2E8F0" },
+                    borderRadius: "12px",
+                    width: 40,
+                    height: 40
+                }}
               >
-                <ArrowBackIosIcon sx={{ fontSize: "1rem" }} />
+                <ArrowBackIosIcon sx={{ fontSize: "0.9rem", ml: 0.5, color: "#0B0B31" }} />
               </IconButton>
 
               <Typography
-                variant="h6"
+                variant="h5"
                 sx={{
-                  fontWeight: 700,
-                  fontFamily: theme.typography.fontFamily,
+                  fontWeight: 900,
+                  color: "#0B0B31",
+                  letterSpacing: "-0.02em"
                 }}
               >
                 {currentBootcamp?.title || "Bootcamp Details"}
@@ -103,26 +109,27 @@ const BootcampLayout = () => {
               value={activeTab}
               onChange={handleTabChange}
               sx={{
-                width: { xs: "100%", md: "90%" },
+                mb: -0.1,
                 "& .MuiTabs-flexContainer": {
-                  justifyContent: "space-between",
-                  display: "flex",
+                  gap: 4
                 },
                 "& .MuiTabs-indicator": {
-                  bgcolor: "#D4AF37",
+                  bgcolor: "#3B82F6",
                   height: 3,
+                  borderRadius: "3px 3px 0 0"
                 },
                 "& .MuiTab-root": {
                   textTransform: "none",
-                  fontWeight: 700,
-                  fontSize: "1.1rem",
-                  color: "#666",
+                  fontWeight: 800,
+                  fontSize: "1rem",
+                  color: "#94A3B8",
                   minWidth: "auto",
-                  px: 0,
+                  px: 1,
+                  pb: 2,
+                  transition: "0.3s"
                 },
                 "& .Mui-selected": {
-                  color: "#000 !important",
-                  borderBottom: "none",
+                  color: "#3B82F6 !important",
                 },
               }}
             >
@@ -135,165 +142,140 @@ const BootcampLayout = () => {
         </Box>
 
         {/* MAIN CONTENT AREA */}
-        <Container maxWidth="xl" sx={{ mt: 5, pb: 8 }}>
-          <Grid container spacing={showSidebar ? 6 : 0}>
-            {/* LEFT: DYNAMIC CONTENT - Changes width based on sidebar */}
-            <Grid item xs={12} md={showSidebar ? 7 : 12}>
+        <Container maxWidth="lg" sx={{ mt: 6, pb: 10 }}>
+          <Grid container spacing={showSidebar ? 5 : 0}>
+            {/* LEFT: DYNAMIC CONTENT */}
+            <Grid item xs={12} md={showSidebar ? 7.5 : 12}>
               {renderContent()}
             </Grid>
 
-            {/* RIGHT: PERSISTENT SIDEBAR - Only shows when showSidebar is true */}
+            {/* RIGHT: PERSISTENT SIDEBAR */}
             {showSidebar && (
-              <Grid item xs={12} md={5}>
-                <Box
-                  sx={{
-                    bgcolor: "#F3F6FF",
-                    p: 4,
-                    borderRadius: "20px",
-                    textAlign: "center",
-                    mt: { xs: 0, md: 5 },
-                    pt: { sx: 0, md: 6 },
-                  }}
-                >
-                  <Box sx={{ position: "relative", mb: 4 }}>
-                    <LinearProgress
-                      variant="determinate"
-                      value={currentBootcamp?.progress || 0}
-                      sx={{
-                        height: 6,
-                        borderRadius: 5,
-                        bgcolor: "#E0E0E0",
-                        mb: 3,
-                      }}
-                    />
-                    <Box
-                      sx={{
-                        position: "absolute",
-                        top: -4,
-                        left: `${currentBootcamp?.progress || 0}%`,
-                        width: 14,
-                        height: 14,
-                        bgcolor: "white",
-                        border: "3px solid #0056FF",
-                        borderRadius: "50%",
-                        transform: "translateX(-50%)",
-                      }}
-                    />
-                    <Typography
-                      sx={{ color: "#666", fontSize: "0.85rem", mb: 2 }}
-                    >
-                      Your bootcamp is {currentBootcamp?.progress || 0}% through
-                    </Typography>
-                  </Box>
-
-                  <Typography
+              <Grid item xs={12} md={4.5}>
+                <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.2 }}>
+                    <Card
                     sx={{
-                      fontWeight: 800,
-                      fontSize: "1.1rem",
-                      mb: 3,
-                      textDecoration: "underline",
+                        p: 4,
+                        borderRadius: "32px",
+                        border: "1px solid rgba(0,0,0,0.04)",
+                        backgroundColor: "#FFFFFF",
+                        boxShadow: "0 20px 40px rgba(0,0,0,0.02)"
                     }}
-                  >
-                    Your Progress
-                  </Typography>
-
-                  <Stack spacing={2} sx={{ mb: 4 }}>
-                    <Box
-                      sx={{ display: "flex", justifyContent: "space-between" }}
                     >
-                      <Typography sx={{ fontWeight: 600 }}>
-                        Attendance
-                      </Typography>
-                      <Typography sx={{ fontWeight: 700 }}>75%</Typography>
+                    <Box sx={{ mb: 4 }}>
+                        <Typography sx={{ fontWeight: 800, fontSize: "0.85rem", color: "#64748B", textTransform: "uppercase", letterSpacing: "0.05em", mb: 2 }}>Your Progress</Typography>
+                        <Stack spacing={2}>
+                            <Box>
+                                <Stack direction="row" justifyContent="space-between" mb={1.5}>
+                                    <Typography sx={{ fontWeight: 700, fontSize: "0.9rem", color: "#0B0B31" }}>Course Completion</Typography>
+                                    <Typography sx={{ fontWeight: 900, color: "#3B82F6", fontSize: "0.9rem" }}>{currentBootcamp?.progress || 0}%</Typography>
+                                </Stack>
+                                <LinearProgress
+                                    variant="determinate"
+                                    value={currentBootcamp?.progress || 0}
+                                    sx={{
+                                        height: 10,
+                                        borderRadius: 5,
+                                        bgcolor: "#F1F5F9",
+                                        "& .MuiLinearProgress-bar": {
+                                            borderRadius: 5,
+                                            backgroundColor: "#3B82F6"
+                                        }
+                                    }}
+                                />
+                            </Box>
+                        </Stack>
                     </Box>
+
+                    <Stack spacing={3} sx={{ mb: 4 }}>
+                        <Stack direction="row" justifyContent="space-between" sx={{ p: 2, borderRadius: "16px", backgroundColor: "#F8FAFF" }}>
+                            <Typography sx={{ fontWeight: 700, color: "#64748B", fontSize: "0.9rem" }}>Attendance</Typography>
+                            <Typography sx={{ fontWeight: 900, color: "#0B0B31" }}>75%</Typography>
+                        </Stack>
+                        <Stack direction="row" justifyContent="space-between" sx={{ p: 2, borderRadius: "16px", backgroundColor: "#F8FAFF" }}>
+                            <Typography sx={{ fontWeight: 700, color: "#64748B", fontSize: "0.9rem" }}>Assessments</Typography>
+                            <Typography sx={{ fontWeight: 900, color: "#0B0B31" }}>90%</Typography>
+                        </Stack>
+                    </Stack>
+
                     <Box
-                      sx={{ display: "flex", justifyContent: "space-between" }}
+                        sx={{
+                        p: 3,
+                        borderRadius: "24px",
+                        backgroundColor: "#0B0B31",
+                        color: "#FFF",
+                        mb: 4,
+                        }}
                     >
-                      <Typography sx={{ fontWeight: 600 }}>
-                        Assessments
-                      </Typography>
-                      <Typography sx={{ fontWeight: 700 }}>90%</Typography>
+                        <Typography
+                        sx={{
+                            fontSize: "0.8rem",
+                            fontWeight: 700,
+                            color: "rgba(255,255,255,0.6)",
+                            textTransform: "uppercase",
+                            mb: 1
+                        }}
+                        >
+                        Next Class
+                        </Typography>
+                        <Typography sx={{ fontWeight: 800, fontSize: "1rem", mb: 3 }}>
+                            {currentBootcamp?.nextClass || "No scheduled classes"}
+                        </Typography>
+                        <Button
+                            fullWidth
+                            variant="contained"
+                            onClick={() => navigate(`/bootcamp/${id}/lobby`)}
+                            sx={{
+                                backgroundColor: "#FFF",
+                                color: "#0B0B31",
+                                textTransform: "none",
+                                borderRadius: "14px",
+                                py: 1.5,
+                                fontWeight: 900,
+                                fontSize: "0.9rem",
+                                "&:hover": { backgroundColor: "#F1F5F9" },
+                            }}
+                        >
+                        Join Class
+                        </Button>
                     </Box>
-                  </Stack>
 
-                  <Box
-                    sx={{
-                      border: "1px solid #001B44",
-                      p: 2,
-                      borderRadius: "12px",
-                      display: "flex",
-                      justifyContent: "space-between",
-                      alignItems: "center",
-                      mb: 3,
-                    }}
-                  >
-                    <Typography
-                      sx={{
-                        fontSize: "0.75rem",
-                        textAlign: "left",
-                        fontWeight: 600,
-                      }}
-                    >
-                      Next Class: <br />{" "}
-                      {currentBootcamp?.nextClass || "Loading..."}
-                    </Typography>
-                    <Button
-                      variant="contained"
-                      size="small"
-                      onClick={() => navigate(`/bootcamp/${id}/lobby`)}
-                      sx={{
-                        bgcolor: "#001B44",
-                        textTransform: "none",
-                        width: "121px",
-                        height: "40px",
-                        borderRadius: "12px",
-                        whiteSpace: "nowrap",
-                        fontSize: "0.85rem",
-                        "&:hover": { bgcolor: "#001030" },
-                      }}
-                    >
-                      Join Class
-                    </Button>
-                  </Box>
-
-                  <Stack direction="row" spacing={2} justifyContent="center">
-                    <Button
-                      variant="contained"
-                      sx={{
-                        bgcolor: "#001B44",
-                        textTransform: "none",
-                        borderRadius: "12px",
-                        width: "121px",
-                        height: "40px",
-                        whiteSpace: "nowrap",
-                        fontSize: "0.8rem",
-                        "&:hover": { bgcolor: "#001030" },
-                      }}
-                    >
-                      Contact Tutor
-                    </Button>
-
-                    <Button
-                      variant="outlined"
-                      sx={{
-                        borderColor: "#001B44",
-                        color: "#001B44",
-                        textTransform: "none",
-                        borderRadius: "12px",
-                        width: "121px",
-                        height: "40px",
-                        whiteSpace: "nowrap",
-                        fontSize: "0.8rem",
-                        "&:hover": {
-                          borderColor: "#001B44",
-                          bgcolor: "rgba(0, 27, 68, 0.04)",
-                        },
-                      }}
-                    >
-                      Ask a Question
-                    </Button>
-                  </Stack>
-                </Box>
+                    <Stack direction="row" spacing={2}>
+                        <Button
+                            fullWidth
+                            variant="outlined"
+                            sx={{
+                                borderColor: "#E2E8F0",
+                                color: "#64748B",
+                                textTransform: "none",
+                                borderRadius: "14px",
+                                py: 1.2,
+                                fontWeight: 800,
+                                fontSize: "0.85rem",
+                                "&:hover": { borderColor: "#CBD5E1", backgroundColor: "#F8FAFF" },
+                            }}
+                        >
+                        Contact Tutor
+                        </Button>
+                        <Button
+                            fullWidth
+                            variant="outlined"
+                            sx={{
+                                borderColor: "#E2E8F0",
+                                color: "#64748B",
+                                textTransform: "none",
+                                borderRadius: "14px",
+                                py: 1.2,
+                                fontWeight: 800,
+                                fontSize: "0.85rem",
+                                "&:hover": { borderColor: "#CBD5E1", backgroundColor: "#F8FAFF" },
+                            }}
+                        >
+                        Ask Question
+                        </Button>
+                    </Stack>
+                    </Card>
+                </motion.div>
               </Grid>
             )}
           </Grid>

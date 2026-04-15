@@ -1,0 +1,26 @@
+
+> frontend@0.0.0 build
+> tsc -b && vite build
+
+src/dashboard/pages/main/DashboardHome.tsx(1,1): error TS6133: 'React' is declared but its value is never read.
+src/dashboard/pages/mentor/OurMentorsPage.tsx(174,39): error TS2304: Cannot find name 'useState'.
+src/dashboard/pages/mentor/OurMentorsPage.tsx(175,55): error TS2304: Cannot find name 'useState'.
+src/dashboard/pages/mentor/OurMentorsPage.tsx(176,43): error TS2304: Cannot find name 'useState'.
+src/layouts/dashboard/DashboardNavbar.tsx(29,20): error TS2552: Cannot find name 'useLocation'. Did you mean 'location'?
+src/layouts/dashboard/DashboardNavbar.tsx(30,20): error TS2552: Cannot find name 'useNavigate'. Did you mean 'navigate'?
+src/layouts/dashboard/DashboardNavbar.tsx(34,35): error TS2304: Cannot find name 'useState'.
+src/layouts/dashboard/DashboardNavbar.tsx(37,49): error TS2304: Cannot find name 'useState'.
+src/layouts/dashboard/DashboardNavbar.tsx(40,39): error TS2304: Cannot find name 'useState'.
+src/layouts/dashboard/DashboardNavbar.tsx(41,53): error TS2304: Cannot find name 'useState'.
+src/layouts/dashboard/DashboardNavbar.tsx(58,58): error TS7006: Parameter 'prev' implicitly has an 'any' type.
+src/layouts/dashboard/DashboardNavbar.tsx(85,12): error TS2304: Cannot find name 'Link'.
+src/layouts/dashboard/DashboardNavbar.tsx(95,13): error TS2304: Cannot find name 'Link'.
+src/layouts/dashboard/DashboardNavbar.tsx(149,30): error TS2304: Cannot find name 'Link'.
+src/layouts/dashboard/DashboardNavbar.tsx(298,36): error TS2304: Cannot find name 'Link'.
+src/layouts/dashboard/DashboardNavbar.tsx(306,36): error TS2304: Cannot find name 'Link'.
+src/layouts/dashboard/DashboardNavbar.tsx(316,40): error TS2304: Cannot find name 'Link'.
+src/layouts/dashboard/DashboardNavbar.tsx(326,28): error TS2304: Cannot find name 'Link'.
+src/layouts/dashboard/DashboardNavbar.tsx(334,28): error TS2304: Cannot find name 'Link'.
+src/layouts/dashboard/DashboardNavbar.tsx(375,26): error TS2304: Cannot find name 'Link'.
+src/layouts/dashboard/DashboardNavbar.tsx(383,26): error TS2304: Cannot find name 'Link'.
+src/layouts/dashboard/MyStackBootCampLayout/BootcampLayout.tsx(17,1): error TS6133: 'useTheme' is declared but its value is never read.

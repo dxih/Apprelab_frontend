@@ -1,76 +1,47 @@
 import React from "react";
-import { Box, Grid, Typography, Button, useTheme } from "@mui/material";
-import type { SxProps, Theme } from "@mui/material";
-import { Link } from "react-router-dom"; // Standard for SPA navigation
+import { Box, Grid, Typography, Button, Paper, Stack, Chip } from "@mui/material";
+import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
+import { AccessTime, Business, WorkOutline, ArrowForward } from "@mui/icons-material";
 import featuredData from "../../Data/Worklab.data";
 
-
-export interface PageWrapperProps {
-  children: React.ReactNode;
-  sx?: SxProps<Theme>;
-}
-export const PageWrapper: React.FC<PageWrapperProps> = ({
-  children,
-  sx = {},
-}) => (
-  <Box
-    sx={{
-      width:{ xs:"100%", md: "95%"},
-      maxWidth: "1400px",
-      margin: "0 auto",
-      px: { xs: 1, md: 3 },
-      ...sx,
-    }}
-  >
-    {children}
-  </Box>
-);
-
-const WorkLabCard = () => {
-  const theme = useTheme();
-
+export const PageWrapper: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   return (
-    <PageWrapper>
-      {/* --- GRID OF FEATURED PROJECTS --- */}
-      <Grid container spacing={3}>
-        {featuredData.map((item, index) => (
-          <Grid item xs={12} sm={6} md={4} key={index}>
-            <Box
+    <Box sx={{ width: "100%", height: "100%", position: "relative" }}>
+      {children}
+    </Box>
+  );
+};
+
+const WorkLabCard: React.FC = () => {
+  return (
+    <>
+      {featuredData.map((item, index) => (
+        <Grid item xs={12} sm={6} md={4} key={index}>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: index * 0.1 }}
+          >
+            <Paper
+              elevation={0}
               sx={{
-                borderRadius: "12px",
-                border: "1px solid #EDEDED",
+                borderRadius: "28px",
+                border: "1px solid rgba(0,0,0,0.04)",
                 backgroundColor: "#fff",
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "",
                 height: "100%",
-                ml:{xs:"25px", md:0},
-                position: "relative",
-                transition:
-                  "transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
+                overflow: "hidden",
+                transition: "0.4s cubic-bezier(0.16, 1, 0.3, 1)",
                 "&:hover": {
-                  transform: "translateY(-8px)",
-                  boxShadow: "0px 12px 30px rgba(0,0,0,0.1)",
-                  cursor: "pointer",
-                  "& img": {
-                    transform: "scale(1.05)",
-                  },
+                  transform: "translateY(-12px)",
+                  boxShadow: "0 30px 60px rgba(11, 11, 49, 0.08)",
+                  "& img": { transform: "scale(1.1)" }
                 },
               }}
             >
-
-              {/* --- IMAGE SECTION --- */}
-              <Box
-                sx={{
-                  position: "relative",
-                  display: "block",
-                  placeItems: "center",
-                  height: "229px",
-                  width: "100%",
-                  overflow: "hidden",
-                  borderRadius: "12px 12px 0 0",
-                }}
-              >
+              {/* Image Section */}
+              <Box sx={{ position: "relative", height: 220, overflow: "hidden" }}>
                 <Box
                   component="img"
                   src={item.image}
@@ -78,177 +49,101 @@ const WorkLabCard = () => {
                     width: "100%",
                     height: "100%",
                     objectFit: "cover",
-                    transition: "transform 0.5s ease",
+                    transition: "0.8s cubic-bezier(0.16, 1, 0.3, 1)",
                   }}
                 />
                 <Box
                   sx={{
                     position: "absolute",
-                    top: "12px",
-                    right: "12px",
-                    backgroundColor: "rgba(255, 255, 255, 0.95)",
+                    top: 16,
+                    right: 16,
+                    backgroundColor: "rgba(255, 255, 255, 0.9)",
+                    backdropFilter: "blur(10px)",
                     px: 1.5,
-                    py: 0.5,
-                    borderRadius: "20px",
-                    boxShadow: "0px 2px 4px rgba(0,0,0,0.1)",
-                    zIndex: 2,
+                    py: 0.8,
+                    borderRadius: "12px",
+                    display: "flex",
+                    alignItems: "center",
+                    gap: 0.5
                   }}
                 >
-                  <Typography
-                    sx={{ fontSize: "10px", fontWeight: 700, color: "#333" }}
-                  >
+                  <AccessTime sx={{ fontSize: "0.9rem", color: "#64748B" }} />
+                  <Typography sx={{ fontSize: "0.75rem", fontWeight: 800, color: "#0B0B31" }}>
                     {item.duration}
                   </Typography>
                 </Box>
               </Box>
 
-              {/* --- TAGS SECTION --- */}
-              <Box
-                sx={{
-                  px: 2,
-                  pt: 2,
-                  display: "flex",
-                  alignItems: "center",
-                  gap: "8px",
-                  flexWrap: "wrap",
-                }}
-              >
-                {item.tags.map((tag, i) => (
-                  <TagBox
-                    key={i}
-                    text={tag}
-                    bgColor={theme.palette.success.light}
-                  />
-                ))}
-                {item.tags2.map((tag, i) => (
-                  <TagBox
-                    key={i}
-                    text={tag}
-                    bgColor={theme.palette.success.main}
-                  />
-                ))}
+              {/* Content Section */}
+              <Box sx={{ p: 3.5 }}>
+                <Stack spacing={2}>
+                    <Stack direction="row" spacing={1} flexWrap="wrap" useFlexGap>
+                        {item.tags.map((tag, i) => (
+                            <Chip 
+                                key={i} 
+                                label={tag} 
+                                size="small" 
+                                sx={{ backgroundColor: "#F0FDF4", color: "#16A34A", fontWeight: 800, fontSize: "0.7rem", borderRadius: "8px" }} 
+                            />
+                        ))}
+                        {item.tags2.map((tag, i) => (
+                            <Chip 
+                                key={i} 
+                                label={tag} 
+                                size="small" 
+                                sx={{ backgroundColor: "#EFF6FF", color: "#3B82F6", fontWeight: 800, fontSize: "0.7rem", borderRadius: "8px" }} 
+                            />
+                        ))}
+                    </Stack>
+
+                    <Typography sx={{ fontSize: "1.25rem", fontWeight: 900, color: "#0B0B31", lineHeight: 1.2, letterSpacing: "-0.01em" }}>
+                        {item.title}
+                    </Typography>
+
+                    <Typography sx={{ fontSize: "0.9rem", color: "#64748B", fontWeight: 500, lineHeight: 1.5, display: "-webkit-box", WebkitLineClamp: 2, WebkitBoxOrient: "vertical", overflow: "hidden" }}>
+                        {item.subtitle}
+                    </Typography>
+
+                    <Stack direction="row" alignItems="center" spacing={2} sx={{ pt: 1, color: "#94A3B8" }}>
+                        <Stack direction="row" alignItems="center" spacing={0.5}>
+                            <Business sx={{ fontSize: "1rem" }} />
+                            <Typography sx={{ fontSize: "0.75rem", fontWeight: 700 }}>{item.agency}</Typography>
+                        </Stack>
+                        <Stack direction="row" alignItems="center" spacing={0.5}>
+                            <WorkOutline sx={{ fontSize: "1rem" }} />
+                            <Typography sx={{ fontSize: "0.75rem", fontWeight: 700 }}>{item.jobType}</Typography>
+                        </Stack>
+                    </Stack>
+
+                    <Button
+                        fullWidth
+                        component={Link}
+                        to={`/project-feeds/apply/${item.id}`}
+                        state={{ project: item }}
+                        variant="contained"
+                        endIcon={<ArrowForward />}
+                        sx={{
+                            mt: 1,
+                            backgroundColor: "#0B0B31",
+                            color: "#FFF",
+                            borderRadius: "14px",
+                            py: 1.5,
+                            fontWeight: 900,
+                            textTransform: "none",
+                            fontSize: "0.95rem",
+                            "&:hover": { backgroundColor: "#17174F" }
+                        }}
+                    >
+                        Apply Now
+                    </Button>
+                </Stack>
               </Box>
-
-              {/* --- INFO SECTION --- */}
-              <Box sx={{ p: 2, pt: 1.5, flexGrow: 1 }}>
-                <Typography
-                  sx={{
-                    fontSize: theme.typography.h5.fontSize,
-                    fontWeight: 700,
-                    color: "#111",
-                    lineHeight: 1.3,
-                    mb: 1,
-                  }}
-                >
-                  {item.title}
-                </Typography>
-                <Typography
-                  sx={{
-                    fontSize: "13px",
-                    fontWeight: 400,
-                    color: "#666",
-                    lineHeight: 1.4,
-                  }}
-                >
-                  {item.subtitle}
-                </Typography>
-              </Box>
-
-              {/* --- FOOTER SECTION --- */}
-              <Box
-                sx={{
-                  p: "14px 16px",
-                  borderTop: "1px solid #F5F5F5",
-                  display: "flex",
-                  justifyContent: "space-between",
-                  alignItems: "center",
-                }}
-              >
-                <Box sx={{ display: "flex", alignItems: "center", gap: 0.5 }}>
-                  <Typography
-                    sx={{ fontSize: "11px", color: "#888", fontWeight: 500 }}
-                  >
-                    {item.agency}
-                  </Typography>
-                  <Typography
-                    sx={{ fontSize: "11px", color: "#DDD", fontWeight: 300 }}
-                  >
-                    |
-                  </Typography>
-                  <Typography
-                    sx={{ fontSize: "11px", color: "#888", fontWeight: 500 }}
-                  >
-                    {item.jobType}
-                  </Typography>
-                </Box>
-
-                <Button
-                  variant="contained"
-                  component={Link}
-                  to={`/project-feeds/apply/${item.id}`}
-                  state={{ project: item }}
-                  disableElevation
-                  sx={{
-                    backgroundColor: "#001B44",
-                    textTransform: "none",
-                    fontSize: "11px",
-                    fontWeight: 600,
-                    borderRadius: "6px",
-                    px: 2,
-                    py: 0.8,
-                    minWidth: "auto",
-                    "&:hover": { backgroundColor: "#003366" },
-                  }}
-                >
-                  Apply
-                </Button>
-              </Box>
-            </Box>
-          </Grid>
-        ))}
-      </Grid>
-
-      {/* --- SEE MORE LINK (Refactored to Link) --- */}
-      <Box sx={{ display: "flex", justifyContent: "flex-end", mt: 3 }}>
-        <Typography
-          component={Link}
-          to="/worklabs/project-feeds"
-          sx={{
-            textTransform: "none",
-            fontSize: "14px",
-            fontWeight: 600,
-            color: theme.palette.primary.main,
-            textDecoration: "none",
-            cursor: "pointer",
-            mr:{ xs: 2, md: 0 },
-            "&:hover": { textDecoration: "underline" },
-          }}
-        >
-          Explore more
-        </Typography>
-      </Box>
-    </PageWrapper>
+            </Paper>
+          </motion.div>
+        </Grid>
+      ))}
+    </>
   );
 };
-/* --- SMALL HELPER COMPONENT FOR TAGS --- */
-const TagBox: React.FC<{ text: string; bgColor: string }> = ({
-  text,
-  bgColor,
-}) => (
-  <Box
-    sx={{
-      backgroundColor: bgColor,
-      px: 1.2,
-      py: 0.4,
-      borderRadius: "10.8px",
-      border: "1px solid #E0E0E0",
-      boxShadow: "0px 1px 2px rgba(0,0,0,0.05)",
-    }}
-  >
-    <Typography sx={{ fontSize: "10px", fontWeight: 700, color: "#333" }}>
-      {text}
-    </Typography>
-  </Box>
-);
 
 export default WorkLabCard;

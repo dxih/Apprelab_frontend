@@ -6,298 +6,204 @@ import {
   Avatar,
   Rating,
   Chip,
-  useTheme,
   Button,
+  Paper,
+  Card,
 } from "@mui/material";
 import { useParams } from "react-router-dom";
-import MenuBookIcon from "@mui/icons-material/MenuBook";
-import PeopleIcon from "@mui/icons-material/People";
-import WorkspacePremiumIcon from "@mui/icons-material/WorkspacePremium";
-import CheckCircleIcon from "@mui/icons-material/CheckCircle";
+import {
+  MenuBook as MenuBookIcon,
+  People as PeopleIcon,
+  WorkspacePremium as WorkspacePremiumIcon,
+  CheckCircle as CheckCircleIcon,
+} from "@mui/icons-material";
+import { motion, type Variants } from "framer-motion";
 import { ongoingBootcamps } from "../../Data/MyStackBootcamp.data";
+
+const fadeInUp: Variants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: { 
+    opacity: 1, 
+    y: 0, 
+    transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] } 
+  }
+};
+
+const staggerContainer: Variants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: { staggerChildren: 0.1 }
+  }
+};
 
 const OverviewTab = () => {
   const { id } = useParams<{ id: string }>();
-  const theme = useTheme();
   const bootcamp = ongoingBootcamps.find((b) => b.id === id);
 
   if (!bootcamp) return null;
 
-  // Global styles for "Sided" layout
   const headerStyle = {
-    fontWeight: 700,
-    mb: 1.5,
-    fontFamily: theme.typography.fontFamily,
-    fontSize: "1.1rem",
-    color: "#000",
-  };
-
-  const textContainerStyle = {
-    maxWidth: "600px",
-    width: "100%",
-    wordBreak: "break-word",
+    fontWeight: 900,
+    fontSize: "1.25rem",
+    color: "#0B0B31",
+    mb: 2,
+    letterSpacing: "-0.01em"
   };
 
   const bodyStyle = {
-    fontFamily: theme.typography.fontFamily,
-    color: "#4F4F4F",
-    lineHeight: 1.6,
-    fontSize: "0.9rem",
+    color: "#64748B",
+    lineHeight: 1.7,
+    fontSize: "0.95rem",
+    fontWeight: 500
   };
 
   return (
-    <Box sx={{ mt: 4, pb: 10 }}>
-      {/* 1. Agenda  */}
-      <Box sx={{ mb: 6, ...textContainerStyle }}>
-        <Typography variant="h6" sx={headerStyle}>
-          Bootcamp agenda
-        </Typography>
-        <Typography sx={bodyStyle}>{bootcamp.agenda}</Typography>
-      </Box>
-
-      {/* 2. What you will learn */}
-      <Box sx={{ mb: 6, ...textContainerStyle }}>
-        <Typography variant="h6" sx={headerStyle}>
-          What you will learn
-        </Typography>
-        <Grid container spacing={1}>
-          {bootcamp.learnList.map((text, i) => (
-            <Grid item xs={12} sm={6} key={i}>
-              <Stack
-                direction="row"
-                spacing={1}
-                alignItems="flex-start"
-                sx={{ py: 0.3 }}
-              >
-                <MenuBookIcon
-                  sx={{ fontSize: "1rem", color: "#666", mt: 0.3 }}
-                />
-                <Typography
-                  variant="body2"
-                  sx={{ ...bodyStyle, fontSize: "0.85rem" }}
-                >
-                  {text}
-                </Typography>
-              </Stack>
-            </Grid>
-          ))}
-        </Grid>
-      </Box>
-
-      {/* 3. Who is it for? */}
-      <Box sx={{ mb: 6, ...textContainerStyle }}>
-        <Typography variant="h6" sx={headerStyle}>
-          Who is it for?
-        </Typography>
-        <Box component="ul" sx={{ pl: 2, m: 0 }}>
-          {bootcamp.audience.map((item, i) => (
-            <Typography component="li" key={i} sx={{ ...bodyStyle, mb: 0.5 }}>
-              {item}
-            </Typography>
-          ))}
-        </Box>
-      </Box>
-
-      {/* 4. Level */}
-      <Box sx={{ mb: 6 }}>
-        <Typography variant="h6" sx={headerStyle}>
-          Level
-        </Typography>
-        <Stack direction="row" spacing={1} alignItems="center">
-          <Box
-            sx={{
-              width: 10,
-              height: 10,
-              borderRadius: "50%",
-              bgcolor: "#00E676",
-            }}
-          />
-          <Typography sx={{ ...bodyStyle, fontWeight: 600 }}>
-            {bootcamp.level}
-          </Typography>
-        </Stack>
-      </Box>
-
-      {/* 5. What you will get */}
-      <Box sx={{ mb: 6, ...textContainerStyle }}>
-        <Typography variant="h6" sx={headerStyle}>
-          What you will get
-        </Typography>
-        <Grid container spacing={1}>
-          {[
-            {
-              text: "Certificate of completion",
-              icon: <WorkspacePremiumIcon />,
-            },
-            {
-              text: "Access to mentorship and community",
-              icon: <PeopleIcon />,
-            },
-            { text: "Project-based learning", icon: <CheckCircleIcon /> },
-            { text: "Portfolio-ready project", icon: <CheckCircleIcon /> },
-          ].map((item, i) => (
-            <Grid item xs={12} sm={6} key={i}>
-              <Stack
-                direction="row"
-                spacing={1}
-                alignItems="flex-start"
-                sx={{ py: 0.3 }}
-              >
-                <Box
-                  sx={{ mt: 0.3, "& svg": { fontSize: "1rem", color: "#666" } }}
-                >
-                  {item.icon}
+    <Box sx={{ mt: 2, pb: 10 }}>
+      <motion.div initial="hidden" animate="visible" variants={staggerContainer}>
+        <Grid container spacing={6}>
+          {/* Main Content */}
+          <Grid item xs={12} md={8}>
+            <Stack spacing={6}>
+              {/* 1. Agenda */}
+              <motion.div variants={fadeInUp}>
+                <Box>
+                  <Typography sx={headerStyle}>Bootcamp Agenda</Typography>
+                  <Typography sx={bodyStyle}>{bootcamp.agenda}</Typography>
                 </Box>
-                <Typography
-                  variant="body2"
-                  sx={{ ...bodyStyle, fontSize: "0.85rem" }}
-                >
-                  {item.text}
-                </Typography>
-              </Stack>
-            </Grid>
-          ))}
+              </motion.div>
+
+              {/* 2. What you will learn */}
+              <motion.div variants={fadeInUp}>
+                <Box>
+                  <Typography sx={headerStyle}>What you will learn</Typography>
+                  <Grid container spacing={2}>
+                    {bootcamp.learnList.map((text, i) => (
+                      <Grid item xs={12} sm={6} key={i}>
+                        <Stack direction="row" spacing={1.5} alignItems="flex-start">
+                          <CheckCircleIcon sx={{ fontSize: "1.2rem", color: "#10B981", mt: 0.3 }} />
+                          <Typography sx={{ ...bodyStyle, fontSize: "0.9rem" }}>{text}</Typography>
+                        </Stack>
+                      </Grid>
+                    ))}
+                  </Grid>
+                </Box>
+              </motion.div>
+
+              {/* 3. Who is it for */}
+              <motion.div variants={fadeInUp}>
+                <Box>
+                  <Typography sx={headerStyle}>Who is it for?</Typography>
+                  <Stack spacing={1.5}>
+                    {bootcamp.audience.map((item, i) => (
+                        <Stack key={i} direction="row" spacing={1.5} alignItems="center">
+                            <Box sx={{ width: 6, height: 6, borderRadius: "50%", backgroundColor: "#3B82F6" }} />
+                            <Typography sx={bodyStyle}>{item}</Typography>
+                        </Stack>
+                    ))}
+                  </Stack>
+                </Box>
+              </motion.div>
+
+              {/* 4. Curriculum Perks */}
+              <motion.div variants={fadeInUp}>
+                <Box>
+                  <Typography sx={headerStyle}>What you will get</Typography>
+                  <Grid container spacing={3}>
+                    {[
+                      { text: "Certificate of completion", icon: <WorkspacePremiumIcon />, color: "#F59E0B" },
+                      { text: "Access to mentorship", icon: <PeopleIcon />, color: "#3B82F6" },
+                      { text: "Project-based learning", icon: <MenuBookIcon />, color: "#10B981" },
+                      { text: "Portfolio-ready project", icon: <CheckCircleIcon />, color: "#8B5CF6" },
+                    ].map((item, i) => (
+                      <Grid item xs={12} sm={6} key={i}>
+                        <Paper sx={{ p: 2.5, borderRadius: "20px", border: "1px solid rgba(0,0,0,0.04)", backgroundColor: "#F8FAFF", display: "flex", alignItems: "center", gap: 2, boxShadow: "none" }}>
+                          <Box sx={{ display: "flex", color: item.color }}>{item.icon}</Box>
+                          <Typography sx={{ fontWeight: 750, fontSize: "0.9rem", color: "#0B0B31" }}>{item.text}</Typography>
+                        </Paper>
+                      </Grid>
+                    ))}
+                  </Grid>
+                </Box>
+              </motion.div>
+            </Stack>
+          </Grid>
+
+          {/* Sidebar Info */}
+          <Grid item xs={12} md={4}>
+            <Stack spacing={4}>
+                {/* Cohort Info */}
+                <motion.div variants={fadeInUp}>
+                    <Card sx={{ borderRadius: "28px", p: 4, border: "1px solid rgba(0,0,0,0.04)", backgroundColor: "#FFFFFF" }}>
+                        <Typography sx={{ fontWeight: 800, fontSize: "0.85rem", color: "#64748B", textTransform: "uppercase", letterSpacing: "0.05em", mb: 2 }}>
+                            Next Cohort
+                        </Typography>
+                        <Typography sx={{ fontWeight: 900, fontSize: "1.3rem", color: "#0B0B31", mb: 3 }}>
+                            {bootcamp.nextCohort.date}
+                        </Typography>
+                        
+                        <Stack direction="row" spacing={1.5} alignItems="flex-end" mb={4}>
+                            <Box>
+                                <Typography sx={{ fontSize: "0.85rem", fontWeight: 700, color: "#94A3B8", textDecoration: "line-through" }}>{bootcamp.nextCohort.oldPrice}</Typography>
+                                <Typography sx={{ fontSize: "1.8rem", fontWeight: 900, color: "#0B0B31" }}>{bootcamp.nextCohort.newPrice}</Typography>
+                            </Box>
+                            <Chip label="Early Bird" size="small" sx={{ mb: 1, fontWeight: 800, backgroundColor: "#FEF3C7", color: "#D97706", borderRadius: "8px" }} />
+                        </Stack>
+
+                        <Button 
+                            fullWidth 
+                            variant="contained"
+                            sx={{ backgroundColor: "#0B0B31", color: "#FFF", borderRadius: "14px", py: 1.8, fontWeight: 900, textTransform: "none", fontSize: "1rem" }}
+                        >
+                            Reserve your seat
+                        </Button>
+                    </Card>
+                </motion.div>
+
+                {/* Level Info */}
+                <motion.div variants={fadeInUp}>
+                    <Card sx={{ borderRadius: "28px", p: 4, background: "linear-gradient(135deg, #F8FAFF 0%, #EFF6FF 100%)", border: "none", boxShadow: "none" }}>
+                        <Typography sx={{ fontWeight: 800, fontSize: "0.85rem", color: "#64748B", mb: 1.5 }}>EXPERIENCE LEVEL</Typography>
+                        <Stack direction="row" spacing={1.5} alignItems="center">
+                            <Box sx={{ width: 12, height: 12, borderRadius: "50%", backgroundColor: "#10B981" }} />
+                            <Typography sx={{ fontWeight: 900, color: "#0B0B31" }}>{bootcamp.level}</Typography>
+                        </Stack>
+                    </Card>
+                </motion.div>
+            </Stack>
+          </Grid>
         </Grid>
-      </Box>
 
-      {/* 6. Fees  */}
-      <Box sx={{ mb: 8, ...textContainerStyle }}>
-        <Typography variant="h6" sx={headerStyle}>
-          Next Cohort- {bootcamp.nextCohort.date}
-        </Typography>
-        <Stack
-          direction="row"
-          spacing={2}
-          alignItems="center"
-          sx={{ mb: 2, flexWrap: "wrap" }}
-        >
-          <Typography
-            sx={{
-              color: "#555",
-              fontSize: "0.9rem",
-              fontFamily: theme.typography.fontFamily,
-            }}
-          >
-            Fee
-          </Typography>
-          <Typography
-            sx={{
-              color: "#BDBDBD",
-              textDecoration: "line-through",
-              fontSize: "0.9rem",
-            }}
-          >
-            {bootcamp.nextCohort.oldPrice}
-          </Typography>
-          <Typography
-            variant="h5"
-            sx={{ fontWeight: 800, fontFamily: theme.typography.fontFamily }}
-          >
-            {bootcamp.nextCohort.newPrice}
-          </Typography>
-          <Chip
-            label="Early Bird"
-            size="small"
-            sx={{
-              bgcolor: "#FFB800",
-              color: "#fff",
-              fontWeight: 700,
-              borderRadius: "4px",
-              height: "18px",
-              fontSize: "0.6rem",
-            }}
-          />
-        </Stack>
-
-        <Button
-          variant="contained"
-          sx={{
-            bgcolor: "#001B44",
-            textTransform: "none",
-            px: 2,
-            py: 0.6,
-            borderRadius: "8px",
-            fontSize: "0.85rem",
-            fontWeight: 600,
-            fontFamily: theme.typography.fontFamily,
-            "&:hover": { bgcolor: "#001030" },
-          }}
-        >
-          Reserve a seat
-        </Button>
-      </Box>
-
-      {/* 7. Reviews Section  */}
-      <Box sx={{ mt: 8 }}>
-        <Typography variant="h6" sx={headerStyle}>
-          Previous Bootcamp Review and Ratings
-        </Typography>
-
-        <Grid
-          container
-          spacing={4}
-          sx={{
-            maxWidth: "1000px",
-            alignItems: "stretch",
-          }}
-        >
-          {bootcamp.reviews.map((review) => (
-            <Grid item xs={12} sm={6} key={review.id} sx={{ display: "flex" }}>
-              <Stack
-                spacing={2}
-                sx={{
-                  width: "100%",
-                  maxWidth: "450px",
-                  p: 2,
-                }}
-              >
-                {/* Header: Avatar and Name */}
-                <Stack direction="row" spacing={2} alignItems="center">
-                  <Avatar
-                    src={review.avatar}
-                    sx={{ width: 44, height: 44, bgcolor: "#eee" }}
-                  />
-                  <Box>
-                    <Typography
-                      sx={{
-                        fontWeight: 700,
-                        fontFamily: theme.typography.fontFamily,
-                        fontSize: "0.95rem",
-                        color: "#000",
-                      }}
-                    >
-                      {review.name}
-                    </Typography>
-                    <Stack direction="row" spacing={1} alignItems="center">
-                      <Rating value={review.rating} readOnly size="small" />
-                      <Typography
-                        variant="caption"
-                        sx={{ color: "#828282", mt: 0.3 }}
-                      >
-                        ({review.date})
-                      </Typography>
+        {/* 7. Reviews Section */}
+        <Box sx={{ mt: 10 }}>
+          <motion.div variants={fadeInUp}>
+            <Typography sx={{ ...headerStyle, fontSize: "1.5rem", mb: 6 }}>Student Success Stories</Typography>
+            <Grid container spacing={3}>
+              {bootcamp.reviews.map((review) => (
+                <Grid item xs={12} sm={6} key={review.id} sx={{ display: "flex" }}>
+                  <Card sx={{ p: 4, borderRadius: "28px", border: "1px solid rgba(0,0,0,0.04)", width: "100%", transition: "0.3s", "&:hover": { transform: "translateY(-4px)" } }}>
+                    <Stack spacing={3}>
+                        <Stack direction="row" spacing={2} alignItems="center">
+                        <Avatar src={review.avatar} sx={{ width: 56, height: 56, borderRadius: "16px", backgroundColor: "#F1F5F9" }} />
+                        <Box>
+                            <Typography sx={{ fontWeight: 900, fontSize: "1rem", color: "#0B0B31" }}>{review.name}</Typography>
+                            <Stack direction="row" spacing={1} alignItems="center">
+                                <Rating value={review.rating} readOnly size="small" sx={{ color: "#F59E0B" }} />
+                                <Typography sx={{ fontSize: "0.75rem", fontWeight: 700, color: "#94A3B8" }}>{review.date}</Typography>
+                            </Stack>
+                        </Box>
+                        </Stack>
+                        <Typography sx={{ ...bodyStyle, fontSize: "0.9rem", fontStyle: "italic" }}>
+                        "{review.comment}"
+                        </Typography>
                     </Stack>
-                  </Box>
-                </Stack>
-
-                {/* Comment: Wraps within the maxWidth */}
-                <Typography
-                  sx={{
-                    ...bodyStyle,
-                    fontSize: "0.85rem",
-                    color: "#4F4F4F",
-                    lineHeight: 1.6,
-                    maxWidth: "100%",
-                    textAlign: "justify",
-                  }}
-                >
-                  {review.comment}
-                </Typography>
-              </Stack>
+                  </Card>
+                </Grid>
+              ))}
             </Grid>
-          ))}
-        </Grid>
-      </Box>
+          </motion.div>
+        </Box>
+      </motion.div>
     </Box>
   );
 };

@@ -1,24 +1,47 @@
-import { Box, Typography, Card, CardContent } from "@mui/material";
+import { Box, Typography, Card, CardContent, Container, Grid } from "@mui/material";
+import { motion, type Variants } from "framer-motion";
 import MonetizationOnOutlinedIcon from "@mui/icons-material/MonetizationOnOutlined";
 import SchoolOutlinedIcon from "@mui/icons-material/SchoolOutlined";
 import EmojiObjectsOutlinedIcon from "@mui/icons-material/EmojiObjectsOutlined";
 
+const fadeInUp: Variants = {
+  hidden: { opacity: 0, y: 30 },
+  visible: { 
+    opacity: 1, 
+    y: 0, 
+    transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] } 
+  }
+};
+
+const staggerContainer: Variants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.2,
+    }
+  }
+};
+
 const WhyMentor = () => {
   const cards = [
     {
-      icon: <MonetizationOnOutlinedIcon sx={{ fontSize: 40, color: "#E9B300" }} />,
+      icon: <MonetizationOnOutlinedIcon sx={{ fontSize: 40, color: "#3B82F6" }} />,
       title: "Earn While You Teach",
       text: "Turn your skills into income by creating courses or hosting mentorship sessions. You’ll also earn bonuses whenever your students get hired — your impact directly fuels your rewards.",
+      color: "#3B82F6"
     },
     {
-      icon: <SchoolOutlinedIcon sx={{ fontSize: 40, color: "#E9B300" }} />,
+      icon: <SchoolOutlinedIcon sx={{ fontSize: 40, color: "#FFD60A" }} />,
       title: "Build Your Professional Reputation",
       text: "Showcase your expertise and grow your visibility as a mentor. Each successful mentee and positive review strengthens your personal brand and credibility in your field.",
+      color: "#FFD60A"
     },
     {
-      icon: <EmojiObjectsOutlinedIcon sx={{ fontSize: 40, color: "#E9B300" }} />,
+      icon: <EmojiObjectsOutlinedIcon sx={{ fontSize: 40, color: "#3B82F6" }} />,
       title: "Shape the Next Generation",
       text: "Make a real difference by guiding learners who are eager to grow. Your mentorship helps them gain confidence, build projects, and step into real job opportunities.",
+      color: "#3B82F6"
     },
   ];
 
@@ -26,128 +49,136 @@ const WhyMentor = () => {
     <Box
       sx={{
         width: "100%",
-        background: "linear-gradient(180deg, #F6F8FF 0%, #FFFFFF 100%)",
-        py: { xs: 8, md: 12 },
+        background: "linear-gradient(180deg, #FFFFFF 0%, #F8FAFF 100%)",
+        py: { xs: 12, md: 18 },
+        position: "relative",
+        overflow: "hidden",
       }}
     >
-      {/* Container */}
-      <Box
-        sx={{
-          maxWidth: "1200px",
-          mx: "auto",
-          px: { xs: 3, md: 6 },
-          textAlign: "center",
-        }}
-      >
-        {/* Header */}
-        <Typography
-          variant="h4"
-          sx={{
-          fontWeight: 700,
-          fontSize: { xs: "2rem", md: "3rem" },
-          color: "#0B0B31",
-          mb: 2,
-          lineHeight: 1.3,
-            fontFamily: "'Inter', sans-serif",
-          }}
+      <Container maxWidth="lg">
+        <motion.div
+           variants={staggerContainer}
+           initial="hidden"
+           whileInView="visible"
+           viewport={{ once: true, margin: "-100px" }}
         >
-          Why mentor on{" "}
-          <Box component="span" sx={{ color: "#E9B300" }}>
-            Apprelab
-          </Box>
-        </Typography>
-
-        {/* Subheading */}
-        <Typography
-          sx={{
-            color: "#252859",
-          fontSize: "1.5em",
-            fontWeight: 300,
-            maxWidth: "650px",
-            mx: "auto",
-            mb: { xs: 6, md: 10 },
-            lineHeight: 1.6,
-            fontFamily: "'Inter', sans-serif",
-          }}
-        >
-          Share your expertise, build your influence, and earn as you help shape
-          the next generation of digital talent.
-        </Typography>
-
-        {/* Cards Row */}
-        <Box
-          sx={{
-            display: "flex",
-            justifyContent: "space-between",
-            alignItems: "stretch",
-            flexWrap: { xs: "wrap", md: "nowrap" },
-            gap: { xs: 4, md: 4 },
-          }}
-        >
-          {cards.map((item, idx) => (
-            <Card
-              key={idx}
-              elevation={3}
-              sx={{
-                flex: "1 1 0",
-                minWidth: 300,
-                borderRadius: 4,
-                p: 3,
-                transition: "all 0.3s ease",
-                "&:hover": {
-                  transform: "translateY(-6px)",
-                  boxShadow: "0px 8px 25px rgba(0,0,0,0.15)",
-                },
-              }}
-            >
-              <CardContent sx={{ textAlign: "center", px: 2 }}>
-                {/* Icon */}
-                <Box
-                  sx={{
-                    mb: 3,
-                    width: 70,
-                    height: 70,
-                    mx: "auto",
-                    borderRadius: "50%",
-                    backgroundColor: "#F4F6FE",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                  }}
-                >
-                  {item.icon}
+          {/* Header */}
+          <Box sx={{ textAlign: "center", mb: { xs: 8, md: 12 } }}>
+            <motion.div variants={fadeInUp}>
+              <Typography
+                variant="h2"
+                sx={{
+                fontWeight: 900,
+                fontSize: { xs: "2.5rem", md: "3.5rem" },
+                color: "#0B0B31",
+                mb: 3,
+                lineHeight: 1.1,
+                letterSpacing: "-0.02em",
+                }}
+              >
+                Why mentor on{" "}
+                <Box component="span" sx={{ color: "#3B82F6" }}>
+                  Apprelab
                 </Box>
+              </Typography>
+            </motion.div>
 
-                {/* Title */}
-                <Typography
-                  variant="h6"
-                  sx={{
-                    fontWeight: 700,
-                    mb: 2,
-                    color: "#0B0B31",
-                    fontFamily: "'Inter', sans-serif",
-                  }}
-                >
-                  {item.title}
-                </Typography>
+            {/* Subheading */}
+            <motion.div variants={fadeInUp}>
+              <Typography
+                sx={{
+                  color: "#64748B",
+                  fontSize: { xs: "1.1rem", md: "1.25rem" },
+                  fontWeight: 500,
+                  maxWidth: "700px",
+                  mx: "auto",
+                  lineHeight: 1.7,
+                }}
+              >
+                Share your expertise, build your influence, and earn as you help shape
+                the next generation of digital talent globally.
+              </Typography>
+            </motion.div>
+          </Box>
 
-                {/* Description */}
-                <Typography
-                  sx={{
-                    color: "#4A5565",
-                    fontSize: 15,
-                    lineHeight: 1.6,
-                    fontFamily: "'Inter', sans-serif",
-                    fontWeight: 400,
-                  }}
-                >
-                  {item.text}
-                </Typography>
-              </CardContent>
-            </Card>
-          ))}
-        </Box>
-      </Box>
+          {/* Cards Row */}
+          <Grid container spacing={4}>
+            {cards.map((item, idx) => (
+              <Grid item xs={12} md={4} key={idx}>
+                <motion.div variants={fadeInUp}>
+                  <Card
+                    sx={{
+                      height: "100%",
+                      borderRadius: "32px",
+                      p: { xs: 4, md: 5 },
+                      backgroundColor: "#FFFFFF",
+                      border: "1px solid rgba(0,0,0,0.04)",
+                      boxShadow: "0 10px 40px rgba(0,0,0,0.03)",
+                      transition: "all 0.4s cubic-bezier(0.16, 1, 0.3, 1)",
+                      "&:hover": {
+                        transform: "translateY(-12px)",
+                        boxShadow: "0 40px 80px rgba(0,0,0,0.08)",
+                        borderColor: item.color,
+                        "& .icon-box": {
+                            backgroundColor: item.color,
+                            color: "#FFFFFF",
+                            "& svg": { color: "#FFFFFF" }
+                        }
+                      },
+                    }}
+                  >
+                    <CardContent sx={{ p:0 }}>
+                      {/* Icon */}
+                      <Box
+                        className="icon-box"
+                        sx={{
+                          mb: 4,
+                          width: 80,
+                          height: 80,
+                          borderRadius: "24px",
+                          backgroundColor: `${item.color}15`,
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "center",
+                          transition: "0.4s ease",
+                        }}
+                      >
+                        {item.icon}
+                      </Box>
+
+                      {/* Title */}
+                      <Typography
+                        variant="h5"
+                        sx={{
+                          fontWeight: 800,
+                          mb: 2,
+                          color: "#0B0B31",
+                          fontSize: "1.4rem",
+                          lineHeight: 1.3,
+                        }}
+                      >
+                        {item.title}
+                      </Typography>
+
+                      {/* Description */}
+                      <Typography
+                        sx={{
+                          color: "#64748B",
+                          fontSize: "1rem",
+                          lineHeight: 1.8,
+                          fontWeight: 500,
+                        }}
+                      >
+                        {item.text}
+                      </Typography>
+                    </CardContent>
+                  </Card>
+                </motion.div>
+              </Grid>
+            ))}
+          </Grid>
+        </motion.div>
+      </Container>
     </Box>
   );
 };

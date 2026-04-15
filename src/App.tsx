@@ -80,27 +80,29 @@ import FounderCollaboration from "./layouts/founder-hub/FounderCollaboration";
 import FounderWallet from "./layouts/founder-hub/FounderWallet";
 import FounderSettings from "./layouts/founder-hub/FounderSettings";
 import FounderOverview from "./layouts/founder-hub/FounderOverview";
+import FounderProjectDetail from "./layouts/founder-hub/FounderProjectDetail";
 
 function App() {
   return (
     <Routes>
-      {/* Founder Hub */}
-      <Route
-        path="/founder"
-        element={
-          <DashboardProvider>
-            <FounderDashboardLayout />
-          </DashboardProvider>
-        }
-      >
-        <Route index element={<FounderDashboard />} />
-        <Route path="projects" element={<FounderProjects />} />
-        <Route path="talent" element={<FounderTalent />} />
-        <Route path="collaboration" element={<FounderCollaboration />} />
-        <Route path="wallet" element={<FounderWallet />} />
-        <Route path="settings" element={<FounderSettings />} />
-        <Route path="overview" element={<FounderOverview />} />
-      </Route>
+{/* Founder Hub */}
+<Route
+  path="/founder"
+  element={
+    <DashboardProvider>
+      <FounderDashboardLayout />
+    </DashboardProvider>
+  }
+>
+  <Route index element={<FounderDashboard />} />
+  <Route path="projects" element={<FounderProjects />} />
+  <Route path="projects/:id" element={<FounderProjectDetail />} />  {/* ADD THIS */}
+  <Route path="talent" element={<FounderTalent />} />
+  <Route path="collaboration" element={<FounderCollaboration />} />
+  <Route path="wallet" element={<FounderWallet />} />
+  <Route path="settings" element={<FounderSettings />} />
+  <Route path="overview" element={<FounderOverview />} />
+</Route>
 
       {/*  Public Website */}
       <Route element={<WebsiteLayout />}>
@@ -166,7 +168,7 @@ function App() {
 
         {/* Worklabs Pages */}
         <Route path="/worklabs/project-feeds" element={<ProjectFeeds />} />
-        
+
         <Route path="/project-feeds/Details/:id" element={<ProjectDetails />} />
         <Route path="/project-feeds/apply/:id" element={<ApplyPage />} />
       </Route>

@@ -6,8 +6,10 @@ import {
   CardContent,
   Button,
   Rating,
+  Container,
 } from "@mui/material";
 import { Link } from "react-router-dom";
+import { motion, type Variants } from "framer-motion";
 
 import learncourse_img1 from "../../assets/images/course1.png";
 import learncourse_img2 from "../../assets/images/course2.png";
@@ -94,199 +96,244 @@ const courses = [
 ];
 
 const MicroCourses = () => {
+  const containerVariants: Variants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+      },
+    },
+  };
+
+  const cardVariants: Variants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.5, ease: "easeOut" },
+    },
+  };
+
   return (
     <Box
       sx={{
         backgroundColor: "#0B0B31",
         color: "#fff",
-        py: { xs: 8, md: 10 },
-        px: { xs: 2, sm: 4, md: 8 },
-        textAlign: "center",
+        py: { xs: 10, md: 15 },
+        position: "relative",
+        overflow: "hidden",
       }}
     >
-      {/* Heading */}
-      <Typography
-        sx={{
-          fontWeight: 700,
-          fontSize: { xs: "1.8rem", md: "2.2rem" },
-          mb: 1.5,
-          display: "inline-block",
-          position: "relative",
-        }}
-      >
-        Micro{" "}
-        <Box
-          component="span"
-          sx={{
-            color: "#FFD400",
-            position: "relative",
-            display: "inline-block",
-            "&::after": {
-              content: '""',
-              position: "absolute",
-              left: 0,
-              bottom: 2,
-              width: "100%",
-              height: "6px",
-              background:
-                "radial-gradient(circle at center, #00FFFF 50%, transparent 70%)",
-              borderRadius: "50%",
-              transform: "scaleY(0.6)",
-            },
-          }}
-        >
-          Courses
-        </Box>{" "}
-        that helps you scale
-      </Typography>
-
-      <Typography
-        sx={{
-          color: "#D0D3E2",
-          fontSize: "1rem",
-          mb: 6,
-        }}
-      >
-        Level up with the most-sought after skill.
-      </Typography>
-
-      {/* Courses Container */}
-      <Box
-        sx={{
-          display: "flex",
-          flexWrap: "wrap",
-          justifyContent: "center",
-          gap: 3,
-        }}
-      >
-        {courses.map((course, index) => (
-          <Card
-            key={index}
+      <Container maxWidth="lg">
+        {/* Heading */}
+        <Box sx={{ mb: 8, textAlign: "center" }}>
+          <Typography
+            variant="h2"
             sx={{
-              width: { xs: "100%", sm: "45%", md: "22%" },
-              backgroundColor: "#10103A",
-              borderRadius: "12px",
-              overflow: "hidden",
-              boxShadow: "0px 4px 15px rgba(0,0,0,0.3)",
-              color: "#fff",
-              transition: "transform 0.3s ease",
-              "&:hover": { transform: "translateY(-5px)" },
+              fontWeight: 900,
+              fontSize: { xs: "2.5rem", md: "3.5rem" },
+              mb: 2,
+              letterSpacing: "-0.02em",
             }}
           >
-            <CardMedia
-              component="img"
-              image={course.img}
-              alt={course.title}
-              sx={{ height: 180, objectFit: "cover" }}
-            />
-            <CardContent sx={{ textAlign: "left", p: 2.5 }}>
-              <Typography
-                sx={{
-                  fontWeight: 600,
-                  fontSize: "1rem",
-                  mb: 0.5,
-                  lineHeight: 1.4,
-                }}
-              >
-                {course.title}
-              </Typography>
-              <Typography
-                sx={{
-                  color: "#A6A8C3",
-                  fontSize: "0.85rem",
-                  mb: 1.2,
-                }}
-              >
-                {course.author}
-              </Typography>
+            Micro{" "}
+            <Box
+              component="span"
+              sx={{
+                color: "#FFD60A",
+                position: "relative",
+              }}
+            >
+              Courses
+            </Box>{" "}
+            to scale your skills
+          </Typography>
 
-              <Box sx={{ display: "flex", alignItems: "center", mb: 1 }}>
-                <Rating
-                  value={course.rating}
-                  precision={0.5}
-                  readOnly
-                  size="small"
-                  sx={{
-                    "& .MuiRating-iconFilled": { color: "#FFD400" },
-                  }}
-                />
-                <Typography
-                  sx={{
-                    ml: 1,
-                    color: "#A6A8C3",
-                    fontSize: "0.85rem",
-                  }}
-                >
-                  ({course.reviews})
-                </Typography>
-              </Box>
+          <Typography
+            sx={{
+              color: "#94A3B8",
+              fontSize: { xs: "1rem", md: "1.2rem" },
+              maxWidth: "600px",
+              mx: "auto",
+              lineHeight: 1.6,
+            }}
+          >
+            Level up with the most-sought after skills in the tech ecosystem.
+          </Typography>
+        </Box>
 
-              <Box
-                sx={{
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "space-between",
-                }}
-              >
-                <Box>
-                  <Typography
-                    sx={{
-                      textDecoration: "line-through",
-                      color: "#A6A8C3",
-                      fontSize: "0.85rem",
-                    }}
-                  >
-                    {course.oldPrice}
-                  </Typography>
-                  <Typography
-                    sx={{
-                      color: "#fff",
-                      fontWeight: 600,
-                      fontSize: "1rem",
-                    }}
-                  >
-                    {course.newPrice}
-                  </Typography>
-                </Box>
-
-                <Button
-                 component={Link}
-                   to="/signup"
+        {/* Courses Grid */}
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
+        >
+          <Box
+            sx={{
+              display: "grid",
+              gridTemplateColumns: {
+                xs: "1fr",
+                sm: "repeat(2, 1fr)",
+                md: "repeat(4, 1fr)",
+              },
+              gap: 4,
+            }}
+          >
+            {courses.map((course, index) => (
+              <motion.div key={index} variants={cardVariants}>
+                <Card
                   sx={{
-                    backgroundColor: "#FFD400",
-                    color: "#000",
-                    fontWeight: 600,
-                    fontSize: "0.85rem",
-                    borderRadius: "6px",
-                    textTransform: "none",
-                    px: 2.5,
-                    py: 0.7,
-                    "&:hover": { backgroundColor: "#E6C000" },
+                    height: "100%",
+                    display: "flex",
+                    flexDirection: "column",
+                    backgroundColor: "rgba(255, 255, 255, 0.03)",
+                    backdropFilter: "blur(10px)",
+                    borderRadius: "20px",
+                    overflow: "hidden",
+                    border: "1px solid rgba(255, 255, 255, 0.05)",
+                    transition: "all 0.3s ease",
+                    "&:hover": {
+                      transform: "translateY(-10px)",
+                      backgroundColor: "rgba(255, 255, 255, 0.05)",
+                      borderColor: "rgba(255, 255, 255, 0.1)",
+                      boxShadow: "0 20px 40px rgba(0,0,0,0.4)",
+                    },
                   }}
                 >
-                  Enroll
-                </Button>
-              </Box>
-            </CardContent>
-          </Card>
-        ))}
-      </Box>
+                  <CardMedia
+                    component="img"
+                    image={course.img}
+                    alt={course.title}
+                    sx={{
+                      height: 200,
+                      objectFit: "cover",
+                      transition: "transform 0.5s ease",
+                      ".MuiCard-root:hover &": {
+                        transform: "scale(1.05)",
+                      },
+                    }}
+                  />
+                  <CardContent sx={{ flexGrow: 1, p: 3, display: "flex", flexDirection: "column" }}>
+                    <Typography
+                      sx={{
+                        fontWeight: 700,
+                        fontSize: "1.1rem",
+                        mb: 1,
+                        lineHeight: 1.4,
+                        color: "#F8FAFC",
+                      }}
+                    >
+                      {course.title}
+                    </Typography>
+                    <Typography
+                      sx={{
+                        color: "#94A3B8",
+                        fontSize: "0.875rem",
+                        mb: 2,
+                        fontWeight: 500,
+                      }}
+                    >
+                      {course.author}
+                    </Typography>
 
-{/* See More */}
-<Link to="/signup" style={{ textDecoration: "none" }}>
-  <Typography
-    sx={{
-      color: "#D0D3E2",
-      mt: 5,
-      fontSize: "0.95rem",
-      textDecoration: "underline",
-      cursor: "pointer",
-      "&:hover": { color: "#FFD400" },
-    }}
-  >
-    See more...
-  </Typography>
-</Link>
+                    <Box sx={{ display: "flex", alignItems: "center", mb: 2 }}>
+                      <Rating
+                        value={course.rating}
+                        precision={0.5}
+                        readOnly
+                        size="small"
+                        sx={{
+                          "& .MuiRating-iconFilled": { color: "#FFD60A" },
+                          "& .MuiRating-iconEmpty": { color: "rgba(255,255,255,0.1)" },
+                        }}
+                      />
+                      <Typography
+                        sx={{
+                          ml: 1,
+                          color: "#64748B",
+                          fontSize: "0.85rem",
+                          fontWeight: 600,
+                        }}
+                      >
+                        ({course.reviews})
+                      </Typography>
+                    </Box>
+
+                    <Box sx={{ mt: "auto", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+                      <Box>
+                        <Typography
+                          sx={{
+                            textDecoration: "line-through",
+                            color: "#64748B",
+                            fontSize: "0.8rem",
+                            mb: -0.5,
+                          }}
+                        >
+                          {course.oldPrice}
+                        </Typography>
+                        <Typography
+                          sx={{
+                            color: "#F8FAFC",
+                            fontWeight: 800,
+                            fontSize: "1.2rem",
+                          }}
+                        >
+                          {course.newPrice}
+                        </Typography>
+                      </Box>
+
+                      <Button
+                        component={Link}
+                        to="/signup"
+                        variant="contained"
+                        sx={{
+                          backgroundColor: "#FFD60A",
+                          color: "#0B0B31",
+                          fontWeight: 800,
+                          fontSize: "0.85rem",
+                          borderRadius: "10px",
+                          textTransform: "none",
+                          px: 3,
+                          py: 1,
+                          "&:hover": {
+                            backgroundColor: "#FFE045",
+                            transform: "scale(1.05)",
+                          },
+                        }}
+                      >
+                        Enroll
+                      </Button>
+                    </Box>
+                  </CardContent>
+                </Card>
+              </motion.div>
+            ))}
+          </Box>
+        </motion.div>
+
+        {/* See More Link */}
+        <Box sx={{ mt: 8, textAlign: "center" }}>
+          <Button
+            component={Link}
+            to="/signup"
+            sx={{
+              color: "#94A3B8",
+              textTransform: "none",
+              fontSize: "1rem",
+              fontWeight: 600,
+              textDecoration: "underline",
+              "&:hover": {
+                color: "#FFD60A",
+                backgroundColor: "transparent",
+              },
+            }}
+          >
+            Explore all micro-courses →
+          </Button>
+        </Box>
+      </Container>
     </Box>
   );
 };

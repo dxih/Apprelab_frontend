@@ -17,16 +17,14 @@ import dxhubLogo from "../../assets/logos/dxhub_logo.png";
 const DashboardFooter: React.FC = () => {
   return (
     <Box
-      component="footer"
       sx={{
-        backgroundColor: "#020C38",
+        backgroundColor: "#0B0B31",
         color: "#FFFFFF",
         px: { xs: 4, sm: 6, md: 10 },
         py: { xs: 8, md: 10 },
         fontFamily: "Inter, sans-serif",
       }}
     >
-      {/* GRID LAYOUT */}
       <Box
         sx={{
           display: "grid",

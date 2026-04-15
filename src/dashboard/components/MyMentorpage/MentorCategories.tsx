@@ -1,5 +1,7 @@
 import React from "react";
-import { Box, Typography } from "@mui/material";
+import { Box, Typography, Container, Grid, Paper, Stack } from "@mui/material";
+import { motion, type Variants } from "framer-motion";
+import { ArrowForward } from "@mui/icons-material";
 
 import designImg from "../../assets/images/mentors/categories/Design.png";
 import webImg from "../../assets/images/mentors/categories/WebDevelopmement.png";
@@ -13,90 +15,98 @@ const categories = [
   { title: "Product Management", count: 13, img: pmImg },
 ];
 
+const fadeInUp: Variants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: { 
+    opacity: 1, 
+    y: 0, 
+    transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] } 
+  }
+};
+
 const MentorCategories: React.FC = () => {
   return (
-    <Box
-      sx={{
-        width: "100%",
-        maxWidth: "1100px",  // slightly smaller to avoid cutoff
-        mx: "auto",          // center page
-        px: 2,               // smaller padding (fixes right shift)
-        py: 10,
-        overflow: "hidden",  // prevents cut-off
-      }}
-    >
-      {/* HEADER */}
-      <Box
-        sx={{
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "center",
-          mb: 7,
-          width: "100%",
-        }}
-      >
-        <Typography sx={{ fontSize: { xs: "1.5rem", md: "2rem" }, fontWeight: 700 }}>
-          Choose Mentor Categories
-        </Typography>
+    <Box sx={{ py: 10, backgroundColor: "#F9FAFB" }}>
+      <Container maxWidth="lg">
+        {/* HEADER */}
+        <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeInUp}>
+            <Stack direction="row" justifyContent="space-between" alignItems="flex-end" sx={{ mb: 6 }}>
+                <Stack spacing={1}>
+                    <Typography sx={{ fontSize: "0.85rem", fontWeight: 800, color: "#3B82F6", textTransform: "uppercase", letterSpacing: "0.1em" }}>
+                        Specializations
+                    </Typography>
+                    <Typography sx={{ fontSize: { xs: "1.8rem", md: "2.5rem" }, fontWeight: 900, color: "#0B0B31", letterSpacing: "-0.02em" }}>
+                        Mentor Categories
+                    </Typography>
+                </Stack>
+                <Typography
+                    sx={{
+                        fontSize: "0.95rem",
+                        color: "#3B82F6",
+                        fontWeight: 800,
+                        cursor: "pointer",
+                        display: "flex",
+                        alignItems: "center",
+                        gap: 1,
+                        "&:hover": { "& svg": { transform: "translateX(4px)" } }
+                    }}
+                >
+                    View All Categories <ArrowForward sx={{ fontSize: "1.1rem", transition: "0.3s" }} />
+                </Typography>
+            </Stack>
+        </motion.div>
 
-        <Typography
-          sx={{
-            fontSize: "0.9rem",
-            color: "#0B1A4A",
-            cursor: "pointer",
-            whiteSpace: "nowrap",
-          }}
-        >
-          See more
-        </Typography>
-      </Box>
-
-      {/* CARDS */}
-      <Box
-        sx={{
-          display: "flex",
-          flexWrap: "wrap",
-          gap: 4,
-          height: "100%",
-          justifyContent: "center", // NOW perfectly centered
-        }}
-      >
-        {categories.map((c, i) => (
-          <Box
-            key={i}
-            sx={{
-              width: { xs: "45%", sm: "30%", md: "22%" }, // tightened width
-              background: "#fff",
-              borderRadius: 2,
-              overflow: "hidden",
-              boxShadow: "0 2px 8px rgba(0,0,0,0.1)",
-              transition: "0.3s",
-              cursor: "pointer",
-              "&:hover": {
-                transform: "translateY(-5px)",
-                boxShadow: "0 6px 16px rgba(0,0,0,0.15)",
-              },
-            }}
-          >
-            <Box
-              component="img"
-              src={c.img}
-              alt={c.title}
-              sx={{
-                width: "100%",
-                height: 150,
-                objectFit: "cover",
-              }}
-            />
-            <Box sx={{ p: 2 }}>
-              <Typography sx={{ fontWeight: 600 }}>{c.title}</Typography>
-              <Typography sx={{ fontSize: "0.85rem", color: "#777", mt: 0.5 }}>
-                {c.count} Mentors Available
-              </Typography>
-            </Box>
-          </Box>
-        ))}
-      </Box>
+        {/* CARDS */}
+        <Grid container spacing={4}>
+            {categories.map((c, i) => (
+            <Grid item xs={12} sm={6} md={3} key={i}>
+                <motion.div
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.5, delay: i * 0.1 }}
+                >
+                    <Paper
+                        elevation={0}
+                        sx={{
+                            borderRadius: "28px",
+                            overflow: "hidden",
+                            backgroundColor: "#FFFFFF",
+                            border: "1px solid rgba(0,0,0,0.04)",
+                            transition: "0.4s cubic-bezier(0.16, 1, 0.3, 1)",
+                            cursor: "pointer",
+                            "&:hover": {
+                                transform: "translateY(-12px)",
+                                boxShadow: "0 30px 60px rgba(11, 11, 49, 0.08)",
+                                "& .category-img": { transform: "scale(1.1)" }
+                            },
+                        }}
+                    >
+                        <Box sx={{ height: 180, overflow: "hidden" }}>
+                            <Box
+                                component="img"
+                                src={c.img}
+                                className="category-img"
+                                sx={{
+                                    width: "100%",
+                                    height: "100%",
+                                    objectFit: "cover",
+                                    transition: "0.8s cubic-bezier(0.16, 1, 0.3, 1)"
+                                }}
+                            />
+                        </Box>
+                        <Box sx={{ p: 3, textAlign: "center" }}>
+                            <Typography sx={{ fontWeight: 900, fontSize: "1.1rem", color: "#0B0B31", mb: 0.5 }}>{c.title}</Typography>
+                            <Typography sx={{ fontSize: "0.85rem", color: "#64748B", fontWeight: 600 }}>
+                                {c.count} Mentors Available
+                            </Typography>
+                        </Box>
+                    </Paper>
+                </motion.div>
+            </Grid>
+            ))}
+        </Grid>
+      </Container>
     </Box>
   );
 };

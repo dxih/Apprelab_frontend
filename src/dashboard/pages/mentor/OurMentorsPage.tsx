@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import {
   Box,
   Typography,
@@ -6,14 +6,18 @@ import {
   CardMedia,
   Button,
   Chip,
-  Rating,
   TextField,
   MenuItem,
   Select,
-  InputLabel,
   FormControl,
+  Container,
+  Stack,
+  InputAdornment,
+  Grid,
 } from "@mui/material";
 import type { SelectChangeEvent } from "@mui/material/Select";
+import { Search, FilterList, Star, CalendarMonth } from "@mui/icons-material";
+import { motion, AnimatePresence, type Variants } from "framer-motion";
 
 // Mentor Images
 import mentor1 from "../../assets/images/mentors/Mentor1.png";
@@ -150,6 +154,23 @@ const allMentors: Mentor[] = [
   },
 ];
 
+const fadeInUp: Variants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: { 
+    opacity: 1, 
+    y: 0, 
+    transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] } 
+  }
+};
+
+const staggerContainer: Variants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: { staggerChildren: 0.1 }
+  }
+};
+
 const OurMentorsPage: React.FC = () => {
   const [searchTerm, setSearchTerm] = useState<string>("");
   const [filterAvailability, setFilterAvailability] = useState<string>("all");
@@ -182,200 +203,205 @@ const OurMentorsPage: React.FC = () => {
   });
 
   return (
-    <Box sx={{ width: "100%", px: 2, py: 6, maxWidth: "1200px", mx: "auto" }}>
-      <Typography
-        sx={{
-          fontSize: { xs: "1.8rem", md: "2.5rem" },
-          fontWeight: 700,
-          mb: 4,
-          textAlign: "center",
-        }}
-      >
-        Our Mentors
-      </Typography>
+    <Box sx={{ pb: 12, backgroundColor: "#F9FAFB", minHeight: "100vh" }}>
+      {/* Premium Header */}
+      <Box sx={{ pt: 10, pb: 12, backgroundColor: "#FFFFFF", borderBottom: "1px solid rgba(0,0,0,0.05)" }}>
+        <Container maxWidth="lg">
+          <motion.div initial="hidden" animate="visible" variants={fadeInUp}>
+            <Stack spacing={2} alignItems="center" textAlign="center">
+                <Typography sx={{ fontSize: "0.85rem", fontWeight: 800, color: "#3B82F6", textTransform: "uppercase", letterSpacing: "0.1em" }}>
+                    Expert Guidance
+                </Typography>
+                <Typography sx={{ fontSize: { xs: "2.5rem", md: "3.5rem" }, fontWeight: 900, color: "#0B0B31", letterSpacing: "-0.03em", lineHeight: 1.1 }}>
+                    Learn from the best in the <span style={{ color: "#3B82F6" }}>industry</span>.
+                </Typography>
+                <Typography sx={{ fontSize: "1.1rem", color: "#64748B", fontWeight: 500, maxWidth: 600 }}>
+                    Find mentors who have been there, done that, and are ready to help you navigate your career journey.
+                </Typography>
+            </Stack>
+          </motion.div>
 
-      {/* Search & Filters */}
-      <Box
-        sx={{
-          display: "flex",
-          flexWrap: "wrap",
-          gap: 2,
-          justifyContent: "center",
-          mb: 6,
-        }}
-      >
-        <TextField
-          label="Search by name, role, or tag"
-          variant="outlined"
-          size="small"
-          value={searchTerm}
-          onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-            setSearchTerm(e.target.value)
-          }
-          sx={{ minWidth: 250 }}
-        />
+          {/* Search & Filters */}
+          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }}>
+            <Box
+                sx={{
+                mt: 6,
+                p: 2,
+                borderRadius: "24px",
+                backgroundColor: "#FFFFFF",
+                boxShadow: "0 20px 50px rgba(0,0,0,0.05)",
+                display: "flex",
+                flexWrap: "wrap",
+                gap: 2,
+                alignItems: "center"
+                }}
+            >
+                <TextField
+                fullWidth
+                placeholder="Search by name, role, or skill..."
+                variant="outlined"
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                InputProps={{
+                    startAdornment: (
+                    <InputAdornment position="start">
+                        <Search sx={{ color: "#94A3B8" }} />
+                    </InputAdornment>
+                    ),
+                    sx: { borderRadius: "16px", backgroundColor: "#F8FAFF", border: "none", "& fieldset": { border: "none" } }
+                }}
+                sx={{ flex: { xs: "1 1 100%", md: "1 1 0" } }}
+                />
 
-        <FormControl size="small" sx={{ minWidth: 150 }}>
-          <InputLabel>Availability</InputLabel>
-          <Select
-            value={filterAvailability}
-            label="Availability"
-            onChange={handleAvailabilityChange}
-          >
-            <MenuItem value="all">All</MenuItem>
-            <MenuItem value="available">Available</MenuItem>
-            <MenuItem value="unavailable">Unavailable</MenuItem>
-          </Select>
-        </FormControl>
+                <Stack direction="row" spacing={2} sx={{ width: { xs: "100%", md: "auto" } }}>
+                    <FormControl size="medium" sx={{ minWidth: 160 }}>
+                        <Select
+                            value={filterAvailability}
+                            onChange={handleAvailabilityChange}
+                            sx={{ borderRadius: "16px", backgroundColor: "#F8FAFF", "& fieldset": { border: "none" }, fontWeight: 700, fontSize: "0.9rem" }}
+                            startAdornment={<FilterList sx={{ mr: 1, color: "#94A3B8", fontSize: "1.1rem" }} />}
+                        >
+                            <MenuItem value="all">All Status</MenuItem>
+                            <MenuItem value="available">Available Now</MenuItem>
+                            <MenuItem value="unavailable">Booked</MenuItem>
+                        </Select>
+                    </FormControl>
 
-        <FormControl size="small" sx={{ minWidth: 150 }}>
-          <InputLabel>Min Rating</InputLabel>
-          <Select
-            value={filterRating}
-            label="Min Rating"
-            onChange={handleRatingChange}
-          >
-            <MenuItem value={0}>Any</MenuItem>
-            <MenuItem value={4}>4+</MenuItem>
-            <MenuItem value={4.5}>4.5+</MenuItem>
-            <MenuItem value={5}>5</MenuItem>
-          </Select>
-        </FormControl>
+                    <FormControl size="medium" sx={{ minWidth: 140 }}>
+                        <Select
+                            value={filterRating}
+                            onChange={handleRatingChange}
+                            sx={{ borderRadius: "16px", backgroundColor: "#F8FAFF", "& fieldset": { border: "none" }, fontWeight: 700, fontSize: "0.9rem" }}
+                            startAdornment={<Star sx={{ mr: 1, color: "#F59E0B", fontSize: "1.1rem" }} />}
+                        >
+                            <MenuItem value={0}>Any Rating</MenuItem>
+                            <MenuItem value={4}>4.0 +</MenuItem>
+                            <MenuItem value={4.5}>4.5 +</MenuItem>
+                        </Select>
+                    </FormControl>
+                </Stack>
+            </Box>
+          </motion.div>
+        </Container>
       </Box>
 
       {/* Mentors Grid */}
-      <Box
-        sx={{
-          display: "flex",
-          flexWrap: "wrap",
-          gap: 4,
-          justifyContent: "center",
-        }}
-      >
-        {filteredMentors.length ? (
-          filteredMentors.map((m, i) => (
-            <Card
-              key={i}
-              sx={{
-                width: { xs: "90%", sm: "45%", md: "20%" },
-                borderRadius: 3,
-                background: "#fff",
-                overflow: "hidden",
-                boxShadow: "0 4px 20px rgba(0,0,0,0.06)",
-                transition: "0.3s ease",
-                p: 1,
-                "&:hover": {
-                  boxShadow: "0 10px 30px rgba(0,0,0,0.14)",
-                  transform: "translateY(-4px)",
-                },
-              }}
-            >
-              <CardMedia
-                component="img"
-                src={m.img}
-                alt={m.name}
-                sx={{
-                  width: "100%",
-                  height: 160,
-                  borderRadius: 2,
-                  objectFit: "cover",
-                }}
-              />
+      <Container maxWidth="lg" sx={{ mt: -6 }}>
+        <AnimatePresence>
+            <motion.div initial="hidden" animate="visible" variants={staggerContainer}>
+                <Grid container spacing={4}>
+                    {filteredMentors.length ? (
+                        filteredMentors.map((m, i) => (
+                        <Grid item xs={12} sm={6} md={4} key={i}>
+                            <motion.div variants={fadeInUp}>
+                                <Card
+                                sx={{
+                                    borderRadius: "32px",
+                                    border: "1px solid rgba(0,0,0,0.04)",
+                                    backgroundColor: "#FFFFFF",
+                                    overflow: "hidden",
+                                    height: "100%",
+                                    transition: "0.4s cubic-bezier(0.16, 1, 0.3, 1)",
+                                    "&:hover": {
+                                        transform: "translateY(-12px)",
+                                        boxShadow: "0 40px 80px rgba(11, 11, 49, 0.08)",
+                                        "& .mentor-img": { transform: "scale(1.05)" }
+                                    },
+                                }}
+                                >
+                                <Box sx={{ position: "relative", height: 280, overflow: "hidden" }}>
+                                    <CardMedia
+                                    component="img"
+                                    src={m.img}
+                                    className="mentor-img"
+                                    sx={{ width: "100%", height: "100%", objectFit: "cover", transition: "0.8s cubic-bezier(0.16, 1, 0.3, 1)" }}
+                                    />
+                                    <Box sx={{ position: "absolute", bottom: 0, left: 0, right: 0, p: 3, background: "linear-gradient(to top, rgba(11, 11, 49, 0.8), transparent)" }}>
+                                        <Typography sx={{ color: "#FFF", fontWeight: 900, fontSize: "1.5rem", letterSpacing: "-0.02em" }}>{m.name}</Typography>
+                                        <Typography sx={{ color: "rgba(255,255,255,0.8)", fontWeight: 600, fontSize: "0.9rem" }}>{m.role}</Typography>
+                                    </Box>
+                                    <Chip 
+                                        label={m.available ? "Available" : "Booked"} 
+                                        sx={{ 
+                                            position: "absolute", 
+                                            top: 20, 
+                                            right: 20, 
+                                            backgroundColor: m.available ? "#10B981" : "#EF4444", 
+                                            color: "#FFF",
+                                            fontWeight: 900,
+                                            fontSize: "0.7rem",
+                                            borderRadius: "8px",
+                                            height: 24
+                                        }} 
+                                    />
+                                </Box>
 
-              <Box sx={{ p: 2 }}>
-                <Chip
-                  label={m.available ? "Available" : "Unavailable"}
-                  size="small"
-                  sx={{
-                    mb: 1,
-                    background: m.available ? "#E3F5E8" : "#FFE3E3",
-                    color: m.available ? "#1B7A2A" : "#C62828",
-                    fontWeight: 600,
-                  }}
-                />
+                                <Box sx={{ p: 4 }}>
+                                    <Stack spacing={2.5}>
+                                        <Stack direction="row" spacing={1} flexWrap="wrap" useFlexGap>
+                                            {m.tags.slice(0, 3).map((tag, idx) => (
+                                                <Chip 
+                                                    key={idx} 
+                                                    label={tag} 
+                                                    size="small" 
+                                                    sx={{ backgroundColor: "#F8FAFF", color: "#3B82F6", fontWeight: 800, fontSize: "0.7rem", borderRadius: "6px" }} 
+                                                />
+                                            ))}
+                                        </Stack>
 
-                <Typography sx={{ fontWeight: 700, fontSize: "1rem" }}>
-                  {m.name}
-                </Typography>
+                                        <Typography sx={{ fontSize: "0.95rem", color: "#64748B", fontWeight: 500, lineHeight: 1.6 }}>{m.bio}</Typography>
 
-                <Typography sx={{ fontSize: "0.85rem", color: "#666", mb: 1 }}>
-                  {m.role} • {m.experience} experience
-                </Typography>
+                                        <Stack direction="row" justifyContent="space-between" alignItems="center" sx={{ pt: 1, borderTop: "1px solid rgba(0,0,0,0.05)" }}>
+                                            <Stack spacing={0.5}>
+                                                <Typography sx={{ fontSize: "0.75rem", fontWeight: 800, color: "#94A3B8", textTransform: "uppercase" }}>Rating</Typography>
+                                                <Stack direction="row" spacing={0.5} alignItems="center">
+                                                    <Star sx={{ color: "#F59E0B", fontSize: "1.1rem" }} />
+                                                    <Typography sx={{ fontWeight: 900, fontSize: "1.1rem", color: "#0B0B31" }}>{m.rating}</Typography>
+                                                    <Typography sx={{ color: "#94A3B8", fontWeight: 600, fontSize: "0.85rem" }}>({m.reviews})</Typography>
+                                                </Stack>
+                                            </Stack>
+                                            <Stack spacing={0.5} alignItems="flex-end">
+                                                <Typography sx={{ fontSize: "0.75rem", fontWeight: 800, color: "#94A3B8", textTransform: "uppercase" }}>Price</Typography>
+                                                <Typography sx={{ fontWeight: 900, fontSize: "1.2rem", color: "#0B0B31" }}>{m.price}</Typography>
+                                            </Stack>
+                                        </Stack>
 
-                <Box sx={{ display: "flex", alignItems: "center", mb: 1 }}>
-                  <Rating
-                    value={m.rating}
-                    precision={0.1}
-                    readOnly
-                    size="small"
-                  />
-                  <Typography sx={{ ml: 0.5, fontSize: "0.8rem", color: "#444" }}>
-                    ({m.reviews})
-                  </Typography>
-                </Box>
-
-                <Typography
-                  sx={{
-                    fontSize: "0.8rem",
-                    color: "#555",
-                    mb: 1.5,
-                    lineHeight: 1.4,
-                  }}
-                >
-                  {m.bio}
-                </Typography>
-
-                <Box sx={{ display: "flex", flexWrap: "wrap", gap: 1, mb: 2 }}>
-                  {m.tags.map((tag, idx) => (
-                    <Chip
-                      key={idx}
-                      label={tag}
-                      size="small"
-                      sx={{
-                        background: "#F1F4FF",
-                        color: "#1D3CFF",
-                        fontSize: "0.7rem",
-                        fontWeight: 600,
-                      }}
-                    />
-                  ))}
-                </Box>
-
-                <Typography
-                  sx={{
-                    fontWeight: 700,
-                    fontSize: "0.9rem",
-                    mb: 1,
-                    color: "#0B1A4A",
-                  }}
-                >
-                  {m.price}
-                </Typography>
-
-                <Button
-                  fullWidth
-                  variant="contained"
-                  size="small"
-                  sx={{
-                    backgroundColor: "#0B1A4A",
-                    textTransform: "none",
-                    fontSize: "0.75rem",
-                    py: 1,
-                    borderRadius: 2,
-                    "&:hover": { backgroundColor: "#1D3CFF" },
-                  }}
-                >
-                  Book a call
-                </Button>
-              </Box>
-            </Card>
-          ))
-        ) : (
-          <Typography sx={{ mt: 4, fontSize: "1rem", color: "#777" }}>
-            No mentors found matching your criteria.
-          </Typography>
-        )}
-      </Box>
+                                        <Button
+                                            fullWidth
+                                            variant="contained"
+                                            startIcon={<CalendarMonth />}
+                                            sx={{ 
+                                                mt: 1, 
+                                                backgroundColor: "#0B0B31", 
+                                                color: "#FFF", 
+                                                borderRadius: "16px", 
+                                                py: 1.8, 
+                                                fontWeight: 900, 
+                                                textTransform: "none", 
+                                                fontSize: "0.95rem",
+                                                "&:hover": { backgroundColor: "#17174F" }
+                                            }}
+                                        >
+                                            Book a Session
+                                        </Button>
+                                    </Stack>
+                                </Box>
+                                </Card>
+                            </motion.div>
+                        </Grid>
+                        ))
+                    ) : (
+                        <Grid item xs={12}>
+                            <Box sx={{ py: 10, textAlign: "center" }}>
+                                <Typography sx={{ fontSize: "1.2rem", color: "#94A3B8", fontWeight: 600 }}>No mentors found matching your criteria.</Typography>
+                                <Button sx={{ mt: 2, fontWeight: 800 }} onClick={() => { setSearchTerm(""); setFilterAvailability("all"); setFilterRating(0); }}>Clear All Filters</Button>
+                            </Box>
+                        </Grid>
+                    )}
+                </Grid>
+            </motion.div>
+        </AnimatePresence>
+      </Container>
     </Box>
   );
 };

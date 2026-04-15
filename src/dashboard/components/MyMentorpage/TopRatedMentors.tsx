@@ -1,5 +1,7 @@
 import React from "react";
-import { Box, Typography, Card, CardMedia, Button, Chip, Rating } from "@mui/material";
+import { Box, Typography, Card, CardMedia, Button, Chip, Container, Grid, Stack } from "@mui/material";
+import { motion, type Variants } from "framer-motion";
+import { Star, CalendarMonth } from "@mui/icons-material";
 
 // Mentor Images
 import mentor1 from "../../assets/images/mentors/mentor1.png";
@@ -7,10 +9,6 @@ import mentor2 from "../../assets/images/mentors/mentor2.png";
 import mentor3 from "../../assets/images/mentors/mentor3.png";
 import mentor4 from "../../assets/images/mentors/mentor4.png";
 import mentor5 from "../../assets/images/mentors/mentor5.png";
-import mentor6 from "../../assets/images/mentors/mentor6.png";
-import mentor7 from "../../assets/images/mentors/mentor7.png";
-import mentor8 from "../../assets/images/mentors/mentor8.png";
-import mentor9 from "../../assets/images/mentors/mentor9.png";
 
 const topMentors = [
   {
@@ -73,181 +71,139 @@ const topMentors = [
     bio: "Expert in user flows and product experience.",
     available: false,
   },
-  {
-    name: "Michael Lee",
-    role: "Data Analysis",
-    rating: 4.6,
-    reviews: 72,
-    img: mentor6,
-    experience: "3 yrs",
-    tags: ["Excel", "SQL", "Data Viz"],
-    price: "$12 / hr",
-    bio: "Transforms raw data into actionable insights.",
-    available: true,
-  },
-  {
-    name: "Aisha Bello",
-    role: "Front-End Dev",
-    rating: 4.7,
-    reviews: 112,
-    img: mentor7,
-    experience: "5 yrs",
-    tags: ["Responsive UI", "JavaScript"],
-    price: "$16 / hr",
-    bio: "Builds fast and mobile-friendly UIs.",
-    available: true,
-  },
-  {
-    name: "David Yang",
-    role: "Full Stack Developer",
-    rating: 4.8,
-    reviews: 160,
-    img: mentor8,
-    experience: "6 yrs",
-    tags: ["Node.js", "React", "APIs"],
-    price: "$22 / hr",
-    bio: "Creates full-stack solutions with clean architecture.",
-    available: false,
-  },
-  {
-    name: "Chisom Dev",
-    role: "UI/UX",
-    rating: 4.5,
-    reviews: 90,
-    img: mentor9,
-    experience: "4 yrs",
-    tags: ["Figma", "Design Systems"],
-    price: "$14 / hr",
-    bio: "Focuses on intuitive user-centered design.",
-    available: true,
-  },
 ];
+
+const fadeInUp: Variants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: { 
+    opacity: 1, 
+    y: 0, 
+    transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] } 
+  }
+};
 
 const TopRatedMentors: React.FC = () => {
   return (
-    <Box
-      sx={{
-        width: "100%",
-        maxWidth: "1200px",
-        mx: "auto",
-        px: 2,
-        py: 8,
-        overflow: "hidden",
-      }}
-    >
-      <Typography
-        sx={{
-          fontSize: { xs: "1.5rem", md: "2rem" },
-          fontWeight: 700,
-          mb: 4,
-          textAlign: "center",
-        }}
-      >
-        Top Rated Mentors
-      </Typography>
-
-      <Box
-        sx={{
-          display: "flex",
-          flexWrap: "wrap",
-          gap: 4,
-          px: 2,
-          mx: "auto",
-          justifyContent: "center",
-        }}
-      >
-        {topMentors.map((m, i) => (
-          <Card
-            key={i}
-            sx={{
-              width: { xs: "95%", sm: "48%", md: "20%" },
-              borderRadius: 3,
-              background: "#fff",
-              overflow: "hidden",
-              boxShadow: "0 4px 20px rgba(0,0,0,0.06)",
-              transition: "0.3s ease",
-              p: 1,
-              "&:hover": {
-                boxShadow: "0 10px 30px rgba(0,0,0,0.14)",
-                transform: "translateY(-4px)",
-              },
-            }}
-          >
-            <CardMedia
-              component="img"
-              src={m.img}
-              alt={m.name}
-              sx={{
-                width: "100%",
-                height: 180,
-                borderRadius: 2,
-                objectFit: "cover",
-              }}
-            />
-
-            <Box sx={{ p: 2 }}>
-              <Chip
-                label={m.available ? "Available" : "Unavailable"}
-                size="small"
-                sx={{
-                  mb: 1,
-                  background: m.available ? "#E3F5E8" : "#FFE3E3",
-                  color: m.available ? "#1B7A2A" : "#C62828",
-                  fontWeight: 600,
-                }}
-              />
-
-              <Typography sx={{ fontWeight: 700, fontSize: "1rem" }}>{m.name}</Typography>
-
-              <Typography sx={{ fontSize: "0.85rem", color: "#666", mb: 1 }}>
-                {m.role} • {m.experience} experience
-              </Typography>
-
-              <Box sx={{ display: "flex", alignItems: "center", mb: 1 }}>
-                <Rating value={m.rating} precision={0.1} readOnly size="small" />
-                <Typography sx={{ ml: 0.5, fontSize: "0.8rem", color: "#444" }}>
-                  ({m.reviews})
+    <Box sx={{ py: 12, backgroundColor: "#FFFFFF" }}>
+      <Container maxWidth="lg">
+        <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeInUp}>
+            <Stack spacing={2} sx={{ mb: 8, textAlign: "center" }}>
+                <Typography sx={{ fontSize: "0.85rem", fontWeight: 800, color: "#3B82F6", textTransform: "uppercase", letterSpacing: "0.1em" }}>
+                    Top Rated
                 </Typography>
-              </Box>
+                <Typography sx={{ fontSize: { xs: "2rem", md: "3rem" }, fontWeight: 900, color: "#0B0B31", letterSpacing: "-0.02em" }}>
+                    Learn from the <span style={{ color: "#3B82F6" }}>Elite</span>.
+                </Typography>
+            </Stack>
+        </motion.div>
 
-              <Typography sx={{ fontSize: "0.8rem", color: "#555", mb: 1.5, lineHeight: 1.4 }}>
-                {m.bio}
-              </Typography>
-
-              <Box sx={{ display: "flex", flexWrap: "wrap", gap: 1, mb: 2 }}>
-                {m.tags.map((tag, idx) => (
-                  <Chip
-                    key={idx}
-                    label={tag}
-                    size="small"
-                    sx={{ background: "#F1F4FF", color: "#1D3CFF", fontSize: "0.7rem", fontWeight: 600 }}
-                  />
-                ))}
-              </Box>
-
-              <Typography sx={{ fontWeight: 700, fontSize: "0.9rem", mb: 1, color: "#0B1A4A" }}>
-                {m.price}
-              </Typography>
-
-              <Button
-                fullWidth
-                variant="contained"
-                size="small"
-                sx={{
-                  backgroundColor: "#0B1A4A",
-                  textTransform: "none",
-                  fontSize: "0.75rem",
-                  py: 1,
-                  borderRadius: 2,
-                  "&:hover": { backgroundColor: "#1D3CFF" },
-                }}
+        <Grid container spacing={4} justifyContent="center">
+          {topMentors.map((m, i) => (
+            <Grid item xs={12} sm={6} md={4} lg={3} key={i}>
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: i * 0.1 }}
               >
-                Book a call
-              </Button>
-            </Box>
-          </Card>
-        ))}
-      </Box>
+                <Card
+                  sx={{
+                    borderRadius: "32px",
+                    border: "1px solid rgba(0,0,0,0.04)",
+                    backgroundColor: "#FFFFFF",
+                    overflow: "hidden",
+                    height: "100%",
+                    transition: "0.4s cubic-bezier(0.16, 1, 0.3, 1)",
+                    "&:hover": {
+                      transform: "translateY(-12px)",
+                      boxShadow: "0 40px 80px rgba(11, 11, 49, 0.08)",
+                      "& img": { transform: "scale(1.05)" }
+                    },
+                  }}
+                >
+                  <Box sx={{ position: "relative", height: 240, overflow: "hidden" }}>
+                    <CardMedia
+                      component="img"
+                      src={m.img}
+                      sx={{ 
+                        width: "100%", 
+                        height: "100%", 
+                        objectFit: "cover", 
+                        transition: "0.8s cubic-bezier(0.16, 1, 0.3, 1)" 
+                      }}
+                    />
+                    <Chip 
+                        label={m.available ? "Available" : "Booked"} 
+                        sx={{ 
+                            position: "absolute", 
+                            top: 16, 
+                            right: 16, 
+                            backgroundColor: m.available ? "#10B981" : "#EF4444", 
+                            color: "#FFF",
+                            fontWeight: 900,
+                            fontSize: "0.65rem",
+                            borderRadius: "8px",
+                            height: 22
+                        }} 
+                    />
+                  </Box>
+
+                  <Box sx={{ p: 3 }}>
+                    <Stack spacing={2}>
+                      <Box>
+                        <Typography sx={{ fontWeight: 900, fontSize: "1.2rem", color: "#0B0B31" }}>{m.name}</Typography>
+                        <Typography sx={{ fontSize: "0.85rem", color: "#64748B", fontWeight: 600 }}>{m.role}</Typography>
+                      </Box>
+
+                      <Stack direction="row" spacing={1} flexWrap="wrap" useFlexGap>
+                        {m.tags.slice(0, 2).map((tag, idx) => (
+                          <Chip 
+                            key={idx} 
+                            label={tag} 
+                            size="small" 
+                            sx={{ backgroundColor: "#F8FAFF", color: "#3B82F6", fontWeight: 800, fontSize: "0.65rem", borderRadius: "6px" }} 
+                          />
+                        ))}
+                      </Stack>
+
+                      <Typography sx={{ fontSize: "0.85rem", color: "#64748B", fontWeight: 500, lineHeight: 1.5, display: "-webkit-box", WebkitLineClamp: 2, WebkitBoxOrient: "vertical", overflow: "hidden" }}>
+                        {m.bio}
+                      </Typography>
+
+                      <Stack direction="row" justifyContent="space-between" alignItems="center" sx={{ pt: 1, borderTop: "1px solid rgba(0,0,0,0.05)" }}>
+                        <Stack direction="row" spacing={0.5} alignItems="center">
+                          <Star sx={{ color: "#F59E0B", fontSize: "1rem" }} />
+                          <Typography sx={{ fontWeight: 900, fontSize: "1rem", color: "#0B0B31" }}>{m.rating}</Typography>
+                        </Stack>
+                        <Typography sx={{ fontWeight: 900, fontSize: "1.1rem", color: "#0B0B31" }}>{m.price}</Typography>
+                      </Stack>
+
+                      <Button
+                        fullWidth
+                        variant="contained"
+                        startIcon={<CalendarMonth />}
+                        sx={{ 
+                          mt: 1, 
+                          backgroundColor: "#0B0B31", 
+                          color: "#FFF", 
+                          borderRadius: "14px", 
+                          py: 1.5, 
+                          fontWeight: 900, 
+                          textTransform: "none", 
+                          fontSize: "0.85rem",
+                          "&:hover": { backgroundColor: "#17174F" }
+                        }}
+                      >
+                        Book Now
+                      </Button>
+                    </Stack>
+                  </Box>
+                </Card>
+              </motion.div>
+            </Grid>
+          ))}
+        </Grid>
+      </Container>
     </Box>
   );
 };
