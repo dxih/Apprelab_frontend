@@ -1,12 +1,11 @@
 import React from "react";
-import { Box, useTheme } from "@mui/material";
+import { Box } from "@mui/material";
 
 interface BackgroundDecorProps {
   variant?: "home" | "learn" | "mentor" | "about" | "generic";
 }
 
 const BackgroundDecor: React.FC<BackgroundDecorProps> = ({ variant = "generic" }) => {
-  const theme = useTheme();
 
   const renderHomeDecor = () => (
     <>
