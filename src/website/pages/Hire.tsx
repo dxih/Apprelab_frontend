@@ -1,13 +1,15 @@
 import { Box, Typography, Button, Container } from "@mui/material";
 import { Helmet } from "react-helmet-async";
 import { motion, type Variants } from "framer-motion";
+import BackgroundDecor from "../components/common/BackgroundDecor";
+import patternBg from "../assets/images/bg.jpg";
 
 const fadeInUp: Variants = {
   hidden: { opacity: 0, y: 30 },
-  visible: { 
-    opacity: 1, 
-    y: 0, 
-    transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] } 
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] }
   }
 };
 
@@ -30,11 +32,14 @@ export default function Hire() {
         backgroundColor: "#FFFFFF",
         minHeight: "90vh",
         display: "flex",
+        backgroundImage: `linear-gradient(180deg, rgba(248, 250, 255, 0.85) 0%, rgba(255, 255, 255, 0.95) 100%), url(${patternBg})`,
+
         alignItems: "center",
         justifyContent: "center",
-        background: "radial-gradient(circle at 10% 20%, rgba(59, 130, 246, 0.05) 0%, transparent 40%), radial-gradient(circle at 90% 80%, rgba(255, 214, 10, 0.05) 0%, transparent 40%)",
+        zIndex: 0,
       }}
     >
+      <BackgroundDecor variant="generic" />
       <Helmet>
         <title>Hire Top Talent | Apprelab</title>
         <meta name="description" content="Connect with Africa's top tech talent. Our hiring platform is designed for speed, quality, and impact. Coming soon." />
@@ -44,36 +49,30 @@ export default function Hire() {
 
       <Container maxWidth="sm">
         <motion.div
-           variants={staggerContainer}
-           initial="hidden"
-           animate="visible"
+          variants={staggerContainer}
+          initial="hidden"
+          animate="visible"
         >
           {/* === Content === */}
-          <Box
-            sx={{
-              position: "relative",
-              zIndex: 2,
-              textAlign: "center",
-            }}
-          >
+          <Box sx={{ position: "relative", zIndex: 2, textAlign: "center", mb: 12 }}>
             <motion.div variants={fadeInUp}>
-                <Box
-                    sx={{
-                        display: "inline-block",
-                        px: 2,
-                        py: 0.5,
-                        borderRadius: "50px",
-                        backgroundColor: "rgba(59, 130, 246, 0.1)",
-                        color: "#3B82F6",
-                        fontSize: "0.85rem",
-                        fontWeight: 700,
-                        textTransform: "uppercase",
-                        letterSpacing: "0.1em",
-                        mb: 3,
-                    }}
-                >
-                    Coming Soon
-                </Box>
+              <Box
+                sx={{
+                  display: "inline-block",
+                  px: 2,
+                  py: 0.5,
+                  borderRadius: "50px",
+                  backgroundColor: "rgba(59, 130, 246, 0.1)",
+                  color: "#3B82F6",
+                  fontSize: "0.85rem",
+                  fontWeight: 700,
+                  textTransform: "uppercase",
+                  letterSpacing: "0.1em",
+                  mb: 3,
+                }}
+              >
+                Coming Soon
+              </Box>
             </motion.div>
 
             <motion.div variants={fadeInUp}>
@@ -102,7 +101,7 @@ export default function Hire() {
                   fontWeight: 500,
                 }}
               >
-                We’re crafting a powerful hiring experience to connect companies with 
+                We’re crafting a powerful hiring experience to connect companies with
                 top-tier tech talent — tailored for speed, quality, and extreme impact.
               </Typography>
             </motion.div>
@@ -121,10 +120,10 @@ export default function Hire() {
                   borderRadius: "16px",
                   boxShadow: "0 10px 40px rgba(11, 11, 49, 0.2)",
                   transition: "all 0.3s ease",
-                  "&:hover": { 
-                      backgroundColor: "#15173A",
-                      transform: "translateY(-4px)",
-                      boxShadow: "0 20px 50px rgba(11, 11, 49, 0.3)",
+                  "&:hover": {
+                    backgroundColor: "#15173A",
+                    transform: "translateY(-4px)",
+                    boxShadow: "0 20px 50px rgba(11, 11, 49, 0.3)",
                   },
                 }}
               >

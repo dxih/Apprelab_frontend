@@ -12,6 +12,7 @@ import Learn from "./website/pages/Learn";
 import Hire from "./website/pages/Hire";
 import Create from "./website/pages/Create";
 import About from "./website/pages/About";
+import Coursesweb from "./website/pages/Courses";
 
 // 🧑‍💻 Dashboard Pages
 import DashboardHome from "./dashboard/pages/main/DashboardHome";
@@ -85,24 +86,24 @@ import FounderProjectDetail from "./layouts/founder-hub/FounderProjectDetail";
 function App() {
   return (
     <Routes>
-{/* Founder Hub */}
-<Route
-  path="/founder"
-  element={
-    <DashboardProvider>
-      <FounderDashboardLayout />
-    </DashboardProvider>
-  }
->
-  <Route index element={<FounderDashboard />} />
-  <Route path="projects" element={<FounderProjects />} />
-  <Route path="projects/:id" element={<FounderProjectDetail />} />  {/* ADD THIS */}
-  <Route path="talent" element={<FounderTalent />} />
-  <Route path="collaboration" element={<FounderCollaboration />} />
-  <Route path="wallet" element={<FounderWallet />} />
-  <Route path="settings" element={<FounderSettings />} />
-  <Route path="overview" element={<FounderOverview />} />
-</Route>
+      {/* Founder Hub */}
+      <Route
+        path="/founder"
+        element={
+          <DashboardProvider>
+            <FounderDashboardLayout />
+          </DashboardProvider>
+        }
+      >
+        <Route index element={<FounderDashboard />} />
+        <Route path="projects" element={<FounderProjects />} />
+        <Route path="projects/:id" element={<FounderProjectDetail />} />  {/* ADD THIS */}
+        <Route path="talent" element={<FounderTalent />} />
+        <Route path="collaboration" element={<FounderCollaboration />} />
+        <Route path="wallet" element={<FounderWallet />} />
+        <Route path="settings" element={<FounderSettings />} />
+        <Route path="overview" element={<FounderOverview />} />
+      </Route>
 
       {/*  Public Website */}
       <Route element={<WebsiteLayout />}>
@@ -113,6 +114,7 @@ function App() {
         <Route path="/hire" element={<Hire />} />
         <Route path="/create" element={<Create />} />
         <Route path="/about" element={<About />} />
+        <Route path="/courses" element={<Coursesweb />} />
       </Route>
 
       {/*  User Dashboard */}
@@ -130,9 +132,9 @@ function App() {
         <Route path="/dashboard/profile" element={<Profile />} />
         <Route path="/dashboard/settings" element={<Settings />} />
 
-          {/* SME Pages */}
-        <Route path="/dashboard/sme" element={<Sme />} /> 
-        
+        {/* SME Pages */}
+        <Route path="/dashboard/sme" element={<Sme />} />
+
         {/* Mentor Pages */}
         <Route path="/dashboard/mymentor" element={<MyMentor />} />
         <Route path="/dashboard/ourmentors" element={<OurMentors />} />
@@ -144,7 +146,7 @@ function App() {
           <Route path="assessments" element={<MyStackAssetsmentPage />} />
           <Route path="discussions" element={<MyStackDiscussionPage />} />
         </Route>
- 
+
         {/* Certificate */}
         <Route path="/certificates" element={<CertificatesList />} />
         <Route path="/certificates/:id" element={<CertificateDetail />} />

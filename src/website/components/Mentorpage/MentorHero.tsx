@@ -3,13 +3,14 @@ import { Box, Typography, Button, Container } from "@mui/material";
 import { Link } from "react-router-dom";
 import { motion, type Variants } from "framer-motion";
 import mentorInviteImage from "../../assets/images/mentor_hero.png";
+import patternBg from "../../assets/images/bg.jpg";
 
 const fadeInUp: Variants = {
   hidden: { opacity: 0, y: 30 },
-  visible: { 
-    opacity: 1, 
-    y: 0, 
-    transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] } 
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] }
   }
 };
 
@@ -36,7 +37,9 @@ const MentorHero: React.FC = () => {
         textAlign: "center",
         pt: { xs: 12, md: 16 },
         pb: { xs: 8, md: 12 },
-        background: "linear-gradient(180deg, #F8FAFF 0%, #FFFFFF 100%)",
+        backgroundImage: `linear-gradient(180deg, rgba(248, 250, 255, 0.85) 0%, rgba(255, 255, 255, 0.95) 100%), url(${patternBg})`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
         position: "relative",
         overflow: "hidden",
       }}
@@ -136,12 +139,12 @@ const MentorHero: React.FC = () => {
             >
               <motion.img
                 animate={{
-                    y: [0, -10, 0]
+                  y: [0, -10, 0]
                 }}
                 transition={{
-                    duration: 6,
-                    repeat: Infinity,
-                    ease: "easeInOut"
+                  duration: 6,
+                  repeat: Infinity,
+                  ease: "easeInOut"
                 }}
                 src={mentorInviteImage}
                 alt="Mentor and student"

@@ -8,6 +8,7 @@ import StoriesOfJoy from "../components/Learnpage/StoriesOfJoy";
 import JoinPlatformSection from "../components/Learnpage/JoinPlatformSection";
 
 import AnimatedSection from "../components/common/AnimatedSection";
+import BackgroundDecor from "../components/common/BackgroundDecor";
 
 export default function Learn() {
   return (
@@ -19,6 +20,7 @@ export default function Learn() {
         minHeight: "100vh",
       }}
     >
+      <BackgroundDecor variant="learn" />
       <Helmet>
         <title>Learn & Build Skills | Apprelab</title>
         <meta name="description" content="Explore micro-courses, bootcamps, and specialized learning paths designed to turn your skills into opportunities." />
@@ -27,7 +29,7 @@ export default function Learn() {
       </Helmet>
 
       {/* === PAGE CONTENT (on top of glow) === */}
-      <Box sx={{ position: "relative", zIndex: 1 }}>
+      <Box sx={{ position: "relative", zIndex: 2 }}>
           <LearnHero />
 
           <MicroCourses />

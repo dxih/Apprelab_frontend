@@ -7,6 +7,7 @@ import EarnWhileYouImpactLives from "../components/Mentorpage/EarnWhileYouImpact
 import MentorWaitlist from "../components/Mentorpage/MentorWaitlist";
 
 import AnimatedSection from "../components/common/AnimatedSection";
+import BackgroundDecor from "../components/common/BackgroundDecor";
 
 export default function Mentor() {
   return (
@@ -18,9 +19,10 @@ export default function Mentor() {
         minHeight: "100vh",
       }}
     >
+      <BackgroundDecor variant="mentor" />
 
-      {/* === Actual Page Content === */}
-      <Box sx={{ position: "relative", zIndex: 1 }}>
+      {/* === PAGE CONTENT (on top of glow) === */}
+      <Box sx={{ position: "relative", zIndex: 2 }}>
           <MentorHero />
 
         <AnimatedSection>

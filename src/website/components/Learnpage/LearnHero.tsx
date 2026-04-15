@@ -3,6 +3,7 @@ import { Box, Typography, Button, Container } from "@mui/material";
 import { Link } from "react-router-dom";
 import { motion, type Variants } from "framer-motion";
 import learnHero from "../../assets/images/learn_hero.png";
+import patternBg from "../../assets/images/bg.jpg";
 
 const LearnHero: React.FC = () => {
   const containerVariants: Variants = {
@@ -37,7 +38,9 @@ const LearnHero: React.FC = () => {
         textAlign: "center",
         pt: { xs: 12, md: 16 },
         pb: { xs: 8, md: 12 },
-        background: "linear-gradient(180deg, #F8FAFF 0%, #FFFFFF 100%)",
+        backgroundImage: `linear-gradient(180deg, rgba(248, 250, 255, 0.85) 0%, rgba(255, 255, 255, 0.95) 100%), url(${patternBg})`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
         position: "relative",
         overflow: "hidden",
       }}
@@ -54,7 +57,7 @@ const LearnHero: React.FC = () => {
               <Typography
                 variant="h1"
                 sx={{
-                  fontSize: { xs: "2.5rem", sm: "3.5rem", md: "4.5rem" },
+                  fontSize: { xs: "4rem", sm: "4.5rem", md: "6rem" },
                   fontWeight: 900,
                   color: "#0B0B31",
                   lineHeight: 1.1,

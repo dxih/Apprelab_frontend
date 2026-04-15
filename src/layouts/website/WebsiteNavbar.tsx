@@ -52,6 +52,7 @@ const WebsiteNavbar: React.FC = () => {
           maxWidth: "1400px",
           margin: "0 auto",
           px: { xs: 2, md: 4 },
+          py: { xs: 1.5, md: 2.5 }, // Added more top/bottom padding
           display: "flex",
           alignItems: "center",
           gap: 3,

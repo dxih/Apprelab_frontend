@@ -1,4 +1,6 @@
 import { Box, Typography } from "@mui/material";
+import BackgroundDecor from "../components/common/BackgroundDecor";
+import patternBg from "../assets/images/bg.jpg";
 
 export default function Create() {
   return (
@@ -10,10 +12,13 @@ export default function Create() {
         minHeight: "85vh",
         display: "flex",
         justifyContent: "center",
+        backgroundImage: `linear-gradient(180deg, rgba(248, 250, 255, 0.85) 0%, rgba(255, 255, 255, 0.95) 100%), url(${patternBg})`,
+
         alignItems: "center",
         px: 2,
       }}
     >
+      <BackgroundDecor variant="generic" />
       {/* === Page Content === */}
       <Box sx={{ position: "relative", zIndex: 2, textAlign: "center" }}>
         <Typography

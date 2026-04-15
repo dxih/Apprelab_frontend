@@ -4,15 +4,15 @@ export const theme = createTheme({
   palette: {
     mode: 'light',
     primary: {
-      main: '#05379cff',
-      light: '#4D8CFF',
-      dark: '#003BB8',
+      main: '#010A45', // Deep Precision Blue
+      light: '#0A2685',
+      dark: '#000529',
       contrastText: '#FFFFFF',
     },
     secondary: {
-      main: '#FFD93D',
-      light: '#FFE680',
-      dark: '#FFC300',
+      main: '#FDCB07', // Precision Gold/Yellow
+      light: '#FFE066',
+      dark: '#C79E00',
       contrastText: '#1A1A1A',
     },
     background: {

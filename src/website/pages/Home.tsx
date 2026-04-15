@@ -6,6 +6,7 @@ import Categories from "../components//Homepage/Categories";
 import AboutIntro from "../components//Homepage/AboutIntro";
 import FaqSection from "../components//Homepage/FaqSection";
 import AnimatedSection from "../components/common/AnimatedSection";
+import BackgroundDecor from "../components/common/BackgroundDecor";
 
 export default function Home() {
   return (
@@ -24,8 +25,11 @@ export default function Home() {
         <meta property="og:type" content="website" />
         <meta name="twitter:card" content="summary_large_image" />
       </Helmet>
+      {/* === Background Decorations === */}
+      <BackgroundDecor variant="home" />
+
       {/* === Actual Page Content === */}
-      <Box sx={{ position: "relative", zIndex: 1 }}>
+      <Box sx={{ position: "relative", zIndex: 2 }}>
           <HomeHero />
 
         <AnimatedSection>
